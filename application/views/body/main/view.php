@@ -8,7 +8,7 @@
       <div class="hero-unit">
         <h1>Hello, world!</h1>
         <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+        <p><a  id='learnMore' class="btn btn-primary btn-large">Learn more &raquo;</a></p>
       </div>
 
       <!-- Example row of columns -->
@@ -35,3 +35,16 @@
 
 
     </div> <!-- /container -->
+    
+    
+<script type="text/javascript" language="Javascript">
+	
+	$(document).ready(function() { 
+		
+		$('#learnMore').attr('href', '#modal_box').fancyZoom({});
+		
+		
+	});
+	
+	
+</script>

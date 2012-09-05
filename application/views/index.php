@@ -12,6 +12,7 @@
 			<?php $this->load->view($body); ?>
 		</div>
 	</div>
+<?php $this->load->view($hidden); ?>	
 </body>
 <?php $this->load->view($footer); ?>
 

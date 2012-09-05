@@ -43,5 +43,5 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
 <script>window.jQuery || document.write('<script src="' + window.base_url + 'js/libs/jquery/jquery-1.7.2.min.js"><\/script>')</script>
 <script>window._ || document.write('<script src="' + window.base_url + 'js/libs/underscore/underscore-min.1.3.3.js"><\/script>')</script>
-
+<script src="<?php echo base_url()    ?>js/libs/fancyzoom/fancyzoom.js"></script>
 </head>

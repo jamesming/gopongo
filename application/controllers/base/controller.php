@@ -10,13 +10,13 @@ class Base_Controller extends CI_Controller
 
 		$this->_data = new stdClass;
 		
-		$this->_data->title = "ScholarWish";
-		$this->_data->company_name = "ScholarWish LLC";
+		$this->_data->title = "Pongo";
+		$this->_data->company_name = "Pongo LLC";
 		$this->_data->GA_account = "UA-XXXXX-X";
 
 		$this->_data->header = "header/header";
 		$this->_data->nav = "nav/nav";
-		$this->_data->tags_container = "body/tags/view";
+		$this->_data->hidden = "hidden/view";
 		$this->_data->company = "footer/company";			
 		$this->_data->footer = "footer/footer";
 		
