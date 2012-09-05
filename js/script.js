@@ -1,7 +1,3 @@
-/* Author: James Ming
-*/
-
-
 core = {
 			init:function(){
 				
@@ -196,10 +192,32 @@ core = {
 				callback(document.getElementById(id));
 			}				
 
-
+			,popFancyZoom: function(  el, content ){
+				
+				$('#modal_box').html( content );
+				$('#'+el).attr('href', '#modal_box').fancyZoom({});
+				
+			}
     	
 };
+
+
+_.extend(core, {
+	
+	 init_main: function(){
+	 	
+		$(".collapse").collapse();
+		
+	}
+
+	
+});
+
+
 window.onload = function(){
 	core.init();	
+	core.init_main();	
 };
+
+
 

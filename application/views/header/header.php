@@ -8,13 +8,7 @@
 
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>js/libs/bootstrap/css/bootstrap.min.css">
-	<style>
-	body {
-	  padding-top: 60px;
-	  padding-bottom: 40px;
-	}
-	</style>
-	
+
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/style.css?v=<?php echo rand()    ?>">
 
 	<script type="text/javascript" language="Javascript">
