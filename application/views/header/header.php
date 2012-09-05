@@ -7,7 +7,7 @@
 	<meta name="author" content="">
 
 	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/bootstrap/bootstrap.css">
+	<link rel="stylesheet" href="<?php  echo base_url()   ?>js/libs/bootstrap/css/bootstrap.min.css">
 	<style>
 	body {
 	  padding-top: 60px;
@@ -15,7 +15,6 @@
 	}
 	</style>
 	
-	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/bootstrap/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/style.css?v=<?php echo rand()    ?>">
 
 	<script type="text/javascript" language="Javascript">
@@ -39,9 +38,9 @@
 	</script>
 
 <script src="<?php  echo base_url()   ?>js/libs/modernizr/modernizr-2.5.3-respond-1.1.0.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
-<script>window.jQuery || document.write('<script src="' + window.base_url + 'js/libs/jquery/jquery-1.7.2.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="' + window.base_url + 'js/libs/jquery/jquery-1.8.1.min.js"><\/script>')</script>
 <script>window._ || document.write('<script src="' + window.base_url + 'js/libs/underscore/underscore-min.1.3.3.js"><\/script>')</script>
 <script src="<?php echo base_url()    ?>js/libs/fancyzoom/fancyzoom.js"></script>
 </head>
