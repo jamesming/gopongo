@@ -1,9 +1,18 @@
 
     <div class="container">
 
-      <!-- Example row of columns -->
+
+
+
       <div class="row">
-        <div class="span4">
+      	
+        <div class="span2">
+          <h2>Heading</h2>
+          <h2>Heading</h2>
+          <h2>Heading</h2>
+          <h2>Heading</h2>
+       </div>      	
+        <div class="span3">
           <h2>Heading</h2>
 			<div class="accordion" id="accordion2">
 			  <div class="accordion-group">
@@ -32,10 +41,9 @@
 			  </div>
 			</div>
         </div>
-        <div class="span8">
+        <div class="span7">
           <h2>Heading</h2>
            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
        </div>
 
       </div>
