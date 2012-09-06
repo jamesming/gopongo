@@ -194,7 +194,7 @@ core = {
 				
 				parent.insertBefore( el, parent.firstChild);
 				callback(el, count);
-			}				
+			}			
 
 			,popFancyZoom: function(  el, content ){
 				
@@ -222,6 +222,17 @@ core = {
 					async:false
 				});
 				return out;
+			}
+			
+			,getObjectLength : function(o){
+			  var length = 0;
+			
+			  for (var i in o) {
+			    if (Object.prototype.hasOwnProperty.call(o, i)){
+			      length++;
+			    }
+			  }
+			  return length;
 			}			
     	
 };
@@ -229,27 +240,58 @@ core = {
 
 _.extend(core, {
 	
-	 init_main: function(){
+	 initMain: function(){
 	 	
+	 	this.setPropertiesMain();
 		this.create.init();
-		this.bindElements();		
+		this.bindElements();	
 		
 	}
 
+
+	,setPropertiesMain: function(){
+		
+		
+		
+		this.categories = [
+			 {name:'Animation'}
+			,{name:'Cable'}
+			,{name:'Children\'s'}
+			,{name:'Digital Content'}
+			,{name:'Integrated'}
+			,{name:'Network'}
+			,{name:'Shoot'}
+			,{name:'Presentations'}
+		];
+
+		
+
+	}
+
 	,bindElements: function(){
+		
+		var that = this;
 		
 		$(".collapse").collapse({
 				  toggle: true
 		});
 		
 		$('#addCategory').click(function(event) {
-			core.create.category.add(core.count_categories); 		
+			
+			var count_catgeories = core.categories.length;
+			
+			core.create.category.add('', count_catgeories); 	
+				
 		});	
 		
 		
 		$('#addAsset').click(function(event) {
 			core.create.asset.add(core.count_assets[0]); 		
-		});			
+		});
+		
+		$('.category').live('click', function(event) {			
+			console.log(that.categories[$(this).attr('idx')].name);
+		});	
 	}
 	
 	
@@ -263,16 +305,17 @@ _.extend(core, {
 		,category: {
 			
 			init: function(){
-
-				core.count_categories = 3;
-					
-				while (--core.count_categories) {
-					this.add(core.count_categories);       
-		    	}
+				
+				var count = 0; 
+				for(var idx in core.categories){
+					this.add(core.categories[idx].name, count);
+					count++;
+				};
 	
 			}
 			
-			,add: function(count){
+			,add: function(name, count){
+				
 					if ( ! core.category_tpl) {
 					  core.category_tpl = core.loadTemplate('js/tpl/category.tpl');
 					}		
@@ -280,12 +323,10 @@ _.extend(core, {
 					var tpl = core.category_tpl;
 		
 					tpl  = tpl.replace(/{{idx}}/g, count);
-		
-					core.addToDom('div', '', 'categories', 0 , function(el, count){
-						el.className = 'accordion-group';
-						el.className +=  ' ' + 'category';
-						el.innerHTML = tpl;
-					}); 	
+					tpl  = tpl.replace(/{{name}}/g, name);
+					
+					$('#categories').append(tpl);
+	
 			}
 			
 		}
@@ -318,7 +359,7 @@ _.extend(core, {
 
 window.onload = function(){
 	core.init();	
-	core.init_main();	
+	core.initMain();	
 };
 
 
