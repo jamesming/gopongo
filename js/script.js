@@ -256,11 +256,11 @@ _.extend(core, {
 			 	,assets:[
 			 		 {
 			 		 	 name:'spot1'
-			 		 	,image:'http://lorempixel.com/g/280/159/'
+			 		 	,image:'http://lorempixel.com/280/159/city'
 			 		 	}
 			 		,{
 			 		 	 name:'spot2'
-			 		 	,image:'http://lorempixel.com/g/280/159/'
+			 		 	,image:'http://lorempixel.com/280/159/animals'
 			 			}
 			 	]
 			 }
@@ -273,7 +273,10 @@ _.extend(core, {
 			,{name:'Presentations'}
 		];
 
-		
+
+		for(var idx in this.categories[0].assets){
+			console.log(this.categories[0].assets[idx].image);
+		}
 
 	}
 
