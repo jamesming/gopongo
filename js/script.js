@@ -248,13 +248,22 @@ _.extend(core, {
 		
 	}
 
-
 	,setPropertiesMain: function(){
 		
-		
-		
 		this.categories = [
-			 {name:'Animation'}
+			 {	
+			 	 name:'Animation'
+			 	,assets:[
+			 		 {
+			 		 	 name:'spot1'
+			 		 	,image:'http://lorempixel.com/g/280/159/'
+			 		 	}
+			 		,{
+			 		 	 name:'spot2'
+			 		 	,image:'http://lorempixel.com/g/280/159/'
+			 			}
+			 	]
+			 }
 			,{name:'Cable'}
 			,{name:'Children\'s'}
 			,{name:'Digital Content'}
@@ -335,18 +344,17 @@ _.extend(core, {
 		,asset: {
 			
 			 init: function(){
+			 	
+				var count = 0; 
+				for(var idx in core.categories[0].assets){
+					this.add(core.categories[0].assets[idx].name, count);
+					count++;
+				};
 				
-				core.count_assets = [];
-				core.count_assets[0] = 2;
-				
-				while (--core.count_assets[0]) {
-       				this.add(core.count_assets[0])
-		    	}				
-					
 			}
 			
 			,add: function(count){	
-				core.addToDom('li', '', 'thumb-collection-ul', core.count_assets[0] , function(el, count){}); 					
+				core.addToDom('li', '', 'thumb-collection-ul', 0 , function(el, count){}); 					
 			}
 			
 		}
