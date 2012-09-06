@@ -246,6 +246,10 @@ _.extend(core, {
 			core.create.category.add(core.count_categories); 		
 		});	
 		
+		
+		$('#addAsset').click(function(event) {
+			core.create.asset.add(core.count_assets[0]); 		
+		});			
 	}
 	
 	
@@ -253,7 +257,7 @@ _.extend(core, {
 		
 		 init: function(){
 			this.category.init();
-			this.asset();
+			this.asset.init();
 		}
 		
 		,category: {
@@ -287,17 +291,24 @@ _.extend(core, {
 		}
 
 				
-		,asset:function(){	
-			var  that = this
-				,count = 10;
+		,asset: {
 			
-			while (--count) {
-				core.addToDom('li', '', 'thumb-collection-ul', count , function(el, count){
+			 init: function(){
+				
+				core.count_assets = [];
+				core.count_assets[0] = 2;
+				
+				while (--core.count_assets[0]) {
+       				this.add(core.count_assets[0])
+		    	}				
 					
-				});        
-	    	}			
+			}
+			
+			,add: function(count){	
+				core.addToDom('li', '', 'thumb-collection-ul', core.count_assets[0] , function(el, count){}); 					
+			}
+			
 		}
-
 		
 	}
 
