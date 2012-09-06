@@ -187,7 +187,11 @@ core = {
 			,addToDom: function( element, id, parent, callback ){
 				var  el =   document.createElement(element)
 					,parent = document.getElementById(parent);
-				el.id = id;
+					
+				if( id !==''){
+					el.id = id;	
+				};
+				
 				parent.insertBefore( el, parent.firstChild);
 				callback(document.getElementById(id));
 			}				
@@ -206,10 +210,26 @@ _.extend(core, {
 	
 	 init_main: function(){
 	 	
-		$(".collapse").collapse();
+		this.bindElements();
+		this.createThumbs();
 		
 	}
 
+	,bindElements: function(){
+		$(".collapse").collapse();
+	}
+	
+	,createThumbs: function(){
+		
+		var count = 10;
+		
+		while (--count) {
+			this.addToDom('li', '', 'thumb-collection-ul', function(){
+				
+			});        
+    	}
+		
+	}
 	
 });
 
