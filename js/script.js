@@ -192,15 +192,8 @@ core = {
 					el.id = id;	
 				};
 				
-				var src = 'http://lorempixel.com/g/280/159/fashion/'+count;
-				
-				el.innerHTML = "<img \
-				src=" + src + " \
-				/>";
-					
-				
 				parent.insertBefore( el, parent.firstChild);
-				callback(document.getElementById(id));
+				callback(el, count);
 			}				
 
 			,popFancyZoom: function(  el, content ){
@@ -209,6 +202,27 @@ core = {
 				$('#'+el).attr('href', '#modal_box').fancyZoom({});
 				
 			}
+			
+			,getByClass: function(className, parent) {
+				parent || (parent=document);
+				var descendants=parent.getElementsByTagName('*'), i=-1, e, result=[];
+				while (e=descendants[++i]) {
+				  ((' '+(e['class']||e.className)+' ').indexOf(' '+className+' ') > -1) && result.push(e);
+				}
+				return result;
+			}
+			
+			,loadTemplate: function(tpl) {
+				var out = '';
+				jQuery.ajax({
+					url: tpl + '?v=' + Math.random(),
+					success: function(data){
+						out = data;
+					},
+					async:false
+				});
+				return out;
+			}			
     	
 };
 
@@ -217,26 +231,76 @@ _.extend(core, {
 	
 	 init_main: function(){
 	 	
-		this.bindElements();
-		this.createThumbs();
+		this.create.init();
+		this.bindElements();		
 		
 	}
 
 	,bindElements: function(){
-		$(".collapse").collapse();
+		
+		$(".collapse").collapse({
+				  toggle: true
+		});
+		
+		$('#addCategory').click(function(event) {
+			core.create.category.add(core.count_categories); 		
+		});	
+		
 	}
 	
-	,createThumbs: function(){
+	
+	,create: {
 		
-		var count = 10;
+		 init: function(){
+			this.category.init();
+			this.asset();
+		}
 		
-		while (--count) {
-			this.addToDom('li', '', 'thumb-collection-ul', count , function(){
+		,category: {
+			
+			init: function(){
+
+				core.count_categories = 3;
+					
+				while (--core.count_categories) {
+					this.add(core.count_categories);       
+		    	}
+	
+			}
+			
+			,add: function(count){
+					if ( ! core.category_tpl) {
+					  core.category_tpl = core.loadTemplate('js/tpl/category.tpl');
+					}		
+			
+					var tpl = core.category_tpl;
+		
+					tpl  = tpl.replace(/{{idx}}/g, count);
+		
+					core.addToDom('div', '', 'categories', 0 , function(el, count){
+						el.className = 'accordion-group';
+						el.className +=  ' ' + 'category';
+						el.innerHTML = tpl;
+					}); 	
+			}
+			
+		}
+
 				
-			});        
-    	}
+		,asset:function(){	
+			var  that = this
+				,count = 10;
+			
+			while (--count) {
+				core.addToDom('li', '', 'thumb-collection-ul', count , function(el, count){
+					
+				});        
+	    	}			
+		}
+
 		
 	}
+
 	
 });
 
