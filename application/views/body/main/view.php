@@ -2,13 +2,12 @@
       <div class="row">
       	
 		<div class="span2">
-			<h2>Heading</h2>
-			<h2>Heading</h2>
-			<h2>Heading</h2>
-			<h2>Heading</h2>
+			<h3>Heading</h3>
+			<h3>Heading</h3>
+			<h3>Heading</h3>
+			<h3>Heading</h3>
 		</div>      	
 		<div class="span3">
-		<h2>Heading</h2>
 		<div class="accordion" id="accordion2">
 		  <div class="accordion-group">
 		    <div class="accordion-heading">
