@@ -1,13 +1,13 @@
     <div class="container">
       <div class="row">
       	
-		<div class="span2">
+		<div class="span1">
 			<h4>Heading</h4>
 			<h4>Heading</h4>
 			<h4>Heading</h4>
 			<h4>Heading</h4>
 		</div>      	
-		<div class="span3">
+		<div class="span2">
 		<div class="accordion" id="accordion2">
 		  <div class="accordion-group">
 		    <div class="accordion-heading">
@@ -35,7 +35,7 @@
 		  </div>
 		</div>
 		</div>
-		<div  id='thumb-collection'  class="span7">
+		<div  id='thumb-collection'  class="span9">
 			<ul  id='thumb-collection-ul' >
 			</ul>
 		</div>

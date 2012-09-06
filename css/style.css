@@ -21,7 +21,7 @@ float:right;
 
 
 #thumb-collection{
-	height: 449px;	
+	height: 505px;	
 	background:red;
 	padding: 0px 0px 0px 0px;
 }
@@ -33,8 +33,8 @@ float:right;
 
 #thumb-collection ul li{
 	list-style:none;
-	width: 214px;
-	height: 140px;
+	width: 280px;
+	height:159px;
 	background:white;
 	float:left;
 	margin-left: 7px;

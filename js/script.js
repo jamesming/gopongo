@@ -184,13 +184,20 @@ core = {
 				document.body.insertBefore(newDiv, document.body.firstChild);	
 			}			
 			
-			,addToDom: function( element, id, parent, callback ){
+			,addToDom: function( element, id, parent, count, callback ){
 				var  el =   document.createElement(element)
 					,parent = document.getElementById(parent);
 					
 				if( id !==''){
 					el.id = id;	
 				};
+				
+				var src = 'http://lorempixel.com/g/280/159/fashion/'+count;
+				
+				el.innerHTML = "<img \
+				src=" + src + " \
+				/>";
+					
 				
 				parent.insertBefore( el, parent.firstChild);
 				callback(document.getElementById(id));
@@ -224,7 +231,7 @@ _.extend(core, {
 		var count = 10;
 		
 		while (--count) {
-			this.addToDom('li', '', 'thumb-collection-ul', function(){
+			this.addToDom('li', '', 'thumb-collection-ul', count , function(){
 				
 			});        
     	}
