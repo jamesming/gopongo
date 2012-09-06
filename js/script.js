@@ -354,7 +354,12 @@ _.extend(core, {
 			}
 			
 			,add: function(count){	
-				core.addToDom('li', '', 'thumb-collection-ul', 0 , function(el, count){}); 					
+				core.addToDom('li', '', 'thumb-collection-ul', count , function(el, count){
+					
+					
+					el.innerHTML = count;
+					
+				}); 					
 			}
 			
 		}
