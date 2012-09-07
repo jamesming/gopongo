@@ -11,12 +11,10 @@
 			</div>
 			<button  id='addCategory' class="btn btn-mini btn-primary" type="button">Add Category</button>
 		</div>
-		<div  id='thumb-collection'  class="span9">
+		<div   id='thumb-collection' class="span9">
 			<ul  id='thumb-collection-ul' >
-				<li>
-					<button  id='addAsset' class="btn btn-mini btn-primary" type="button">Add Asset</button>
-				</li>
 			</ul>
+			<button  id='addAsset' class="btn btn-mini btn-primary" type="button">Add Asset</button>
 		</div>
 
       </div>

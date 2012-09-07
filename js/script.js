@@ -250,21 +250,30 @@ _.extend(core, {
 
 	,setPropertiesMain: function(){
 		
-		this.categories = [
-			 {	
+		this.categories = 
+			[{	
 			 	 name:'Animation'
-			 	,assets:[
-			 		 {
-			 		 	 name:'spot1'
-			 		 	,image:'http://lorempixel.com/280/159/city'
+			 	,assets:[ {
+			 		 	 name:'Animation1'
+			 		 	,image:'http://lorempixel.com/280/159/city/'
 			 		 	}
 			 		,{
-			 		 	 name:'spot2'
-			 		 	,image:'http://lorempixel.com/280/159/animals'
+			 		 	 name:'Animation2'
+			 		 	,image:'http://lorempixel.com/280/159/city/' 
 			 			}
 			 	]
 			 }
-			,{name:'Cable'}
+			,{	name:'Cable'
+			 	,assets:[ {
+			 		 	 name:'Cable1'
+			 		 	,image:'http://lorempixel.com/280/159/sports/'
+			 		 	}
+			 		,{
+			 		 	 name:'Cable2'
+			 		 	,image:'http://lorempixel.com/280/159/sports/' 
+			 			}
+			 	]
+			 }
 			,{name:'Children\'s'}
 			,{name:'Digital Content'}
 			,{name:'Integrated'}
@@ -273,10 +282,7 @@ _.extend(core, {
 			,{name:'Presentations'}
 		];
 
-
-		for(var idx in this.categories[0].assets){
-			console.log(this.categories[0].assets[idx].image);
-		}
+		this.category_idx = 0;
 
 	}
 
@@ -298,11 +304,12 @@ _.extend(core, {
 		
 		
 		$('#addAsset').click(function(event) {
-			core.create.asset.add(core.count_assets[0]); 		
+			alert('');		
 		});
 		
-		$('.category').live('click', function(event) {			
-			console.log(that.categories[$(this).attr('idx')].name);
+		$('.category').live('click', function(event) {
+			$('#thumb-collection-ul').empty();			
+			that.create.asset.init($(this).attr('idx'));
 		});	
 	}
 	
@@ -311,7 +318,7 @@ _.extend(core, {
 		
 		 init: function(){
 			this.category.init();
-			this.asset.init();
+			this.asset.init(0);
 		}
 		
 		,category: {
@@ -346,23 +353,35 @@ _.extend(core, {
 				
 		,asset: {
 			
-			 init: function(){
+			 init: function(category_idx){
 			 	
-				var count = 0; 
-				for(var idx in core.categories[0].assets){
-					this.add(core.categories[0].assets[idx].name, count);
-					count++;
+				for(var idx in core.categories[category_idx].assets){
+					this.add(
+							 core.categories[category_idx].assets[idx].name
+							,core.categories[category_idx].assets[idx].image
+							,category_idx
+						);
 				};
 				
 			}
 			
-			,add: function(count){	
-				core.addToDom('li', '', 'thumb-collection-ul', count , function(el, count){
-					
-					
-					el.innerHTML = count;
-					
-				}); 					
+			,add: function(
+					 name
+					,image
+					,category_idx
+				){	
+				
+				if ( ! core.asset_tpl) {
+				  core.asset_tpl = core.loadTemplate('js/tpl/asset.tpl');
+				}		
+				
+				var tpl = core.asset_tpl;
+	
+				tpl  = tpl.replace(/{{name}}/g, name);
+				tpl  = tpl.replace(/{{image}}/g, image);
+				
+				$('#thumb-collection ul').append(tpl);	
+							
 			}
 			
 		}
