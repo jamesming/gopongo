@@ -415,20 +415,6 @@ _.extend(core, {
 			this.formSubmission();
 		}
 		
-		,accordianControls: function(){
-			
-			$(".collapse").collapse({
-					  toggle: true
-			});
-			
-			$('.category').live('click', function(event) {
-				$('#thumb-collection-ul').empty();			
-				core.create.asset.init($(this).attr('idx'));
-				core.category_idx  = $(this).attr('idx');
-			});					
-			
-		}
-		
 		,createNewDom: function(){		
 			
 			$('#addCategory').click(function(event) {
@@ -451,6 +437,20 @@ _.extend(core, {
 				
 				
 			}).fancyZoom({});			
+			
+		}		
+		
+		,accordianControls: function(){
+			
+			$(".collapse").collapse({
+					  toggle: true
+			});
+			
+			$('.category').live('click', function(event) {
+				$('#thumb-collection-ul').empty();			
+				core.create.asset.init($(this).attr('idx'));
+				core.category_idx  = $(this).attr('idx');
+			});					
 			
 		}
 		
