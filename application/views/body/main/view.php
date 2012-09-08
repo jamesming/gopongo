@@ -1,4 +1,4 @@
-<div class="container">
+<div  id='main' class="container">
   <div class="row">
 	<div class="span1">
 		<h4>Home</h4>

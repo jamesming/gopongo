@@ -310,7 +310,20 @@ _.extend(core, {
 		});	
 		
 		$('#addAsset').click(function(event) {
-			core.loadContentIntoFancyZoom('hello' + that.category_idx);		
+			
+			
+			if ( ! core.form_asset_tpl) {
+			  core.form_asset_tpl = core.loadTemplate('js/tpl/form_asset.tpl');
+			}		
+	
+			var tpl = core.form_asset_tpl;
+
+			tpl  = tpl.replace(/{{name}}/g, '');
+			
+			
+			core.loadContentIntoFancyZoom( tpl );		
+			
+			
 		}).fancyZoom({});
 		
 		$('.category').live('click', function(event) {
