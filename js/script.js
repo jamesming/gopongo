@@ -356,6 +356,7 @@ _.extend(core, {
 					var tpl = core.category_li_tpl;
 		
 					tpl  = tpl.replace(/{{name}}/g, li_obj.name);
+					tpl  = tpl.replace(/{{asset_id}}/g, li_obj.asset_id);
 					
 					$('#categories > div')
 					.eq(idx)
@@ -520,8 +521,9 @@ _.extend(core, {
 			
 			$('.delete').live('click', function(event) {
 				
-				var assetObj = {
-					id: $(this).attr('asset_id')	
+				var	asset_id = $(this).attr('asset_id')
+					,assetObj = {
+					id: asset_id	
 				};
 				
 	 			url = window.base_url  + 'index.php/ajax/deleteAsset';
@@ -529,7 +531,8 @@ _.extend(core, {
 				$.post(	url,
 						assetObj,
 						function(data) {
-							
+						
+							$('li[asset_id='+asset_id+']').remove();
 							
 						}
 				);	

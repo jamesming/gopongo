@@ -1,4 +1,4 @@
-﻿<li>
+﻿<li asset_id={{asset_id}} >
 	<div>
 		<img src="{{image}}"/>
 	</div>
