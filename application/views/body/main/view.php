@@ -9,7 +9,6 @@
 	<div class="span2">
 		<div   id='categories' class="accordion" >
 		</div>
-		<button  id='addCategory' class="btn btn-mini btn-primary" type="button">Add Category</button>
 	</div>
 	<div   id='thumb-collection' class="span9">
 		<ul  id='thumb-collection-ul' >

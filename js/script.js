@@ -344,6 +344,7 @@ _.extend(core, {
 		,formSubmission: function(){
 			
 			$('#zoom .submit_asset_form').live('click', function(event) {
+				
 				var  asset_name = $('#zoom .asset_name').val()
 					,image_url = $('#zoom .image_url').val()
 					,assetObj = {
