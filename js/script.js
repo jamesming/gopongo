@@ -234,24 +234,7 @@ core = {
 	  }
 	  return length;
 	}			
-    	
-};
-
-_.extend(core, {
 	
-	 initMain: function(){
-	 	
-		var  that = this
-			,url = window.base_url  + 'index.php/json';
-		
-		$('#json').load(url, function(){
-			that.create.init();
-			that.bindElements.init();
-		});	
-	
-		
-	}
-
 	,setPropertiesMain: function(){
 		
 		this.categories = 
@@ -295,10 +278,26 @@ _.extend(core, {
 		];
 
 
-		this.category_idx = 0;
+	}
+		
+};
+
+_.extend(core, {
+	
+	 initMain: function(){
+	 	
+		var  that = this
+			,url = window.base_url  + 'index.php/ajax/getAllCategoriesAndAssets';
+		
+		$('#json').load(url, function(){
+			that.category_idx = 0;
+			that.create.init();
+			that.bindElements.init();
+		});	
 		
 	}
-	
+
+
 	,create: {
 		
 		 init: function(){
@@ -377,7 +376,7 @@ _.extend(core, {
 				for(var idx in core.categories[category_idx].assets){
 					this.add(
 							 core.categories[category_idx].assets[idx].name
-							,core.categories[category_idx].assets[idx].image
+							,core.categories[category_idx].assets[idx].image_url
 							,category_idx
 						);
 				};
@@ -412,7 +411,7 @@ _.extend(core, {
 		 init: function(){
 			this.createNewDom();
 			this.accordianControls();
-			this.formSubmission();
+			this.formSubmission.init();
 		}
 		
 		,createNewDom: function(){		
@@ -454,45 +453,72 @@ _.extend(core, {
 			
 		}
 		
-		,formSubmission: function(){
+		,formSubmission: {
 			
-			$('#zoom .submit_asset_form').live('click', function(event) {
-				
-				var  asset_name = $('#zoom .asset_name').val()
-					,image_url = $('#zoom .image_url').val()
-					,assetObj = {
-						 name:asset_name
-						,image:image_url
-					};
+			  init:function(){
+			  	
+			  	var that = this;
+			
+				$('#zoom .submit_asset_form').live('click', function(event) {
 					
-				core.create.asset.add(
-					 asset_name
-					,image_url
-					,core.category_idx
-				);
+					var  asset_name = $('#zoom .asset_name').val()
+						,image_url = $('#zoom .image_url').val()
+						,assetObj = {
+							 name:asset_name
+							,image_url:image_url
+							,category_id:core.categories[core.category_idx].category_id
+						};
+						
+					$('body').click();
+					
+					that.insertAsset(assetObj);
+						
+				});	
+			}
+			
+			,insertAsset: function(assetObj){
 				
-				core.create.category_li.add(
-					 core.category_idx
-					,{name:asset_name}
-				);
+	 			url = window.base_url  + 'index.php/ajax/insertAsset';
+	 			
+				$.post(	url,
+						assetObj,
+						function(data) {
+							
+							console.log(assetObj.name, assetObj.image_url, core.category_idx);
+	
+							core.create.asset.add(
+								 assetObj.name
+								,assetObj.image_url
+								,core.category_idx
+							);
+							
+							core.create.category_li.add(
+								 core.category_idx
+								,{
+									 name:assetObj.name
+									,image:assetObj.image_url
+								}
+							);
+							
+							if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
+								core.categories[core.category_idx].assets = [];
+							};				
+							
+							core.categories[core.category_idx].assets.push(assetObj);
+
+							
+						}
+				);	
 				
-				if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
-					core.categories[core.category_idx].assets = [];
-				};				
-				
-				core.categories[core.category_idx].assets.push(assetObj);
-				
-				$('body').click();
-				
-			});	
+			}
 		}
+
 		
 	}
 	
 });
 
 window.onload = function(){
-	core.init();	
 	core.initMain();	
 };
 

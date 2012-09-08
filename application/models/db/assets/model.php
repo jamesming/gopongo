@@ -1,8 +1,6 @@
 <?php
 
 class Models_Db_Assets_Model extends Database {
-	
-
 		
 	public function getAllCategoriesAndAssets($where_array = array()){
 		
@@ -72,6 +70,18 @@ class Models_Db_Assets_Model extends Database {
 		
 		return $assets;
 	}
+	
+	
+	public function insertAsset($post_array){
 		
+		return $this->insert_table(
+			$table = 'assets', 
+			$insert_what = array(
+				 'name' => $post_array['name']
+				,'category_id' => $post_array['category_id']
+			)
+		);
+		
+	}	
 }
 

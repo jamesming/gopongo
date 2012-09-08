@@ -26,8 +26,6 @@ class Database extends CI_Model  {
 			</script>";
 		}			
 		
-		
-		
 		public function create_generic_table($table){
 		
 				$fields_array = array(
@@ -62,8 +60,6 @@ class Database extends CI_Model  {
 			return $this->dbforge->create_table($table, TRUE); // Only CREATE TABLE IF NOT EXISTS 
 		}
 		
-		
-		 
 		function add_column_to_table_if_not_exist($table, $fields_array){
 			
 			
@@ -105,7 +101,6 @@ class Database extends CI_Model  {
 			return $this->db->insert_id();
 		}
 		
-		
 		 
 		function delete_from_table($table, $where_array){
 			
@@ -125,7 +120,6 @@ class Database extends CI_Model  {
 			return 'updated: ' . date('Y-m-d H:i:s');
 			
 		}
-		
 		
 		
 		function update_table_where( $table, $where_array, $set_what_array ){
@@ -150,7 +144,6 @@ class Database extends CI_Model  {
 		function select_from_query($query){
 			return $this->db->query($query)->result_array();
 		}
-		
 		
 		function select_from_table( 
 			$table, 
@@ -236,9 +229,6 @@ class Database extends CI_Model  {
 			return $query->result(); 
 			
 		}
-		
-		
-		
 		
 		function select_from_table_left_join( 
 			$table, 
@@ -347,8 +337,6 @@ class Database extends CI_Model  {
 			
 		}
 		
-		
-		
 		function count_records( $table,  $where_array ){
 			
 			$this->db->select('id');
@@ -361,8 +349,6 @@ class Database extends CI_Model  {
 			
 			return $query->num_rows();
 		}
-		
-		
 		
 		function check_if_exist( $table, $where_array ){
 			
@@ -384,8 +370,6 @@ class Database extends CI_Model  {
 			};
 		}
 		
-		
-		
 		function get_primary_key ($table, $where_field, $value){
 			
 			$this->db->select('id');
@@ -401,8 +385,6 @@ class Database extends CI_Model  {
 			};
 		
 		}
-		
-		
 		
 		function get_primary_key_from_where_array($where_array, $table){
 		
@@ -421,7 +403,6 @@ class Database extends CI_Model  {
 			};
 			
 		}
-				 
 		
 		function get_last_ten_entries(){
 			
@@ -429,7 +410,6 @@ class Database extends CI_Model  {
 		    return $query->result();        
 		
 		}
-		
 		
 		function object_to_array($data){
 		  if(is_array($data) || is_object($data)){
@@ -442,7 +422,6 @@ class Database extends CI_Model  {
 		  }
 		  return $data;
 		}
-		
 		
 		function html2json( $str ){
 		
