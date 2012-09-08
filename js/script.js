@@ -196,10 +196,10 @@ core = {
 		callback(el, count);
 	}			
 
-	,popFancyZoom: function(  el, content ){
+	,loadContentIntoFancyZoom: function(content){
 		
 		$('#modal_box').html( content );
-		$('#'+el).attr('href', '#modal_box').fancyZoom({});
+		
 		
 	}
 	
@@ -309,14 +309,14 @@ _.extend(core, {
 				
 		});	
 		
-		
 		$('#addAsset').click(function(event) {
-			alert('');		
-		});
+			core.loadContentIntoFancyZoom('hello' + that.category_idx);		
+		}).fancyZoom({});
 		
 		$('.category').live('click', function(event) {
 			$('#thumb-collection-ul').empty();			
 			that.create.asset.init($(this).attr('idx'));
+			that.category_idx  = $(this).attr('idx');
 		});	
 	}
 	

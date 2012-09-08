@@ -14,7 +14,7 @@
 	<div   id='thumb-collection' class="span9">
 		<ul  id='thumb-collection-ul' >
 		</ul>
-		<button  id='addAsset' class="btn btn-mini btn-primary" type="button">Add Asset</button>
+		<button href='#modal_box' id='addAsset' class="btn btn-mini btn-primary" type="button">Add Asset</button>
 	</div>
   </div>
 </div>
