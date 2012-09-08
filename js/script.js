@@ -298,88 +298,6 @@ _.extend(core, {
 		this.category_idx = 0;
 		
 	}
-
-	,bindElements: {
-		
-		 init: function(){
-			this.createNewDom();
-			this.accordianControls();
-			this.formSubmission();
-		}
-		
-		,accordianControls: function(){
-			
-			$(".collapse").collapse({
-					  toggle: true
-			});
-			
-			$('.category').live('click', function(event) {
-				$('#thumb-collection-ul').empty();			
-				core.create.asset.init($(this).attr('idx'));
-				core.category_idx  = $(this).attr('idx');
-			});					
-			
-		}
-		
-		,createNewDom: function(){		
-			
-			$('#addCategory').click(function(event) {
-				
-				var count_catgeories = core.categories.length;
-				
-				core.create.category.add('', count_catgeories); 	
-					
-			});	
-			
-			$('#addAsset').click(function(event) {
-				
-				if ( ! core.form_asset_tpl) {
-				  core.form_asset_tpl = core.loadTemplate('js/tpl/form_asset.tpl');
-				}		
-		
-				var tpl = core.form_asset_tpl;
-	
-				core.loadContentIntoFancyZoom( tpl );		
-				
-				
-			}).fancyZoom({});			
-			
-		}
-		
-		,formSubmission: function(){
-			
-			$('#zoom .submit_asset_form').live('click', function(event) {
-				
-				var  asset_name = $('#zoom .asset_name').val()
-					,image_url = $('#zoom .image_url').val()
-					,assetObj = {
-						 name:asset_name
-						,image:image_url
-					};
-					
-				core.create.asset.add(
-					 asset_name
-					,image_url
-					,core.category_idx
-				);
-				
-				core.create.category_li.add(
-					 core.category_idx
-					,{name:asset_name}
-				);
-				
-				if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
-					core.categories[core.category_idx].assets = [];
-				};				
-				
-				core.categories[core.category_idx].assets.push(assetObj);
-				
-				$('body').click();
-				
-			});	
-		}
-		
-	}
 	
 	,create: {
 		
@@ -488,7 +406,88 @@ _.extend(core, {
 		}
 		
 	}
-
+	
+	,bindElements: {
+		
+		 init: function(){
+			this.createNewDom();
+			this.accordianControls();
+			this.formSubmission();
+		}
+		
+		,accordianControls: function(){
+			
+			$(".collapse").collapse({
+					  toggle: true
+			});
+			
+			$('.category').live('click', function(event) {
+				$('#thumb-collection-ul').empty();			
+				core.create.asset.init($(this).attr('idx'));
+				core.category_idx  = $(this).attr('idx');
+			});					
+			
+		}
+		
+		,createNewDom: function(){		
+			
+			$('#addCategory').click(function(event) {
+				
+				var count_catgeories = core.categories.length;
+				
+				core.create.category.add('', count_catgeories); 	
+					
+			});	
+			
+			$('#addAsset').click(function(event) {
+				
+				if ( ! core.form_asset_tpl) {
+				  core.form_asset_tpl = core.loadTemplate('js/tpl/form_asset.tpl');
+				}		
+		
+				var tpl = core.form_asset_tpl;
+	
+				core.loadContentIntoFancyZoom( tpl );		
+				
+				
+			}).fancyZoom({});			
+			
+		}
+		
+		,formSubmission: function(){
+			
+			$('#zoom .submit_asset_form').live('click', function(event) {
+				
+				var  asset_name = $('#zoom .asset_name').val()
+					,image_url = $('#zoom .image_url').val()
+					,assetObj = {
+						 name:asset_name
+						,image:image_url
+					};
+					
+				core.create.asset.add(
+					 asset_name
+					,image_url
+					,core.category_idx
+				);
+				
+				core.create.category_li.add(
+					 core.category_idx
+					,{name:asset_name}
+				);
+				
+				if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
+					core.categories[core.category_idx].assets = [];
+				};				
+				
+				core.categories[core.category_idx].assets.push(assetObj);
+				
+				$('body').click();
+				
+			});	
+		}
+		
+	}
 	
 });
 
