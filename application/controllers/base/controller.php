@@ -27,27 +27,33 @@ class Base_Controller extends CI_Controller
 
 	function create_table(){
 		
+		/* 
+		*
+		*  		/create_table?table=categories
+		*
+		*/
+		
 		$table = $this->input->get('table');
 		
-		$this->model_products_model = new Models_Db_Products_Form;
+		$this->model = new Models_Db_Categories_Model;
 		
-		$this->model_products_model->create_generic_table($table); 
+		$this->model->create_generic_table($table); 
 		
 		
-		$fields_array = array(/*
+		$fields_array = array(
 		                      'name' => array(
 		                                               'type' => 'varchar(255)'
 		                                    ),
 		                                    
 		                                    
-		                      'product_id' => array(
+		                      'category_id' => array(
 		                                               'type' => 'int(11)'
-		                                    ),*/
+		                                    )/*,,
 		                      'numberOfColors' => array(
 		                                               'type' => 'int(11)'
 		                                    )			                                    
 		                                    
-		                                    /*,
+		                                    
 		                      'county' => array(
 		                                               'type' => 'varchar(255)'
 		                                    ),
@@ -60,7 +66,7 @@ class Base_Controller extends CI_Controller
 		              ); 
 		              
 		echo '<pre>';print_r(  $fields_array   );echo '</pre>';   
-		$this->model_products_model->add_column_to_table_if_not_exist(
+		$this->model->add_column_to_table_if_not_exist(
 			$table, 
 			$fields_array
 		);

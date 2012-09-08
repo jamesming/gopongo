@@ -241,9 +241,20 @@ _.extend(core, {
 	
 	 initMain: function(){
 	 	
-	 	this.setPropertiesMain();
-		this.create.init();
-		this.bindElements.init();	
+	 	this.getJsonDB();
+	
+		
+	}
+
+	,getJsonDB: function(){
+		
+		var  that = this
+			,url = window.base_url  + 'index.php/json';
+		
+		$('#json').load(url, function(){
+			that.create.init();
+			that.bindElements.init();
+		});	
 		
 	}
 
