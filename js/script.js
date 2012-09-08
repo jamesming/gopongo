@@ -362,8 +362,13 @@ _.extend(core, {
 					,{name:asset_name}
 				);
 				
+				if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
+					core.categories[core.category_idx].assets = [];
+				};				
 				
 				core.categories[core.category_idx].assets.push(assetObj);
+				
+				$('body').click();
 				
 			});	
 		}
