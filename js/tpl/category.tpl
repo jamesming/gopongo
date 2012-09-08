@@ -6,7 +6,7 @@
 	</div>
 	<div id="collapse{{idx}}" class="accordion-body collapse in">
 	  <div class="accordion-inner">
-	    <ul></ul>
+	    <ul  class="category-ul" ></ul>
 	  </div>
 	</div>
 </div>

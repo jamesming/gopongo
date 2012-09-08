@@ -23,6 +23,10 @@ float:right;
 text-align:right;	
 }
 
+.category-ul li{
+	list-style:none;	
+}
+
 #thumb-collection{
 	height: 505px;	
 	background:red;
