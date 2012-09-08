@@ -1,24 +1,23 @@
-﻿<div  class=' span6' >
-	<form class="form-horizontal">
+﻿<div  class='form_asset_container span6' >
+	<form  class="form-horizontal">
 	  <div class="control-group">
-	    <label class="control-label" for="inputEmail">Email</label>
+	    <label class="control-label" for="asset_name">Name</label>
 	    <div class="controls">
-	      <input type="text" id="inputEmail" placeholder="Email">
+	      <input type="text" class="asset_name" placeholder="Name" >
 	    </div>
 	  </div>
 	  <div class="control-group">
-	    <label class="control-label" for="inputPassword">Password</label>
+	    <label class="control-label" for="image_url">Image URL</label>
 	    <div class="controls">
-	      <input type="password" id="inputPassword" placeholder="Password">
+	      <input type="text" class="image_url" placeholder="Image URL">
 	    </div>
 	  </div>
 	  <div class="control-group">
 	    <div class="controls">
-	      <label class="checkbox">
-	        <input type="checkbox"> Remember me
-	      </label>
-	      <button type="submit" class="btn">Sign in</button>
+	      <button class='btn btn-primary submit_asset_form'  type="button" >Submit</button>
 	    </div>
 	  </div>
 	</form>
 </div>
+
+
