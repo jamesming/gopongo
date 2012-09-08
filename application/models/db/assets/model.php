@@ -82,6 +82,14 @@ class Models_Db_Assets_Model extends Database {
 			)
 		);
 		
-	}	
+	}
+	
+	public  function deleteAsset($post_array){
+		
+		$this->delete_from_table(
+			$table = 'assets', 
+			$where_array = $post_array
+		);
+		
+	}
 }
-

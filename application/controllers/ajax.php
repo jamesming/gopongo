@@ -48,4 +48,9 @@ class Ajax extends CI_Controller {
  		echo $this->model->insertAsset( $this->input->post() );
  		
  	}
+ 	
+ 	public function deleteAsset(){
+ 		
+ 		$this->model->deleteAsset( $this->input->post() );
+ 	}
 }

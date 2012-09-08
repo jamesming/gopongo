@@ -414,6 +414,7 @@ _.extend(core, {
 			this.createNewDom();
 			this.accordianControls();
 			this.formSubmission.init();
+			this.deleteAsset();
 		}
 		
 		,createNewDom: function(){		
@@ -457,7 +458,7 @@ _.extend(core, {
 		
 		,formSubmission: {
 			
-			  init:function(){
+			 init:function(){
 			  	
 			  	var that = this;
 			
@@ -515,6 +516,27 @@ _.extend(core, {
 			}
 		}
 
+		,deleteAsset: function(){
+			
+			$('.delete').live('click', function(event) {
+				
+				var assetObj = {
+					id: $(this).attr('asset_id')	
+				};
+				
+	 			url = window.base_url  + 'index.php/ajax/deleteAsset';
+	 			
+				$.post(	url,
+						assetObj,
+						function(data) {
+							
+							
+						}
+				);	
+				
+			});	
+			
+		}
 		
 	}
 	
