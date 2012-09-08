@@ -28,6 +28,7 @@ class Ajax extends CI_Controller {
 			foreach( $category  as  $key => $asset){
 				if($count2!=0) echo ",";
 				echo "{name:'".$asset['asset_name']."'";
+				echo ",asset_id:'".$asset['asset_id']."'";
 				echo ",image_url:'http://lorempixel.com/280/159/city/".$count2."'";
 				echo "}";
 				$count2++;

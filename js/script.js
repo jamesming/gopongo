@@ -297,7 +297,6 @@ _.extend(core, {
 		
 	}
 
-
 	,create: {
 		
 		 init: function(){
@@ -377,6 +376,7 @@ _.extend(core, {
 					this.add(
 							 core.categories[category_idx].assets[idx].name
 							,core.categories[category_idx].assets[idx].image_url
+							,core.categories[category_idx].assets[idx].asset_id
 							,category_idx
 						);
 				};
@@ -386,6 +386,7 @@ _.extend(core, {
 			,add: function(
 					 name
 					,image
+					,asset_id
 					,category_idx
 				){	
 				
@@ -397,6 +398,7 @@ _.extend(core, {
 	
 				tpl  = tpl.replace(/{{name}}/g, name);
 				tpl  = tpl.replace(/{{image}}/g, image);
+				tpl  = tpl.replace(/{{asset_id}}/g, asset_id);
 				
 				$('#thumb-collection ul').append(tpl);	
 							
