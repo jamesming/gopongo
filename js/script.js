@@ -241,13 +241,6 @@ _.extend(core, {
 	
 	 initMain: function(){
 	 	
-	 	this.getJsonDB();
-	
-		
-	}
-
-	,getJsonDB: function(){
-		
 		var  that = this
 			,url = window.base_url  + 'index.php/json';
 		
@@ -255,6 +248,7 @@ _.extend(core, {
 			that.create.init();
 			that.bindElements.init();
 		});	
+	
 		
 	}
 
