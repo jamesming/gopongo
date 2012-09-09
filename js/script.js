@@ -476,7 +476,7 @@ _.extend(core, {
 		,accordianControls: function(){
 			
 			$(".collapse").collapse({
-					  toggle: true
+					  toggle: false
 			});
 			
 			$('.category').live('click', function(event) {
@@ -561,6 +561,8 @@ _.extend(core, {
 						
 							$('li[asset_id='+asset_id+']').remove();
 							
+							console.log(JSON.stringify(core.categories[core.category_idx].assets));
+							
 							var idx_array = core.findIndexInArrayOfObjects( 
 								 core.categories[core.category_idx].assets
 								,function( item ){
@@ -568,7 +570,9 @@ _.extend(core, {
 								}
 							);							
 							
-							delete core.categories[core.category_idx].assets[idx_array[0]];
+							core.categories[core.category_idx].assets.splice(idx_array[0], 1);
+							
+							console.log(JSON.stringify(core.categories[core.category_idx].assets));
 							
 						}
 				);	
