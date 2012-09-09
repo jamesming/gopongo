@@ -483,6 +483,10 @@ _.extend(core, {
 				$('#thumb-collection-ul').empty();			
 				core.create.asset.init($(this).attr('idx'));
 				core.category_idx  = $(this).attr('idx');
+				
+				core.misc.showHideButtonBasedOnNumofAssets();
+				
+				
 			});					
 			
 		}
@@ -581,6 +585,19 @@ _.extend(core, {
 			
 		}
 		
+	}
+	
+	,misc: {
+		
+		showHideButtonBasedOnNumofAssets: function(  ){	
+				var lengthOfAssets = core.categories[core.category_idx].assets.length;
+				
+				if( lengthOfAssets >= 9){
+					$('#addAsset').hide();
+				}else{
+					$('#addAsset').show();
+				};		
+		}
 	}
 	
 });
