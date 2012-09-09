@@ -432,6 +432,8 @@ _.extend(core, {
 				tpl  = tpl.replace(/{{count}}/g, count);
 				
 				$('#thumb-collection ul.assets_ul').append(tpl);	
+				
+				core.misc.showHideButtonBasedOnNumofAssets();
 							
 			}
 			
@@ -589,7 +591,8 @@ _.extend(core, {
 	
 	,misc: {
 		
-		showHideButtonBasedOnNumofAssets: function(  ){	
+		showHideButtonBasedOnNumofAssets: function(){	
+			
 				var lengthOfAssets = core.categories[core.category_idx].assets.length;
 				
 				if( lengthOfAssets >= 9){
@@ -597,6 +600,7 @@ _.extend(core, {
 				}else{
 					$('#addAsset').show();
 				};		
+				
 		}
 	}
 	
