@@ -11,9 +11,11 @@
 		</div>
 	</div>
 	<div   id='thumb-collection' class="span9">
-		<ul  id='thumb-collection-ul' >
+		<ul  class=' assets_ul'   id='thumb-collection-ul' >
 		</ul>
-		<button href='#modal_box' id='addAsset' class="btn btn-mini btn-primary" type="button">Add Asset</button>
+		<ul>
+			<li href='#modal_box' id='addAsset' >Click to Add Asset</li>
+		</ul>
 	</div>
   </div>
 </div>

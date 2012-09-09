@@ -19,7 +19,7 @@ float:right;
 .centered { margin: 0 auto; }
 .oh,.ot,.tt{float:left;padding:0 2% 2% 0;width:48%}.ot{width:31%}.tt{width:65%}.cl{clear:both}
 
-#main ul{
+#main ul.category-ul{
 margin:0px 0px 0px 25px;	
 }
 
@@ -62,6 +62,16 @@ border-top: 0px solid #e5e5e5;
 	position:relative;
 }
 
+#thumb-collection ul li#addAsset{
+	background: pink;
+	text-align: center;
+	padding-top: 63px;
+	box-sizing: border-box;
+	color: gray;
+	font-weight: bold;
+	font-size: 24px;
+	cursor:pointer;
+}
 
 #thumb-collection ul li div.overlay{
 	position:absolute;

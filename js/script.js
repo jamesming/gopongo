@@ -431,7 +431,7 @@ _.extend(core, {
 				tpl  = tpl.replace(/{{asset_id}}/g, asset_id);
 				tpl  = tpl.replace(/{{count}}/g, count);
 				
-				$('#thumb-collection ul').append(tpl);	
+				$('#thumb-collection ul.assets_ul').append(tpl);	
 							
 			}
 			
@@ -520,8 +520,10 @@ _.extend(core, {
 						assetObj,
 						function(insert_id) {
 							
+							
 							core.create.asset.add(
 								 assetObj.asset_name
+								,insert_id
 								,core.category_idx
 							);
 							
@@ -542,7 +544,7 @@ _.extend(core, {
 							
 							core.categories[core.category_idx].assets.push(assetObj);
 							
-							
+							core.misc.showHideButtonBasedOnNumofAssets();
 
 						}
 				);	
@@ -565,8 +567,6 @@ _.extend(core, {
 						
 							$('li[asset_id='+asset_id+']').remove();
 							
-							console.log(JSON.stringify(core.categories[core.category_idx].assets));
-							
 							var idx_array = core.findIndexInArrayOfObjects( 
 								 core.categories[core.category_idx].assets
 								,function( item ){
@@ -576,7 +576,7 @@ _.extend(core, {
 							
 							core.categories[core.category_idx].assets.splice(idx_array[0], 1);
 							
-							console.log(JSON.stringify(core.categories[core.category_idx].assets));
+							core.misc.showHideButtonBasedOnNumofAssets();
 							
 						}
 				);	
