@@ -105,7 +105,7 @@ class Models_Db_Assets_Model extends Database {
 		return $this->object_to_array( $categories );
 	}	
 		
-	public function getAllCategoriesAndAssets($where_array = array()){
+	public function getAllCategoriesAndAssets($where_array = array()){   // DEPRECIATED
 		
 		$join_array = array(
 						'assets' => 'assets.category_id = categories.id'

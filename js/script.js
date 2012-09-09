@@ -279,6 +279,36 @@ core = {
 
 
 	}
+	
+	,findIndexInArrayOfObjects :function(array, callback ){
+		
+		/* 
+		*
+		*  Usage: core.findIndexInArrayOfObjects( array, function( item ){
+						if( item.asset_id === 4) return TRUE;
+				  })
+		*
+		*/
+		
+	    var matchingIndices = []
+	    	lengthArray =  array.length;
+		
+	    for(var i = 0;i < lengthArray; i++){
+	        if( callback( array[i] ) )
+	           matchingIndices.push(i);
+	    }
+	
+	    return matchingIndices;
+	}
+	
+	,getObjInArray: function( array ){
+		
+		var obj = array.filter(function (element) { 
+						    return element.asset_id === asset_id;
+						});	
+						
+		return obj;
+	}
 		
 };
 
@@ -484,7 +514,7 @@ _.extend(core, {
 	 			
 				$.post(	url,
 						assetObj,
-						function(data) {
+						function(insert_id) {
 							
 							core.create.asset.add(
 								 assetObj.asset_name
@@ -493,16 +523,23 @@ _.extend(core, {
 							
 							core.create.category_li.add(
 								 core.category_idx
-								,{asset_name:assetObj.asset_name}
+								,{
+									 asset_name:assetObj.asset_name
+									,asset_id:insert_id
+								 }
 							);
 							
 							if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
 								core.categories[core.category_idx].assets = [];
 							};				
 							
-							core.categories[core.category_idx].assets.push(assetObj);
-
+							_.extend(assetObj, {asset_id:insert_id});
+							delete assetObj['category_id'];
 							
+							core.categories[core.category_idx].assets.push(assetObj);
+							
+							
+
 						}
 				);	
 				
@@ -513,10 +550,8 @@ _.extend(core, {
 			
 			$('.delete').live('click', function(event) {
 				
-				var	asset_id = $(this).attr('asset_id')
-					,assetObj = {
-					id: asset_id	
-				};
+				var	 asset_id = $(this).attr('asset_id')
+					,assetObj = {id: asset_id};
 				
 	 			url = window.base_url  + 'index.php/ajax/deleteAsset';
 	 			
@@ -525,6 +560,15 @@ _.extend(core, {
 						function(data) {
 						
 							$('li[asset_id='+asset_id+']').remove();
+							
+							var idx_array = core.findIndexInArrayOfObjects( 
+								 core.categories[core.category_idx].assets
+								,function( item ){
+									if( item.asset_id === asset_id) return true;
+								}
+							);							
+							
+							delete core.categories[core.category_idx].assets[idx_array[0]];
 							
 						}
 				);	

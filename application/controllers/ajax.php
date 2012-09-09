@@ -16,7 +16,7 @@ class Ajax extends CI_Controller {
 	 
 	}
 
-	public function getAllCategoriesAndAssets(){
+	public function getAllCategoriesAndAssets(){  // DEPRECIATED
 		
 		
 		$categories = $this->model->getAllCategoriesAndAssets();
