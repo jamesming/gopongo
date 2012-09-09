@@ -287,7 +287,7 @@ _.extend(core, {
 	 initMain: function(){
 	 	
 		var  that = this
-			,url = window.base_url  + 'index.php/ajax/getAllCategoriesAndAssets';
+			,url = window.base_url  + 'index.php/ajax/getAll';
 		
 		$('#json').load(url, function(){
 			that.category_idx = 0;
@@ -312,7 +312,7 @@ _.extend(core, {
 				
 				for(var idx in core.categories){
 					
-					this.add(core.categories[idx].name, count);
+					this.add(core.categories[idx].category_name, count);
 					
 					if( typeof(core.categories[idx].assets) !== "undefined"){
 						
@@ -328,7 +328,7 @@ _.extend(core, {
 	
 			}
 			
-			,add: function(name, count){
+			,add: function(category_name, count){
 				
 					if ( ! core.category_tpl) {
 					  core.category_tpl = core.loadTemplate('js/tpl/category.tpl');
@@ -337,7 +337,7 @@ _.extend(core, {
 					var tpl = core.category_tpl;
 		
 					tpl  = tpl.replace(/{{idx}}/g, count);
-					tpl  = tpl.replace(/{{name}}/g, name);
+					tpl  = tpl.replace(/{{category_name}}/g, category_name);
 					
 					$('#categories').append(tpl);
 	
@@ -355,7 +355,7 @@ _.extend(core, {
 			
 					var tpl = core.category_li_tpl;
 		
-					tpl  = tpl.replace(/{{name}}/g, li_obj.name);
+					tpl  = tpl.replace(/{{asset_name}}/g, li_obj.asset_name);
 					tpl  = tpl.replace(/{{asset_id}}/g, li_obj.asset_id);
 					
 					$('#categories > div')
@@ -372,23 +372,22 @@ _.extend(core, {
 		,asset: {
 			
 			 init: function(category_idx){
-			 	
+			 	var count=0;
 				for(var idx in core.categories[category_idx].assets){
+					count++;
 					this.add(
-							 core.categories[category_idx].assets[idx].name
-							,core.categories[category_idx].assets[idx].image_url
+							 core.categories[category_idx].assets[idx].asset_name
 							,core.categories[category_idx].assets[idx].asset_id
-							,category_idx
+							,count
 						);
 				};
 				
 			}
 			
 			,add: function(
-					 name
-					,image
+					 asset_name
 					,asset_id
-					,category_idx
+					,count
 				){	
 				
 				if ( ! core.asset_tpl) {
@@ -397,9 +396,10 @@ _.extend(core, {
 				
 				var tpl = core.asset_tpl;
 	
-				tpl  = tpl.replace(/{{name}}/g, name);
-				tpl  = tpl.replace(/{{image}}/g, image);
+				tpl  = tpl.replace(/{{asset_name}}/g, asset_name);
 				tpl  = tpl.replace(/{{asset_id}}/g, asset_id);
+				tpl  = tpl.replace(/{{asset_id}}/g, asset_id);
+				tpl  = tpl.replace(/{{count}}/g, count);
 				
 				$('#thumb-collection ul').append(tpl);	
 							

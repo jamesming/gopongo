@@ -1,3 +1,3 @@
 ﻿<li  asset_id={{asset_id}}>
-{{name}}
+{{asset_name}}
 </li>
