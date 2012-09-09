@@ -61,7 +61,7 @@ class Models_Db_Assets_Model extends Database {
 
 			}else{
 
-					$category_array['assets'] = $assets;	
+					$category_array['assets'] = ( isset($assets[0]['asset_id'] ) ? $assets : array());	
 					unset($assets);							
 
 					$categories[] = $category_array;	
@@ -95,7 +95,7 @@ class Models_Db_Assets_Model extends Database {
 		
 		if( $count ==  count($categories_raw) ){
 
-						$category_array['assets'] = ( isset($assets ) ? $assets : array());				
+						$category_array['assets'] = ( isset($assets[0]['asset_id'] ) ? $assets : array());			
 						$categories[] = $category_array;
 	
 		};
@@ -181,7 +181,7 @@ class Models_Db_Assets_Model extends Database {
 		return $this->insert_table(
 			$table = 'assets', 
 			$insert_what = array(
-				 'name' => $post_array['name']
+				 'name' => $post_array['asset_name']
 				,'category_id' => $post_array['category_id']
 			)
 		);

@@ -466,10 +466,8 @@ _.extend(core, {
 				$('#zoom .submit_asset_form').live('click', function(event) {
 					
 					var  asset_name = $('#zoom .asset_name').val()
-						,image_url = $('#zoom .image_url').val()
 						,assetObj = {
-							 name:asset_name
-							,image_url:image_url
+							 asset_name:asset_name
 							,category_id:core.categories[core.category_idx].category_id
 						};
 						
@@ -488,20 +486,14 @@ _.extend(core, {
 						assetObj,
 						function(data) {
 							
-							console.log(assetObj.name, assetObj.image_url, core.category_idx);
-	
 							core.create.asset.add(
-								 assetObj.name
-								,assetObj.image_url
+								 assetObj.asset_name
 								,core.category_idx
 							);
 							
 							core.create.category_li.add(
 								 core.category_idx
-								,{
-									 name:assetObj.name
-									,image:assetObj.image_url
-								}
+								,{asset_name:assetObj.asset_name}
 							);
 							
 							if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
