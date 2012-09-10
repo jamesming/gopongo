@@ -582,29 +582,41 @@ _.extend(core, {
 						assetObj,
 						function( updated ) {
 							
-							console.log(updated);
+							core.bindElements.formSubmission.afterUpdate.updateExistingElements(assetObj);
 							
-							var	 asset_id = assetObj['asset_id']				
-								,idx_array = core.findIndexInArrayOfObjects( 
-								 core.categories[core.category_idx].assets
-								,function( item ){
-									if( item.asset_id === asset_id) return true;
-								}
-							);	
-							
-							core.categories[core.category_idx].assets[idx_array].asset_name= assetObj.asset_name;
-
-							$('.title[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
-							
-							$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
-							
-							core.submissionMode = 'insert';
 
 						}
 				);	
 				
 			}			
 			
+			,afterUpdate: {
+			
+				 updateExistingElements: function(assetObj){	
+					
+					var	 asset_id = assetObj['asset_id']				
+						,idx_array = core.findIndexInArrayOfObjects( 
+						 core.categories[core.category_idx].assets
+						,function( item ){
+							if( item.asset_id === asset_id) return true;
+						}
+					);	
+					
+					core.categories[core.category_idx].assets[idx_array].asset_name= assetObj.asset_name;
+
+					$('.title[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
+					
+					$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
+					
+					core.submissionMode = 'insert';
+					
+				}
+				
+				,createNewElements: function(){
+					
+				}
+				
+			}
 			
 			
 		}
