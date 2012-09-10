@@ -188,6 +188,18 @@ class Models_Db_Assets_Model extends Database {
 		
 	}
 	
+	public function editAsset($asset_id, $post_array){
+		
+		return $this->update_table(
+			$table = 'assets',
+			$primary_key = $asset_id, 
+			$set_what_array = array(
+				 'name' => $post_array['asset_name']
+			)
+		);
+		
+	}
+	
 	public  function deleteAsset($post_array){
 		
 		$this->delete_from_table(

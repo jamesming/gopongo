@@ -504,17 +504,26 @@ _.extend(core, {
 			
 				$('#zoom .submit_asset_form').live('click', function(event) {
 					
-					var  asset_name = $('#zoom .asset_name').val()
-						,assetObj = {
-							 asset_name:asset_name
-							,category_id:core.categories[core.category_idx].category_id
-						};
+					var  asset_name = $('#zoom .asset_name').val();
 						
 					$('body').click();
 					
 					if( core.submissionMode === 'insert'){
+						
+						var assetObj = {
+							 asset_name:asset_name
+							,category_id:core.categories[core.category_idx].category_id
+						};
+						
 						that.postInsertAsset(assetObj);
-					}else{
+						
+					}else if( core.submissionMode === 'edit'){
+						
+						var assetObj = {
+							  asset_name:asset_name
+							 ,asset_id:core.updateThis.asset_id
+						};						
+						
 						that.postEditAsset(assetObj);
 					};
 					
@@ -573,6 +582,7 @@ _.extend(core, {
 						assetObj,
 						function( updated ) {
 							
+							console.log(updated);
 							
 							var	 asset_id = assetObj['asset_id']				
 								,idx_array = core.findIndexInArrayOfObjects( 
@@ -582,11 +592,11 @@ _.extend(core, {
 								}
 							);	
 							
-//							core.categories[core.category_idx].assets[idx_array].asset_name(assetObj.asset_name);
+							core.categories[core.category_idx].assets[idx_array].asset_name= assetObj.asset_name;
 
-							var $el = $('.title[asset_id=' + assetObj['asset_id'] + ']');
+							$('.title[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
 							
-							$el.html(assetObj.asset_name);
+							$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
 							
 							core.submissionMode = 'insert';
 
@@ -631,7 +641,10 @@ _.extend(core, {
 						
 						core.submissionMode = 'edit';
 						
-						console.log(JSON.stringify(core.categories));
+						core.updateThis = {
+							asset_id:asset_id 	
+						};
+						
 						
 					});
 					

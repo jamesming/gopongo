@@ -6,20 +6,20 @@ class Ajax extends CI_Controller {
 		
 		parent::__construct();
 		
-		$this->model = new Models_Db_Assets_Model;
+		$this->assets_model = new Models_Db_Assets_Model;
 		
 	}
 	
 	function getAll(){
 	
-		echo "<script>core.categories =".json_encode($this->model->getAll()).";</script>";
+		echo "<script>core.categories =".json_encode($this->assets_model->getAll()).";</script>";
 	 
 	}
 
 	public function getAllCategoriesAndAssets(){  // DEPRECIATED
 		
 		
-		$categories = $this->model->getAllCategoriesAndAssets();
+		$categories = $this->assets_model->getAllCategoriesAndAssets();
 		
 		$count1 = 0;
 		
@@ -51,12 +51,23 @@ class Ajax extends CI_Controller {
  	
  	public function insertAsset(){
  		
- 		echo $this->model->insertAsset( $this->input->post() );
+ 		echo $this->assets_model->insertAsset( $this->input->post() );
+ 		
+ 	}
+ 	
+ 	public function editAsset(){
+ 		
+ 		$post_array = $this->input->post();
+ 		
+ 		$asset_id = $post_array['asset_id'];
+ 		unset( $post_array['asset_id'] );
+ 		
+ 		echo $this->assets_model->editAsset($asset_id,  $post_array);
  		
  	}
  	
  	public function deleteAsset(){
  		
- 		$this->model->deleteAsset( $this->input->post() );
+ 		$this->assets_model->deleteAsset( $this->input->post() );
  	}
 }
