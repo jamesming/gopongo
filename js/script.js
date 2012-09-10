@@ -707,7 +707,7 @@ _.extend(core, {
 							asset_id:asset_id 	
 						};
 						
-						console.log(JSON.stringify(core.categories));
+
 					});
 					
 				}
