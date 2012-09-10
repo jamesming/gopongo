@@ -530,7 +530,6 @@ _.extend(core, {
 						assetObj,
 						function(insert_id) {
 							
-							
 							core.create.asset.add(
 								 assetObj.asset_name
 								,insert_id
@@ -556,7 +555,7 @@ _.extend(core, {
 							
 							core.misc.showHideButtonBasedOnNumofAssets();
 							
-							$el = $('.edit[asset_id=' + insert_id + ']');
+							var $el = $('.edit[asset_id=' + insert_id + ']');
 							
 							core.bindElements.editAsset.fancyZoomThis( $el );
 
@@ -564,11 +563,47 @@ _.extend(core, {
 				);	
 				
 			}
+			
+			
+			,postEditAsset: function(assetObj){
+				
+	 			url = window.base_url  + 'index.php/ajax/editAsset';
+	 			
+				$.post(	url,
+						assetObj,
+						function( updated ) {
+							
+							
+							var	 asset_id = assetObj['asset_id']				
+								,idx_array = core.findIndexInArrayOfObjects( 
+								 core.categories[core.category_idx].assets
+								,function( item ){
+									if( item.asset_id === asset_id) return true;
+								}
+							);	
+							
+//							core.categories[core.category_idx].assets[idx_array].asset_name(assetObj.asset_name);
+
+							var $el = $('.title[asset_id=' + assetObj['asset_id'] + ']');
+							
+							$el.html(assetObj.asset_name);
+							
+							core.submissionMode = 'insert';
+
+						}
+				);	
+				
+			}			
+			
+			
+			
 		}
 		
 		,insertAsset: function(){
 			
-			$('#addAsset').fancyZoom({},function(){});	
+			$('#addAsset').fancyZoom({},function(){
+				core.submissionMode = 'insert';
+			});	
 				
 		}
 		
@@ -584,7 +619,6 @@ _.extend(core, {
 					
 					$el.fancyZoom({}, function(el){
 				
-				
 						var	 asset_id = $(el).attr('asset_id')				
 							,idx_array = core.findIndexInArrayOfObjects( 
 							 core.categories[core.category_idx].assets
@@ -593,14 +627,15 @@ _.extend(core, {
 							}
 						);	
 						
-						
 						$('#zoom_content .asset_name').val(core.categories[core.category_idx].assets[idx_array[0]].asset_name);
 						
+						core.submissionMode = 'edit';
+						
+						console.log(JSON.stringify(core.categories));
 						
 					});
 					
 				}
-			
 			
 		}
 
