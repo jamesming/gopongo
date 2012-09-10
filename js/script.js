@@ -454,7 +454,7 @@ _.extend(core, {
 			this.formSubmission.init();
 			
 			this.insertAsset();
-			this.editAsset();
+			this.editAsset.init();
 			this.deleteAsset();
 			
 		}
@@ -484,6 +484,7 @@ _.extend(core, {
 				
 				core.misc.showHideButtonBasedOnNumofAssets();
 				
+				core.bindElements.editAsset();
 				
 			});					
 			
@@ -505,12 +506,12 @@ _.extend(core, {
 						
 					$('body').click();
 					
-					that.insertAsset(assetObj);
+					that.postAsset(assetObj);
 						
 				});	
 			}
 			
-			,insertAsset: function(assetObj){
+			,postAsset: function(assetObj){
 				
 	 			url = window.base_url  + 'index.php/ajax/insertAsset';
 	 			
@@ -543,6 +544,10 @@ _.extend(core, {
 							core.categories[core.category_idx].assets.push(assetObj);
 							
 							core.misc.showHideButtonBasedOnNumofAssets();
+							
+							$el = $('.edit[asset_id=' + insert_id + ']');
+							
+							core.bindElements.editAsset.fancyZoomThis( $el );
 
 						}
 				);	
@@ -552,49 +557,42 @@ _.extend(core, {
 		
 		,insertAsset: function(){
 			
-			$('#addAsset').click(function(event) {
-				
-				if ( ! core.form_asset_tpl) {
-				  core.form_asset_tpl = core.loadTemplate('js/tpl/form_asset.tpl');
-				}		
-		
-				var tpl = core.form_asset_tpl;
-	
-				core.loadContentIntoModalBoxPreFancyZoom( tpl );		
-				
-				
-			}).fancyZoom({});	
+			$('#addAsset').fancyZoom({},function(){});	
 				
 		}
 		
-		,editAsset: function(){
+		,editAsset: {
+				
+				 init: function(){
+				 	
+				 	this.fancyZoomThis( $('.edit') );
+					
+				}
+				
+				,fancyZoomThis: function( $el ){
+					
+					$el.fancyZoom({}, function(el){
+				
+				
+						var	 asset_id = $(el).attr('asset_id')				
+							,idx_array = core.findIndexInArrayOfObjects( 
+							 core.categories[core.category_idx].assets
+							,function( item ){
+								if( item.asset_id === asset_id) return true;
+							}
+						);	
+						
+						
+						$('#zoom_content .asset_name').val(core.categories[core.category_idx].assets[idx_array[0]].asset_name);
+						
+						
+					});
+					
+				}
+			
+			
+			}
 
-			$('.edit').live('click', function(event) {
-				
-				var	 asset_id = $(this).attr('asset_id')				
-					,idx_array = core.findIndexInArrayOfObjects( 
-					 core.categories[core.category_idx].assets
-					,function( item ){
-						if( item.asset_id === asset_id) return true;
-					}
-				);	
-				
-//				console.log(core.categories[core.category_idx].assets[idx_array[0]].asset_name);
-				
-				if ( ! core.form_asset_tpl) {
-				  core.form_asset_tpl = core.loadTemplate('js/tpl/form_asset.tpl');
-				}		
-		
-				var tpl = core.form_asset_tpl;
-				
-				console.log(tpl);
-	
-				core.loadContentIntoModalBoxPreFancyZoom( tpl );					
-				
-			}).fancyZoom({})
-
-		}
-		
 		,deleteAsset: function(){
 			
 			$('.delete').live('click', function(event) {
