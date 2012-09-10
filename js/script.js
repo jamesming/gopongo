@@ -196,11 +196,16 @@ core = {
 		callback(el, count);
 	}			
 
-	,loadContentIntoFancyZoom: function(content){
+	,loadContentIntoModalBoxPreFancyZoom: function(content){
 		
 		$('#modal_box').html( content );
-		
 
+	}
+	
+	,loadContentIntoFancyZoom: function(content){
+		
+		$('#zoom_content').html( content );
+	
 	}
 	
 	,getByClass: function(className, parent) {
@@ -444,13 +449,17 @@ _.extend(core, {
 	,bindElements: {
 		
 		 init: function(){
-			this.createNewDom();
+			this.insertNewCategory();
 			this.accordianControls();
 			this.formSubmission.init();
+			
+			this.insertAsset();
+			this.editAsset();
 			this.deleteAsset();
+			
 		}
 		
-		,createNewDom: function(){		
+		,insertNewCategory: function(){		
 			
 			$('#addCategory').click(function(event) {
 				
@@ -460,25 +469,12 @@ _.extend(core, {
 					
 			});	
 			
-			$('#addAsset').click(function(event) {
-				
-				if ( ! core.form_asset_tpl) {
-				  core.form_asset_tpl = core.loadTemplate('js/tpl/form_asset.tpl');
-				}		
-		
-				var tpl = core.form_asset_tpl;
-	
-				core.loadContentIntoFancyZoom( tpl );		
-				
-				
-			}).fancyZoom({});			
-			
 		}		
 		
 		,accordianControls: function(){
 			
 			$(".collapse").collapse({
-					  toggle: false
+					  toggle: true
 			});
 			
 			$('.category').live('click', function(event) {
@@ -553,7 +549,52 @@ _.extend(core, {
 				
 			}
 		}
+		
+		,insertAsset: function(){
+			
+			$('#addAsset').click(function(event) {
+				
+				if ( ! core.form_asset_tpl) {
+				  core.form_asset_tpl = core.loadTemplate('js/tpl/form_asset.tpl');
+				}		
+		
+				var tpl = core.form_asset_tpl;
+	
+				core.loadContentIntoModalBoxPreFancyZoom( tpl );		
+				
+				
+			}).fancyZoom({});	
+				
+		}
+		
+		,editAsset: function(){
 
+			$('.edit').live('click', function(event) {
+				
+				var	 asset_id = $(this).attr('asset_id')				
+					,idx_array = core.findIndexInArrayOfObjects( 
+					 core.categories[core.category_idx].assets
+					,function( item ){
+						if( item.asset_id === asset_id) return true;
+					}
+				);	
+				
+//				console.log(core.categories[core.category_idx].assets[idx_array[0]].asset_name);
+				
+				if ( ! core.form_asset_tpl) {
+				  core.form_asset_tpl = core.loadTemplate('js/tpl/form_asset.tpl');
+				}		
+		
+				var tpl = core.form_asset_tpl;
+				
+				console.log(tpl);
+	
+				core.loadContentIntoModalBoxPreFancyZoom( tpl );					
+				
+			}).fancyZoom({})
+
+		}
+		
 		,deleteAsset: function(){
 			
 			$('.delete').live('click', function(event) {
@@ -586,6 +627,7 @@ _.extend(core, {
 			});	
 			
 		}
+
 		
 	}
 	
