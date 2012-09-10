@@ -508,7 +508,7 @@ _.extend(core, {
 						
 					$('body').click();
 					
-					if( core.submissionMode === 'insert'){
+					/*if( core.submissionMode === 'insert'){
 						
 						var assetObj = {
 							 asset_name:asset_name
@@ -517,7 +517,7 @@ _.extend(core, {
 						
 						that.postInsertAsset(assetObj);
 						
-					}else if( core.submissionMode === 'edit'){
+					}else if( core.submissionMode === 'edit'){*/
 						
 						var assetObj = {
 							  asset_name:asset_name
@@ -525,15 +525,16 @@ _.extend(core, {
 						};						
 						
 						that.postEditAsset(assetObj);
-					};
+						
+					/*};*/
 					
 						
 				});	
 			}
 			
-			,postInsertAsset: function(assetObj){
+			/*,postInsertAsset: function(assetObj){
 				
-	 			url = window.base_url  + 'index.php/ajax/insertAsset';
+	 			var url = window.base_url  + 'index.php/ajax/insertAsset';
 	 			
 				$.post(	url,
 						assetObj,
@@ -571,19 +572,22 @@ _.extend(core, {
 						}
 				);	
 				
-			}
+			}*/
 			
 			
 			,postEditAsset: function(assetObj){
 				
-	 			url = window.base_url  + 'index.php/ajax/editAsset';
+	 			var url = window.base_url  + 'index.php/ajax/editAsset';
 	 			
 				$.post(	url,
 						assetObj,
 						function( updated ) {
 							
-							core.bindElements.formSubmission.afterUpdate.updateExistingElements(assetObj);
-							
+							if( core.submissionMode === 'insert'){
+								core.bindElements.formSubmission.afterUpdate.createNewElements(assetObj);
+							}else if( core.submissionMode === 'edit'){
+								core.bindElements.formSubmission.afterUpdate.updateExistingElements(assetObj);
+							};
 
 						}
 				);	
@@ -612,7 +616,34 @@ _.extend(core, {
 					
 				}
 				
-				,createNewElements: function(){
+				,createNewElements: function(assetObj){
+
+					core.create.asset.add(
+						 assetObj.asset_name
+						,assetObj.asset_id
+						,core.category_idx
+					);
+					
+					core.create.category_li.add(
+						 core.category_idx
+						,{
+							 asset_name:assetObj.asset_name
+							,asset_id:assetObj.asset_id
+						 }
+					);
+					
+					if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
+						core.categories[core.category_idx].assets = [];
+					};				
+					
+					
+					core.categories[core.category_idx].assets.push(assetObj);
+					
+					core.misc.showHideButtonBasedOnNumofAssets();
+					
+					var $el = $('.edit[asset_id=' + assetObj.asset_id + ']');
+					
+					core.bindElements.editAsset.fancyZoomThis( $el );	
 					
 				}
 				
@@ -624,7 +655,26 @@ _.extend(core, {
 		,insertAsset: function(){
 			
 			$('#addAsset').fancyZoom({},function(){
+				
 				core.submissionMode = 'insert';
+				
+	 			var  url = window.base_url  + 'index.php/ajax/insertAsset'
+	 				,assetObj = {
+							 asset_name:''
+							,category_id:core.categories[core.category_idx].category_id
+						};
+	 			
+				$.post(	url,
+						assetObj,
+						function(insert_id) {
+							
+							core.updateThis = {
+								asset_id:insert_id	
+							};
+							
+						});
+				
+				
 			});	
 				
 		}
@@ -657,7 +707,7 @@ _.extend(core, {
 							asset_id:asset_id 	
 						};
 						
-						
+						console.log(JSON.stringify(core.categories));
 					});
 					
 				}
