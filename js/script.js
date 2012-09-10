@@ -321,6 +321,8 @@ _.extend(core, {
 	
 	 initMain: function(){
 	 	
+	 	this.setPropertiesMain();
+	 	
 		var  that = this
 			,url = window.base_url  + 'index.php/ajax/getAll';
 		
@@ -330,6 +332,10 @@ _.extend(core, {
 			that.bindElements.init();
 		});	
 		
+	}
+	
+	,setPropertiesMain: function(){
+		this.submissionMode = 'insert';
 	}
 
 	,create: {
@@ -484,7 +490,7 @@ _.extend(core, {
 				
 				core.misc.showHideButtonBasedOnNumofAssets();
 				
-				core.bindElements.editAsset();
+				core.bindElements.editAsset.init();
 				
 			});					
 			
@@ -506,12 +512,17 @@ _.extend(core, {
 						
 					$('body').click();
 					
-					that.postAsset(assetObj);
+					if( core.submissionMode === 'insert'){
+						that.postInsertAsset(assetObj);
+					}else{
+						that.postEditAsset(assetObj);
+					};
+					
 						
 				});	
 			}
 			
-			,postAsset: function(assetObj){
+			,postInsertAsset: function(assetObj){
 				
 	 			url = window.base_url  + 'index.php/ajax/insertAsset';
 	 			
@@ -591,7 +602,7 @@ _.extend(core, {
 				}
 			
 			
-			}
+		}
 
 		,deleteAsset: function(){
 			
@@ -626,7 +637,6 @@ _.extend(core, {
 			
 		}
 
-		
 	}
 	
 	,misc: {
