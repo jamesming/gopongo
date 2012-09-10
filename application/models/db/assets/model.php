@@ -208,4 +208,18 @@ class Models_Db_Assets_Model extends Database {
 		);
 		
 	}
+	
+	
+	public  function clear_table_of_empty_records_flagged_with_update_field_equals_0000(){
+		
+			$this->delete_from_table(
+			$table = 'assets', 
+			$where_array = array(
+						'updated' => '0000-00-00 00:00:00' 
+				)
+			);
+		
+	}
+	
+	
 }
