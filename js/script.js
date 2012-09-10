@@ -327,7 +327,6 @@ _.extend(core, {
 			,url = window.base_url  + 'index.php/ajax/getAll';
 		
 		$('#json').load(url, function(){
-			that.category_idx = 0;
 			that.create.init();
 			that.bindElements.init();
 		});	
@@ -335,7 +334,13 @@ _.extend(core, {
 	}
 	
 	,setPropertiesMain: function(){
-		this.submissionMode = 'insert';
+		
+		this.submissionMode = 'insert';  // || edit
+		this.category_idx = 0; // var category_id = core.categories[core.category_idx].category_id
+		this.updateThis = {asset_id:0};  // core.updateThis.asset_id
+		
+		// var asset_id = core.categories[core.category_idx].assets[ {{ index }} ].asset_id
+		
 	}
 
 	,create: {
@@ -673,7 +678,6 @@ _.extend(core, {
 							};
 							
 						});
-				
 				
 			});	
 				
