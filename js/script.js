@@ -761,6 +761,10 @@ _.extend(core, {
 			 thumb: function(){	
 			 	
 			 	$('#zoom_content .thumb_img').live('click', function(event) {
+			 		
+			 		$('#zoom_content .filename').val('');
+			 		$('#zoom_content input[name=target_name]').val('image.jpg');
+			 		$('#zoom_content input[name=target_folder]').val('thumbs');
 			 		$('#zoom_content .filename').click();
 			 	});	
 			 		
@@ -769,6 +773,9 @@ _.extend(core, {
 			,video: function(){
 				
 				$('#zoom_content .video_uplr').live('click', function(event) {
+					
+					$('#zoom_content input[name=target_name]').val('video.mp4');
+					$('#zoom_content input[name=target_folder]').val('videos');
 					$('#zoom_content .filename').click();
 				});	
 				
@@ -777,7 +784,6 @@ _.extend(core, {
 			,form: function(){
 				
 				$('#zoom_content .filename').live('change', function(event) {
-					
 					$('#zoom_content input[name=asset_id]').val(core.updateThis.asset_id);
 					$('#zoom_content form.uploadVideo').submit();
 					

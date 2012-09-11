@@ -7,8 +7,9 @@ class ClassLoader {
 								 APPPATH
 								,'application/core/'
 								,'application/controllers/'
+								,'application/libraries/'
 						 );
-																			 
+																		 
 	protected static $_files 			= array();
 	protected static $_files_changed 	= FALSE;
 	
@@ -43,7 +44,6 @@ class ClassLoader {
 
 			return ClassLoader::$_files[$path];
 		}
-
 
 		$found = FALSE;
 		foreach (ClassLoader::$_paths as $dir) {

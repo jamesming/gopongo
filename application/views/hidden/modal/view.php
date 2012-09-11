@@ -51,10 +51,12 @@
 		</form>
 		
 		<form  class='uploadVideo'  target='iframe_upload'  action='<?php echo base_url()    ?>ajax/upload'  enctype='multipart/form-data'  method='POST'>
-			<input name="filename"  class='filename ' type="file" value=""   style='visibility:hidden'  >
-			<input name="asset_id" type="hidden" value="">
-			<input type="submit" value="submit"  style='visibility:hidden' >
-			<!--  -->
+			<input name="filename"  class='filename ' type="file" value=""   >
+			<input name="asset_id" type="text" value="">
+			<input name="target_name" type="text" value="">
+			<input name="target_folder" type="text" value="">
+			<input type="submit" value="submit"  >
+			<!--  style='visibility:hidden' -->
 		</form>		
 		
 	</div>

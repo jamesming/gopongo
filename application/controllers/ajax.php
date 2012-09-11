@@ -7,8 +7,6 @@ class Ajax extends CI_Controller {
 		parent::__construct();
 		
 		$this->assets_model = new Models_Db_Assets_Model;
-		
-		
 	}
 	
 	function getAll(){

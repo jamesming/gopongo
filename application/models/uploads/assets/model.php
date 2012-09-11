@@ -2,49 +2,64 @@
 
 class Models_Uploads_Assets_Model extends Models_Uploads {
 
-	const FILE = 'path';
-	
-	public $user_id;
-	public $title;
-	public $filename;
-	public $path;
-	public $name;
-	public $alt;
-	public $description;
+	public function saveXXX($post_array){
+		
+		$this->_create_directories($post_array);
+		
+		get_instance()->load->library('qquploadedfilexhr');
+		
+		$allowedExtensions = array("jpg", "JPG", "mp4");
+		
+		$sizeLimit = 10000 * 1024 * 1024; // max file size in bytes
+		
+		$uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+		
+		$result = $uploader->handleUpload(  $this->upload_path( $post_array )  );
+		
+		echo '<pre>';print_r(  $result  );echo '</pre>';  exit;
+		
+	}
 	
 
 	
 	public function save( $post_array ) {
 		
+		$this->recursiveDelete( $this->upload_path( $post_array ));
+		
 		$this->_create_directories($post_array);
 		
-//		@unlink($this->filepath());
-		
 		get_instance()->load->library('upload', array(
-			'file_name' => 'image.jpg',
+			'file_name' => $post_array['target_name'],
 			'upload_path' => $this->upload_path( $post_array ),
-			'allowed_types' => 'jpg|jpeg',
-			'max_size' => '1000000',
+			'allowed_types' => ( $post_array['target_folder'] == 'thumbs' ? 'jpg|jpeg':'mp4|avi|mpeg|3gp'),
+			'max_size' => '1000000000000000'/*,
 			'max_width' => '2000',
-			'max_height' => '2000',
+			'max_height' => '2000',*/
 		));
 		
 		if ( ! get_instance()->upload->do_upload('filename')) {
 			?>
 			<script type="text/javascript" language="Javascript">
-				alert('error');	
+				alert('<?php echo get_instance()->upload->display_errors()    ?>');	
 			</script>
 			<?php     
+		}else{
+			?>
+			<script type="text/javascript" language="Javascript">
+				alert('Success');	
+			</script>
+			<?php  			
+			
 		}
 
 		return TRUE;
 	}
 	
 	public function upload_path( $post_array ) {
-		return "uploads/thumbs/".$post_array['asset_id']."/";
+		return "uploads/" . $post_array['target_folder'] ."/".$post_array['asset_id']."/";
 	}
 	
-	public function filepath() {
+/*	public function filepath() {
 		return $this->upload_path()."/$this->filename";
 	}
 	
@@ -54,7 +69,7 @@ class Models_Uploads_Assets_Model extends Models_Uploads {
 	
 	public function file_exists() {
 		return file_exists($this->filepath());
-	}
+	}*/
 	
 	protected function _create_directories($post_array) {
 		
