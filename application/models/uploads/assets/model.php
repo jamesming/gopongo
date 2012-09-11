@@ -22,7 +22,7 @@ class Models_Uploads_Assets_Model extends Models_Uploads {
 	
 	public function save( $post_array ) {
 		
-		sleep(5);
+		sleep(2);
 		
 		$this->recursiveDelete( $this->upload_path( $post_array ));
 		
@@ -58,7 +58,7 @@ class Models_Uploads_Assets_Model extends Models_Uploads {
 			
 					<script type="text/javascript" language="Javascript">
 						var img_src = '<?php  echo base_url() . $this->upload_path( $post_array );   ?>/image.jpg';
-						window.parent.$('#zoom_content .video_input_field').css({background:'green'})
+						window.parent.$('#zoom_content .video_input_field').val('').css({background:'lightgreen'})
 					</script>				
 			
 			<?php } 

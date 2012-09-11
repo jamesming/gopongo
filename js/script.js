@@ -451,7 +451,7 @@ _.extend(core, {
 				
 				$('li[asset_id='+asset_id+'] img')
 				.on('error', function() {
-				    this.src = 'http://www.placehold.it/280x150';
+				    this.src = 'http://www.placehold.it/280x159';
 				})
 				.attr('src', 'uploads/'+asset_id+'/thumb/image.jpg');
 				
@@ -715,6 +715,15 @@ _.extend(core, {
 						);	
 						
 						$('#zoom_content .asset_name').val(core.categories[core.category_idx].assets[idx_array[0]].asset_name);
+						
+						
+						$('#zoom_content img')
+						.on('error', function() {
+						    this.src = 'http://www.placehold.it/280x150';
+						})
+						.attr('src', 'uploads/'+asset_id+'/thumb/image.jpg');
+						
+						
 						
 						core.submissionMode = 'edit';
 						
