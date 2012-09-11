@@ -20,9 +20,9 @@ class Models_Uploads_Assets_Model extends Models_Uploads {
 		
 	}
 	
-
-	
 	public function save( $post_array ) {
+		
+		sleep(5);
 		
 		$this->recursiveDelete( $this->upload_path( $post_array ));
 		
@@ -31,7 +31,7 @@ class Models_Uploads_Assets_Model extends Models_Uploads {
 		get_instance()->load->library('upload', array(
 			'file_name' => $post_array['target_name'],
 			'upload_path' => $this->upload_path( $post_array ),
-			'allowed_types' => ( $post_array['target_folder'] == 'thumbs' ? 'jpg|jpeg':'mp4|avi|mpeg|3gp'),
+			'allowed_types' => ( $post_array['target_folder'] == 'thumb' ? 'jpg|jpeg':'mp4|avi|mpeg|3gp'),
 			'max_size' => '1000000000000000'/*,
 			'max_width' => '2000',
 			'max_height' => '2000',*/
@@ -44,11 +44,26 @@ class Models_Uploads_Assets_Model extends Models_Uploads {
 			</script>
 			<?php     
 		}else{
-			?>
-			<script type="text/javascript" language="Javascript">
-				alert('Success');	
-			</script>
-			<?php  			
+			
+			
+			if( $post_array['target_folder'] == 'thumb' ){?>
+			
+					<script type="text/javascript" language="Javascript">
+						var img_src = '<?php  echo base_url() . $this->upload_path( $post_array );   ?>/image.jpg';
+						window.parent.$('#zoom_content .thumb_img').attr('src', img_src);
+					</script>			
+			
+			
+			<?php }else{?>
+			
+					<script type="text/javascript" language="Javascript">
+						var img_src = '<?php  echo base_url() . $this->upload_path( $post_array );   ?>/image.jpg';
+						window.parent.$('#zoom_content .video_input_field').css({background:'green'})
+					</script>				
+			
+			<?php } 
+			
+				
 			
 		}
 
@@ -56,7 +71,7 @@ class Models_Uploads_Assets_Model extends Models_Uploads {
 	}
 	
 	public function upload_path( $post_array ) {
-		return "uploads/" . $post_array['target_folder'] ."/".$post_array['asset_id']."/";
+		return "uploads/" . $post_array['asset_id'] ."/".$post_array['target_folder']."/";
 	}
 	
 /*	public function filepath() {
@@ -73,11 +88,8 @@ class Models_Uploads_Assets_Model extends Models_Uploads {
 	
 	protected function _create_directories($post_array) {
 		
-			@mkdir("uploads", 0755, TRUE);
-			@mkdir("uploads/videos", 0755, TRUE);
-			@mkdir("uploads/thumbs", 0755, TRUE);
-			@mkdir("uploads/thumbs/".$post_array['asset_id']."/", 0755, TRUE);
-			@mkdir("uploads/videos/".$post_array['asset_id']."/", 0755, TRUE);
+			@mkdir("uploads/".$post_array['asset_id']."/thumb/", 0755, TRUE);
+			@mkdir("uploads/".$post_array['asset_id']."/video/", 0755, TRUE);
 
 	}
 	

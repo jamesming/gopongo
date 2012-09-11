@@ -8,12 +8,9 @@ class Base_Controller extends CI_Controller
 		
 		parent::__construct();
 		
-		
-		
 		$this->assets_model = new Models_Db_Assets_Model;
 		$this->assets_model->clear_table_of_empty_records_flagged_with_update_field_equals_0000();
-		
-		
+
 
 		$this->_data = new stdClass;
 		
@@ -27,11 +24,8 @@ class Base_Controller extends CI_Controller
 		$this->_data->company = "footer/company";			
 		$this->_data->footer = "footer/footer";
 		
-		
 	}
 	
-
-
 	function create_table(){
 		
 		/* 

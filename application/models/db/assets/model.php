@@ -212,12 +212,29 @@ class Models_Db_Assets_Model extends Database {
 	
 	public  function clear_table_of_empty_records_flagged_with_update_field_equals_0000(){
 		
-			$this->delete_from_table(
+		$this->upload = new Models_Uploads_Assets_Model;
+		
+		$assets = $this->object_to_array($this->select_from_table( 
 			$table = 'assets', 
+			$select_what = "id", 
 			$where_array = array(
 						'updated' => '0000-00-00 00:00:00' 
-				)
-			);
+				)));
+		
+		
+		foreach( $assets  as  $asset){
+			
+			$this->upload->recursiveDelete( 'uploads/' . $asset['id'].'/'  );
+
+		}
+		
+		$this->delete_from_table(
+		$table = 'assets', 
+		$where_array = array(
+					'updated' => '0000-00-00 00:00:00' 
+			)
+		);
+		
 		
 	}
 	

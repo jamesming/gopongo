@@ -38,7 +38,7 @@
 						<img  src="http://www.placehold.it/280x159" class="img-polaroid thumb_img">
 					</div>
 					<div class="input-append">
-					  <input class="span2" size="16" type="text"><button class="btn video_uplr" type="button">Go!</button>
+					  <input class="span2 video_input_field" size="16" type="text"><button class="btn video_uplr" type="button">Go!</button>
 					</div>			
 					
 				</div>				
@@ -50,13 +50,13 @@
 
 		</form>
 		
-		<form  class='uploadVideo'  target='iframe_upload'  action='<?php echo base_url()    ?>ajax/upload'  enctype='multipart/form-data'  method='POST'>
+		<form   style='display:none'   class='uploadVideo'  target='iframe_upload'  action='<?php echo base_url()    ?>ajax/upload'  enctype='multipart/form-data'  method='POST'>
 			<input name="filename"  class='filename ' type="file" value=""   >
 			<input name="asset_id" type="text" value="">
 			<input name="target_name" type="text" value="">
 			<input name="target_folder" type="text" value="">
 			<input type="submit" value="submit"  >
-			<!--  style='visibility:hidden' -->
+
 		</form>		
 		
 	</div>

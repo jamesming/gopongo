@@ -1,6 +1,6 @@
 ﻿<li asset_id={{asset_id}} >
 	<div>
-		<img src="http://lorempixel.com/280/159/city/{{count}}"/>
+		<img src=""/>
 	</div>
 	<div  class='overlay ' >
 		<span asset_id={{asset_id}} class='title ' >{{asset_name}}</span> |

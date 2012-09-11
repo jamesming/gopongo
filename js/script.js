@@ -447,7 +447,13 @@ _.extend(core, {
 				tpl  = tpl.replace(/{{asset_id}}/g, asset_id);
 				tpl  = tpl.replace(/{{count}}/g, count);
 				
-				$('#thumb-collection ul.assets_ul').append(tpl);	
+				$('#thumb-collection ul.assets_ul').append(tpl);
+				
+				$('li[asset_id='+asset_id+'] img')
+				.on('error', function() {
+				    this.src = 'http://www.placehold.it/280x150';
+				})
+				.attr('src', 'uploads/'+asset_id+'/thumb/image.jpg');
 				
 				core.misc.showHideButtonBasedOnNumofAssets();
 							
@@ -762,9 +768,11 @@ _.extend(core, {
 			 	
 			 	$('#zoom_content .thumb_img').live('click', function(event) {
 			 		
+			 		$(this).attr('src', 'img/loading.gif');
+			 		
 			 		$('#zoom_content .filename').val('');
 			 		$('#zoom_content input[name=target_name]').val('image.jpg');
-			 		$('#zoom_content input[name=target_folder]').val('thumbs');
+			 		$('#zoom_content input[name=target_folder]').val('thumb');
 			 		$('#zoom_content .filename').click();
 			 	});	
 			 		
@@ -775,7 +783,8 @@ _.extend(core, {
 				$('#zoom_content .video_uplr').live('click', function(event) {
 					
 					$('#zoom_content input[name=target_name]').val('video.mp4');
-					$('#zoom_content input[name=target_folder]').val('videos');
+					$('#zoom_content input[name=target_folder]').val('video');
+					$('#zoom_content .video_input_field').val('loading...')
 					$('#zoom_content .filename').click();
 				});	
 				
