@@ -777,7 +777,10 @@ _.extend(core, {
 			,form: function(){
 				
 				$('#zoom_content .filename').live('change', function(event) {
-					$('#zoom_content form.uploadVideo').submit()		
+					
+					$('#zoom_content input[name=asset_id]').val(core.updateThis.asset_id);
+					$('#zoom_content form.uploadVideo').submit();
+					
 				});	
 				
 			}

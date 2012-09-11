@@ -8,6 +8,7 @@ class Ajax extends CI_Controller {
 		
 		$this->assets_model = new Models_Db_Assets_Model;
 		
+		
 	}
 	
 	function getAll(){
@@ -70,4 +71,13 @@ class Ajax extends CI_Controller {
  		
  		$this->assets_model->deleteAsset( $this->input->post() );
  	}
+ 	
+ 	public function upload(){
+ 		
+ 		$post_array = $this->input->post();
+
+ 		$this->upload = new Models_Uploads_Assets_Model;
+ 		$this->upload->save( $post_array );
+ 		
+ 	} 
 }

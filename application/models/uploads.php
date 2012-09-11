@@ -2,35 +2,26 @@
 
 class Models_Uploads {
 		
-		function __construct(){
-		    
-			$this->CI =& get_instance();
-			
-		}
+	function __construct(){
+	    
+		$this->CI =& get_instance();
 		
-		/**
-		 * Delete a file or recursively delete a directory
-		 *
-		 * {@source }
-		 * @package BackEnd
-		 * @param string $directory_path Path to file or directory
-		 */
-		 
-		function recursiveDelete($directory_path){
-		    if(is_file($directory_path)){
-		        return @unlink($directory_path);
-		    }
-		    elseif(is_dir($directory_path)){
-		        $scan = glob(rtrim($directory_path,'/').'/*');
-		        foreach($scan as $index=>$path){
-		            $this->recursiveDelete($path);
-		        }
-		        return @rmdir($directory_path);
-		    }
+	}
 		
-		}
 
-
+	function recursiveDelete($directory_path){
+	    if(is_file($directory_path)){
+	        return @unlink($directory_path);
+	    }
+	    elseif(is_dir($directory_path)){
+	        $scan = glob(rtrim($directory_path,'/').'/*');
+	        foreach($scan as $index=>$path){
+	            $this->recursiveDelete($path);
+	        }
+	        return @rmdir($directory_path);
+	    }
+	
+	}
 
 
 	function cloneAndResizeImage(
@@ -99,16 +90,7 @@ class Models_Uploads {
 		imagedestroy($clone);
 		imagedestroy($imageFromUrl);	  
 	}		
-		
-		
-		
-		
-	/* 	cloneFromRemoteURL
-	*
-	*  
-	*
-	*/
-	
+
 	function cloneFromRemoteURL(
 		 $url
 		,$pk
@@ -156,166 +138,126 @@ class Models_Uploads {
 		imagedestroy($imageFromUrl);	
 		
 	}
-		
-		
-		/**
-		 * Sets up directory structure for uploading image file
-		 *
-		 * {@source }
-		 * @package BackEnd
-		 * @uses Unit_test::test_tools_set_directory_for_upload()
-		 * @param array $path_array
-		 */
+
 		 
-		function set_directory_for_upload ($path_array ){
+	function set_directory_for_upload ($path_array ){
+		
+		$path = 'uploads';
+		
+		foreach( $path_array as $directory ){
+		
+			$path .= '/' . $directory;
 			
-			$path = 'uploads';
+			if( is_dir($path) == FALSE){		
+				mkdir($path, 0755);
+			};
 			
-			foreach( $path_array as $directory ){
-			
-				$path .= '/' . $directory;
-				
-				if( is_dir($path) == FALSE){		
-					mkdir($path, 0755);
-				};
-				
-			}
-		  
-		  return $path;
 		}
+	  
+	  return $path;
+	}
+
+ 
+	function get_new_size_of ($what = 'width', $based_on_new, $orig_width, $orig_height ){
+	
+		if( $what == 'width'){
+			
+				$ratio = $orig_width / $orig_height;			
+				
+				$whats_missing = $based_on_new * $ratio;		
+				
+		}elseif( $what == 'height'){
+	
+				$whats_missing = $based_on_new / ($orig_width / $orig_height);		
+				
+				
+		};
+	
+		return round($whats_missing);
+	
+	}
+	
+	function resize_this($full_path, $width, $height){
+		
+						$config['image_library'] = 'gd2';
+						$config['source_image']	= $full_path;
+						$config['create_thumb'] = FALSE;
+						$config['maintain_ratio'] = TRUE;
+						$config['width']	= $width;
+						$config['height']	= $height;
+						
+						$this->CI->image_lib->initialize($config); 
+						
+						$this->CI->image_lib->resize();
+				
+						$this->CI->image_lib->clear();
+	 
+	}	
 		
 
-		/**
-		 * crop_and_name_it 
-		 *
-		 */
-		 
-		function crop_and_name_it(
-						  $new_name = 'cropped.png'
-						, $full_path
-						, $dir_path
-						, $width = 300
-						, $height = 300
-						, $x_axis = 0
-						, $y_axis = 0
-						){
+	function clone_and_resize_append_name_of($appended_suffix, $full_path, $width, $height){
 		
-							$config['image_library'] = 'gd2';
-							$config['source_image']	= $full_path;
-							$config['new_image'] = $dir_path . $new_name;
-							$config['thumb_marker']	= '';
-							$config['maintain_ratio'] = FALSE;
-							$config['width']	= $width;
-							$config['height']	= $height;
-							$config['x_axis'] = $x_axis;
-							$config['y_axis'] = $y_axis;
-							
-							
-							$this->CI->image_lib->initialize($config); 
-							$this->CI->image_lib->crop();
-					
-							$this->CI->image_lib->clear();
-							
-							return $new_name;
-							
-		}	
-		/**
-		 * Gets missing width or height based on original size and on new width or height
-		 *
-		 * {@source }
-		 * @package BackEnd
-		 * @param string $what
-		 * @param int $based_on_new
-		 * @param int $orig_width
-		 * @param int $orig_height
-		 * @return int $whats_missing
-		 */
-		 
-		function get_new_size_of ($what = 'width', $based_on_new, $orig_width, $orig_height ){
-		
-			if( $what == 'width'){
+						$config['image_library'] = 'gd2';
+						$config['source_image']	= $full_path;
+						$config['create_thumb'] = TRUE;
+						$config['maintain_ratio'] = TRUE;
+						$config['width']	= $width;
+						$config['height']	= $height;
+						
+						$config['thumb_marker']	= $appended_suffix;
+						
+						$this->CI->image_lib->initialize($config); 
+						
+						$this->CI->image_lib->resize();
 				
-					$ratio = $orig_width / $orig_height;			
-					
-					$whats_missing = $based_on_new * $ratio;		
-					
-			}elseif( $what == 'height'){
+						$this->CI->image_lib->clear();
+						
+	}
+
+	function rotate($full_path, $rotation){
 		
-					$whats_missing = $based_on_new / ($orig_width / $orig_height);		
-					
-					
-			};
+	
+				$config['image_library'] = 'gd2';
+				$config['source_image']	= $full_path;
+				
+				if( $rotation == 'right'){
+					$config['rotation_angle'] = '270';
+				}else{
+					$config['rotation_angle'] = '90';
+				};
+				
+				$this->CI->image_lib->initialize($config);
+				$this->CI->image_lib->rotate();
+				$this->CI->image_lib->clear();
+	
+	}  
 		
-			return round($whats_missing);
+	function crop_and_name_it(
+					  $new_name
+					, $full_path
+					, $dir_path
+					, $x_axis = 0
+					, $y_axis = 0						
+					, $width = 300
+					, $height = 300
+	){
+
+		$config['image_library'] = 'gd2';
+		$config['source_image']	= $full_path;
+		$config['new_image'] = $dir_path . $new_name;
+		$config['thumb_marker']	= '';
+		$config['maintain_ratio'] = FALSE;
+		$config['width']	= $width;
+		$config['height']	= $height;
+		$config['x_axis'] = $x_axis;
+		$config['y_axis'] = $y_axis;
 		
-		}
+		get_instance()->load->library('image_lib');
+		get_instance()->image_lib->initialize($config); 
+		get_instance()->image_lib->crop();
+		get_instance()->image_lib->clear();
 		
-		function resize_this($full_path, $width, $height){
-			
-							$config['image_library'] = 'gd2';
-							$config['source_image']	= $full_path;
-							$config['create_thumb'] = FALSE;
-							$config['maintain_ratio'] = TRUE;
-							$config['width']	= $width;
-							$config['height']	= $height;
-							
-							$this->CI->image_lib->initialize($config); 
-							
-							$this->CI->image_lib->resize();
-					
-							$this->CI->image_lib->clear();
-		 
-		}	
-		
-		/**
-		 * clone_and_resize_append_name_of PNG image
-		 *
-		 */
-		 
-		function clone_and_resize_append_name_of($appended_suffix, $full_path, $width, $height){
-			
-							$config['image_library'] = 'gd2';
-							$config['source_image']	= $full_path;
-							$config['create_thumb'] = TRUE;
-							$config['maintain_ratio'] = TRUE;
-							$config['width']	= $width;
-							$config['height']	= $height;
-							
-							$config['thumb_marker']	= $appended_suffix;
-							
-							$this->CI->image_lib->initialize($config); 
-							
-							$this->CI->image_lib->resize();
-					
-							$this->CI->image_lib->clear();
-							
-		}
-		
-		
-		
-		/**
-		 * Rotates a file according to direction passed
-		 *
-		 */
-		 
-		function rotate($full_path, $rotation){
-			
-		
-					$config['image_library'] = 'gd2';
-					$config['source_image']	= $full_path;
-					
-					if( $rotation == 'right'){
-						$config['rotation_angle'] = '270';
-					}else{
-						$config['rotation_angle'] = '90';
-					};
-					
-					$this->CI->image_lib->initialize($config);
-					$this->CI->image_lib->rotate();
-					$this->CI->image_lib->clear();
-		
-		}  
-		
-		
+		return $new_name;
+	}
 		
 }
