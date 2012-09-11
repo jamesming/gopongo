@@ -41,11 +41,11 @@
 			<div  class='submit_wrapper '   >
 				<button class='btn btn-primary submit_asset_form'  type="button" >Submit</button>
 			</div>
-			<form target='iframe_upload'  action=''  enctype='multipart/form-data'  method='POST'>
+			<form  target='iframe_upload'  action='<?php echo base_url()    ?>ajax/upload'  enctype='multipart/form-data'  method='POST'>
 				<input name="filename"  class='filename ' type="file" value=""   style='visibility:hidden'  >
 			</form>
 		</form>
 	</div>
 </div>
 <div  id='json'  style='display:none'  ></div>
-<iframe  id='iframe_upload'   style='width:300px;height:300px'  ></iframe>
+<iframe  id='iframe_upload'   style='width:300px;height:300px' src='' ></iframe>

@@ -460,6 +460,7 @@ _.extend(core, {
 	,bindElements: {
 		
 		 init: function(){
+		 	
 			this.insertNewCategory();
 			this.accordianControls();
 			this.formSubmission.init();
@@ -470,6 +471,7 @@ _.extend(core, {
 			
 			this.upload.thumb();
 			this.upload.video();
+			this.upload.form();
 			
 		}
 		
@@ -768,6 +770,14 @@ _.extend(core, {
 				
 				$('#zoom_content .video_uplr').live('click', function(event) {
 					$('#zoom_content .filename').click();
+				});	
+				
+			}
+			
+			,form: function(){
+				
+				$('#zoom_content .filename').live('change', function(event) {
+					$('#zoom_content form').submit()		
 				});	
 				
 			}
