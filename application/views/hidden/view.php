@@ -51,4 +51,4 @@
 	</div>
 </div>
 <div  id='json'  style='display:none'  ></div>
-<iframe  id='iframe_upload'   style='width:300px;height:300px' src='' ></iframe>
+<iframe  id='iframe_upload'   style='width:0px;height:0px' src='' ></iframe>
