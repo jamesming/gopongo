@@ -468,6 +468,9 @@ _.extend(core, {
 			this.editAsset.init();
 			this.deleteAsset();
 			
+			this.upload.thumb();
+			this.upload.video();
+			
 		}
 		
 		,insertNewCategory: function(){		
@@ -748,6 +751,26 @@ _.extend(core, {
 				);	
 				
 			});	
+			
+		}
+		
+		,upload: {
+			
+			 thumb: function(){	
+			 	
+			 	$('#zoom_content .thumb_img').live('click', function(event) {
+			 		$('#zoom_content .filename').click();
+			 	});	
+			 		
+			}
+			
+			,video: function(){
+				
+				$('#zoom_content .video_uplr').live('click', function(event) {
+					$('#zoom_content .filename').click();
+				});	
+				
+			}
 			
 		}
 

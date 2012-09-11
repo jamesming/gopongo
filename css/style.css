@@ -127,3 +127,7 @@ border-top: 0px solid #e5e5e5;
 	position:absolute;
 	left: 50%;
 }
+
+.form_asset_container .thumb_img{
+	cursor:pointer;
+}

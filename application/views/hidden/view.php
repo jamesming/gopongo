@@ -29,10 +29,10 @@
 				<div  class=' oh' >
 					
 					<div  class='img_wrapper ' >
-						<img src="http://www.placehold.it/280x159" class="img-polaroid">
+						<img  src="http://www.placehold.it/280x159" class="img-polaroid thumb_img">
 					</div>
 					<div class="input-append">
-					  <input class="span2" id="appendedInputButton" size="16" type="text"><button class="btn" type="button">Go!</button>
+					  <input class="span2" size="16" type="text"><button class="btn video_uplr" type="button">Go!</button>
 					</div>			
 					
 				</div>				
@@ -41,7 +41,9 @@
 			<div  class='submit_wrapper '   >
 				<button class='btn btn-primary submit_asset_form'  type="button" >Submit</button>
 			</div>
-		  
+			<form>
+				<input name="filename"  class='filename ' type="file" value=""   style='visibility:hidden'  >
+			</form>
 		</form>
 	</div>
 </div>
