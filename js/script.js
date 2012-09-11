@@ -777,7 +777,7 @@ _.extend(core, {
 			,form: function(){
 				
 				$('#zoom_content .filename').live('change', function(event) {
-					$('#zoom_content form').submit()		
+					$('#zoom_content form.uploadVideo').submit()		
 				});	
 				
 			}
