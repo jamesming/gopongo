@@ -90,5 +90,40 @@ border-top: 0px solid #e5e5e5;
 }
 
 .form_asset_container{
-	padding:10px;	
+	height:340px;	
+}
+.form_asset_container h2{
+	line-height: 31px;
+	margin-bottom: 17px;	
+}
+.form_asset_container .control-label{
+	width: 114px;
+}
+.form_asset_container .controls{
+	margin-left: 143px;	
+}
+.form_asset_container textarea{
+	height: 108px;	
+}
+
+ .form_asset_container .oh .img_wrapper
+,.form_asset_container .oh .input-append{
+	padding-left: 32px;
+}
+
+.form_asset_container .oh .input-append{
+	margin-top: 17px;
+}
+.form_asset_container .input-append > input{
+	width: 223px;	
+}
+
+.form_asset_container .submit_wrapper{
+	clear:both;
+	position:relative;
+	padding-top: 15px;
+}
+.form_asset_container .btn.submit_asset_form{
+	position:absolute;
+	left: 50%;
 }
