@@ -16,7 +16,7 @@ class Models_Uploads_Assets_Model extends Models_Uploads {
 		
 		$result = $uploader->handleUpload(  $this->upload_path( $post_array )  );
 		
-		echo '<pre>';print_r(  $result  );echo '</pre>';  exit;
+		echo '<pre>';print_r(  $result  );echo '</pre>';
 		
 	}
 	
