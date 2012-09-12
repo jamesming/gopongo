@@ -506,6 +506,8 @@ _.extend(core, {
 				$('#thumb-collection').show();
 				$('#video_container').hide();
 				
+				core.myPlayer.pause();
+				
 				$('#thumb-collection-ul').empty();			
 				core.create.asset.init($(this).attr('idx'));
 				core.category_idx  = $(this).attr('idx');
