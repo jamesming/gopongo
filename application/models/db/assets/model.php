@@ -212,7 +212,7 @@ class Models_Db_Assets_Model extends Database {
 	
 	public  function clear_table_of_empty_records_flagged_with_update_field_equals_0000(){
 		
-		$this->upload = new Models_Uploads_Assets_Model;
+		$this->upload = new Models_Up_Assets_Model;
 		
 		$assets = $this->object_to_array($this->select_from_table( 
 			$table = 'assets', 

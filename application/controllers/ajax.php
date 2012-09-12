@@ -74,7 +74,7 @@ class Ajax extends CI_Controller {
  		
  		$post_array = $this->input->post();
 
- 		$this->upload = new Models_Uploads_Assets_Model;
+ 		$this->upload = new Models_Up_Assets_Model;
  		$this->upload->save( $post_array );
  		
  	} 

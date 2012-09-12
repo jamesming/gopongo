@@ -1,6 +1,6 @@
 ﻿<?php
 
-class Models_Uploads_Assets_Model extends Models_Uploads {
+class Models_Up_Assets_Model extends Models_Up {
 
 	public function saveXXX($post_array){
 		
@@ -31,7 +31,8 @@ class Models_Uploads_Assets_Model extends Models_Uploads {
 		get_instance()->load->library('upload', array(
 			'file_name' => $post_array['target_name'],
 			'upload_path' => $this->upload_path( $post_array ),
-			'allowed_types' => ( $post_array['target_folder'] == 'thumb' ? 'jpg|jpeg':'mp4|avi|mpeg|3gp'),
+//			'allowed_types' => ( $post_array['target_folder'] == 'thumb' ? 'jpg|jpeg':'m4v|mp4|avi|mpeg|3gp'),
+			'allowed_types' => '*',
 			'max_size' => '1000000000000000'/*,
 			'max_width' => '2000',
 			'max_height' => '2000',*/

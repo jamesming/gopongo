@@ -1,6 +1,6 @@
 <?php
 
-class Models_Uploads {
+class Models_Up{
 		
 	function __construct(){
 	    
