@@ -335,6 +335,8 @@ _.extend(core, {
 	
 	,setPropertiesMain: function(){
 		
+		this.myPlayer = _V_("my_video_1");
+		
 		this.submissionMode = 'insert';  // || edit
 		this.category_idx = 0; // var category_id = core.categories[core.category_idx].category_id
 		this.updateThis = {asset_id:0};  // core.updateThis.asset_id
@@ -500,6 +502,10 @@ _.extend(core, {
 			});
 			
 			$('.category').live('click', function(event) {
+				
+				$('#thumb-collection').show();
+				$('#video_container').hide();
+				
 				$('#thumb-collection-ul').empty();			
 				core.create.asset.init($(this).attr('idx'));
 				core.category_idx  = $(this).attr('idx');
@@ -508,7 +514,19 @@ _.extend(core, {
 				
 				core.bindElements.editAsset.init();
 				
-			});					
+			});		
+			
+			
+			$('#categories li').click(function(event) {	
+
+				$('#thumb-collection').hide();
+				$('#video_container').show();
+				
+				var video_src = window.base_url + 'uploads/'+ $(this).attr('asset_id') +'/video/video.mp4?v=' + Math.random();
+				
+				core.myPlayer.src(video_src);
+
+			});	
 			
 		}
 		

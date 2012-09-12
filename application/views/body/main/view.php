@@ -16,6 +16,6 @@
 		<ul>
 			<li href='#modal_box' id='addAsset' >Click to Add Asset</li>
 		</ul>
-	</div>
+	</div><?php $this->load->view($videoplayer); ?>	
   </div>
 </div>

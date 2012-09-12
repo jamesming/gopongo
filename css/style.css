@@ -27,15 +27,16 @@ margin:0px 0px 0px 25px;
 text-align:right;	
 }
 
-.category-ul li{
-	list-style:none;	
+#categories .category-ul li{
+	list-style:none;
+	cursor:pointer;	
 }
-.accordion-group{
+#categories .accordion-group{
 	border: 0px;
 	-webkit-border-radius: 0px;	
 }
 
-.accordion-inner{
+#categories .accordion-inner{
 padding: 0px 1px;
 border-top: 0px solid #e5e5e5;	
 }
@@ -135,3 +136,4 @@ border-top: 0px solid #e5e5e5;
 	height:159px;
 	width:280px;
 }
+
