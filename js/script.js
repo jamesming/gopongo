@@ -405,6 +405,7 @@ _.extend(core, {
 		
 					tpl  = tpl.replace(/{{asset_name}}/g, li_obj.asset_name);
 					tpl  = tpl.replace(/{{asset_id}}/g, li_obj.asset_id);
+					tpl  = tpl.replace(/{{youtube_id}}/g, li_obj.youtube_id);
 					
 					$('#categories > div')
 					.eq(idx)
@@ -504,9 +505,10 @@ _.extend(core, {
 			$('.category').live('click', function(event) {
 				
 				$('#thumb-collection').show();
-				$('#video_container').hide();
+				//$('#video_container').hide();
+				$('#youtube_container').hide();
 				
-				core.myPlayer.pause();
+				//core.myPlayer.pause();
 				
 				$('#thumb-collection-ul').empty();			
 				core.create.asset.init($(this).attr('idx'));
@@ -522,11 +524,19 @@ _.extend(core, {
 			$('#categories li').click(function(event) {	
 
 				$('#thumb-collection').hide();
-				$('#video_container').show();
+				//$('#video_container').show();
+				$('#youtube_container').show();
 				
-				var video_src = window.base_url + 'uploads/'+ $(this).attr('asset_id') +'/video/video.mp4?v=' + Math.random();
+				//var video_src = window.base_url + 'uploads/'+ $(this).attr('asset_id') +'/video/video.mp4?v=' + Math.random();
 				
-				core.myPlayer.src(video_src);
+				//core.myPlayer.src(video_src);
+				
+				var   youtube_id = $(this).attr('youtube_id')
+					, yourtube_src = "http://www.youtube.com/embed/"+youtube_id+"?autoplay=1";
+				
+//				console.log(JSON.stringify(core.categories));
+
+				$('#youtube_iframe').attr('src', yourtube_src);
 
 			});	
 			
@@ -541,6 +551,7 @@ _.extend(core, {
 				$('#zoom .submit_asset_form').live('click', function(event) {
 					
 					var  asset_name = $('#zoom .asset_name').val();
+					var  asset_youtube_url = $('#zoom .asset_youtube_url').val();
 						
 					$('body').click();
 					
@@ -557,6 +568,7 @@ _.extend(core, {
 						
 						var assetObj = {
 							  asset_name:asset_name
+							 ,asset_youtube_url:asset_youtube_url
 							 ,asset_id:core.updateThis.asset_id
 						};						
 						

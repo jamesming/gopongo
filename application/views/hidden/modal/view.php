@@ -17,7 +17,7 @@
 					  <div class="control-group">
 					    <label class="control-label" for="asset_client">Client</label>
 					    <div class="controls">
-					      <input type="text" class="asset_client input-medium" placeholder="Client" >
+					      <input type="text" class="asset_youtube_url input-medium" placeholder="Client" >
 					    </div>
 					  </div>						  		
 					  

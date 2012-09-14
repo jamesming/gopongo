@@ -5,6 +5,8 @@ class Models_Db_Assets_Model extends Database {
 	
 	public function getAll(){
 		
+		$this->upload = new Models_Up_Assets_Model;
+		
 		$join_array = array(
 			'assets' => 'assets.category_id = categories.id'
 		);	
@@ -16,6 +18,7 @@ class Models_Db_Assets_Model extends Database {
 						  categories.id as category_id
 						, categories.name as category_name
 						, assets.id as asset_id
+						, assets.youtube_url as youtube_url
 						, assets.name as asset_name '   
 					,$where_array = array()
 					,$use_order = TRUE
@@ -41,7 +44,7 @@ class Models_Db_Assets_Model extends Database {
 					foreach( $category  as  $field => $value){
 		 
 		 
-						 	if (!in_array($field, array('asset_id', 'asset_name'))){
+						 	if (!in_array($field, array('asset_id', 'asset_name', 'youtube_url'))){
 						 			$category_array[$field] = $value;
 							}else{
 									
@@ -49,6 +52,9 @@ class Models_Db_Assets_Model extends Database {
 										$grouped_asset['asset_id'] = $value;
 									}elseif( $field =='asset_name'){
 										$grouped_asset['asset_name'] = $value;
+									}elseif( $field =='youtube_url'){
+										$grouped_asset['youtube_url'] = $value;
+										$grouped_asset['youtube_id'] = $this->upload->extract_video_id_from_youtube_url($value);
 									};
 									
 									
@@ -68,7 +74,7 @@ class Models_Db_Assets_Model extends Database {
 
 					foreach( $category  as  $field => $value){
 		 
-						 	if (!in_array($field, array('asset_id', 'asset_name'))){
+						 	if (!in_array($field, array('asset_id', 'asset_name', 'youtube_url'))){
 						 			$category_array[$field] = $value;
 							}else{
 								
@@ -76,6 +82,9 @@ class Models_Db_Assets_Model extends Database {
 										$grouped_asset['asset_id'] = $value;
 									}elseif( $field =='asset_name'){
 										$grouped_asset['asset_name'] = $value;
+									}elseif( $field =='youtube_url'){
+										$grouped_asset['youtube_url'] = $value;
+										$grouped_asset['youtube_id'] = $this->upload->extract_video_id_from_youtube_url($value);
 									};
 
 									
@@ -194,7 +203,8 @@ class Models_Db_Assets_Model extends Database {
 			$table = 'assets',
 			$primary_key = $asset_id, 
 			$set_what_array = array(
-				 'name' => $post_array['asset_name']
+				  'name' => $post_array['asset_name']
+				 ,'youtube_url' => $post_array['asset_youtube_url']
 			)
 		);
 		
