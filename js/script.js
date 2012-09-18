@@ -726,7 +726,7 @@ _.extend(core, {
 		
 		
 		,playAsset: function(){
-			$('.title').live('click', function(event) {
+			$('.play').live('click', function(event) {
 			 	core.misc.playYouTube( $(this) );
 			});	
 		}
