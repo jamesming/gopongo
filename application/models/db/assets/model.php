@@ -19,6 +19,7 @@ class Models_Db_Assets_Model extends Database {
 						, categories.name as category_name
 						, assets.id as asset_id
 						, assets.youtube_url as youtube_url
+						, assets.youtube_thumb as youtube_thumb
 						, assets.name as asset_name '   
 					,$where_array = array()
 					,$use_order = TRUE
@@ -44,7 +45,7 @@ class Models_Db_Assets_Model extends Database {
 					foreach( $category  as  $field => $value){
 		 
 		 
-						 	if (!in_array($field, array('asset_id', 'asset_name', 'youtube_url'))){
+						 	if (!in_array($field, array('asset_id', 'asset_name', 'youtube_url', 'youtube_thumb'))){
 						 			$category_array[$field] = $value;
 							}else{
 									
@@ -55,6 +56,8 @@ class Models_Db_Assets_Model extends Database {
 									}elseif( $field =='youtube_url'){
 										$grouped_asset['youtube_url'] = $value;
 										$grouped_asset['youtube_id'] = $this->upload->extract_video_id_from_youtube_url($value);
+									}elseif( $field =='youtube_thumb'){
+										$grouped_asset['youtube_thumb'] =  $value;
 									};
 									
 									
@@ -85,6 +88,8 @@ class Models_Db_Assets_Model extends Database {
 									}elseif( $field =='youtube_url'){
 										$grouped_asset['youtube_url'] = $value;
 										$grouped_asset['youtube_id'] = $this->upload->extract_video_id_from_youtube_url($value);
+									}elseif( $field =='youtube_thumb'){
+										$grouped_asset['youtube_thumb'] =  $value;
 									};
 
 									
@@ -199,12 +204,18 @@ class Models_Db_Assets_Model extends Database {
 	
 	public function editAsset($asset_id, $post_array){
 		
+		$this->upload = new Models_Up_Assets_Model;
+		$youtube_id = $this->upload->extract_video_id_from_youtube_url($post_array['asset_youtube_url']);
+		$youtube_thumb = $this->upload->get_thumbnail_from_youtube_video_id($youtube_id);
+		
 		return $this->update_table(
 			$table = 'assets',
 			$primary_key = $asset_id, 
 			$set_what_array = array(
 				  'name' => $post_array['asset_name']
 				 ,'youtube_url' => $post_array['asset_youtube_url']
+				 ,'youtube_id' => $youtube_id
+				 ,'youtube_thumb' => $youtube_thumb
 			)
 		);
 		
@@ -218,7 +229,6 @@ class Models_Db_Assets_Model extends Database {
 		);
 		
 	}
-	
 	
 	public  function clear_table_of_empty_records_flagged_with_update_field_equals_0000(){
 		

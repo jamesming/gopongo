@@ -109,6 +109,8 @@ class Models_Up_Assets_Model extends Models_Up {
 	
 	
 	public function get_thumbnail_from_youtube_video_id($video_id){
+		
+		//http://stackoverflow.com/questions/6808013/get-the-youtube-video-thumbnail-from-youtube-video-url-using-php
 	
 		$thumbnail_array[0] = "http://img.youtube.com/vi/";
 		$thumbnail_array[1] = $video_id;
@@ -116,4 +118,20 @@ class Models_Up_Assets_Model extends Models_Up {
 		return $thumbnail_array[0].$thumbnail_array[1].$thumbnail_array[2];
 	}
 	
+	
+	public function getDuration($url){
+		
+		// http://stackoverflow.com/questions/9167442/get-duration-from-a-youtube-url
+
+        parse_str(parse_url($url,PHP_URL_QUERY),$arr);
+        $video_id=$arr['v']; 
+
+
+        $data=@file_get_contents('http://gdata.youtube.com/feeds/api/videos/'.$video_id.'?v=2&alt=jsonc');
+        if (false===$data) return false;
+
+        $obj=json_decode($data);
+
+        return $obj->data->duration;
+    }
 }

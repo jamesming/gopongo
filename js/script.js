@@ -327,6 +327,7 @@ _.extend(core, {
 			,url = window.base_url  + 'index.php/ajax/getAll';
 		
 		$('#json').load(url, function(){
+//			console.log(JSON.stringify(core.categories));
 			that.create.init();
 			that.bindElements.init();
 		});	
@@ -343,6 +344,7 @@ _.extend(core, {
 		
 		// var asset_id = core.categories[core.category_idx].assets[ {{ index }} ].asset_id
 		
+		this.youtube_id = '';
 	}
 
 	,create: {
@@ -427,6 +429,9 @@ _.extend(core, {
 					this.add(
 							 core.categories[category_idx].assets[idx].asset_name
 							,core.categories[category_idx].assets[idx].asset_id
+							,core.categories[category_idx].assets[idx].youtube_url
+							,core.categories[category_idx].assets[idx].youtube_thumb
+							,core.categories[category_idx].assets[idx].youtube_id
 							,count
 						);
 				};
@@ -436,6 +441,9 @@ _.extend(core, {
 			,add: function(
 					 asset_name
 					,asset_id
+					,youtube_url
+					,youtube_thumb
+					,youtube_id
 					,count
 				){	
 				
@@ -447,7 +455,9 @@ _.extend(core, {
 	
 				tpl  = tpl.replace(/{{asset_name}}/g, asset_name);
 				tpl  = tpl.replace(/{{asset_id}}/g, asset_id);
-				tpl  = tpl.replace(/{{asset_id}}/g, asset_id);
+				tpl  = tpl.replace(/{{youtube_url}}/g, youtube_url);
+				tpl  = tpl.replace(/{{youtube_thumb}}/g, youtube_thumb);
+				tpl  = tpl.replace(/{{youtube_id}}/g, youtube_id);
 				tpl  = tpl.replace(/{{count}}/g, count);
 				
 				$('#thumb-collection ul.assets_ul').append(tpl);
@@ -456,7 +466,7 @@ _.extend(core, {
 				.on('error', function() {
 				    this.src = 'http://www.placehold.it/280x159';
 				})
-				.attr('src', 'uploads/'+asset_id+'/thumb/image.jpg');
+				//.attr('src', 'uploads/'+asset_id+'/thumb/image.jpg');
 				
 				core.misc.showHideButtonBasedOnNumofAssets();
 							
@@ -476,6 +486,7 @@ _.extend(core, {
 			
 			this.insertAsset();
 			this.editAsset.init();
+			this.playAsset();
 			this.deleteAsset();
 			
 			this.upload.thumb();
@@ -523,20 +534,7 @@ _.extend(core, {
 			
 			$('#categories li').click(function(event) {	
 
-				$('#thumb-collection').hide();
-				//$('#video_container').show();
-				$('#youtube_container').show();
-				
-				//var video_src = window.base_url + 'uploads/'+ $(this).attr('asset_id') +'/video/video.mp4?v=' + Math.random();
-				
-				//core.myPlayer.src(video_src);
-				
-				var   youtube_id = $(this).attr('youtube_id')
-					, yourtube_src = "http://www.youtube.com/embed/"+youtube_id+"?autoplay=1";
-				
-//				console.log(JSON.stringify(core.categories));
-
-				$('#youtube_iframe').attr('src', yourtube_src);
+				core.misc.playYouTube( $(this) );
 
 			});	
 			
@@ -726,6 +724,13 @@ _.extend(core, {
 				
 		}
 		
+		
+		,playAsset: function(){
+			$('.title').live('click', function(event) {
+			 	core.misc.playYouTube( $(this) );
+			});	
+		}
+		
 		,editAsset: {
 				
 				 init: function(){
@@ -747,6 +752,7 @@ _.extend(core, {
 						);	
 						
 						$('#zoom_content .asset_name').val(core.categories[core.category_idx].assets[idx_array[0]].asset_name);
+						$('#zoom_content .asset_youtube_url').val(core.categories[core.category_idx].assets[idx_array[0]].youtube_url);
 						
 						
 						$('#zoom_content img')
@@ -858,6 +864,31 @@ _.extend(core, {
 				};		
 				
 		}
+		
+		
+		,playYouTube: function($this){
+			
+			console.log('test');
+			
+				$('#thumb-collection').hide();
+				//$('#video_container').show();
+				$('#youtube_container').show();
+				
+				//var video_src = window.base_url + 'uploads/'+ $(this).attr('asset_id') +'/video/video.mp4?v=' + Math.random();
+				
+				//core.myPlayer.src(video_src);
+				
+				if( $this.attr('youtube_id') !== core.youtube_id){
+					var   youtube_id = core.youtube_id = $this.attr('youtube_id')
+						, yourtube_src = "http://www.youtube.com/embed/"+youtube_id+"?autoplay=1";
+					
+	//				console.log(JSON.stringify(core.categories));
+	
+					$('#youtube_iframe').attr('src', yourtube_src);					
+				};
+			
+		}
+		
 	}
 	
 });
