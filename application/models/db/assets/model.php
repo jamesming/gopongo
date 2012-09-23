@@ -208,7 +208,7 @@ class Models_Db_Assets_Model extends Database {
 		$youtube_id = $this->upload->extract_video_id_from_youtube_url($post_array['asset_youtube_url']);
 		$youtube_thumb = $this->upload->get_thumbnail_from_youtube_video_id($youtube_id);
 		
-		return $this->update_table(
+		$this->update_table(
 			$table = 'assets',
 			$primary_key = $asset_id, 
 			$set_what_array = array(
@@ -218,6 +218,8 @@ class Models_Db_Assets_Model extends Database {
 				 ,'youtube_thumb' => $youtube_thumb
 			)
 		);
+		
+		return $youtube_id;
 		
 	}
 	

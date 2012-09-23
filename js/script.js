@@ -641,7 +641,12 @@ _.extend(core, {
 	 			
 				$.post(	url,
 						assetObj,
-						function( updated ) {
+						function( youtube_id ) {
+							
+							var youtubeObj = {
+								'youtube_id': youtube_id
+							};
+							_.extend(assetObj, youtubeObj );
 							
 							if( core.submissionMode === 'insert'){
 								core.bindElements.formSubmission.afterUpdate.createNewElements(assetObj);
@@ -668,7 +673,14 @@ _.extend(core, {
 					
 					core.categories[core.category_idx].assets[idx_array].asset_name= assetObj.asset_name;
 
-					$('.title[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
+					$('.title[asset_id=' + assetObj['asset_id'] + ']')
+					.html(assetObj.asset_name)
+					.attr('youtube_id', assetObj.youtube_id);
+					
+					
+					
+					$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play').attr('youtube_id', assetObj.youtube_id);
+					
 					
 					$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
 					
@@ -677,6 +689,18 @@ _.extend(core, {
 				}
 				
 				,createNewElements: function(assetObj){
+					
+					
+					
+					$('.title[asset_id=' + assetObj['asset_id'] + ']')
+					.html(assetObj.asset_name)
+					.attr('youtube_id', assetObj.youtube_id);
+					
+					
+					
+					$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play').attr('youtube_id', assetObj.youtube_id);
+					
+					alert('');
 
 					core.create.asset.add(
 						 assetObj.asset_name
