@@ -690,24 +690,23 @@ _.extend(core, {
 				
 				,createNewElements: function(assetObj){
 					
-					
-					
 					$('.title[asset_id=' + assetObj['asset_id'] + ']')
 					.html(assetObj.asset_name)
 					.attr('youtube_id', assetObj.youtube_id);
 					
 					
-					
 					$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play').attr('youtube_id', assetObj.youtube_id);
 					
-					alert('');
-
 					core.create.asset.add(
 						 assetObj.asset_name
 						,assetObj.asset_id
+						,assetObj.asset_youtube_url
+						,youtube_thumb = "http://img.youtube.com/vi/" +  assetObj.youtube_id + "/0.jpg"
+						,assetObj.youtube_id
 						,core.category_idx
 					);
 					
+
 					core.create.category_li.add(
 						 core.category_idx
 						,{
