@@ -330,6 +330,8 @@ _.extend(core, {
 //			console.log(JSON.stringify(core.categories));
 			that.create.init();
 			that.bindElements.init();
+			
+			that.create.jcrop.init()
 		});	
 		
 	}
@@ -464,7 +466,7 @@ _.extend(core, {
 				
 				$('li[asset_id='+asset_id+'] img')
 				.on('error', function() {
-				    this.src = 'http://www.placehold.it/280x159';
+//				    this.src = 'http://www.placehold.it/280x159';
 				})
 				//.attr('src', 'uploads/'+asset_id+'/thumb/image.jpg');
 				
@@ -472,6 +474,18 @@ _.extend(core, {
 							
 			}
 			
+		}
+		
+		,jcrop:{
+			 init:function(){
+				this.bind();
+				
+			}
+			,bind:function(){
+				$('#edit').click(function(event) {
+					$('#jcropContainer').toggle();
+				});	
+			}
 		}
 		
 	}

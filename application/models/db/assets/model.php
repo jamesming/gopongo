@@ -77,7 +77,7 @@ class Models_Db_Assets_Model extends Database {
 
 					foreach( $category  as  $field => $value){
 		 
-						 	if (!in_array($field, array('asset_id', 'asset_name', 'youtube_url'))){
+						 	if (!in_array($field, array('asset_id', 'asset_name', 'youtube_url', 'youtube_thumb'))){
 						 			$category_array[$field] = $value;
 							}else{
 								

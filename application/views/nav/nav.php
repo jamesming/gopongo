@@ -10,6 +10,7 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li><a href="#about">About</a></li>      
+              <li><a  id='edit'  href="#edit">Edit</a></li>      
             </ul>
           </div><!--/.nav-collapse -->
         </div>

@@ -10,7 +10,6 @@ class Ajax extends CI_Controller {
 	}
 	
 	function getAll(){
-		
 		echo "<script>core.categories =".json_encode($this->assets_model->getAll()).";</script>";
 	 
 	}

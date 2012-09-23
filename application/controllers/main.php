@@ -14,6 +14,7 @@ class Main extends Base_Controller {
 		$this->_data->body = "body/main/view";
 		$this->_data->videoplayer = "hidden/videoplayer/view";
 		$this->_data->youtube = "hidden/youtube/view";
+		$this->_data->jcrop = "hidden/jcrop/view";
 		
 		$this->_data->nav_selected = "";		
 		

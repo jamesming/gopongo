@@ -85,6 +85,10 @@ border-top: 0px solid #e5e5e5;
 	box-sizing:border-box;	
 }
 
+#thumb-collection ul li div.play{
+	height:	159px;	
+}
+
  #thumb-collection ul li div.overlay .delete
 ,.play
 ,#thumb-collection ul li div.overlay .edit{
@@ -136,5 +140,14 @@ border-top: 0px solid #e5e5e5;
 	cursor:pointer;
 	height:159px;
 	width:280px;
+}
+#jcropContainer{
+display:none;
+position: absolute;
+top: 0px;
+bottom: 0px;
+left: 0px;
+right: 0px;
+background: yellow;	
 }
 
