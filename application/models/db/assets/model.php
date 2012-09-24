@@ -20,6 +20,7 @@ class Models_Db_Assets_Model extends Database {
 						, assets.id as asset_id
 						, assets.youtube_url as youtube_url
 						, assets.youtube_thumb as youtube_thumb
+						, assets.duration as duration
 						, assets.name as asset_name '   
 					,$where_array = array()
 					,$use_order = TRUE
@@ -45,7 +46,7 @@ class Models_Db_Assets_Model extends Database {
 					foreach( $category  as  $field => $value){
 		 
 		 
-						 	if (!in_array($field, array('asset_id', 'asset_name', 'youtube_url', 'youtube_thumb'))){
+						 	if (!in_array($field, array('asset_id', 'asset_name', 'youtube_url', 'youtube_thumb', 'duration'))){
 						 			$category_array[$field] = $value;
 							}else{
 									
@@ -58,6 +59,8 @@ class Models_Db_Assets_Model extends Database {
 										$grouped_asset['youtube_id'] = $this->upload->extract_video_id_from_youtube_url($value);
 									}elseif( $field =='youtube_thumb'){
 										$grouped_asset['youtube_thumb'] =  $value;
+									}elseif( $field =='duration'){
+										$grouped_asset['duration'] =  $value;
 									};
 									
 									
@@ -77,7 +80,7 @@ class Models_Db_Assets_Model extends Database {
 
 					foreach( $category  as  $field => $value){
 		 
-						 	if (!in_array($field, array('asset_id', 'asset_name', 'youtube_url', 'youtube_thumb'))){
+						 	if (!in_array($field, array('asset_id', 'asset_name', 'youtube_url', 'youtube_thumb', 'duration'))){
 						 			$category_array[$field] = $value;
 							}else{
 								
@@ -90,6 +93,8 @@ class Models_Db_Assets_Model extends Database {
 										$grouped_asset['youtube_id'] = $this->upload->extract_video_id_from_youtube_url($value);
 									}elseif( $field =='youtube_thumb'){
 										$grouped_asset['youtube_thumb'] =  $value;
+									}elseif( $field =='duration'){
+										$grouped_asset['duration'] =  $value;
 									};
 
 									
@@ -207,15 +212,18 @@ class Models_Db_Assets_Model extends Database {
 		$this->upload = new Models_Up_Assets_Model;
 		$youtube_id = $this->upload->extract_video_id_from_youtube_url($post_array['asset_youtube_url']);
 		$youtube_thumb = $this->upload->get_thumbnail_from_youtube_video_id($youtube_id);
+		$youtube_array = $this->upload->getVideoDataFromYouTube( $youtube_id );
 		
 		$this->update_table(
 			$table = 'assets',
 			$primary_key = $asset_id, 
 			$set_what_array = array(
-				  'name' => $post_array['asset_name']
-				 ,'youtube_url' => $post_array['asset_youtube_url']
+				  /*'name' => $post_array['asset_name']
+				 ,*/'youtube_url' => $post_array['asset_youtube_url']
 				 ,'youtube_id' => $youtube_id
 				 ,'youtube_thumb' => $youtube_thumb
+				 ,'name' => $youtube_array['data']['title']
+				 ,'duration' => $youtube_array['data']['duration']
 			)
 		);
 		

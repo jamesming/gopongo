@@ -119,19 +119,17 @@ class Models_Up_Assets_Model extends Models_Up {
 	}
 	
 	
-	public function getDuration($url){
+	public function getVideoDataFromYouTube( $youtube_id ){
 		
-		// http://stackoverflow.com/questions/9167442/get-duration-from-a-youtube-url
+		$this->db = new Models_Db_Assets_Model;
+		
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, "http://gdata.youtube.com/feeds/api/videos/". $youtube_id . '?v=2&alt=jsonc' );
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($ch);
+		curl_close($ch);
+		return $this->db->object_to_array(json_decode($response));	
+		
+	}
 
-        parse_str(parse_url($url,PHP_URL_QUERY),$arr);
-        $video_id=$arr['v']; 
-
-
-        $data=@file_get_contents('http://gdata.youtube.com/feeds/api/videos/'.$video_id.'?v=2&alt=jsonc');
-        if (false===$data) return false;
-
-        $obj=json_decode($data);
-
-        return $obj->data->duration;
-    }
 }

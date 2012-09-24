@@ -30,4 +30,16 @@ class Main extends Base_Controller {
 		$this->load->view('index', $this->_data);
 		
 	}
+	
+	public function test(){
+		
+	$this->upload = new Models_Up_Assets_Model;
+	
+	$youtube_array = $this->upload->getVideoDataFromYouTube( 'acPxf56FwUg' );
+	//$youtube_array['data']['title']
+	// $youtube_array['data']['duration']
+
+	echo '<pre>';print_r(  $youtube_array['data']['duration']  );echo '</pre>';  exit;
+		
+	}
 }

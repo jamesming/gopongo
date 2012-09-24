@@ -406,6 +406,8 @@ _.extend(core, {
 					}		
 			
 					var tpl = core.category_li_tpl;
+					
+					li_obj.asset_name = li_obj.asset_name.substring(0, 15);
 		
 					tpl  = tpl.replace(/{{asset_name}}/g, li_obj.asset_name);
 					tpl  = tpl.replace(/{{asset_id}}/g, li_obj.asset_id);
@@ -454,6 +456,8 @@ _.extend(core, {
 				}		
 				
 				var tpl = core.asset_tpl;
+				
+				asset_name = asset_name.substring(0, 15);
 	
 				tpl  = tpl.replace(/{{asset_name}}/g, asset_name);
 				tpl  = tpl.replace(/{{asset_id}}/g, asset_id);
@@ -671,18 +675,36 @@ _.extend(core, {
 						}
 					);	
 					
-					core.categories[core.category_idx].assets[idx_array].asset_name= assetObj.asset_name;
+//					core.categories[core.category_idx].assets[idx_array].asset_name= assetObj.asset_name;
+//					$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
 
 					$('.title[asset_id=' + assetObj['asset_id'] + ']')
-					.html(assetObj.asset_name)
+					// .html(assetObj.asset_name)
 					.attr('youtube_id', assetObj.youtube_id);
 					
 					
+					core.misc.getYouTubeTitle(assetObj.youtube_id, function(youtubeObj){
+						
+						youtubeObj.data.title = youtubeObj.data.title.substring(0, 15);
+						
+						$('.title[asset_id=' + assetObj['asset_id'] + ']')
+						.html(youtubeObj.data.title);
+						
+						$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(youtubeObj.data.title);
+						
+					});
 					
-					$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play').attr('youtube_id', assetObj.youtube_id);
 					
 					
-					$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
+					$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play')
+					.attr('youtube_id', assetObj.youtube_id)
+					.css({
+							 'background':'url(http://img.youtube.com/vi/' +  assetObj.youtube_id + '/0.jpg) no-repeat'
+							,'background-position':'0px -45px'
+							,'background-size':'282px'
+					});
+	
+					
 					
 					core.submissionMode = 'insert';
 					
@@ -924,6 +946,14 @@ _.extend(core, {
 					$('#youtube_iframe').attr('src', yourtube_src);					
 				};
 			
+		}
+		
+		
+		,getYouTubeTitle: function( youtube_id, updateYoutubeTitle ){
+			
+			$.getJSON('http://gdata.youtube.com/feeds/api/videos/' + youtube_id + '?v=2&alt=jsonc', function( youtubeObj ) {
+			  updateYoutubeTitle(youtubeObj);
+			});
 		}
 		
 	}
