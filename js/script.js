@@ -327,7 +327,7 @@ _.extend(core, {
 			,url = window.base_url  + 'index.php/ajax/getAll';
 		
 		$('#json').load(url, function(){
-			console.log(JSON.stringify(core.categories));
+//			console.log(JSON.stringify(core.categories));
 			that.create.init();
 			that.bindElements.init();
 			
@@ -822,11 +822,10 @@ _.extend(core, {
 				
 						var	 asset_id = $(el).attr('asset_id')				
 							,idx_array = core.findIndexInArrayOfObjects( 
-							 core.categories[core.category_idx].assets
-							,function( item ){
-								if( item.asset_id === asset_id) return true;
-							}
-						);	
+												 core.categories[core.category_idx].assets
+												,function( item ){
+													if( item.asset_id === asset_id) return true;
+												});	
 						
 						$('#zoom_content .asset_name').val(core.categories[core.category_idx].assets[idx_array[0]].asset_name);
 						$('#zoom_content .asset_youtube_url').val(core.categories[core.category_idx].assets[idx_array[0]].youtube_url);
@@ -927,7 +926,12 @@ _.extend(core, {
 
 		,editTitle: function(){
 			
-			$('#thumb-collection .editTitle').fancyZoom({},function(){});
+			$('#thumb-collection .editTitle').fancyZoom({},function(el){
+
+				var category_idx = $(el).attr('category_idx');
+				console.log(core.categories[category_idx].category_name);
+						
+			});
 			
 //			$('#thumb-collection .editTitle').click(function(event) {
 //				alert($(this).attr('category_idx'));			
