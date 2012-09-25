@@ -42,11 +42,31 @@ border-top: 0px solid #e5e5e5;
 }
 
 #thumb-collection{
-	height: 505px;	
-	background:red;
+	height:547px;	
+	background:lightblue;
 	padding: 0px 0px 0px 0px;
 }
+#thumb-collection .editTitle{
+	cursor: pointer;
+	font-size: 13px;
+	font-weight: normal;
+	color: blue;
+	text-decoration: underline;
+	margin-left: 13px;
+	margin-top: 17px;
+}
 
+#thumb-collection h2{
+	padding-left: 6px;
+	color: gray;
+	line-height: 10px;
+	padding-top: 10px;
+	padding-bottom: 0px;
+	float:left;
+}
+#thumb-collection span{
+	float:left;	
+}
 #thumb-collection  ul{
 	height:auto;
 	margin:0px 0px 0px 0px;
@@ -93,6 +113,10 @@ border-top: 0px solid #e5e5e5;
 ,.play
 ,#thumb-collection ul li div.overlay .edit{
 	cursor:pointer	
+}
+
+#youtube_iframe{
+margin-top: -11px;	
 }
 
 .form_asset_container{

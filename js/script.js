@@ -327,7 +327,7 @@ _.extend(core, {
 			,url = window.base_url  + 'index.php/ajax/getAll';
 		
 		$('#json').load(url, function(){
-//			console.log(JSON.stringify(core.categories));
+			console.log(JSON.stringify(core.categories));
 			that.create.init();
 			that.bindElements.init();
 			
@@ -344,6 +344,7 @@ _.extend(core, {
 		this.category_idx = 0; // var category_id = core.categories[core.category_idx].category_id
 		this.updateThis = {asset_id:0};  // core.updateThis.asset_id
 		
+		// var youtube_thumb = core.categories[core.category_idx].assets[ {{ index }} ].youtube_thumb
 		// var asset_id = core.categories[core.category_idx].assets[ {{ index }} ].asset_id
 		
 		this.youtube_id = '';
@@ -373,11 +374,14 @@ _.extend(core, {
 						};
 					};
 					
-					
-					
 					count++;
 				};
-	
+				
+				$('#thumb-collection h2').html(core.categories[0].category_name);
+				
+				$('#thumb-collection .editTitle').attr({'category_id':core.categories[0].category_id,'category_idx':0});
+
+				
 			}
 			
 			,add: function(category_name, count){
@@ -392,6 +396,8 @@ _.extend(core, {
 					tpl  = tpl.replace(/{{category_name}}/g, category_name);
 					
 					$('#categories').append(tpl);
+					
+					
 	
 			}
 			
@@ -511,6 +517,8 @@ _.extend(core, {
 			this.upload.video();
 			this.upload.form();
 			
+			this.editTitle();
+			
 		}
 		
 		,insertNewCategory: function(){		
@@ -542,6 +550,10 @@ _.extend(core, {
 				$('#thumb-collection-ul').empty();			
 				core.create.asset.init($(this).attr('idx'));
 				core.category_idx  = $(this).attr('idx');
+				
+				$('#thumb-collection h2').html(core.categories[core.category_idx].category_name);
+				
+				$('#thumb-collection .editTitle').attr({'category_id':core.categories[core.category_idx].category_id,'category_idx':core.category_idx});
 				
 				core.misc.showHideButtonBasedOnNumofAssets();
 				
@@ -668,12 +680,12 @@ _.extend(core, {
 				 updateExistingElements: function(assetObj){	
 					
 					var	 asset_id = assetObj['asset_id']				
-						,idx_array = core.findIndexInArrayOfObjects( 
-						 core.categories[core.category_idx].assets
-						,function( item ){
-							if( item.asset_id === asset_id) return true;
-						}
-					);	
+						,idx_array = core.findIndexInArrayOfObjects( core.categories[core.category_idx].assets
+																	,function( item ){
+																			if( item.asset_id === asset_id) return true;
+																	});	
+					
+					core.categories[core.category_idx].assets[ idx_array ].youtube_thumb = "http://img.youtube.com/vi/" +  assetObj.youtube_id + "/0.jpg";
 					
 //					core.categories[core.category_idx].assets[idx_array].asset_name= assetObj.asset_name;
 //					$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
@@ -687,12 +699,17 @@ _.extend(core, {
 						
 						youtubeObj.data.title = youtubeObj.data.title.substring(0, 15);
 						
-						$('.title[asset_id=' + assetObj['asset_id'] + ']')
-						.html(youtubeObj.data.title);
+						assetObj.asset_name = youtubeObj.data.title;
 						
-						$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(youtubeObj.data.title);
+						$('.title[asset_id=' + assetObj['asset_id'] + ']')
+						.html(assetObj.asset_name);
+						
+						$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
+						
+						core.categories[core.category_idx].assets[ idx_array ].asset_name = assetObj.asset_name;
 						
 					});
+					
 					
 					
 					
@@ -712,38 +729,40 @@ _.extend(core, {
 				
 				,createNewElements: function(assetObj){
 					
-					$('.title[asset_id=' + assetObj['asset_id'] + ']')
-					.html(assetObj.asset_name)
-					.attr('youtube_id', assetObj.youtube_id);
-					
-					
-					$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play').attr('youtube_id', assetObj.youtube_id);
-					
-					core.create.asset.add(
-						 assetObj.asset_name
-						,assetObj.asset_id
-						,assetObj.asset_youtube_url
-						,youtube_thumb = "http://img.youtube.com/vi/" +  assetObj.youtube_id + "/0.jpg"
-						,assetObj.youtube_id
-						,core.category_idx
-					);
-					
-
-					core.create.category_li.add(
-						 core.category_idx
-						,{
-							 asset_name:assetObj.asset_name
-							,asset_id:assetObj.asset_id
-						 }
-					);
-					
-					if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
-						core.categories[core.category_idx].assets = [];
-					};				
-					
-					
-					core.categories[core.category_idx].assets.push(assetObj);
-					
+					core.misc.getYouTubeTitle(assetObj.youtube_id, function(youtubeObj){
+						
+							youtubeObj.data.title = youtubeObj.data.title.substring(0, 15);
+							
+							assetObj.asset_name = youtubeObj.data.title;
+						
+							core.create.asset.add(
+								 assetObj.asset_name
+								,assetObj.asset_id
+								,assetObj.asset_youtube_url
+								,youtube_thumb = "http://img.youtube.com/vi/" +  assetObj.youtube_id + "/0.jpg"
+								,assetObj.youtube_id
+								,core.category_idx
+							);
+							
+		
+							core.create.category_li.add(
+								 core.category_idx
+								,{
+									 asset_name:assetObj.asset_name
+									,asset_id:assetObj.asset_id
+								 }
+							);
+							
+							if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
+								core.categories[core.category_idx].assets = [];
+							};				
+							
+							assetObj.youtube_thumb = "http://img.youtube.com/vi/" +  assetObj.youtube_id + "/0.jpg";
+							
+							core.categories[core.category_idx].assets.push(assetObj);	
+							
+					});
+									
 					core.misc.showHideButtonBasedOnNumofAssets();
 					
 					var $el = $('.edit[asset_id=' + assetObj.asset_id + ']');
@@ -783,7 +802,6 @@ _.extend(core, {
 				
 		}
 		
-		
 		,playAsset: function(){
 			$('.play').live('click', function(event) {
 			 	core.misc.playYouTube( $(this) );
@@ -812,7 +830,6 @@ _.extend(core, {
 						
 						$('#zoom_content .asset_name').val(core.categories[core.category_idx].assets[idx_array[0]].asset_name);
 						$('#zoom_content .asset_youtube_url').val(core.categories[core.category_idx].assets[idx_array[0]].youtube_url);
-						
 						
 						$('#zoom_content img')
 						.on('error', function() {
@@ -908,6 +925,14 @@ _.extend(core, {
 			
 		}
 
+		,editTitle: function(){
+			
+			$('#thumb-collection .editTitle').fancyZoom({},function(){});
+			
+//			$('#thumb-collection .editTitle').click(function(event) {
+//				alert($(this).attr('category_idx'));			
+//			});	
+		}
 	}
 	
 	,misc: {
