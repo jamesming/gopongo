@@ -946,16 +946,14 @@ _.extend(core, {
 						
 							var categoryObj = {
 								 category_id:$(el).attr('category_id')
-								,name: $('#zoom .category_name').val()
+								,category_name: $('#zoom .category_name').val()
 							};
 							
-							console.log(JSON.stringify(categoryObj));	
+							core.categories[core.category_idx].category_name = categoryObj.category_name;
 							
-							core.categories[core.category_idx].category_name = categoryObj.name;
+							$('#thumb-collection h2').html( categoryObj.category_name );
 							
-							$('#thumb-collection h2').html( categoryObj.name );
-							
-							$('.accordion-group a.category[idx=' + core.category_idx + ']').html( categoryObj.name );
+							$('.accordion-group a.category[idx=' + core.category_idx + ']').html( categoryObj.category_name );
 							
 							$('body').click();
 							
@@ -966,7 +964,7 @@ _.extend(core, {
 									categoryObj,
 									function( data ) {
 										
-										alert(data);
+										console.log(data);
 			
 									}
 							);

@@ -55,8 +55,14 @@ class Ajax extends CI_Controller {
  	
  	public function editCategory(){
  		
- 		echo '<pre>';print_r(  $this->input->post()  );echo '</pre>';  exit;
+ 		$this->categories_model = new Models_Db_Categories_Model;
  		
+ 		$post_array = $this->input->post();
+ 		
+ 		$category_id = $post_array['category_id'];
+ 		unset( $post_array['category_id'] );
+ 		
+ 		echo $this->categories_model->editCategory($category_id,  $post_array);
  	}
  	
  	public function editAsset(){
