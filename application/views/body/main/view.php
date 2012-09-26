@@ -13,7 +13,7 @@
 	<div   id='thumb-collection' class="span9">
 		<div>
 			<h2></h2>
-			<span  href='#edit_category_modal_box'  class='editTitle ' category_idx='' category_id=''>edit</span>
+			<span  href='#edit_category_modal_box'  class='editCategoryTitle ' category_idx='' category_id=''>edit</span>
 		</div>
 		<div   style='clear:both;height:0px'  ></div>
 		<ul  class=' assets_ul'   id='thumb-collection-ul' >

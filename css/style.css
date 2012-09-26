@@ -46,7 +46,7 @@ border-top: 0px solid #e5e5e5;
 	background:lightblue;
 	padding: 0px 0px 0px 0px;
 }
-#thumb-collection .editTitle{
+#thumb-collection .editCategoryTitle{
 	cursor: pointer;
 	font-size: 13px;
 	font-weight: normal;
