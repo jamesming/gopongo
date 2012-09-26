@@ -327,7 +327,7 @@ _.extend(core, {
 			,url = window.base_url  + 'index.php/ajax/getAll';
 		
 		$('#json').load(url, function(){
-			console.log(JSON.stringify(core.categories));
+//			console.log(JSON.stringify(core.categories));
 			that.create.init();
 			that.bindElements.init();
 			
@@ -944,20 +944,32 @@ _.extend(core, {
 					
 					$('#zoom .submit_category_form').click(function(event) {
 						
-							var postObj = {
+							var categoryObj = {
 								 category_id:$(el).attr('category_id')
 								,name: $('#zoom .category_name').val()
 							};
 							
-							console.log(JSON.stringify(postObj));	
+							console.log(JSON.stringify(categoryObj));	
 							
-							core.categories[core.category_idx].category_name = postObj.name;
+							core.categories[core.category_idx].category_name = categoryObj.name;
 							
-							$('#thumb-collection h2').html( postObj.name );
+							$('#thumb-collection h2').html( categoryObj.name );
 							
-							$('.accordion-group a.category[idx=' + core.category_idx + ']').html( postObj.name );
+							$('.accordion-group a.category[idx=' + core.category_idx + ']').html( categoryObj.name );
 							
 							$('body').click();
+							
+							
+				 			var url = window.base_url  + 'index.php/ajax/editCategory';
+				 			
+							$.post(	url,
+									categoryObj,
+									function( data ) {
+										
+										alert(data);
+			
+									}
+							);
 								
 					});	
 					

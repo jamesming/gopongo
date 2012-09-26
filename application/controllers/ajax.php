@@ -53,6 +53,12 @@ class Ajax extends CI_Controller {
  		
  	}
  	
+ 	public function editCategory(){
+ 		
+ 		echo '<pre>';print_r(  $this->input->post()  );echo '</pre>';  exit;
+ 		
+ 	}
+ 	
  	public function editAsset(){
  		
  		$post_array = $this->input->post();

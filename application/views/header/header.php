@@ -35,10 +35,6 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
 <script>window.$ || document.write('<script src="' + window.base_url + 'js/libs/jquery/jquery.1.8.1.min.js"><\/script>')</script>
-<script type="text/javascript" language="Javascript">
-	console.log(window.base_url + 'js/libs/jquery/jquery-1.8.1.min.js');
-	</script>
-
 <script>window._ || document.write('<script src="' + window.base_url + 'js/libs/underscore/underscore-min.1.3.3.js"><\/script>')</script>
 <script src="<?php echo base_url()    ?>js/libs/fancyzoom/fancyzoom_extended.js"></script>
 </head>
