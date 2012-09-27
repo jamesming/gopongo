@@ -89,4 +89,14 @@ class Ajax extends CI_Controller {
  		$this->upload->save( $post_array );
  		
  	} 
+ 	
+ 	public function moveAsset(){
+ 		
+ 		$post_array = $this->input->post();
+ 		
+ 		$asset_id = $post_array['asset_id'];
+ 		unset( $post_array['asset_id'] ); 		
+ 		echo $this->assets_model->moveAssetToCategory($asset_id,  $post_array );
+ 		
+ 	}
 }

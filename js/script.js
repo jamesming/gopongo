@@ -537,7 +537,7 @@ _.extend(core, {
 			
 		}		
 		
-		,accordianControls: function(){
+ 		,accordianControls: function(){
 			
 			$(".collapse").collapse({
 					  toggle: true
@@ -552,8 +552,11 @@ _.extend(core, {
 				//core.myPlayer.pause();
 				
 				$('#thumb-collection-ul').empty();			
-				core.create.asset.init($(this).attr('idx'));
+				
 				core.category_idx  = $(this).attr('idx');
+				
+				core.create.asset.init(core.category_idx);
+				
 				
 				$('#thumb-collection h2').html(core.categories[core.category_idx].category_name);
 				
@@ -828,10 +831,30 @@ _.extend(core, {
 					hoverClass: "ui-state-highlight",
 					tolerance: "pointer",
 					drop: function( event, ui ) {
-						var category_idx = $(this).attr('category_idx');
-						console.log('category_id: ' + core.categories[category_idx].category_id);
-						console.log('asset_id: ' + ui.draggable.attr('asset_id'));
+						
+						var  category_idx = $(this).attr('category_idx')
+							,category_id = core.categories[category_idx].category_id
+							,asset_id = ui.draggable.attr('asset_id')
+							,idx_array = core.findIndexInArrayOfObjects( core.categories[core.category_idx].assets
+																	,function( item ){
+																			if( item.asset_id === asset_id) return true;
+																	})
+							,assetObj = core.categories[core.category_idx].assets[idx_array]
+							,postObj = {
+								 asset_id: asset_id
+								,category_id: category_id	
+							};
+				 			
+							$.post(	window.base_url  + 'index.php/ajax/moveAsset',
+									postObj,
+									function( data) {}
+							);	
+							
 						ui.draggable.remove();
+						core.categories[core.category_idx].assets.splice(idx_array[0], 1);
+						core.categories[category_idx].assets.push(assetObj);
+						
+						$('.accordion-group[category_idx=' + core.category_idx + '] li[asset_id=' + asset_id + ']').appendTo(  $('.accordion-group[category_idx=' + category_idx + '] ul') );
 					}
 				});
 				

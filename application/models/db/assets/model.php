@@ -268,5 +268,15 @@ class Models_Db_Assets_Model extends Database {
 		
 	}
 	
-	
+	public function moveAssetToCategory($asset_id,  $post_array ){
+
+		return $this->update_table(
+			$table = 'assets',
+			$primary_key = $asset_id, 
+			$set_what_array = array(
+				 'category_id' => $post_array['category_id']
+			)
+		);
+		
+	}
 }
