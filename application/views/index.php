@@ -12,7 +12,11 @@
 			<?php $this->load->view($body); ?>
 		</div>
 	</div>
-<?php $this->load->view($hidden); ?>	
+<?php
+	if( isset($hidden) ){
+		$this->load->view($hidden); 
+	};
+?>	
 <?php $this->load->view($company); ?>
 </body>
 <?php $this->load->view($footer); ?>

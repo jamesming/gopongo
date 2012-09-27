@@ -20,7 +20,6 @@ class Base_Controller extends CI_Controller
 
 		$this->_data->header = "header/header";
 		$this->_data->nav = "nav/nav";
-		$this->_data->hidden = "hidden/view";
 		$this->_data->company = "footer/company";			
 		$this->_data->footer = "footer/footer";
 		
