@@ -817,14 +817,15 @@ _.extend(core, {
 			$( ".draggable" ).draggable({ 
 					 revert: "invalid" 
 					,handle:".dragHandle"
+					,opacity: 0.7
+					,helper: "clone"
 				});
 				
 				
 				$('.accordion-group')
 				.droppable({
 					accept: ".draggable",
-					activeClass: "ui-state-highlight",
-					hoverClass: "ui-state-active",
+					hoverClass: "ui-state-highlight",
 					tolerance: "pointer",
 					drop: function( event, ui ) {
 						var category_idx = $(this).attr('category_idx');
