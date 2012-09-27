@@ -1,4 +1,4 @@
-﻿<div class="accordion-group">
+﻿<div class="accordion-group" category_idx={{idx}} >
 	<div class="accordion-heading">
 	  <a idx={{idx}} class="accordion-toggle category" data-toggle="collapse" data-parent="#categories" href="#collapse{{idx}}">
 	    {{category_name}}

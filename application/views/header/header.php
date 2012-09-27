@@ -9,7 +9,9 @@
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>js/libs/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>js/libs/jquery-ui/themes/base/jquery.ui.all.css">
+	
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/style.css?v=<?php echo rand()    ?>">
+	
 
 	<script type="text/javascript" language="Javascript">
 		

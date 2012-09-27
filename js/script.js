@@ -446,6 +446,8 @@ _.extend(core, {
 						);
 				};
 				
+				core.bindElements.dragAsset();
+				
 			}
 			
 			,add: function(
@@ -511,6 +513,7 @@ _.extend(core, {
 			this.insertAsset();
 			this.editAsset.init();
 			this.playAsset();
+			this.dragAsset();
 			this.deleteAsset();
 			
 			this.upload.thumb();
@@ -807,6 +810,28 @@ _.extend(core, {
 			$('.play').live('click', function(event) {
 			 	core.misc.playYouTube( $(this) );
 			});	
+		}
+		
+		,dragAsset: function(){
+			
+			$( ".draggable" ).draggable({ 
+					 revert: "invalid" 
+					,handle:".dragHandle"
+				});
+				
+				
+				$('.accordion-group')
+				.droppable({
+					accept: ".draggable",
+					activeClass: "ui-state-highlight",
+					hoverClass: "ui-state-active",
+					drop: function( event, ui ) {
+						var category_idx = $(this).attr('category_idx');
+						console.log('category_id: '+core.categories[category_idx].category_id);
+						ui.draggable.remove();
+					}
+				});
+				
 		}
 		
 		,editAsset: {

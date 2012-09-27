@@ -5,7 +5,11 @@
 <script src="<?php echo base_url()    ?>js/libs/bootstrap/js/bootstrap.min.js"></script>
 
 <script src="<?php echo base_url()    ?>js/plugins.js?v=<?php echo rand()    ?>"></script>
-<script src="<?php echo base_url()    ?>js/script.js?v=<?php echo rand()    ?>"></script>
+
+<?php if( $body == "body/main/view"){?>
+	<script src="<?php echo base_url()    ?>js/script.js?v=<?php echo rand()    ?>"></script>
+<?php } ?>
+
 
 
 <script>

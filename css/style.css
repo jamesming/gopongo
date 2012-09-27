@@ -108,11 +108,14 @@ border-top: 0px solid #e5e5e5;
 #thumb-collection ul li div.play{
 	height:	159px;	
 }
+#thumb-collection ul li div.overlay .dragHandle{
+	cursor: move;	
+}
 
  #thumb-collection ul li div.overlay .delete
 ,.play
 ,#thumb-collection ul li div.overlay .edit{
-	cursor:pointer	
+	cursor:pointer;	
 }
 
 #youtube_iframe{
