@@ -825,9 +825,11 @@ _.extend(core, {
 					accept: ".draggable",
 					activeClass: "ui-state-highlight",
 					hoverClass: "ui-state-active",
+					tolerance: "pointer",
 					drop: function( event, ui ) {
 						var category_idx = $(this).attr('category_idx');
-						console.log('category_id: '+core.categories[category_idx].category_id);
+						console.log('category_id: ' + core.categories[category_idx].category_id);
+						console.log('asset_id: ' + ui.draggable.attr('asset_id'));
 						ui.draggable.remove();
 					}
 				});
