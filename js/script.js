@@ -916,6 +916,15 @@ _.extend(core, {
 						,handle:".dragHandle"
 						,opacity: 0.7
 						,helper: "clone"
+						,start: function(event, ui) {
+						    var start_pos = ui.item.index();
+						    ui.item.data('start_pos', start_pos);
+						}
+						,update: function(event, ui) {
+						    var start_pos = ui.item.data('start_pos');
+						    var end_pos = $(ui.item).index();
+						    alert(start_pos + ' - ' + end_pos);
+						}						
 					}
 				);
 				$( "#thumb-collection-ul" ).disableSelection();
