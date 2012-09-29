@@ -904,12 +904,21 @@ _.extend(core, {
 		
 		,dragAsset: function(){
 			
-			$( ".draggable" ).draggable({ 
-					 revert: "invalid" 
-					,handle:".dragHandle"
-					,opacity: 0.7
-					,helper: "clone"
-				});
+//				$( ".draggable" ).draggable({ 
+//						 revert: "invalid" 
+//						,handle:".dragHandle"
+//						,opacity: 0.7
+//						,helper: "clone"
+//					});
+//				
+				$( "#thumb-collection-ul" ).sortable({ 
+						 revert: "invalid" 
+						,handle:".dragHandle"
+						,opacity: 0.7
+						,helper: "clone"
+					}
+				);
+				$( "#thumb-collection-ul" ).disableSelection();
 				
 				
 				$('.accordion-group')
