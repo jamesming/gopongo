@@ -9,6 +9,8 @@
 	<div class="span2">
 		<div   id='categories' class="accordion" >
 		</div>
+		<div  id='addNewCategory'  href='#edit_category_modal_box'  category_id='-1'>Add new Category
+		</div>
 	</div>
 	<div   id='thumb-collection' class="span9">
 		<div>

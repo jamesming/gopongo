@@ -340,7 +340,7 @@ _.extend(core, {
 		
 		this.myPlayer = _V_("my_video_1");
 		
-		this.submissionMode = 'insert';  // || edit
+		this.submissionModeAssets = 'insert';  // || edit
 		this.category_idx = 0; // var category_id = core.categories[core.category_idx].category_id
 		this.updateThis = {asset_id:0};  // core.updateThis.asset_id
 		
@@ -506,7 +506,8 @@ _.extend(core, {
 		
 		 init: function(){
 		 	
-			this.insertNewCategory();
+			this.model.categories.init();
+			
 			this.accordianControls();
 			this.formSubmission.init();
 			
@@ -520,22 +521,108 @@ _.extend(core, {
 			this.upload.video();
 			this.upload.form();
 			
-			this.editCategory.init();
-			
-			
 		}
 		
-		,insertNewCategory: function(){		
+		,model:{
 			
-			$('#addCategory').click(function(event) {
+			assets:{
 				
-				var count_catgeories = core.categories.length;
-				
-				core.create.category.add('', count_catgeories); 	
+				init: function(){	
 					
-			});	
+				}
+			}
 			
-		}		
+			,categories:{
+			
+				init: function(){	
+					this.insertNewCategory();
+					this.editCategory();
+				}
+				
+				,insertNewCategory: function(){		
+					
+					$('#addNewCategory').fancyZoom({},function(el){
+
+						$('#zoom .submit_category_form').click(function(event) {
+							
+								var categoryObj = {
+									 category_name: $('#zoom .category_name').val()
+								};
+								
+					 			var url = window.base_url  + 'index.php/ajax/insertCategory';
+					 			
+								$.post(	url,
+										categoryObj,
+										function( insert_id ) {
+											
+												var count_catgeories = core.categories.length;
+												
+												core.create.category.add(
+														  categoryObj.category_name
+														, count_catgeories); 
+														
+												var catObj = {
+													 category_id: insert_id
+													,category_name:categoryObj.category_name
+													,assets:[]
+												};
+												
+												core.categories.push(catObj);	
+												
+														
+												$('body').click();
+				
+										}
+								);
+									
+						});
+
+
+			
+						
+					});
+					
+					
+				}		
+				
+				,editCategory: function(){
+					
+					$('#thumb-collection .editCategoryTitle').fancyZoom({},function(el){
+				
+						$('#zoom .category_name').val(core.categories[core.category_idx].category_name);
+						
+						$('#zoom .submit_category_form').click(function(event) {
+							
+								var categoryObj = {
+									 category_id:$(el).attr('category_id')
+									,category_name: $('#zoom .category_name').val()
+								};
+								
+					 			var url = window.base_url  + 'index.php/ajax/editCategory';
+					 			
+								$.post(	url,
+										categoryObj,
+										function( data ) {
+											
+												core.categories[core.category_idx].category_name = categoryObj.category_name;
+												
+												$('#thumb-collection h2').html( categoryObj.category_name );
+												
+												$('.accordion-group a.category[idx=' + core.category_idx + ']').html( categoryObj.category_name );
+												
+												$('body').click();
+				
+										}
+								);
+									
+						});	
+						
+					});
+					
+				}								
+			}		
+			
+		}
 		
  		,accordianControls: function(){
 			
@@ -590,7 +677,7 @@ _.extend(core, {
 						
 					$('body').click();
 					
-					/*if( core.submissionMode === 'insert'){
+					/*if( core.submissionModeAssets === 'insert'){
 						
 						var assetObj = {
 							 asset_name:asset_name
@@ -599,7 +686,7 @@ _.extend(core, {
 						
 						that.postInsertAsset(assetObj);
 						
-					}else if( core.submissionMode === 'edit'){*/
+					}else if( core.submissionModeAssets === 'edit'){*/
 						
 						var assetObj = {
 							  asset_name:asset_name
@@ -671,9 +758,9 @@ _.extend(core, {
 							};
 							_.extend(assetObj, youtubeObj );
 							
-							if( core.submissionMode === 'insert'){
+							if( core.submissionModeAssets === 'insert'){
 								core.bindElements.formSubmission.afterUpdate.createNewElements(assetObj);
-							}else if( core.submissionMode === 'edit'){
+							}else if( core.submissionModeAssets === 'edit'){
 								core.bindElements.formSubmission.afterUpdate.updateExistingElements(assetObj);
 							};
 
@@ -730,7 +817,7 @@ _.extend(core, {
 	
 					
 					
-					core.submissionMode = 'insert';
+					core.submissionModeAssets = 'insert';
 					
 				}
 				
@@ -787,7 +874,7 @@ _.extend(core, {
 			
 			$('#addAsset').fancyZoom({},function(){
 				
-				core.submissionMode = 'insert';
+				core.submissionModeAssets = 'insert';
 				
 	 			var  url = window.base_url  + 'index.php/ajax/insertAsset'
 	 				,assetObj = {
@@ -847,14 +934,19 @@ _.extend(core, {
 				 			
 							$.post(	window.base_url  + 'index.php/ajax/moveAsset',
 									postObj,
-									function( data) {}
+									function( data) {
+										
+										ui.draggable.remove();
+										core.categories[core.category_idx].assets.splice(idx_array[0], 1);
+										core.categories[category_idx].assets.push(assetObj);
+										
+										$('.accordion-group[category_idx=' + core.category_idx + '] li[asset_id=' + asset_id + ']').appendTo(  $('.accordion-group[category_idx=' + category_idx + '] ul') );
+										
+										$('.accordion-group[category_idx=' + category_idx + '] .accordion-body').css({height:'auto'})
+										
+									}
 							);	
 							
-						ui.draggable.remove();
-						core.categories[core.category_idx].assets.splice(idx_array[0], 1);
-						core.categories[category_idx].assets.push(assetObj);
-						
-						$('.accordion-group[category_idx=' + core.category_idx + '] li[asset_id=' + asset_id + ']').appendTo(  $('.accordion-group[category_idx=' + category_idx + '] ul') );
 					}
 				});
 				
@@ -894,7 +986,7 @@ _.extend(core, {
 						
 						
 						
-						core.submissionMode = 'edit';
+						core.submissionModeAssets = 'edit';
 						
 						core.updateThis = {
 							asset_id:asset_id 	
@@ -980,52 +1072,6 @@ _.extend(core, {
 			
 		}
 
-		,editCategory: {
-			
-			 init: function(){	
-				this.editCategoryTitle();
-			}
-			
-			,editCategoryTitle: function(){
-				
-				$('#thumb-collection .editCategoryTitle').fancyZoom({},function(el){
-			
-					$('#zoom .category_name').val(core.categories[core.category_idx].category_name);
-					
-					
-					$('#zoom .submit_category_form').click(function(event) {
-						
-							var categoryObj = {
-								 category_id:$(el).attr('category_id')
-								,category_name: $('#zoom .category_name').val()
-							};
-							
-							core.categories[core.category_idx].category_name = categoryObj.category_name;
-							
-							$('#thumb-collection h2').html( categoryObj.category_name );
-							
-							$('.accordion-group a.category[idx=' + core.category_idx + ']').html( categoryObj.category_name );
-							
-							$('body').click();
-							
-							
-				 			var url = window.base_url  + 'index.php/ajax/editCategory';
-				 			
-							$.post(	url,
-									categoryObj,
-									function( data ) {
-										
-										console.log(data);
-			
-									}
-							);
-								
-					});	
-					
-				});
-				
-			}
-		}
 
 	}
 	

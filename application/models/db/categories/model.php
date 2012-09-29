@@ -21,6 +21,16 @@ class Models_Db_Categories_Model extends Database {
 		);
 		
 	}
+	
+	public function insertCategory($post_array){
+		return $this->insert_table(
+			$table = 'categories', 
+			$insert_what = array(
+				 'name' => $post_array['category_name']
+			)
+		);
+		
+	}
 
 }
 

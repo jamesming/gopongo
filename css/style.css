@@ -41,6 +41,10 @@ padding: 0px 1px;
 border-top: 0px solid #e5e5e5;	
 }
 
+#addNewCategory{
+cursor:pointer;	
+}
+
 #thumb-collection{
 	height:547px;	
 	background:lightblue;

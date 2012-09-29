@@ -7,6 +7,8 @@ class Ajax extends CI_Controller {
 		parent::__construct();
 		
 		$this->assets_model = new Models_Db_Assets_Model;
+		
+		$this->categories_model = new Models_Db_Categories_Model;
 	}
 	
 	function getAll(){
@@ -55,14 +57,20 @@ class Ajax extends CI_Controller {
  	
  	public function editCategory(){
  		
- 		$this->categories_model = new Models_Db_Categories_Model;
- 		
  		$post_array = $this->input->post();
  		
  		$category_id = $post_array['category_id'];
  		unset( $post_array['category_id'] );
  		
  		echo $this->categories_model->editCategory($category_id,  $post_array);
+ 	}
+ 	
+ 	public function insertCategory(){
+ 		
+ 		$post_array = $this->input->post(); 
+ 		
+ 		echo $this->categories_model->insertCategory($post_array);		
+ 		
  	}
  	
  	public function editAsset(){
