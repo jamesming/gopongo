@@ -951,7 +951,11 @@ _.extend(core, {
 										
 										$('.accordion-group[category_idx=' + core.category_idx + '] li[asset_id=' + asset_id + ']').appendTo(  $('.accordion-group[category_idx=' + category_idx + '] ul') );
 										
-										$('.accordion-group[category_idx=' + category_idx + '] .accordion-body').css({height:'auto'})
+										$('.accordion-group[category_idx=' + category_idx + '] .accordion-body').css({height:'auto'});
+										
+										$('.accordion-group[category_idx=' + category_idx + '] .accordion-toggle').click();
+										
+										
 										
 									}
 							);	

@@ -97,6 +97,16 @@ cursor:pointer;
 	font-size: 24px;
 	cursor:pointer;
 }
+#thumb-collection ul li div.dragHandle{
+	width:17px;
+	height: 17px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	background-color:white;	
+	background:url(http://localhost/gopongo/img/drag-handle.png) no-repeat;
+	cursor: move;	
+}
 
 #thumb-collection ul li div.overlay{
 	position:absolute;
@@ -111,9 +121,6 @@ cursor:pointer;
 
 #thumb-collection ul li div.play{
 	height:	159px;	
-}
-#thumb-collection ul li div.overlay .dragHandle{
-	cursor: move;	
 }
 
  #thumb-collection ul li div.overlay .delete
