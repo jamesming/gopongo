@@ -107,4 +107,25 @@ class Ajax extends CI_Controller {
  		echo $this->assets_model->moveAssetToCategory($asset_id,  $post_array );
  		
  	}
+ 	
+ 	public function reorderOneAsset(){
+ 		
+ 		$post_array = $this->input->post();
+ 		
+ 		$asset_id = $post_array['asset_id'];
+ 		unset( $post_array['asset_id'] ); 		
+ 		
+ 		$category_id = $post_array['category_id'];
+ 		unset( $post_array['category_id'] );
+ 		
+ 		echo $this->assets_model->reorderOneAsset($asset_id, $category_id, $post_array);
+ 	}
+ 	
+ 	public function reorderAssets(){
+ 		
+ 		$post_array = $this->input->post();
+ 		
+ 		echo '<pre>';print_r(  $this->assets_model->reorderAssets( $post_array['category_id']) );echo '</pre>';  exit;
+ 		
+ 	}
 }

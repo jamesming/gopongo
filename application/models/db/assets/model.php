@@ -2,7 +2,6 @@
 
 class Models_Db_Assets_Model extends Database {
 	
-	
 	public function getAll(){
 		
 		$this->upload = new Models_Up_Assets_Model;
@@ -24,7 +23,7 @@ class Models_Db_Assets_Model extends Database {
 						, assets.name as asset_name '   
 					,$where_array = array()
 					,$use_order = TRUE
-					,$order_field = 'categories.id, asset_id'
+					,$order_field = 'categories.id, assets.order'
 					,$order_direction = 'asc'
 					,$limit = -1
 					,$use_join = TRUE
@@ -194,7 +193,6 @@ class Models_Db_Assets_Model extends Database {
 		return $assets;
 	}
 	
-	
 	public function insertAsset($post_array){
 		
 		return $this->insert_table(
@@ -202,6 +200,7 @@ class Models_Db_Assets_Model extends Database {
 			$insert_what = array(
 				 'name' => $post_array['asset_name']
 				,'category_id' => $post_array['category_id']
+				,'order' => $post_array['order']
 			)
 		);
 		
@@ -240,6 +239,92 @@ class Models_Db_Assets_Model extends Database {
 		
 	}
 	
+	public function reorderOneAsset($asset_id, $category_id,  $post_array){
+
+		$this->update_table(
+			$table = 'assets',
+			$primary_key = $asset_id, 
+			$set_what_array = array(
+				'order' => $post_array['order']
+			)
+		);
+		
+		$this->reorderAssets($category_id, $post_array['direction']);
+			
+	}
+	
+	public function reorderAssets($category_id, $direction){
+		
+		
+		echo '<pre>';print_r(  
+		
+		
+		$this->object_to_array(
+			$this->select_from_table( 
+			$table = 'assets', 
+			$select_what = "id, order, updated", 
+			$where_array = array(
+				'category_id' => $category_id
+			), 
+			$use_order = TRUE, 
+			$order_field = 'order asc, updated '. $direction, 
+			$order_direction = '', 
+			$limit = -1
+			))
+		
+		 );echo '</pre>'; 
+		
+		$assets = $this->object_to_array(
+			$this->select_from_table( 
+			$table = 'assets', 
+			$select_what = "id, order, updated", 
+			$where_array = array(
+				'category_id' => $category_id
+			), 
+			$use_order = TRUE, 
+			$order_field = 'order asc, updated '. $direction, 
+			$order_direction = '', 
+			$limit = -1
+			));
+			
+		$order = 0;	
+			
+		foreach( $assets  as  $key => $asset){
+			
+			$this->update_table( 
+				$table = 'assets', 
+				$primary_key = $asset['id'], 
+				$set_what_array =
+					array(
+						'order' => $order 
+					)
+				);
+				
+			$order++;
+			
+		}
+		
+		
+		echo '<pre>';print_r(  
+		
+		
+		$this->object_to_array(
+			$this->select_from_table( 
+			$table = 'assets', 
+			$select_what = "id, order, updated", 
+			$where_array = array(
+				'category_id' => $category_id
+			), 
+			$use_order = TRUE, 
+			$order_field = 'order asc, updated '. $direction, 
+			$order_direction = '', 
+			$limit = -1
+			))
+		
+		 );echo '</pre>';exit;
+		
+	}
+	
 	public  function clear_table_of_empty_records_flagged_with_update_field_equals_0000(){
 		
 		$this->upload = new Models_Up_Assets_Model;
@@ -269,14 +354,21 @@ class Models_Db_Assets_Model extends Database {
 	}
 	
 	public function moveAssetToCategory($asset_id,  $post_array ){
+		
+		$size = $this->count_records( 
+			 $table = 'assets'
+			,$where_array = array(
+				'category_id' => $post_array['category_id'])
+			);
 
 		return $this->update_table(
 			$table = 'assets',
 			$primary_key = $asset_id, 
 			$set_what_array = array(
-				 'category_id' => $post_array['category_id']
+				  'category_id' => $post_array['category_id']
+				 ,'order' => $size
 			)
 		);
-		
 	}
+
 }
