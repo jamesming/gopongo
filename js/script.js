@@ -388,12 +388,16 @@ _.extend(core, {
 				
 				for(var idx in core.categories){
 					
+
+					
 					this.add(core.categories[idx].category_name, count);
 					
 					if( typeof(core.categories[idx].assets) !== "undefined"){
 						
 						for(var index in core.categories[idx].assets){
-							core.create.category_li.add(idx, core.categories[idx].assets[index])
+							core.create.category_li.add(
+								idx, 
+								core.categories[idx].assets[index])
 						};
 					};
 					
@@ -428,8 +432,8 @@ _.extend(core, {
 
 		,category_li:{
 			
-			add: function(idx, li_obj){	
-			
+			add: function(idx, li_obj){
+				
 					if ( ! core.category_li_tpl) {
 					  core.category_li_tpl = core.loadTemplate('js/tpl/category_li.tpl');
 					}		
@@ -441,6 +445,7 @@ _.extend(core, {
 					tpl  = tpl.replace(/{{asset_name}}/g, li_obj.asset_name);
 					tpl  = tpl.replace(/{{asset_id}}/g, li_obj.asset_id);
 					tpl  = tpl.replace(/{{youtube_id}}/g, li_obj.youtube_id);
+					tpl  = tpl.replace(/{{category_id}}/g, core.categories[idx].category_id);
 					
 					$('#categories > div')
 					.eq(idx)
@@ -465,6 +470,7 @@ _.extend(core, {
 							,core.categories[category_idx].assets[idx].youtube_url
 							,core.categories[category_idx].assets[idx].youtube_thumb
 							,core.categories[category_idx].assets[idx].youtube_id
+							,core.categories[category_idx].category_id
 							,count
 						);
 						
@@ -482,6 +488,7 @@ _.extend(core, {
 					,youtube_url
 					,youtube_thumb
 					,youtube_id
+					,category_id
 					,count
 				){	
 				
@@ -498,6 +505,7 @@ _.extend(core, {
 				tpl  = tpl.replace(/{{youtube_url}}/g, youtube_url);
 				tpl  = tpl.replace(/{{youtube_thumb}}/g, youtube_thumb);
 				tpl  = tpl.replace(/{{youtube_id}}/g, youtube_id);
+				tpl  = tpl.replace(/{{category_id}}/g, category_id);
 				tpl  = tpl.replace(/{{count}}/g, count);
 				
 				$('#thumb-collection ul.assets_ul').append(tpl);
@@ -740,14 +748,14 @@ _.extend(core, {
 							$el.fancyZoom({}, function(el){
 						
 								var	 asset_id = $(el).attr('asset_id')				
-									,idx_array = core.findIndexInArrayOfObjects( 
+									,idx_assets_array = core.findIndexInArrayOfObjects( 
 														 core.categories[core.category_idx].assets
 														,function( item ){
 															if( item.asset_id === asset_id) return true;
 														});	
 								
-								$('#zoom_content .asset_name').val(core.categories[core.category_idx].assets[idx_array[0]].asset_name);
-								$('#zoom_content .asset_youtube_url').val(core.categories[core.category_idx].assets[idx_array[0]].youtube_url);
+								$('#zoom_content .asset_name').val(core.categories[core.category_idx].assets[idx_assets_array[0]].asset_name);
+								$('#zoom_content .asset_youtube_url').val(core.categories[core.category_idx].assets[idx_assets_array[0]].youtube_url);
 								
 								$('#zoom_content img')
 								.on('error', function() {
@@ -785,14 +793,14 @@ _.extend(core, {
 								
 									$('li[asset_id='+asset_id+']').remove();
 									
-									var idx_array = core.findIndexInArrayOfObjects( 
+									var idx_assets_array = core.findIndexInArrayOfObjects( 
 										 core.categories[core.category_idx].assets
 										,function( item ){
 											if( item.asset_id === asset_id) return true;
 										}
 									);							
 									
-									core.categories[core.category_idx].assets.splice(idx_array[0], 1);
+									core.categories[core.category_idx].assets.splice(idx_assets_array[0], 1);
 									
 									core.misc.showHideButtonBasedOnNumofAssets();
 									
@@ -874,11 +882,11 @@ _.extend(core, {
 								var  category_idx = $(this).attr('category_idx')
 									,category_id = core.categories[category_idx].category_id
 									,asset_id = ui.draggable.attr('asset_id')
-									,idx_array = core.findIndexInArrayOfObjects( core.categories[core.category_idx].assets
+									,idx_assets_array = core.findIndexInArrayOfObjects( core.categories[core.category_idx].assets
 																			,function( item ){
 																					if( item.asset_id === asset_id) return true;
 																			})
-									,assetObj = core.categories[core.category_idx].assets[idx_array]
+									,assetObj = core.categories[core.category_idx].assets[idx_assets_array]
 									,postObj = {
 										 asset_id: asset_id
 										,category_id: category_id	
@@ -889,7 +897,7 @@ _.extend(core, {
 											function( data) {
 												
 												ui.draggable.remove();
-												core.categories[core.category_idx].assets.splice(idx_array[0], 1);
+												core.categories[core.category_idx].assets.splice(idx_assets_array[0], 1);
 												
 												core.order.model.assets.setGroup();
 												
@@ -1021,14 +1029,14 @@ _.extend(core, {
 						 updateExistingElements: function(assetObj){	
 							
 							var	 asset_id = assetObj['asset_id']				
-								,idx_array = core.findIndexInArrayOfObjects( core.categories[core.category_idx].assets
+								,idx_assets_array = core.findIndexInArrayOfObjects( core.categories[core.category_idx].assets
 																			,function( item ){
 																					if( item.asset_id === asset_id) return true;
 																			});	
 							
-							core.categories[core.category_idx].assets[ idx_array ].youtube_thumb = "http://img.youtube.com/vi/" +  assetObj.youtube_id + "/0.jpg";
+							core.categories[core.category_idx].assets[ idx_assets_array ].youtube_thumb = "http://img.youtube.com/vi/" +  assetObj.youtube_id + "/0.jpg";
 							
-		//					core.categories[core.category_idx].assets[idx_array].asset_name= assetObj.asset_name;
+		//					core.categories[core.category_idx].assets[idx_assets_array].asset_name= assetObj.asset_name;
 		//					$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
 		
 							$('.title[asset_id=' + assetObj['asset_id'] + ']')
@@ -1047,7 +1055,7 @@ _.extend(core, {
 								
 								$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
 								
-								core.categories[core.category_idx].assets[ idx_array ].asset_name = assetObj.asset_name;
+								core.categories[core.category_idx].assets[ idx_assets_array ].asset_name = assetObj.asset_name;
 								
 							});
 							
@@ -1221,17 +1229,18 @@ _.extend(core, {
 		
 		,playYouTube: function($this){
 			
-				var	 asset_id = $this.attr('asset_id')				
-					,idx_array = core.findIndexInArrayOfObjects( 
-										 core.categories[core.category_idx].assets
+				var	 asset_id = $this.attr('asset_id')
+					,category_id = $this.attr('category_id')
+					,idx_categories_array = core.findIndexInArrayOfObjects( 
+										 core.categories
 										,function( item ){
-											if( item.asset_id === asset_id) return true;
+											if( item.category_id === category_id) return true;
 										});		
 										
 				$('.category-ul > li').css({background:'white'});	
 										
 				$('#categories > div')
-				.eq(core.category_idx)
+				.eq(idx_categories_array[0])
 				.children('div > div')
 				.eq(1).children('div')
 				.children('ul').children('li[asset_id=' + asset_id + '] ').css({background:'red'});
