@@ -847,11 +847,7 @@ _.extend(core, {
 								    }else{
 								    	var direction = 'asc';
 								    };
-								    
-								    console.log(start_pos, end_pos);
-								    console.log('assets: ' +JSON.stringify(core.categories[core.category_idx].assets));
-								    console.log('');
-								    
+
 								    var  asset_id = $(ui.item).attr('asset_id')
 								    	,order = $(ui.item).index()
 								    	,newAssets = core.moveElementInArray(core.categories[core.category_idx].assets, start_pos, end_pos);
@@ -869,13 +865,6 @@ _.extend(core, {
 									};
 								    
 								    core.order.model.assets.setOne(asset_id, order, direction);
-								    
-
-								    console.log('newAssets: ' + JSON.stringify(newAssets));
-
-//									var foo = [5, 0],
-//									bar = core.moveElementInArray(foo, 0, 1);
-//									console.log(bar);
 								    
 								}						
 							}
