@@ -554,11 +554,7 @@ _.extend(core, {
 
 						$.post(	url,
 								assetObj,
-								function( data ) {
-									
-									
-									
-								}
+								function( data ) {}
 						);
 					
 				}
@@ -861,6 +857,16 @@ _.extend(core, {
 								    	,newAssets = core.moveElementInArray(core.categories[core.category_idx].assets, start_pos, end_pos);
 								    	
 								    core.categories[core.category_idx].assets = newAssets;
+								    
+									$('#categories > div')
+									.eq(core.category_idx)
+									.children('div > div')
+									.eq(1).children('div')
+									.children('ul').children().remove();
+								    
+									for(var index in core.categories[core.category_idx].assets){
+										core.create.category_li.add(core.category_idx, core.categories[core.category_idx].assets[index])
+									};
 								    
 								    core.order.model.assets.setOne(asset_id, order, direction);
 								    
