@@ -316,10 +316,7 @@ core = {
 	}
 		
 	,moveElementInArray: function(arr, old_index, new_index) {
-		
-			//console.log(arr, old_index, new_index);
-		
-//			console.log(JSON.stringify(arr));
+
             while (old_index < 0) { 
                 old_index += arr.length;
             }
@@ -333,15 +330,10 @@ core = {
                 }
             }
             
-            
-            
             var obj = arr.splice(old_index, 1)[0];
             
-            
-//            console.log(JSON.stringify(obj));
-            
             arr.splice(new_index, 0, obj);
-//            console.log(JSON.stringify(arr));
+
             return arr;
      }
 	
@@ -1229,7 +1221,20 @@ _.extend(core, {
 		
 		,playYouTube: function($this){
 			
-			console.log('test');
+				var	 asset_id = $this.attr('asset_id')				
+					,idx_array = core.findIndexInArrayOfObjects( 
+										 core.categories[core.category_idx].assets
+										,function( item ){
+											if( item.asset_id === asset_id) return true;
+										});		
+										
+				$('.category-ul > li').css({background:'white'});	
+										
+				$('#categories > div')
+				.eq(core.category_idx)
+				.children('div > div')
+				.eq(1).children('div')
+				.children('ul').children('li[asset_id=' + asset_id + '] ').css({background:'red'});
 			
 				$('#thumb-collection').hide();
 				//$('#video_container').show();
@@ -1240,10 +1245,10 @@ _.extend(core, {
 				//core.myPlayer.src(video_src);
 				
 				if( $this.attr('youtube_id') !== core.youtube_id){
-					var   youtube_id = core.youtube_id = $this.attr('youtube_id')
-						, yourtube_src = "http://www.youtube.com/embed/"+youtube_id+"?autoplay=1";
+					var  youtube_id = core.youtube_id = $this.attr('youtube_id')
+						,yourtube_src = "http://www.youtube.com/embed/"+youtube_id+"?autoplay=1";
 					
-	//				console.log(JSON.stringify(core.categories));
+
 	
 					$('#youtube_iframe').attr('src', yourtube_src);					
 				};
