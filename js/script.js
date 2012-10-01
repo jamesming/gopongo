@@ -315,6 +315,36 @@ core = {
 		return obj;
 	}
 		
+	,moveElementInArray: function(arr, old_index, new_index) {
+		
+			//console.log(arr, old_index, new_index);
+		
+//			console.log(JSON.stringify(arr));
+            while (old_index < 0) { 
+                old_index += arr.length;
+            }
+            while (new_index < 0) {
+                new_index += arr.length;
+            }
+            if (new_index >= arr.length) {
+                var k = new_index - arr.length;
+                while ((k--) + 1) {
+                    arr.push(undefined);
+                }
+            }
+            
+            
+            
+            var obj = arr.splice(old_index, 1)[0];
+            
+            
+//            console.log(JSON.stringify(obj));
+            
+            arr.splice(new_index, 0, obj);
+//            console.log(JSON.stringify(arr));
+            return arr;
+     }
+	
 };
 
 _.extend(core, {
@@ -514,40 +544,36 @@ _.extend(core, {
 				
 				 setOne: function(asset_id, order, direction){
 
-								var url = window.base_url  + 'index.php/ajax/reorderOneAsset'
-									assetObj = {
-										 asset_id:asset_id
-										,order:order
-										,category_id: core.categories[core.category_idx].category_id
-										,direction: direction
-									};
+						var url = window.base_url  + 'index.php/ajax/reorderOneAsset'
+							assetObj = {
+								 asset_id:asset_id
+								,order:order
+								,category_id: core.categories[core.category_idx].category_id
+								,direction: direction
+							};
 
-								$.post(	url,
-										assetObj,
-										function( data ) {
-											
-											console.log(data, JSON.stringify(assetObj));
-											
-										}
-								);
+						$.post(	url,
+								assetObj,
+								function( data ) {
+									
+									
+									
+								}
+						);
 					
 				}
 				
 				,setGroup: function(){
 					
-								var url = window.base_url  + 'index.php/ajax/reorderAssets'
-									postObj = {
-										 category_id:core.categories[core.category_idx].category_id
-									};
+						var url = window.base_url  + 'index.php/ajax/reorderAssets'
+							postObj = {
+								 category_id:core.categories[core.category_idx].category_id
+							};
 
-								$.post(	url,
-										postObj,
-										function( data ) {
-											
-											console.log(data);
-											
-										}
-								);
+						$.post(	url,
+								postObj,
+								function( data ) {}
+						);
 					
 				}
 				
@@ -826,10 +852,24 @@ _.extend(core, {
 								    	var direction = 'asc';
 								    };
 								    
+								    console.log(start_pos, end_pos);
+								    console.log('assets: ' +JSON.stringify(core.categories[core.category_idx].assets));
+								    console.log('');
+								    
 								    var  asset_id = $(ui.item).attr('asset_id')
-								    	,order = $(ui.item).index();
+								    	,order = $(ui.item).index()
+								    	,newAssets = core.moveElementInArray(core.categories[core.category_idx].assets, start_pos, end_pos);
+								    	
+								    core.categories[core.category_idx].assets = newAssets;
 								    
 								    core.order.model.assets.setOne(asset_id, order, direction);
+								    
+
+								    console.log('newAssets: ' + JSON.stringify(newAssets));
+
+//									var foo = [5, 0],
+//									bar = core.moveElementInArray(foo, 0, 1);
+//									console.log(bar);
 								    
 								}						
 							}

@@ -253,26 +253,7 @@ class Models_Db_Assets_Model extends Database {
 			
 	}
 	
-	public function reorderAssets($category_id, $direction){
-		
-		
-		echo '<pre>';print_r(  
-		
-		
-		$this->object_to_array(
-			$this->select_from_table( 
-			$table = 'assets', 
-			$select_what = "id, order, updated", 
-			$where_array = array(
-				'category_id' => $category_id
-			), 
-			$use_order = TRUE, 
-			$order_field = 'order asc, updated '. $direction, 
-			$order_direction = '', 
-			$limit = -1
-			))
-		
-		 );echo '</pre>'; 
+	public function reorderAssets($category_id, $direction = 'asc'){
 		
 		$assets = $this->object_to_array(
 			$this->select_from_table( 
@@ -303,25 +284,6 @@ class Models_Db_Assets_Model extends Database {
 			$order++;
 			
 		}
-		
-		
-		echo '<pre>';print_r(  
-		
-		
-		$this->object_to_array(
-			$this->select_from_table( 
-			$table = 'assets', 
-			$select_what = "id, order, updated", 
-			$where_array = array(
-				'category_id' => $category_id
-			), 
-			$use_order = TRUE, 
-			$order_field = 'order asc, updated '. $direction, 
-			$order_direction = '', 
-			$limit = -1
-			))
-		
-		 );echo '</pre>';exit;
 		
 	}
 	
