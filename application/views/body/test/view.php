@@ -1,47 +1,27 @@
 <style>
-	.droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
-	.draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px; cursor: hand; cursor: pointer; border: 1px solid #000;}
+	#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+	#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+	#sortable li span { position: absolute; margin-left: -1.3em; }
 </style>
+
 <div  id='main' class="container">
   <div class="row">
 	<div class="span12">
-			<div class="draggable" class="ui-widget-content">
-				<p>I return home when I'm not dropped in the right place</p>
-			</div>
-		
-			<div class="droppable ui-widget-header" id="element 1">
-				<p>Drop me here</p>
-			</div>
-		
-			<div class="droppable ui-widget-header" id="element 2">
-				<p>Drop me here</p>
-			</div>
-		
-			<div class="droppable ui-widget-header" id="element 3">
-				<p>Drop me here</p>
-			</div>		
+		<ul id="sortable">
+			<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+			<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+			<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+			<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+			<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+			<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+			<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+		</ul>
 	</div>
   </div>
 </div>
 <script>
-$(function() {
-	$( ".draggable" ).draggable({ revert: "invalid" });
-
-	$( ".droppable" ).droppable({
-		activeClass: "ui-state-hover",
-		hoverClass: "ui-state-active",
-		drop: function( event, ui ) {
-
-			var targetElem = $(this).attr("id");
-
-			$( this )
-				.addClass( "ui-state-highlight" )
-				.find( "p" )
-					.html( "Dropped! inside " + targetElem );
-
-					alert(targetElem);
-
-		}
+	$(function() {
+		$( "#sortable" ).sortable();
+		$( "#sortable" ).disableSelection();
 	});
-});
 </script>

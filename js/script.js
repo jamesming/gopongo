@@ -388,8 +388,6 @@ _.extend(core, {
 				
 				for(var idx in core.categories){
 					
-
-					
 					this.add(core.categories[idx].category_name, count);
 					
 					if( typeof(core.categories[idx].assets) !== "undefined"){
@@ -423,8 +421,6 @@ _.extend(core, {
 					tpl  = tpl.replace(/{{category_name}}/g, category_name);
 					
 					$('#categories').append(tpl);
-					
-					
 	
 			}
 			
@@ -597,6 +593,9 @@ _.extend(core, {
 			this.upload.thumb();
 			this.upload.video();
 			this.upload.form();
+			
+			$( "#categories" ).sortable();
+			$( "#categories" ).disableSelection();
 			
 		}
 		
