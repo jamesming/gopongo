@@ -700,6 +700,8 @@ _.extend(core, {
 								    var start_pos = ui.item.index();
 								    ui.item.data('start_pos', start_pos);
 								    
+
+								    
 								}
 								,update: function(event, ui) {
 									
