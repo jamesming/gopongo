@@ -594,9 +594,7 @@ _.extend(core, {
 			this.upload.video();
 			this.upload.form();
 			
-			$( "#categories" ).sortable();
-			$( "#categories" ).disableSelection();
-			
+
 		}
 		
 		,model:{
@@ -606,6 +604,7 @@ _.extend(core, {
 				init: function(){	
 					this.insertNewCategory();
 					this.editCategory();
+					this.sortCategories();
 				}
 				
 				,insertNewCategory: function(){		
@@ -688,7 +687,33 @@ _.extend(core, {
 						
 					});
 					
-				}								
+				}
+				
+				,sortCategories: function(){			
+						$( "#categories" ).sortable({ 
+								 revert: "invalid" 
+								,handle:".sort-handle-categories"
+								,opacity: 0.7
+								,helper: "clone"
+								,start: function(event, ui) {
+									
+								    var start_pos = ui.item.index();
+								    ui.item.data('start_pos', start_pos);
+								    
+								}
+								,update: function(event, ui) {
+									
+								    var start_pos = ui.item.data('start_pos');
+								    var end_pos = $(ui.item).index();
+								    
+								   	console.log(start_pos, end_pos);
+								    
+								}
+							}
+						);
+						$( "#categories" ).disableSelection();
+											
+				}
 			}				
 			
 			,assets:{
@@ -818,13 +843,7 @@ _.extend(core, {
 				
 				,dragAsset: function(){
 					
-		//				$( ".draggable" ).draggable({ 
-		//						 revert: "invalid" 
-		//						,handle:".dragHandle"
-		//						,opacity: 0.7
-		//						,helper: "clone"
-		//					});
-		//				
+
 						$( "#thumb-collection-ul" ).sortable({ 
 								 revert: "invalid" 
 								,handle:".dragHandle"

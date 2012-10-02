@@ -35,6 +35,11 @@ text-align:right;
 	border: 0px;
 	-webkit-border-radius: 0px;	
 }
+#categories .accordion-group > img.sort-handle-categories{
+	position:absolute;
+	margin-top:12px;
+	cursor:move;
+}
 
 #categories .accordion-inner{
 padding: 0px 1px;
