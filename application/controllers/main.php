@@ -40,4 +40,23 @@ class Main extends Base_Controller {
 		
 		
 	}
+	
+	
+	public function testPostToIframe(){
+		
+	?>	
+	<form  
+		target='iframe_upload'  
+		action='<?php echo base_url()    ?>ajax/testPostToIframe'  
+		enctype='multipart/form-data'  
+		method='POST'
+	>
+		<input name="filename" id="filename" type="file" value="">
+		<input name="submit" id="submit" type="submit" value="submit">
+	</form>
+	<iframe  id='iframe_upload' name='iframe_upload'  style='border:1px solid gray;width:200px;height:200px'  ></iframe>
+	
+	<?php     	
+		
+	}
 }

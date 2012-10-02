@@ -128,4 +128,9 @@ class Ajax extends CI_Controller {
  		echo '<pre>';print_r(  $this->assets_model->reorderAssets( $post_array['category_id']) );echo '</pre>';  exit;
  		
  	}
+ 	
+ 	public function testPostToIframe(){
+ 		echo "testing this thing";
+ 		
+ 	}
 }
