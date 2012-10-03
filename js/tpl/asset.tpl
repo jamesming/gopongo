@@ -1,4 +1,4 @@
-﻿<li asset_id={{asset_id}}  class=' draggable ' >
+﻿<li asset_id={{asset_id}}   category_id={{category_id}}  class=' draggable ' >
 	<div  class='dragHandle ' >
 	</div>
 	<div  asset_id={{asset_id}}   youtube_id='{{youtube_id}}'  category_id={{category_id}} class='play '   style='background:url({{youtube_thumb}}) no-repeat;background-position: 0px -45px;background-size: 282px;'  >&nbsp;

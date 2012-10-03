@@ -402,6 +402,7 @@ _.extend(core, {
 					count++;
 				};
 				
+				
 				$('#thumb-collection h2').html(core.categories[0].category_name);
 				
 				$('#thumb-collection .editCategoryTitle').attr({'category_id':core.categories[0].category_id,'category_idx':0});
@@ -899,27 +900,36 @@ _.extend(core, {
 							tolerance: "pointer",
 							drop: function( event, ui ) {
 								
+								
 								var  category_idx = $(this).attr('category_idx')
 									,category_id = core.categories[category_idx].category_id
 									,asset_id = ui.draggable.attr('asset_id')
 									,idx_assets_array = core.findIndexInArrayOfObjects( core.categories[core.category_idx].assets
 																			,function( item ){
 																					if( item.asset_id === asset_id) return true;
-																			})
+																			})												
 									,assetObj = core.categories[core.category_idx].assets[idx_assets_array]
 									,postObj = {
 										 asset_id: asset_id
 										,category_id: category_id	
 									};
-						 			
+									
 									$.post(	window.base_url  + 'index.php/ajax/moveAsset',
 											postObj,
 											function( data) {
 												
-												ui.draggable.remove();
+												if( core.categories[core.category_idx].assets.length === 1){
+													$('#thumb-collection-ul').empty();	// may produce an error message: Uncaught TypeError: Cannot call method 'removeChild' of null 
+												}else{
+													ui.draggable.remove();
+												};
+
+												
 												core.categories[core.category_idx].assets.splice(idx_assets_array[0], 1);
 												
 												core.order.model.assets.setGroup();
+												
+												
 												
 												core.categories[category_idx].assets.push(assetObj);
 												
@@ -927,8 +937,7 @@ _.extend(core, {
 												
 												$('.accordion-group[category_idx=' + category_idx + '] .accordion-body').css({height:'auto'});
 												
-												$('.accordion-group[category_idx=' + category_idx + '] .accordion-toggle').click();
-												
+//												$('.accordion-group[category_idx=' + category_idx + '] .accordion-toggle').click();
 												
 												
 											}
