@@ -341,7 +341,7 @@ core = {
 
 _.extend(core, {
 	
-	 initMain: function(){
+	 start: function(){
 	 	
 	 	this.setPropertiesMain();
 	 	
@@ -388,7 +388,7 @@ _.extend(core, {
 				
 				for(var idx in core.categories){
 					
-					this.add(core.categories[idx].category_name, count);
+					this.add(core.categories[idx].category_id, core.categories[idx].category_name, count);
 					
 					if( typeof(core.categories[idx].assets) !== "undefined"){
 						
@@ -410,16 +410,18 @@ _.extend(core, {
 				
 			}
 			
-			,add: function(category_name, count){
+			,add: function(category_id, category_name, count){
 				
 					if ( ! core.category_tpl) {
-					  core.category_tpl = core.loadTemplate('js/tpl/category.tpl');
+					  core.category_tpl = core.loadTemplate(window.base_url+'js/tpl/category.tpl');
 					}		
 			
 					var tpl = core.category_tpl;
 		
+					tpl  = tpl.replace(/{{base_url}}/g, window.base_url);
 					tpl  = tpl.replace(/{{idx}}/g, count);
 					tpl  = tpl.replace(/{{category_name}}/g, category_name);
+					tpl  = tpl.replace(/{{category_id}}/g, category_id);
 					
 					$('#categories').append(tpl);
 	
@@ -432,13 +434,13 @@ _.extend(core, {
 			add: function(idx, li_obj){
 				
 					if ( ! core.category_li_tpl) {
-					  core.category_li_tpl = core.loadTemplate('js/tpl/category_li.tpl');
+					  core.category_li_tpl = core.loadTemplate(window.base_url+'js/tpl/category_li.tpl');
 					}		
 			
 					var tpl = core.category_li_tpl;
 					
 					li_obj.asset_name = li_obj.asset_name.substring(0, 15);
-		
+
 					tpl  = tpl.replace(/{{asset_name}}/g, li_obj.asset_name);
 					tpl  = tpl.replace(/{{asset_id}}/g, li_obj.asset_id);
 					tpl  = tpl.replace(/{{youtube_id}}/g, li_obj.youtube_id);
@@ -490,7 +492,7 @@ _.extend(core, {
 				){	
 				
 				if ( ! core.asset_tpl) {
-				  core.asset_tpl = core.loadTemplate('js/tpl/asset.tpl');
+				  core.asset_tpl = core.loadTemplate(window.base_url+'js/tpl/asset.tpl');
 				}		
 				
 				var tpl = core.asset_tpl;
@@ -574,7 +576,31 @@ _.extend(core, {
 			
 			,categories:{
 			
-				set:function(){	
+				 setOne: function(category_id, order, direction){
+
+						var url = window.base_url  + 'index.php/ajax/reorderOneCategory'
+							categoryObj = {
+								 category_id:category_id
+								,order:order
+								,direction: direction
+							};
+
+						$.post(	url,
+								categoryObj,
+								function( data ) {}
+						);
+					
+				}
+				
+				,setGroup: function(){
+					
+						var url = window.base_url  + 'index.php/ajax/reorderCategories'
+							postObj = {};
+
+						$.post(	url,
+								postObj,
+								function( data ) {}
+						);
 					
 				}
 			}
@@ -709,6 +735,17 @@ _.extend(core, {
 								    var start_pos = ui.item.data('start_pos');
 								    var end_pos = $(ui.item).index();
 								    
+								    if( start_pos > end_pos){
+								    	var direction = 'desc';
+								    }else{
+								    	var direction = 'asc';
+								    };
+								    
+								    var  category_id = $(ui.item).attr('category_id')
+								    	,order = $(ui.item).index()								    
+								    
+									core.order.model.categories.setOne(category_id, order, direction);								    
+								    
 								   	console.log(start_pos, end_pos);
 								    
 								}
@@ -786,7 +823,7 @@ _.extend(core, {
 								
 								$('#zoom_content img')
 								.on('error', function() {
-								    this.src = 'http://www.placehold.it/280x150';
+								    //this.src = 'http://www.placehold.it/280x150';
 								})
 								.attr('src', 'uploads/'+asset_id+'/thumb/image.jpg');
 								
@@ -1191,6 +1228,7 @@ _.extend(core, {
 			
 			
 			$('#categories li').click(function(event) {	
+					
 
 				core.misc.playYouTube( $(this) );
 
@@ -1267,12 +1305,9 @@ _.extend(core, {
 										});		
 										
 				$('.category-ul > li').css({background:'white'});	
+				$('li[asset_id=' + asset_id + '] ').css({background:'red'});
 										
-				$('#categories > div')
-				.eq(idx_categories_array[0])
-				.children('div > div')
-				.eq(1).children('div')
-				.children('ul').children('li[asset_id=' + asset_id + '] ').css({background:'red'});
+
 			
 				$('#thumb-collection').hide();
 				//$('#video_container').show();
@@ -1305,9 +1340,7 @@ _.extend(core, {
 	
 });
 
-window.onload = function(){
-	core.initMain();	
-};
+window.onload = function(){ core.start();	};
 
 
 

@@ -1,24 +1,16 @@
-﻿      <div class="hero-unit">
-		<form class="form-horizontal">
-		  <div class="control-group">
-		    <label class="control-label" for="inputEmail">Email</label>
-		    <div class="controls">
-		      <input type="text" id="inputEmail" placeholder="Email">
-		    </div>
-		  </div>
-		  <div class="control-group">
-		    <label class="control-label" for="inputPassword">Password</label>
-		    <div class="controls">
-		      <input type="password" id="inputPassword" placeholder="Password">
-		    </div>
-		  </div>
-		  <div class="control-group">
-		    <div class="controls">
-		      <label class="checkbox">
-		        <input type="checkbox"> Remember me
-		      </label>
-		      <button type="submit" class="btn btn-large btn-primary">Sign in</button>
-		    </div>
-		  </div>
-		</form>
-      </div>
+﻿<div class="container">
+	<div class="row">
+		<div class="span4 offset4 well">
+			<legend>Please Sign In</legend>
+          	<div class="alert alert-error">
+                <a class="close" data-dismiss="alert" href="#">×</a>Incorrect Username or Password!
+            </div>
+			<form method="POST" action="<?php  echo base_url()   ?>main/validate" accept-charset="UTF-8">
+			<input type="text" id="username" class="span4" name="username" placeholder="Username">
+			<input type="password" id="password" class="span4" name="password" placeholder="Password">
+
+			<button type="submit" class="btn btn-info btn-block">Sign in</button>
+			</form>    
+		</div>
+	</div>
+</div>

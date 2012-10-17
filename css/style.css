@@ -198,3 +198,7 @@ right: 0px;
 background: yellow;	
 }
 
+.alert.alert-error{
+display:none;	
+}
+

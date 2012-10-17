@@ -21,10 +21,12 @@ class Models_Db_Assets_Model extends Database {
 						, assets.youtube_thumb as youtube_thumb
 						, assets.duration as duration
 						, assets.name as asset_name '   
-					,$where_array = array()
+					,$where_array = array(
+						'user_id =' => ( isset( $this->session->userdata['user_id']) ? $this->session->userdata['user_id']:'0' ) 
+					)
 					,$use_order = TRUE
-					,$order_field = 'categories.id, assets.order'
-					,$order_direction = 'asc'
+					,$order_field = 'categories.order asc, assets.order asc'
+					,$order_direction = ''
 					,$limit = -1
 					,$use_join = TRUE
 					,$join_array

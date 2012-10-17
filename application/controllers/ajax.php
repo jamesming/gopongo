@@ -108,6 +108,22 @@ class Ajax extends CI_Controller {
  		
  	}
  	
+ 	public function reorderOneCategory(){
+ 		
+ 		$post_array = $this->input->post();
+ 		
+ 		$category_id = $post_array['category_id'];
+ 		unset( $post_array['category_id'] ); 		
+
+ 		echo $this->categories_model->reorderOneCategory($category_id, $post_array);
+ 	}
+ 	
+ 	public function reorderCategories(){
+ 		
+ 		echo '<pre>';print_r(  $this->categories_model->reorderCategories() );echo '</pre>';  exit;
+ 		
+ 	} 	
+ 	
  	public function reorderOneAsset(){
  		
  		$post_array = $this->input->post();

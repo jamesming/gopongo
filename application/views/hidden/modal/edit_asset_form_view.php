@@ -35,7 +35,7 @@
 				<div  class=' oh' >
 					
 					<div  class='img_wrapper ' >
-						<img  src="http://www.placehold.it/280x159" class="img-polaroid thumb_img">
+						<img  src="" class="img-polaroid thumb_img">
 					</div>
 					<div class="input-append">
 					  <input class="span2 video_input_field" size="16" type="text"><button class="btn video_uplr" type="button">Go!</button>

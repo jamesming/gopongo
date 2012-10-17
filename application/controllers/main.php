@@ -6,7 +6,6 @@ class Main extends Base_Controller {
 		
 		parent::__construct();
 		
-		
 	}	
 
 	public function index()
@@ -17,12 +16,42 @@ class Main extends Base_Controller {
 		$this->_data->youtube = "hidden/youtube/view";
 		$this->_data->jcrop = "hidden/jcrop/view";
 		
-		$this->_data->nav_selected = "";		
-		
 		$this->load->view('index', $this->_data);	
 	}
 	
+	public function login(){
+		
+		$this->_data->nav_selected = "";
+		
+		$this->_data->body = "body/login/view";
+		
+		$this->load->view('index', $this->_data);
+		
+	}
 	
+	
+	public function validate(){
+		
+		sleep(1);	
+		
+		if( $this->input->post('username') == 'qwe'){
+			
+			$newdata = array('user_id' => 1 );						
+			
+			$this->session->set_userdata($newdata);			
+			
+			redirect('/main/index/');
+			
+		}else{
+			
+			$this->session->sess_create();
+			
+			redirect('/main/login/');
+			
+		};
+		
+		
+	}
 	
 	public function testvideo(){
 		
@@ -59,4 +88,31 @@ class Main extends Base_Controller {
 	<?php     	
 		
 	}
+	
+	
+	public function testaudio(){
+	?>	
+		<audio     id='audioPlayer' src='http://ec-media.soundcloud.com/RyX1VUYc4L5W.128.mp3?ff61182e3c2ecefa438cd02102d0e385713f0c1faf3b0339595667f30d0ceb12bc47ca8f583a281f2c5bdc9ab424e432e37befdd465bfbc46fd226a1a3276e28926193f5a0&AWSAccessKeyId=AKIAJ4IAZE5EOI7PA7VQ&Expires=1349290691&Signature=QtiHgniMH%2FfQ03bMiSbAd6p5EmQ%3D' controls='controls' autoplay='autoplay' style='width: 197px;'></audio>
+	<?php     	
+	}
+	
+	
+	public function testPlus(){
+		
+	?>	
+	<!-- Place this tag where you want the share button to render. -->
+<div class="g-plus" data-action="share"></div>
+
+<!-- Place this tag after the last share tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	<?php  		
+		
+	}
+	
 }
