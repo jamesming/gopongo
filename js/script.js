@@ -1186,10 +1186,18 @@ _.extend(core, {
 			$('.category').live('click', function(event) {
 				
 				$('#thumb-collection').show();
-				//$('#video_container').hide();
-				$('#youtube_container').hide();
 				
-				//core.myPlayer.pause();
+				if( core.user_id == 1 ){
+					
+					$('#video_container').hide();
+					core.myPlayer.pause();
+												
+				}else{
+					
+					$('#youtube_container').hide();
+								
+				};
+
 				
 				$('#thumb-collection-ul').empty();			
 				
