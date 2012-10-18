@@ -503,7 +503,19 @@ _.extend(core, {
 				tpl  = tpl.replace(/{{asset_name}}/g, asset_name);
 				tpl  = tpl.replace(/{{asset_id}}/g, asset_id);
 				tpl  = tpl.replace(/{{youtube_url}}/g, youtube_url);
-				tpl  = tpl.replace(/{{youtube_thumb}}/g, youtube_thumb);
+				
+				if( core.user_id == 1){
+					
+					var img_src = window.base_url + 'uploads/'+ asset_id +'/thumb/image.jpg?v=' + Math.random();
+					
+					
+					tpl  = tpl.replace(/{{image_thumb}}/g, img_src);
+				}else{
+					tpl  = tpl.replace(/{{image_thumb}}/g, youtube_thumb);
+				};
+				
+				
+				
 				tpl  = tpl.replace(/{{youtube_id}}/g, youtube_id);
 				tpl  = tpl.replace(/{{category_id}}/g, category_id);
 				tpl  = tpl.replace(/{{count}}/g, count);
@@ -1199,8 +1211,15 @@ _.extend(core, {
 			
 			$('#categories li').click(function(event) {	
 					
-
-				core.misc.playYouTube( $(this) );
+					if( core.user_id == 1 ){
+						
+						 	core.misc.playVideo( $(this) );
+								
+					}else{
+						
+						 	core.misc.playYouTube( $(this) );
+									
+					};
 
 			});	
 			
@@ -1281,7 +1300,7 @@ _.extend(core, {
 				$('#video_container').show();
 				
 				var video_src = window.base_url + 'uploads/'+ $this.attr('asset_id') +'/video/video.mp4?v=' + Math.random();
-				console.log(video_src);
+				
 				core.myPlayer.src(video_src);				
 				
 				
