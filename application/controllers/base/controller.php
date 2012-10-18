@@ -23,6 +23,12 @@ class Base_Controller extends CI_Controller
 		$this->_data->company = "footer/company";			
 		$this->_data->footer = "footer/footer";
 		
+		if( isset($this->session->userdata['user_id']) ){
+			$this->_data->loggedIn = true; 
+		}else{
+			$this->_data->loggedIn = false; 
+		};
+		
 	}
 	
 	function create_table(){

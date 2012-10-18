@@ -14,14 +14,24 @@
 					      <input type="text" class="asset_name input-medium" placeholder="Name" >
 					    </div>
 					  </div>		
-					  <div class="control-group">
-					    <label class="control-label" for="asset_client">Client</label>
+					  
+					  
+					  
+					  <div class="control-group"  <?php echo ( $this->session->userdata['user_id'] == 1  ? "   style='display:none'  " : "" );   ?>>
+					    <label class="control-label" for="asset_client">Youtube URL</label>
 					    <div class="controls">
-					      <input type="text" class="asset_youtube_url input-medium" placeholder="Client" >
+					      <input type="text" class="asset_youtube_url input-medium" placeholder="Youtube URL" >
 					    </div>
 					  </div>						  		
 					  
-					  <div class="control-group">
+					  <div class="control-group"  <?php echo ( $this->session->userdata['user_id'] == 1  ? "" : "   style='display:none'  " );   ?>>
+					    <label class="control-label" for="asset_client">Client</label>
+					    <div class="controls">
+					      <input type="text" class="asset_client input-medium" placeholder="Client" >
+					    </div>
+					  </div>						  
+					  
+					  <div class="control-group"  <?php echo ( $this->session->userdata['user_id'] == 1  ? "" : "   style='display:none'  " );   ?>>
 					    <label class="control-label" for="asset_description">Description</label>
 					    <div class="controls">
 					    	<textarea class="asset_description input-medium" placeholder="Description" ></textarea>
@@ -32,7 +42,7 @@
 				</div>
 				
 				
-				<div  class=' oh' >
+				<div  class=' oh' <?php echo ( $this->session->userdata['user_id'] == 1  ? "" : "   style='display:none'  " );   ?>>
 					
 					<div  class='img_wrapper ' >
 						<img  src="" class="img-polaroid thumb_img">

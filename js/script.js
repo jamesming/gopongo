@@ -343,13 +343,12 @@ _.extend(core, {
 	
 	 start: function(){
 	 	
-	 	this.setPropertiesMain();
-	 	
 		var  that = this
 			,url = window.base_url  + 'index.php/ajax/getAll';
 		
 		$('#json').load(url, function(){
-//			console.log(JSON.stringify(core.categories));
+			
+			that.setPropertiesMain();
 
 			that.create.init();
 			that.bindElements.init();
@@ -360,6 +359,8 @@ _.extend(core, {
 	}
 
 	,setPropertiesMain: function(){
+		
+		this.user_id = core.categories[0].user_id;
 		
 		this.myPlayer = _V_("my_video_1");
 		
@@ -746,7 +747,7 @@ _.extend(core, {
 								    
 									core.order.model.categories.setOne(category_id, order, direction);								    
 								    
-								   	console.log(start_pos, end_pos);
+								   	// console.log(start_pos, end_pos);
 								    
 								}
 							}
@@ -876,9 +877,18 @@ _.extend(core, {
 				}						
 				
 				,playAsset: function(){
-					$('.play').live('click', function(event) {
-					 	core.misc.playYouTube( $(this) );
-					});	
+					
+					
+					if( core.user_id == 1 ){
+						$('.play').live('click', function(event) {
+						 	core.misc.playVideo( $(this) );
+						});								
+					}else{
+						$('.play').live('click', function(event) {
+						 	core.misc.playYouTube( $(this) );
+						});							
+					};
+					
 				}			
 				
 				,dragAsset: function(){
@@ -993,100 +1003,60 @@ _.extend(core, {
 					
 						$('#zoom .submit_asset_form').live('click', function(event) {
 							
-							var  asset_name = $('#zoom .asset_name').val();
-							var  asset_youtube_url = $('#zoom .asset_youtube_url').val();
+							var  asset_name = $('#zoom .asset_name').val()
+								,asset_youtube_url = $('#zoom .asset_youtube_url').val()
+								,asset_description =  $('#zoom .asset_description').val()
+								,asset_client = $('#zoom .client').val();
 								
 							$('body').click();
 							
-							/*if( core.submissionModeAssets === 'insert'){
-								
-								var assetObj = {
-									 asset_name:asset_name
-									,category_id:core.categories[core.category_idx].category_id
-								};
-								
-								that.postInsertAsset(assetObj);
-								
-							}else if( core.submissionModeAssets === 'edit'){*/
-								
 								var assetObj = {
 									  asset_name:asset_name
 									 ,asset_youtube_url:asset_youtube_url
+									 ,asset_client:asset_client
+									 ,asset_description:asset_description
 									 ,asset_id:core.updateThis.asset_id
 								};						
 								
 								that.postEditAsset(assetObj);
-								
-							/*};*/
+
 							
 								
 						});	
 					}
-					
-					/*,postInsertAsset: function(assetObj){
-						
-			 			var url = window.base_url  + 'index.php/ajax/insertAsset';
-			 			
-						$.post(	url,
-								assetObj,
-								function(insert_id) {
-									
-									core.create.asset.add(
-										 assetObj.asset_name
-										,insert_id
-										,core.category_idx
-									);
-									
-									core.create.category_li.add(
-										 core.category_idx
-										,{
-											 asset_name:assetObj.asset_name
-											,asset_id:insert_id
-										 }
-									);
-									
-									if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
-										core.categories[core.category_idx].assets = [];
-									};				
-									
-									_.extend(assetObj, {asset_id:insert_id});
-									delete assetObj['category_id'];
-									
-									core.categories[core.category_idx].assets.push(assetObj);
-									
-									core.misc.showHideButtonBasedOnNumofAssets();
-									
-									var $el = $('.edit[asset_id=' + insert_id + ']');
-									
-									core.bindElements.editAsset.fancyZoomThis( $el );
-		
-								}
-						);	
-						
-					}*/
-					
-					
+
 					,postEditAsset: function(assetObj){
 						
 			 			var url = window.base_url  + 'index.php/ajax/editAsset';
 			 			
-						$.post(	url,
-								assetObj,
-								function( youtube_id ) {
-									
-									var youtubeObj = {
-										'youtube_id': youtube_id
-									};
-									_.extend(assetObj, youtubeObj );
-									
-									if( core.submissionModeAssets === 'insert'){
-										core.bindElements.model.assets.formSubmission.afterUpdate.createNewElements(assetObj);
-									}else if( core.submissionModeAssets === 'edit'){
-										core.bindElements.model.assets.formSubmission.afterUpdate.updateExistingElements(assetObj);
-									};
-		
-								}
-						);	
+			 			if( core.user_id === 1){
+			 				
+			 				
+			 				
+			 				
+			 			}else{
+			 				
+							$.post(	url,
+									assetObj,
+									function( youtube_id ) {
+										
+										var youtubeObj = {
+											'youtube_id': youtube_id
+										};
+										_.extend(assetObj, youtubeObj );
+										
+										if( core.submissionModeAssets === 'insert'){
+											core.bindElements.model.assets.formSubmission.afterUpdate.createNewElements(assetObj);
+										}else if( core.submissionModeAssets === 'edit'){
+											core.bindElements.model.assets.formSubmission.afterUpdate.updateExistingElements(assetObj);
+										};
+			
+									}
+							);				 				
+			 				
+			 			};
+			 			
+
 						
 					}			
 					
@@ -1293,7 +1263,31 @@ _.extend(core, {
 				
 		}
 		
+		,playVideo: function($this){
 		
+				var	 asset_id = $this.attr('asset_id')
+					,category_id = $this.attr('category_id')
+					,idx_categories_array = core.findIndexInArrayOfObjects( 
+										 core.categories
+										,function( item ){
+											if( item.category_id === category_id) return true;
+										});	
+										
+				$('.category-ul > li').css({background:'white'});	
+				$('li[asset_id=' + asset_id + '] ').css({background:'red'});										
+				
+				
+				$('#thumb-collection').hide();
+				$('#video_container').show();
+				
+				var video_src = window.base_url + 'uploads/'+ $this.attr('asset_id') +'/video/video.mp4?v=' + Math.random();
+				console.log(video_src);
+				core.myPlayer.src(video_src);				
+				
+				
+										
+			
+		}
 		,playYouTube: function($this){
 			
 				var	 asset_id = $this.attr('asset_id')
@@ -1310,18 +1304,11 @@ _.extend(core, {
 
 			
 				$('#thumb-collection').hide();
-				//$('#video_container').show();
 				$('#youtube_container').show();
-				
-				//var video_src = window.base_url + 'uploads/'+ $(this).attr('asset_id') +'/video/video.mp4?v=' + Math.random();
-				
-				//core.myPlayer.src(video_src);
 				
 				if( $this.attr('youtube_id') !== core.youtube_id){
 					var  youtube_id = core.youtube_id = $this.attr('youtube_id')
 						,yourtube_src = "http://www.youtube.com/embed/"+youtube_id+"?autoplay=1";
-					
-
 	
 					$('#youtube_iframe').attr('src', yourtube_src);					
 				};

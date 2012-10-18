@@ -10,43 +10,59 @@ class Main extends Base_Controller {
 
 	public function index()
 	{
+		if( $this->_data->loggedIn == true ){
+			
+			$this->main_body();			
+			
+		}else{
+			
+			$this->_data->body = "body/login/view";
+			$this->load->view('index', $this->_data);				
+		};
+
+	}
+	
+	
+	public function main_body(){
+		
 		$this->_data->body = "body/main/view";
 		$this->_data->hidden = "hidden/view";		
 		$this->_data->videoplayer = "hidden/videoplayer/view";
 		$this->_data->youtube = "hidden/youtube/view";
 		$this->_data->jcrop = "hidden/jcrop/view";
 		
-		$this->load->view('index', $this->_data);	
-	}
-	
-	public function login(){
+
 		
-		$this->_data->nav_selected = "";
+		$this->load->view('index', $this->_data);			
 		
-		$this->_data->body = "body/login/view";
-		
-		$this->load->view('index', $this->_data);
 		
 	}
-	
-	
+
 	public function validate(){
 		
-		sleep(1);	
+		sleep(0);	
 		
-		if( $this->input->post('username') == 'qwe'){
+		if( $this->input->post('username') == 'pongo'){
 			
-			$newdata = array('user_id' => 1 );						
+			$session_data = array('user_id' => 1 );						
 			
-			$this->session->set_userdata($newdata);			
+			$this->session->set_userdata($session_data);			
 			
-			redirect('/main/index/');
+			redirect('/main/main_body/');
+			
+		}else if($this->input->post('username') == 'jamesming'){
+			
+			$session_data = array('user_id' => 2 );						
+			
+			$this->session->set_userdata($session_data);	
+			
+			redirect('/main/main_body/');			
 			
 		}else{
 			
 			$this->session->sess_create();
 			
-			redirect('/main/login/');
+			redirect('/main/index/');
 			
 		};
 		

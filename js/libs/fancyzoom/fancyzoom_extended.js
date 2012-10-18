@@ -31,7 +31,7 @@ $.fn.fancyZoom = function(options, callback){
                     </tbody> \
                   </table> \
                   <a href="#" title="Close" id="zoom_close" style="position:absolute; top:0; left:0;"> \
-                    <img src="' + directory + '/closebox.' + ext + '" alt="Close" style="border:none; margin:0; padding:0;" /> \
+                    <img src="' + window.base_url + directory + '/closebox.' + ext + '" alt="Close" style="border:none; margin:0; padding:0;" /> \
                   </a> \
                 </div>';
 
