@@ -1381,7 +1381,9 @@ _.extend(core, {
 										 core.categories
 										,function( item ){
 											if( item.category_id === category_id) return true;
-										});		
+										});
+										
+				core.playlist = [];		
 										
 				$('.category-ul > li').css({background:'white'});	
 				$('li[asset_id=' + asset_id + '] ').css({background:'red'});

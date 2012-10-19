@@ -20,7 +20,7 @@
 					Edit Category&nbsp;&nbsp;<i class="icon-edit"></i>
 				</a>
 			</span>
-			<span  class='playAllInCategory ' >
+			<span  class='playAllInCategory ' <?php echo ( $this->session->userdata['user_id'] == 1  ? "   style='display:none'  " : "" );   ?>>
 				<a class="btn btn-small" href="#">
 					Play Category&nbsp;&nbsp;<i class=" icon-play"></i>
 				</a>
