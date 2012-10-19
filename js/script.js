@@ -505,10 +505,7 @@ _.extend(core, {
 				tpl  = tpl.replace(/{{youtube_url}}/g, youtube_url);
 				
 				if( core.user_id == 1){
-					
 					var img_src = window.base_url + 'uploads/'+ asset_id +'/thumb/image.jpg?v=' + Math.random();
-					
-					
 					tpl  = tpl.replace(/{{image_thumb}}/g, img_src);
 				}else{
 					tpl  = tpl.replace(/{{image_thumb}}/g, youtube_thumb);
@@ -1010,7 +1007,12 @@ _.extend(core, {
 				,formSubmission: {
 					
 					 init:function(){
-					  	
+					 	
+					  	this.submit();
+
+					}
+					
+					,submit: function(){
 					  	var that = this;
 					
 						$('#zoom .submit_asset_form').live('click', function(event) {
@@ -1031,10 +1033,8 @@ _.extend(core, {
 								};						
 								
 								that.postEditAsset(assetObj);
-
-							
 								
-						});	
+						});							
 					}
 
 					,postEditAsset: function(assetObj){
@@ -1042,9 +1042,12 @@ _.extend(core, {
 			 			var url = window.base_url  + 'index.php/ajax/editAsset';
 			 			
 			 			if( core.user_id === 1){
-			 				
-			 				
-			 				
+
+							if( core.submissionModeAssets === 'insert'){
+								core.bindElements.model.assets.formSubmission.afterUpdate.createNewElements(assetObj);
+							}else if( core.submissionModeAssets === 'edit'){
+								core.bindElements.model.assets.formSubmission.afterUpdate.updateExistingElements(assetObj);
+							};
 			 				
 			 			}else{
 			 				
@@ -1073,60 +1076,24 @@ _.extend(core, {
 					}			
 					
 					,afterUpdate: {
-					
-						 updateExistingElements: function(assetObj){	
-							
-							var	 asset_id = assetObj['asset_id']				
-								,idx_assets_array = core.findIndexInArrayOfObjects( core.categories[core.category_idx].assets
-																			,function( item ){
-																					if( item.asset_id === asset_id) return true;
-																			});	
-							
-							core.categories[core.category_idx].assets[ idx_assets_array ].youtube_thumb = "http://img.youtube.com/vi/" +  assetObj.youtube_id + "/0.jpg";
-							
-		//					core.categories[core.category_idx].assets[idx_assets_array].asset_name= assetObj.asset_name;
-		//					$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
-		
-							$('.title[asset_id=' + assetObj['asset_id'] + ']')
-							// .html(assetObj.asset_name)
-							.attr('youtube_id', assetObj.youtube_id);
-							
-							
-							core.misc.getYouTubeTitle(assetObj.youtube_id, function(youtubeObj){
-								
-								youtubeObj.data.title = youtubeObj.data.title.substring(0, 15);
-								
-								assetObj.asset_name = youtubeObj.data.title;
-								
-								$('.title[asset_id=' + assetObj['asset_id'] + ']')
-								.html(assetObj.asset_name);
-								
-								$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
-								
-								core.categories[core.category_idx].assets[ idx_assets_array ].asset_name = assetObj.asset_name;
-								
-							});
-							
-							
-							
-							
-							$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play')
-							.attr('youtube_id', assetObj.youtube_id)
-							.css({
-									 'background':'url(http://img.youtube.com/vi/' +  assetObj.youtube_id + '/0.jpg) no-repeat'
-									,'background-position':'0px -45px'
-									,'background-size':'282px'
-							});
-			
-							
-							
-							core.submissionModeAssets = 'insert';
-							
-						}
 						
-						,createNewElements: function(assetObj){
-							
-							core.misc.getYouTubeTitle(assetObj.youtube_id, function(youtubeObj){
+						 createNewElements: function(assetObj){
+						 	
+						 	
+							if( core.user_id == 1){
+								
+									core.create.asset.add(
+										 assetObj.asset_name
+										,assetObj.asset_id
+										,assetObj.asset_youtube_url = ''
+										,youtube_thumb = ''
+										,assetObj.youtube_id = ''
+										,core.category_idx
+									);								
+								
+							}else{
+								
+								core.misc.getYouTubeTitle(assetObj.youtube_id, function(youtubeObj){
 								
 									youtubeObj.data.title = youtubeObj.data.title.substring(0, 15);
 									
@@ -1140,36 +1107,99 @@ _.extend(core, {
 										,assetObj.youtube_id
 										,core.category_idx
 									);
-									
-				
-									core.create.category_li.add(
-										 core.category_idx
-										,{
-											 asset_name:assetObj.asset_name
-											,asset_id:assetObj.asset_id
-										 }
-									);
-									
-									if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
-										core.categories[core.category_idx].assets = [];
-									};				
+		
 									
 									assetObj.youtube_thumb = "http://img.youtube.com/vi/" +  assetObj.youtube_id + "/0.jpg";
-									
-									core.categories[core.category_idx].assets.push(assetObj);	
-									
-							});
-											
+										
+								});
+								
+							}
+							
+							
+							core.create.category_li.add(
+								 core.category_idx
+								,{
+									 asset_name:assetObj.asset_name
+									,asset_id:assetObj.asset_id
+								 }
+							);							
+							
+							if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
+								core.categories[core.category_idx].assets = [];
+							};								
+							
+							core.categories[core.category_idx].assets.push(assetObj);
+							
 							core.misc.showHideButtonBasedOnNumofAssets();
 							
 							var $el = $('.edit[asset_id=' + assetObj.asset_id + ']');
 							
-							core.bindElements.model.assets.editAsset.fancyZoomThis( $el );	
+							core.bindElements.model.assets.editAsset.fancyZoomThis( $el );								
+							
+						}						
+					
+						 ,updateExistingElements: function(assetObj){	
+							
+							var	 asset_id = assetObj['asset_id']				
+								,idx_assets_array = core.findIndexInArrayOfObjects( core.categories[core.category_idx].assets
+																			,function( item ){
+																					if( item.asset_id === asset_id) return true;
+																			});	
+																			
+							if( core.user_id == 1){
+								
+									$('.title[asset_id=' + assetObj['asset_id'] + ']')
+									.html(assetObj.asset_name);
+									
+									$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
+									
+									core.categories[core.category_idx].assets[ idx_assets_array ].asset_name = assetObj.asset_name;
+																
+									$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play')
+									.css({
+											 'background':'url(' + window.base_url + 'uploads/'+ assetObj['asset_id'] +'/thumb/image.jpg?v=' + Math.random() + ') no-repeat'
+											,'background-position':'0px -45px'
+											,'background-size':'282px'
+									});
+									
+							}else{
+							
+								core.categories[core.category_idx].assets[ idx_assets_array ].youtube_thumb = "http://img.youtube.com/vi/" +  assetObj.youtube_id + "/0.jpg";
+			
+								$('.title[asset_id=' + assetObj['asset_id'] + ']')
+								.attr('youtube_id', assetObj.youtube_id);
+								
+								core.misc.getYouTubeTitle(assetObj.youtube_id, function(youtubeObj){
+									
+									youtubeObj.data.title = youtubeObj.data.title.substring(0, 15);
+									
+									assetObj.asset_name = youtubeObj.data.title;
+									
+									$('.title[asset_id=' + assetObj['asset_id'] + ']')
+									.html(assetObj.asset_name);
+									
+									$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
+									
+									core.categories[core.category_idx].assets[ idx_assets_array ].asset_name = assetObj.asset_name;
+									
+								});
+								
+								
+								$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play')
+								.attr('youtube_id', assetObj.youtube_id)
+								.css({
+										 'background':'url(http://img.youtube.com/vi/' +  assetObj.youtube_id + '/0.jpg) no-repeat'
+										,'background-position':'0px -45px'
+										,'background-size':'282px'
+								});
+								
+							}
+							
+							core.submissionModeAssets = 'insert';	
 							
 						}
-						
+
 					}
-					
 					
 				}
 				
@@ -1345,7 +1375,7 @@ _.extend(core, {
 		
 		,getYouTubeTitle: function( youtube_id, updateYoutubeTitle ){
 			
-			$.getJSON('http://gdata.youtube.com/feeds/api/videos/' + youtube_id + '?v=2&alt=jsonc', function( youtubeObj ) {
+			$.getJSON('http://gdata.youtube.com/feeds/api/videos/' + unescape(youtube_id) + '?v=2&alt=jsonc', function( youtubeObj ) {
 			  updateYoutubeTitle(youtubeObj);
 			});
 		}

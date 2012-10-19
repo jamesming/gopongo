@@ -26,7 +26,8 @@ class Models_Db_Categories_Model extends Database {
 		return $this->insert_table(
 			$table = 'categories', 
 			$insert_what = array(
-				 'name' => $post_array['category_name']
+				  'name' => $post_array['category_name']
+				 ,'user_id' => (  $this->session->userdata['user_id'] == 1 ? 1 : 2 ) 
 			)
 		);
 		
