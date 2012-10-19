@@ -59,7 +59,8 @@ cursor:pointer;
 	background:lightblue;
 	padding: 0px 0px 0px 0px;
 }
-#thumb-collection .editCategoryTitle{
+ #thumb-collection .editCategoryTitle
+,#thumb-collection .playAllInCategory{
 	cursor: pointer;
 	font-size: 13px;
 	font-weight: normal;

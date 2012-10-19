@@ -348,6 +348,8 @@ _.extend(core, {
 		
 		$('#json').load(url, function(){
 			
+//			console.log(JSON.stringify(core.categories));
+			
 			that.setPropertiesMain();
 
 			that.create.init();
@@ -642,6 +644,7 @@ _.extend(core, {
 				init: function(){	
 					this.insertNewCategory();
 					this.editCategory();
+					this.playCategory();
 					this.sortCategories();
 				}
 				
@@ -724,6 +727,30 @@ _.extend(core, {
 						});	
 						
 					});
+					
+				}
+				
+
+				,playCategory: function(){
+					
+					$('#thumb-collection .playAllInCategory').click(function(event) {
+						
+						core.playlist = [];
+						core.playlistIdx  = 0; 
+						
+						for(var key in core.categories[core.category_idx].assets){
+							
+							core.playlist.push({
+								 asset_id: core.categories[core.category_idx].assets[key].asset_id
+								,youtube_id: core.categories[core.category_idx].assets[key].youtube_id	
+							});
+						
+						}
+						
+						core.misc.playCategoryByIdx();
+						
+							
+					});	
 					
 				}
 				
@@ -1358,24 +1385,32 @@ _.extend(core, {
 										
 				$('.category-ul > li').css({background:'white'});	
 				$('li[asset_id=' + asset_id + '] ').css({background:'red'});
-										
-
 			
 				$('#thumb-collection').hide();
 				$('#youtube_container').show();
 				
 				if( $this.attr('youtube_id') !== core.youtube_id){
-					var  youtube_id = core.youtube_id = $this.attr('youtube_id')
-						,yourtube_src = "http://www.youtube.com/embed/"+youtube_id+"?autoplay=1";
+					var  youtube_id = core.youtube_id = $this.attr('youtube_id');
 
-						core.player.loadVideoById({
-							  videoId:youtube_id
-							, startSeconds:0
-						, suggestedQuality:'large'});
-							
+						core.player.loadVideoById({videoId:youtube_id});
+						
 						core.player.playVideo();				
 					
 				};
+			
+		}
+		
+		,playCategoryByIdx: function(){
+			
+			core.player.loadVideoById({videoId:core.playlist[core.playlistIdx].youtube_id});
+			
+			core.player.playVideo();	
+			
+			$('.category-ul > li').css({background:'white'});	
+			$('li[asset_id=' + core.playlist[core.playlistIdx].asset_id + '] ').css({background:'red'});
+			
+			$('#thumb-collection').hide();
+			$('#youtube_container').show();
 			
 		}
 		
@@ -1398,6 +1433,13 @@ _.extend(core, {
 					}
 					,onStateChange: function(event) {
 						console.log(event.data);
+						var lengthOfPlaylist  = core.playlist.length;
+						
+						if( event.data == 0  && lengthOfPlaylist > 0 ){
+							core.playlistIdx++;
+							if( core.playlistIdx == (lengthOfPlaylist)) core.playlistIdx = 0;
+							core.misc.playCategoryByIdx();
+						};
 					}
 				  }
 				});
