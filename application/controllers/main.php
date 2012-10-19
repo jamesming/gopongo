@@ -50,7 +50,9 @@ class Main extends Base_Controller {
 			
 			redirect('/main/main_body/');
 			
-		}else if($this->input->post('username') == 'jamesming'){
+		}else if($this->input->post('username') == 'jamesming' 
+				|| $this->input->post('username') == 'jamesming@gmail.com'
+				){
 			
 			$session_data = array('user_id' => 2 );						
 			
