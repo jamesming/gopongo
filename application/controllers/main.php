@@ -131,4 +131,59 @@ class Main extends Base_Controller {
 		
 	}
 	
+	public function testyoutube(){?>
+		
+			<!DOCTYPE html>
+			<html>
+			  <body>
+			    <div id="player"></div>
+			
+			    <script>
+			
+			      var tag = document.createElement('script');
+			      tag.src = "//www.youtube.com/iframe_api";
+			      var firstScriptTag = document.getElementsByTagName('script')[0];
+			      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+			
+			
+			      var player;
+			      function onYouTubeIframeAPIReady() {
+			        player = new YT.Player('player', {
+			          height: '200',
+			          width: '200',
+			          videoId: 'C8KV0mzqTXY',
+			          events: {
+			            'onReady': onPlayerReady,
+			            'onStateChange': onPlayerStateChange
+			          }
+			        });
+			      }
+			
+			      function onPlayerReady(event) {
+			        event.target.playVideo();
+			        
+			        console.log('test  ' + event.target);
+			        
+			        setTimeout(function(){
+			        	event.target.pauseVideo();
+			        }, 6000);
+			        
+			      }
+			
+			      var done = false;
+			      function onPlayerStateChange(event) {
+			
+			        console.log(event.data);
+			      }
+			      
+			      
+			    </script>
+			  </body>
+			</html>
+			
+			
+			
+		<?php
+	}
+	
 }

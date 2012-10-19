@@ -11,22 +11,22 @@ $.fn.fancyZoom = function(options, callback){
                   <table id="zoom_table" style="border-collapse:collapse; width:100%; height:100%;"> \
                     <tbody> \
                       <tr> \
-                        <td class="tl" style="background:url(' + directory + '/tl.' + ext + ') 0 0 no-repeat; width:20px; height:20px; overflow:hidden;" /> \
-                        <td class="tm" style="background:url(' + directory + '/tm.' + ext + ') 0 0 repeat-x; height:20px; overflow:hidden;" /> \
-                        <td class="tr" style="background:url(' + directory + '/tr.' + ext + ') 100% 0 no-repeat; width:20px; height:20px; overflow:hidden;" /> \
+                        <td class="tl" style="background:url(' + window.base_url+ directory + '/tl.' + ext + ') 0 0 no-repeat; width:20px; height:20px; overflow:hidden;" /> \
+                        <td class="tm" style="background:url(' + window.base_url+ directory + '/tm.' + ext + ') 0 0 repeat-x; height:20px; overflow:hidden;" /> \
+                        <td class="tr" style="background:url(' + window.base_url+ directory + '/tr.' + ext + ') 100% 0 no-repeat; width:20px; height:20px; overflow:hidden;" /> \
                       </tr> \
                       <tr> \
-                        <td class="ml" style="background:url(' + directory + '/ml.' + ext + ') 0 0 repeat-y; width:20px; overflow:hidden;" /> \
+                        <td class="ml" style="background:url(' + window.base_url+ directory + '/ml.' + ext + ') 0 0 repeat-y; width:20px; overflow:hidden;" /> \
                         <td class="mm" style="background:#fff; vertical-align:top; padding:10px;"> \
                           <div id="zoom_content"> \
                           </div> \
                         </td> \
-                        <td class="mr" style="background:url(' + directory + '/mr.' + ext + ') 100% 0 repeat-y;  width:20px; overflow:hidden;" /> \
+                        <td class="mr" style="background:url(' + window.base_url+ directory + '/mr.' + ext + ') 100% 0 repeat-y;  width:20px; overflow:hidden;" /> \
                       </tr> \
                       <tr> \
-                        <td class="bl" style="background:url(' + directory + '/bl.' + ext + ') 0 100% no-repeat; width:20px; height:20px; overflow:hidden;" /> \
-                        <td class="bm" style="background:url(' + directory + '/bm.' + ext + ') 0 100% repeat-x; height:20px; overflow:hidden;" /> \
-                        <td class="br" style="background:url(' + directory + '/br.' + ext + ') 100% 100% no-repeat; width:20px; height:20px; overflow:hidden;" /> \
+                        <td class="bl" style="background:url(' + window.base_url+ directory + '/bl.' + ext + ') 0 100% no-repeat; width:20px; height:20px; overflow:hidden;" /> \
+                        <td class="bm" style="background:url(' + window.base_url+ directory + '/bm.' + ext + ') 0 100% repeat-x; height:20px; overflow:hidden;" /> \
+                        <td class="br" style="background:url(' + window.base_url+ directory + '/br.' + ext + ') 100% 100% no-repeat; width:20px; height:20px; overflow:hidden;" /> \
                       </tr> \
                     </tbody> \
                   </table> \

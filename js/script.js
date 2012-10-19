@@ -352,8 +352,9 @@ _.extend(core, {
 
 			that.create.init();
 			that.bindElements.init();
+			that.misc.youtubeAPI();
 			
-			that.create.jcrop.init()
+			// that.create.jcrop.init()
 		});	
 		
 	}
@@ -1320,7 +1321,7 @@ _.extend(core, {
 				
 		}
 		
-		,playVideo: function($this){
+		,playVideo: function($this){  // DEPRECIATED
 		
 				var	 asset_id = $this.attr('asset_id')
 					,category_id = $this.attr('category_id')
@@ -1366,8 +1367,14 @@ _.extend(core, {
 				if( $this.attr('youtube_id') !== core.youtube_id){
 					var  youtube_id = core.youtube_id = $this.attr('youtube_id')
 						,yourtube_src = "http://www.youtube.com/embed/"+youtube_id+"?autoplay=1";
-	
-					$('#youtube_iframe').attr('src', yourtube_src);					
+
+						core.player.loadVideoById({
+							  videoId:youtube_id
+							, startSeconds:0
+						, suggestedQuality:'large'});
+							
+						core.player.playVideo();				
+					
 				};
 			
 		}
@@ -1378,6 +1385,23 @@ _.extend(core, {
 			$.getJSON('http://gdata.youtube.com/feeds/api/videos/' + unescape(youtube_id) + '?v=2&alt=jsonc', function( youtubeObj ) {
 			  updateYoutubeTitle(youtubeObj);
 			});
+		}
+		
+		,youtubeAPI: function(){
+
+				core.player = new YT.Player('player', {
+				  width: '640',
+				  height: '480',
+				  events: {
+				     onReady: function(event) {
+				     	// event.target.playVideo();
+					}
+					,onStateChange: function(event) {
+						console.log(event.data);
+					}
+				  }
+				});
+
 		}
 		
 	}
