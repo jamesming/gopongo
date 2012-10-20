@@ -12,7 +12,7 @@
 		<div  id='addNewCategory'  href='#edit_category_modal_box'  category_id='-1'><a class="btn btn-small" href="#"><i class="icon-plus-sign"></i>&nbsp;Add new Category </a>
 		</div>
 	</div>
-	<div   id='thumb-collection' class="span9">
+	<div   id='thumb-collection' class="span9 fixedRightBody">
 		<div>
 			<h2></h2>
 			<span  href='#edit_category_modal_box'  class='editCategoryTitle ' category_idx='' category_id=''>

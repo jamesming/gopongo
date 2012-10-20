@@ -54,13 +54,7 @@ border-top: 0px solid #e5e5e5;
 cursor:pointer;	
 }
 
-#thumb-collection{
-/*	height:547px;	
-	padding: 0px 0px 0px 0px;*/
-	position: fixed;
-	top: 76px;
-	right: 180px;		
-}
+
  #thumb-collection .editCategoryTitle
 ,#thumb-collection .playAllInCategory{
 	cursor: pointer;
@@ -148,11 +142,6 @@ cursor:pointer;
 	cursor:pointer;	
 }
 
-#youtube_container{
-	position: fixed;
-	top: 76px;
-	right: 180px;	
-}
 #youtube_container .title{
 ont-weight: bold;
 font-size: 28px;
@@ -218,5 +207,10 @@ background: yellow;
 
 .alert.alert-error{
 display:none;	
+}
+
+.fixedRightBody{
+	position: fixed;
+	top: 66px;
 }
 

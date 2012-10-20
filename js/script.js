@@ -382,6 +382,7 @@ _.extend(core, {
 		 init: function(){
 			this.category.init();
 			this.asset.init(0);
+			this.setFixedRightBody()
 		}
 		
 		,category: {
@@ -534,6 +535,14 @@ _.extend(core, {
 			
 		}
 		
+		,setFixedRightBody: function(){
+			
+			$('.fixedRightBody').css({
+					'right':($('body').width() /2 ) - 560
+				})
+			
+		}
+		
 		,jcrop:{
 			 init:function(){
 				this.bind();
@@ -625,6 +634,7 @@ _.extend(core, {
 		
 		 init: function(){
 		 	
+		 	this.windowResize();
 			this.model.categories.init();
 			this.model.assets.init();
 			
@@ -635,6 +645,14 @@ _.extend(core, {
 			this.upload.form();
 			
 
+		}
+		
+		,windowResize: function(){
+			
+			$(window).resize(function() {
+			  core.create.setFixedRightBody();
+			});
+			
 		}
 		
 		,model:{
