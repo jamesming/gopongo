@@ -56,7 +56,6 @@ cursor:pointer;
 
 #thumb-collection{
 	height:547px;	
-	background:lightblue;
 	padding: 0px 0px 0px 0px;
 }
  #thumb-collection .editCategoryTitle
@@ -98,7 +97,7 @@ cursor:pointer;
 }
 
 #thumb-collection ul li#addAsset{
-	background: pink;
+	background: lightgray;
 	text-align: center;
 	padding-top: 63px;
 	box-sizing: border-box;
@@ -141,8 +140,14 @@ cursor:pointer;
 	cursor:pointer;	
 }
 
-#youtube_iframe{
-margin-top: -11px;	
+#youtube_container{
+	margin-top: -11px;	
+}
+#youtube_container .title{
+ont-weight: bold;
+font-size: 28px;
+margin-bottom: 11px;
+color: gray;
 }
 
 .form_asset_container{

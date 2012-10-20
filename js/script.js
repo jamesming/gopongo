@@ -348,7 +348,7 @@ _.extend(core, {
 		
 		$('#json').load(url, function(){
 			
-//			console.log(JSON.stringify(core.categories));
+			console.log(JSON.stringify(core.categories));
 			
 			that.setPropertiesMain();
 
@@ -443,7 +443,7 @@ _.extend(core, {
 			
 					var tpl = core.category_li_tpl;
 					
-					li_obj.asset_name = li_obj.asset_name.substring(0, 15);
+					li_obj.asset_name = li_obj.asset_name.substring(0, 25);
 
 					tpl  = tpl.replace(/{{asset_name}}/g, li_obj.asset_name);
 					tpl  = tpl.replace(/{{asset_id}}/g, li_obj.asset_id);
@@ -501,7 +501,7 @@ _.extend(core, {
 				
 				var tpl = core.asset_tpl;
 				
-				asset_name = asset_name.substring(0, 15);
+				asset_name = asset_name.substring(0, 25);
 	
 				tpl  = tpl.replace(/{{asset_name}}/g, asset_name);
 				tpl  = tpl.replace(/{{asset_id}}/g, asset_id);
@@ -1449,13 +1449,21 @@ _.extend(core, {
 		
 		,highlight_thumb: function(asset_id){
 			
+			var assetIdx = core.findIndexInArrayOfObjects( 
+														 core.categories[core.category_idx].assets
+														,function( item ){
+															if( item.asset_id === asset_id) return true;
+														});
+			
 			core.asset_id = asset_id;
 			
 			$('.category-ul > li').css({background:'white'});	
 			$('li[asset_id=' + asset_id + '] ').css({background:'red'});
 			
 			$('#thumb-collection').hide();
-			$('#youtube_container').show();			
+			$('#youtube_container').show();		
+			
+			$('#youtube_container .title').html(core.categories[core.category_idx].assets[ assetIdx ].asset_name);	
 			
 		}
 		
