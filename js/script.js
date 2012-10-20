@@ -1286,6 +1286,9 @@ _.extend(core, {
 				
 				core.bindElements.model.assets.editAsset.init();
 				
+				
+				$('#thumb-collection-ul .play[asset_id=' + core.asset_id + ']').css({border:'3px solid red'});
+				
 			});		
 			
 			
@@ -1396,12 +1399,8 @@ _.extend(core, {
 										,function( item ){
 											if( item.category_id === category_id) return true;
 										});
-										
-				$('.category-ul > li').css({background:'white'});	
-				$('li[asset_id=' + asset_id + '] ').css({background:'red'});
-			
-				$('#thumb-collection').hide();
-				$('#youtube_container').show();
+				
+				this.highlight_thumb(asset_id);
 				
 				if(	$this.attr('youtube_id') !== core.youtube_id){
 					
@@ -1410,15 +1409,29 @@ _.extend(core, {
 						&&  $this.attr('youtube_id') == core.playlist[core.playlistIdx].youtube_id
 					){
 						
-						return;} 
+						return;
+						
+					 }; 
 						
 					core.playlist = [];		
 					
 					var  youtube_id = core.youtube_id = $this.attr('youtube_id');
-
-						core.player.loadVideoById({videoId:youtube_id});
+					
+					var doWhenReady = function(){
 						
-						core.player.playVideo();				
+							if( typeof(core.player.loadVideoById) == "undefined"){
+								setTimeout(function(){
+									doWhenReady();
+								}, 10);
+							}else{
+								
+								core.player.loadVideoById({videoId:youtube_id});
+								core.player.playVideo();		
+								
+							};
+						}
+						
+					doWhenReady();
 					
 				};
 			
@@ -1430,11 +1443,19 @@ _.extend(core, {
 			
 			core.player.playVideo();	
 			
+			this.highlight_thumb(core.playlist[core.playlistIdx].asset_id);
+			
+		}
+		
+		,highlight_thumb: function(asset_id){
+			
+			core.asset_id = asset_id;
+			
 			$('.category-ul > li').css({background:'white'});	
-			$('li[asset_id=' + core.playlist[core.playlistIdx].asset_id + '] ').css({background:'red'});
+			$('li[asset_id=' + asset_id + '] ').css({background:'red'});
 			
 			$('#thumb-collection').hide();
-			$('#youtube_container').show();
+			$('#youtube_container').show();			
 			
 		}
 		
