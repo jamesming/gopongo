@@ -348,7 +348,7 @@ _.extend(core, {
 		
 		$('#json').load(url, function(){
 			
-			console.log(JSON.stringify(core.categories));
+//			console.log(JSON.stringify(core.categories));
 			
 			that.setPropertiesMain();
 
@@ -443,7 +443,7 @@ _.extend(core, {
 			
 					var tpl = core.category_li_tpl;
 					
-					li_obj.asset_name = li_obj.asset_name.substring(0, 25);
+					// li_obj.asset_name = li_obj.asset_name.substring(0, 25);
 
 					tpl  = tpl.replace(/{{asset_name}}/g, li_obj.asset_name);
 					tpl  = tpl.replace(/{{asset_id}}/g, li_obj.asset_id);
@@ -501,7 +501,7 @@ _.extend(core, {
 				
 				var tpl = core.asset_tpl;
 				
-				asset_name = asset_name.substring(0, 25);
+				// asset_name = asset_name.substring(0, 25);
 	
 				tpl  = tpl.replace(/{{asset_name}}/g, asset_name);
 				tpl  = tpl.replace(/{{asset_id}}/g, asset_id);
@@ -1400,7 +1400,7 @@ _.extend(core, {
 											if( item.category_id === category_id) return true;
 										});
 				
-				this.highlight_thumb(asset_id);
+				this.highlight_video_that_is_playing(asset_id);
 				
 				if(	$this.attr('youtube_id') !== core.youtube_id){
 					
@@ -1443,11 +1443,11 @@ _.extend(core, {
 			
 			core.player.playVideo();	
 			
-			this.highlight_thumb(core.playlist[core.playlistIdx].asset_id);
+			this.highlight_video_that_is_playing(core.playlist[core.playlistIdx].asset_id);
 			
 		}
 		
-		,highlight_thumb: function(asset_id){
+		,highlight_video_that_is_playing: function(asset_id){
 			
 			var assetIdx = core.findIndexInArrayOfObjects( 
 														 core.categories[core.category_idx].assets
@@ -1457,11 +1457,40 @@ _.extend(core, {
 			
 			core.asset_id = asset_id;
 			
-			$('.category-ul > li').css({background:'white'});	
-			$('li[asset_id=' + asset_id + '] ').css({background:'red'});
+			$('.accordion-toggle.category').css(
+				{
+					'text-decoration': 'none',
+					'font-weight': 'normal',
+					'font-size': '14px'
+				}
+			);			
+			$('.accordion-toggle.category[idx=' + core.category_idx + ']').css(
+				{
+					'text-decoration': 'underline',
+					'font-weight': 'bold',
+					'font-size': '16px'
+				}
+			);
+			
+			
+			
+			$('.category-ul > li').css(
+				{	
+					 'font-weight':'normal'
+					,'text-decoration':'none'
+					
+				});
+			
+			$('li[asset_id=' + asset_id + '] ').css(
+				{	
+					 'font-weight':'bold'
+					,'text-decoration':'underline'
+					
+				});
 			
 			$('#thumb-collection').hide();
 			$('#youtube_container').show();		
+
 			
 			$('#youtube_container .title').html(core.categories[core.category_idx].assets[ assetIdx ].asset_name);	
 			
