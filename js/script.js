@@ -751,7 +751,7 @@ _.extend(core, {
 
 				,playCategory: function(){
 					
-					$('#thumb-collection .playAllInCategory').click(function(event) {
+					$('.playAllInCategory').live('click', function(event) {
 						
 						core.playlist = [];
 						core.playlistIdx  = 0; 
@@ -765,7 +765,7 @@ _.extend(core, {
 						
 						}
 						
-						core.misc.playCategoryByIdx();
+						core.misc.playCategory();
 						
 							
 					});	
@@ -1457,13 +1457,15 @@ _.extend(core, {
 			
 		}
 		
-		,playCategoryByIdx: function(){
+		,playCategory: function(){
+			
+			this.highlight_video_that_is_playing(core.playlist[core.playlistIdx].asset_id);
 			
 			core.player.loadVideoById({videoId:core.playlist[core.playlistIdx].youtube_id});
 			
 			core.player.playVideo();	
 			
-			this.highlight_video_that_is_playing(core.playlist[core.playlistIdx].asset_id);
+			
 			
 		}
 		
@@ -1541,7 +1543,7 @@ _.extend(core, {
 							if( event.data == 0  && lengthOfPlaylist > 0 ){
 								core.playlistIdx++;
 								if( core.playlistIdx == (lengthOfPlaylist)) core.playlistIdx = 0;
-								core.misc.playCategoryByIdx();
+								core.misc.playCategory();
 							};							
 							
 						};
