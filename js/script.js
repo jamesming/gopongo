@@ -1197,20 +1197,34 @@ _.extend(core, {
 								$('.title[asset_id=' + assetObj['asset_id'] + ']')
 								.attr('youtube_id', assetObj.youtube_id);
 								
-								core.misc.getYouTubeTitle(assetObj.youtube_id, function(youtubeObj){
+								if( assetObj.asset_name != ''){
 									
-									youtubeObj.data.title = youtubeObj.data.title.substring(0, 15);
+									core.misc.getYouTubeTitle(assetObj.youtube_id, function(youtubeObj){
+										
+										youtubeObj.data.title = youtubeObj.data.title.substring(0, 15);
+										
+										if( assetObj.asset_name == ''){
+											assetObj.asset_name = youtubeObj.data.title;
+										};
+										
+										$('.title[asset_id=' + assetObj['asset_id'] + ']')
+										.html(assetObj.asset_name);
+										
+										$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
+										
+										core.categories[core.category_idx].assets[ idx_assets_array ].asset_name = assetObj.asset_name;
+										
+									});									
 									
-									assetObj.asset_name = youtubeObj.data.title;
-									
-									$('.title[asset_id=' + assetObj['asset_id'] + ']')
-									.html(assetObj.asset_name);
-									
-									$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
-									
-									core.categories[core.category_idx].assets[ idx_assets_array ].asset_name = assetObj.asset_name;
-									
-								});
+								}else{
+										$('.title[asset_id=' + assetObj['asset_id'] + ']')
+										.html(assetObj.asset_name);
+										
+										$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
+										
+										core.categories[core.category_idx].assets[ idx_assets_array ].asset_name = assetObj.asset_name;
+																			
+								};
 								
 								
 								$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play')
@@ -1383,15 +1397,23 @@ _.extend(core, {
 											if( item.category_id === category_id) return true;
 										});
 										
-				core.playlist = [];		
-										
 				$('.category-ul > li').css({background:'white'});	
 				$('li[asset_id=' + asset_id + '] ').css({background:'red'});
 			
 				$('#thumb-collection').hide();
 				$('#youtube_container').show();
 				
-				if( $this.attr('youtube_id') !== core.youtube_id){
+				if(	$this.attr('youtube_id') !== core.youtube_id){
+					
+					if(		typeof(core.playlist)   !== "undefined"
+					 	&&  typeof(core.playlist[core.playlistIdx])   !== "undefined"
+						&&  $this.attr('youtube_id') == core.playlist[core.playlistIdx].youtube_id
+					){
+						
+						return;} 
+						
+					core.playlist = [];		
+					
 					var  youtube_id = core.youtube_id = $this.attr('youtube_id');
 
 						core.player.loadVideoById({videoId:youtube_id});
@@ -1416,7 +1438,6 @@ _.extend(core, {
 			
 		}
 		
-		
 		,getYouTubeTitle: function( youtube_id, updateYoutubeTitle ){
 			
 			$.getJSON('http://gdata.youtube.com/feeds/api/videos/' + unescape(youtube_id) + '?v=2&alt=jsonc', function( youtubeObj ) {
@@ -1434,14 +1455,19 @@ _.extend(core, {
 				     	// event.target.playVideo();
 					}
 					,onStateChange: function(event) {
-						console.log(event.data);
-						var lengthOfPlaylist  = core.playlist.length;
+						// console.log(event.data);
 						
-						if( event.data == 0  && lengthOfPlaylist > 0 ){
-							core.playlistIdx++;
-							if( core.playlistIdx == (lengthOfPlaylist)) core.playlistIdx = 0;
-							core.misc.playCategoryByIdx();
+						if( typeof(core.playlist) !== "undefined"  ){
+							var lengthOfPlaylist  = core.playlist.length;
+							
+							if( event.data == 0  && lengthOfPlaylist > 0 ){
+								core.playlistIdx++;
+								if( core.playlistIdx == (lengthOfPlaylist)) core.playlistIdx = 0;
+								core.misc.playCategoryByIdx();
+							};							
+							
 						};
+
 					}
 				  }
 				});

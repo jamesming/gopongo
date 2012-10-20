@@ -188,4 +188,25 @@ class Main extends Base_Controller {
 		<?php
 	}
 	
+	
+	
+	
+	public function testing(){
+		
+		$top_part = "
+			<!DOCTYPE HTML>
+			<html>
+			<head>
+			<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+			</head>
+			<body style='margin: 0px; padding: 0px;'>";
+			
+		$bottom_part = "
+			</body>
+			</html>
+		";
+
+		
+	}
+	
 }

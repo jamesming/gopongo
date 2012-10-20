@@ -242,7 +242,7 @@ class Models_Db_Assets_Model extends Database {
 							  'youtube_url' => $post_array['asset_youtube_url']
 							 ,'youtube_id' => $youtube_id
 							 ,'youtube_thumb' => $youtube_thumb
-							 ,'name' => $youtube_array['data']['title']
+							 ,'name' => ( $post_array['asset_name'] !='' ? $post_array['asset_name'] :$youtube_array['data']['title'] )
 							 ,'duration' => $youtube_array['data']['duration']
 						)
 					);
