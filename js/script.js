@@ -1399,6 +1399,8 @@ _.extend(core, {
 										,function( item ){
 											if( item.category_id === category_id) return true;
 										});
+										
+				core.category_idx = idx_categories_array[0];
 				
 				this.highlight_video_that_is_playing(asset_id);
 				
