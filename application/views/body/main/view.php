@@ -21,9 +21,9 @@
 				</a>
 			</span>
 			<span  class='playAllInCategory ' <?php echo ( $this->session->userdata['user_id'] == 1  ? "   style='display:none'  " : "" );   ?>>
-				<a class="btn btn-small" href="#">
+				<!-- <a class="btn btn-small" href="#"> -->
 					Play Category&nbsp;&nbsp;<i class=" icon-play"></i>
-				</a>
+				<!-- </a> -->
 			</span>			
 		</div>
 		<div   style='clear:both;height:0px'  ></div>
