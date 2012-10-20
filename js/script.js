@@ -1135,7 +1135,27 @@ _.extend(core, {
 										,youtube_thumb = ''
 										,assetObj.youtube_id = ''
 										,core.category_idx
-									);								
+									);	
+									
+											core.create.category_li.add(
+												 core.category_idx
+												,{
+													 asset_name:assetObj.asset_name
+													,asset_id:assetObj.asset_id
+												 }
+											);							
+											
+											if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
+												core.categories[core.category_idx].assets = [];
+											};								
+											
+											core.categories[core.category_idx].assets.push(assetObj);
+											
+											core.misc.showHideButtonBasedOnNumofAssets();
+											
+											var $el = $('.edit[asset_id=' + assetObj.asset_id + ']');
+											
+											core.bindElements.model.assets.editAsset.fancyZoomThis( $el );																		
 								
 							}else{
 								
@@ -1157,30 +1177,34 @@ _.extend(core, {
 									
 									assetObj.youtube_thumb = "http://img.youtube.com/vi/" +  assetObj.youtube_id + "/0.jpg";
 										
+											core.create.category_li.add(
+												 core.category_idx
+												,{
+													 asset_name:assetObj.asset_name
+													,asset_id:assetObj.asset_id
+												 }
+											);							
+											
+											if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
+												core.categories[core.category_idx].assets = [];
+											};								
+											
+											core.categories[core.category_idx].assets.push(assetObj);
+											
+											core.misc.showHideButtonBasedOnNumofAssets();
+											
+											var $el = $('.edit[asset_id=' + assetObj.asset_id + ']');
+											
+											core.bindElements.model.assets.editAsset.fancyZoomThis( $el );												
+									
+										
+										
 								});
 								
 							}
 							
 							
-							core.create.category_li.add(
-								 core.category_idx
-								,{
-									 asset_name:assetObj.asset_name
-									,asset_id:assetObj.asset_id
-								 }
-							);							
-							
-							if( typeof(core.categories[core.category_idx].assets) === "undefined"){	
-								core.categories[core.category_idx].assets = [];
-							};								
-							
-							core.categories[core.category_idx].assets.push(assetObj);
-							
-							core.misc.showHideButtonBasedOnNumofAssets();
-							
-							var $el = $('.edit[asset_id=' + assetObj.asset_id + ']');
-							
-							core.bindElements.model.assets.editAsset.fancyZoomThis( $el );								
+						
 							
 						}						
 					
