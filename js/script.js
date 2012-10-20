@@ -1197,7 +1197,7 @@ _.extend(core, {
 								$('.title[asset_id=' + assetObj['asset_id'] + ']')
 								.attr('youtube_id', assetObj.youtube_id);
 								
-								if( assetObj.asset_name != ''){
+								if( assetObj.asset_name == ''){
 									
 									core.misc.getYouTubeTitle(assetObj.youtube_id, function(youtubeObj){
 										
