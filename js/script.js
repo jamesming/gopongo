@@ -1287,7 +1287,7 @@ _.extend(core, {
 				core.bindElements.model.assets.editAsset.init();
 				
 				
-				$('#thumb-collection-ul .play[asset_id=' + core.asset_id + ']').css({border:'3px solid blue'});
+				$('#thumb-collection-ul .play[asset_id=' + core.asset_id + ']').css({border:'5px solid #5888D5'});
 				
 			});		
 			

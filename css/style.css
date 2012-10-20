@@ -133,6 +133,11 @@ cursor:pointer;
 	font-weight:bold;
 }
 
+#thumb-collection ul li div.overlay .title{
+	width: 201px;
+	text-overflow: ellipsis;
+}
+
 #thumb-collection ul li div.play{
 	height:	159px;	
 }
