@@ -638,7 +638,7 @@ _.extend(core, {
 			this.model.categories.init();
 			this.model.assets.init();
 			
-			this.accordianControls();
+			this.leftControls();
 			
 			this.upload.thumb();
 			this.upload.video();
@@ -1291,7 +1291,7 @@ _.extend(core, {
 			
 		}
 		
- 		,accordianControls: function(){
+ 		,leftControls: function(){
 			
 			$(".collapse").collapse({
 					  toggle: true
@@ -1397,13 +1397,13 @@ _.extend(core, {
 		
 		showHideButtonBasedOnNumofAssets: function(){	
 			
-				var lengthOfAssets = core.categories[core.category_idx].assets.length;
-				
-				if( lengthOfAssets >= 9){
-					$('#addAsset').hide();
-				}else{
-					$('#addAsset').show();
-				};		
+//				var lengthOfAssets = core.categories[core.category_idx].assets.length;
+//				
+//				if( lengthOfAssets >= 9){
+//					$('#addAsset').hide();
+//				}else{
+//					$('#addAsset').show();
+//				};		
 				
 		}
 		
