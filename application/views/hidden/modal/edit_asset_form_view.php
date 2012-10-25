@@ -24,14 +24,14 @@
 					    </div>
 					  </div>						  		
 					  
-					  <div class="control-group"  <?php echo ( $this->session->userdata['user_id'] == 1  ? "" : "   style='display:none'  " );   ?>>
+					  <div class="control-group"  <?php echo ( $this->session->userdata['user_id'] == 1  ? " style='display:none'" : "   style='display:none'  " );   ?>>
 					    <label class="control-label" for="asset_client">Client</label>
 					    <div class="controls">
 					      <input type="text" class="asset_client input-medium" placeholder="Client" >
 					    </div>
 					  </div>						  
 					  
-					  <div class="control-group"  <?php echo ( $this->session->userdata['user_id'] == 1  ? "" : "   style='display:none'  " );   ?>>
+					  <div class="control-group"  <?php echo ( $this->session->userdata['user_id'] == 1  ? " style='display:none'" : "   style='display:none'  " );   ?>>
 					    <label class="control-label" for="asset_description">Description</label>
 					    <div class="controls">
 					    	<textarea class="asset_description input-medium" placeholder="Description" ></textarea>
