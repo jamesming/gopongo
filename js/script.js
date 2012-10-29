@@ -672,8 +672,11 @@ _.extend(core, {
 
 						$('#zoom .submit_category_form').click(function(event) {
 							
+							
+							
 								var categoryObj = {
-									 category_name: $('#zoom .category_name').val()
+									  category_name: $('#zoom .category_name').val()
+									 ,order: core.categories.length + 1
 								};
 								
 					 			var url = window.base_url  + 'index.php/ajax/insertCategory';
@@ -685,16 +688,19 @@ _.extend(core, {
 												var count_catgeories = core.categories.length;
 												
 												core.create.category.add(
-														  categoryObj.category_name
+														  insert_id
+														, categoryObj.category_name
 														, count_catgeories); 
 														
-												var catObj = {
-													 category_id: insert_id
-													,category_name:categoryObj.category_name
-													,assets:[]
-												};
+														
+												_.extend(categoryObj, {
+														 assets:[]
+														,category_id: insert_id
+													});
+														
+												delete categoryObj.order;
 												
-												core.categories.push(catObj);	
+												core.categories.push(categoryObj);	
 												
 														
 												$('body').click();
