@@ -9,7 +9,7 @@
 <?php if( $body == "body/main/view"){?>
 	<style>
 	body{
-		display:none;	
+		display:none;			
 	}	
 	</style>
 	<script src="<?php echo base_url()    ?>js/script.js?v=<?php echo rand()    ?>"></script>
