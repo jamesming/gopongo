@@ -356,7 +356,7 @@ _.extend(core, {
 			that.bindElements.init();
 			that.misc.youtubeAPI();
 			
-			$('body').show();
+			$('body').css({visibility:'visible'})
 			
 			// that.create.jcrop.init()
 		});	
@@ -540,7 +540,7 @@ _.extend(core, {
 		,setFixedRightBody: function(){
 			
 			$('.fixedRightBody').css({
-					'right':($('body').width() /2 ) - 360
+					'right':($('body').width() /2 ) - 560
 				})
 			
 		}
