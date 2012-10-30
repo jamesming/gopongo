@@ -540,7 +540,7 @@ _.extend(core, {
 		,setFixedRightBody: function(){
 			
 			$('.fixedRightBody').css({
-					'right':($('body').width() /2 ) - 560
+					'right':($('body').width() /2 ) - 360
 				})
 			
 		}
