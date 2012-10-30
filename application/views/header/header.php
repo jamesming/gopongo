@@ -7,6 +7,13 @@
 	<meta name="author" content="">
 
 	<meta name="viewport" content="width=device-width">
+	<?php if( $body == "body/main/view"){?>
+		<style>
+			body{
+				display:none;			
+			}	
+		</style>
+	<?php } ?>	
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>js/libs/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>js/libs/jquery-ui/themes/base/jquery.ui.all.css">
 	
