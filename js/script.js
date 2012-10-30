@@ -355,6 +355,9 @@ _.extend(core, {
 			that.create.init();
 			that.bindElements.init();
 			that.misc.youtubeAPI();
+			console.log($('.mid-section'));
+			
+			$('body').show();
 			
 			// that.create.jcrop.init()
 		});	
