@@ -20,6 +20,7 @@ class Models_Db_Assets_Model extends Database {
 						, categories.name as category_name
 						, assets.id as asset_id
 						, assets.youtube_url as youtube_url
+						, assets.description as asset_description
 						, assets.youtube_thumb as youtube_thumb
 						, assets.duration as duration
 						, assets.name as asset_name '   
@@ -49,7 +50,7 @@ class Models_Db_Assets_Model extends Database {
 					foreach( $category  as  $field => $value){
 		 
 		 
-						 	if (!in_array($field, array('asset_id', 'asset_name', 'youtube_url', 'youtube_thumb', 'duration'))){
+						 	if (!in_array($field, array('asset_id', 'asset_name', 'asset_description', 'youtube_url', 'youtube_thumb', 'duration'))){
 						 			$category_array[$field] = $value;
 							}else{
 									
@@ -57,6 +58,8 @@ class Models_Db_Assets_Model extends Database {
 										$grouped_asset['asset_id'] = $value;
 									}elseif( $field =='asset_name'){
 										$grouped_asset['asset_name'] = $value;
+									}elseif( $field =='asset_description'){
+										$grouped_asset['asset_description'] = $value;	
 									}elseif( $field =='youtube_url'){
 										$grouped_asset['youtube_url'] = $value;
 										$grouped_asset['youtube_id'] = $this->upload->extract_video_id_from_youtube_url($value);
@@ -85,7 +88,7 @@ class Models_Db_Assets_Model extends Database {
 
 					foreach( $category  as  $field => $value){
 		 
-						 	if (!in_array($field, array('asset_id', 'asset_name', 'youtube_url', 'youtube_thumb', 'duration'))){
+						 	if (!in_array($field, array('asset_id', 'asset_name', 'asset_description', 'youtube_url', 'youtube_thumb', 'duration'))){
 						 			$category_array[$field] = $value;
 							}else{
 								
@@ -93,6 +96,8 @@ class Models_Db_Assets_Model extends Database {
 										$grouped_asset['asset_id'] = $value;
 									}elseif( $field =='asset_name'){
 										$grouped_asset['asset_name'] = $value;
+									}elseif( $field =='asset_description'){
+										$grouped_asset['asset_description'] = $value;	
 									}elseif( $field =='youtube_url'){
 										$grouped_asset['youtube_url'] = $value;
 										$grouped_asset['youtube_id'] = $this->upload->extract_video_id_from_youtube_url($value);
@@ -126,7 +131,7 @@ class Models_Db_Assets_Model extends Database {
 	
 		};
 
-		//echo '<pre>';print_r(  $categories   );echo '</pre>';  exit;	
+//		echo '<pre>';print_r(  $categories   );echo '</pre>';  exit;	
 					
 		return $this->object_to_array( $categories );
 	}	
@@ -256,6 +261,12 @@ class Models_Db_Assets_Model extends Database {
 	}
 	
 	public  function deleteAsset($post_array){
+		
+		$dir_path = 'uploads/'  .  $post_array['id'] . '/';
+		
+		$this->upload = new Models_Up_Assets_Model;
+		
+		$this->upload->recursiveDelete($dir_path);
 		
 		$this->delete_from_table(
 			$table = 'assets', 

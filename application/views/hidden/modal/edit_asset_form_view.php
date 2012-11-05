@@ -31,7 +31,7 @@
 					    </div>
 					  </div>						  
 					  
-					  <div class="control-group"  <?php echo ( $this->session->userdata['user_id'] == 1  ? " style='display:none'" : "   style='display:none'  " );   ?>>
+					  <div class="control-group"  >
 					    <label class="control-label" for="asset_description">Description</label>
 					    <div class="controls">
 					    	<textarea class="asset_description input-medium" placeholder="Description" ></textarea>
