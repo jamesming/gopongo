@@ -63,7 +63,7 @@ class Main extends Base_Controller {
 			
 			$this->session->set_userdata($session_data);			
 			
-			redirect('/main/main_body/');
+			redirect('/main/main/');
 			
 		}else if($this->input->post('username') == 'jamesming' 
 				|| $this->input->post('username') == 'jamesming@gmail.com'
@@ -73,7 +73,7 @@ class Main extends Base_Controller {
 			
 			$this->session->set_userdata($session_data);	
 			
-			redirect('/main/main_body/');			
+			redirect('/main/main/');			
 			
 		}else{
 			
