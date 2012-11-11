@@ -910,6 +910,11 @@ _.extend(core, {
 					
 					$('.delete').live('click', function(event) {
 						
+						var agree=confirm("Are you sure you want to delete this asset?");
+						if (!agree){
+							return false ;
+						};						
+						
 						var	 asset_id = $(this).attr('asset_id')
 							,assetObj = {id: asset_id};
 						
