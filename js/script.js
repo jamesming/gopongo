@@ -884,7 +884,6 @@ _.extend(core, {
 								
 								$('#zoom_content .asset_name').val(core.categories[core.category_idx].assets[idx_assets_array[0]].asset_name);
 								$('#zoom_content .asset_youtube_url').val(core.categories[core.category_idx].assets[idx_assets_array[0]].youtube_url);
-								$('#zoom_content .asset_description').val(core.categories[core.category_idx].assets[idx_assets_array[0]].asset_description);
 								
 								$('#zoom_content img')
 								.on('error', function() {
@@ -910,11 +909,6 @@ _.extend(core, {
 				,deleteAsset: function(){
 					
 					$('.delete').live('click', function(event) {
-						
-						var agree=confirm("Are you sure you want to delete this asset?");
-						if (!agree){
-							return false ;
-						};
 						
 						var	 asset_id = $(this).attr('asset_id')
 							,assetObj = {id: asset_id};

@@ -14,7 +14,7 @@ class Main extends Base_Controller {
 		$this->assets_model->clear_table_of_empty_records_flagged_with_update_field_equals_0000();
 		if( $this->_data->loggedIn == true ){
 			
-			$this->main_body();			
+			$this->main();			
 			
 		}else{
 			
@@ -24,8 +24,15 @@ class Main extends Base_Controller {
 
 	}
 	
+	public function carousel(){
+		
+		
+		$this->_data->body = "body/carousel/view"; 
+		$this->load->view('index', $this->_data);			
+	}
 	
-	public function main_body(){
+	
+	public function main(){
 		
 		
 		if( $this->_data->loggedIn == false){
