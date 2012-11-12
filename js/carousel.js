@@ -7,7 +7,7 @@
 		
 		$('#json').load(url, function(){
 			
-//			console.log(JSON.stringify(core.categories));
+			console.log(JSON.stringify(core.carousel));
 			
 		});	
 		

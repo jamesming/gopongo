@@ -127,12 +127,10 @@ class Models_Db_Assets_Model extends Database {
 						);	
 											
 		
-		$categories =  $this->select_from_table_left_join( 
+		return $this->select_from_table_left_join( 
 					 $table = 'categories' 
 					,$select_what = '
-						  categories.id as category_id
-						, categories.name as category_name
-						, assets.id as asset_id
+						  assets.id as asset_id
 						, assets.name as asset_name '
 					,$where_array = array(
 						'carousel' => 1
@@ -144,8 +142,6 @@ class Models_Db_Assets_Model extends Database {
 					,$use_join = TRUE
 					,$join_array
 					);
-					
-		echo '<pre>';print_r( $categories );echo '</pre>';  exit;
 				
 	}	
 		
