@@ -60,13 +60,6 @@ class Models_Db_Assets_Model extends Database {
 										$grouped_asset['asset_name'] = $value;
 									}elseif( $field =='asset_description'){
 										$grouped_asset['asset_description'] = $value;	
-									}elseif( $field =='youtube_url'){
-										$grouped_asset['youtube_url'] = $value;
-										$grouped_asset['youtube_id'] = $this->upload->extract_video_id_from_youtube_url($value);
-									}elseif( $field =='youtube_thumb'){
-										$grouped_asset['youtube_thumb'] =  $value;
-									}elseif( $field =='duration'){
-										$grouped_asset['duration'] =  $value;
 									}elseif( $field =='user_id'){
 										$grouped_asset['user_id'] =  $value;
 									};
@@ -98,13 +91,6 @@ class Models_Db_Assets_Model extends Database {
 										$grouped_asset['asset_name'] = $value;
 									}elseif( $field =='asset_description'){
 										$grouped_asset['asset_description'] = $value;	
-									}elseif( $field =='youtube_url'){
-										$grouped_asset['youtube_url'] = $value;
-										$grouped_asset['youtube_id'] = $this->upload->extract_video_id_from_youtube_url($value);
-									}elseif( $field =='youtube_thumb'){
-										$grouped_asset['youtube_thumb'] =  $value;
-									}elseif( $field =='duration'){
-										$grouped_asset['duration'] =  $value;
 									}elseif( $field =='user_id'){
 										$grouped_asset['user_id'] =  $value;
 									};
@@ -130,8 +116,6 @@ class Models_Db_Assets_Model extends Database {
 						$categories[] = $category_array;
 	
 		};
-
-//		echo '<pre>';print_r(  $categories   );echo '</pre>';  exit;	
 					
 		return $this->object_to_array( $categories );
 	}	

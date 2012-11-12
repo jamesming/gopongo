@@ -26,7 +26,7 @@ class Main extends Base_Controller {
 	
 	public function carousel(){
 		
-		
+		$this->_data->hidden = "hidden/view";
 		$this->_data->body = "body/carousel/view"; 
 		$this->load->view('index', $this->_data);			
 	}
@@ -41,7 +41,8 @@ class Main extends Base_Controller {
 		};
 		
 		$this->_data->body = "body/main/view";
-		$this->_data->hidden = "hidden/view";		
+		$this->_data->hidden = "hidden/view";	
+		$this->_data->edit=1;			
 		$this->_data->videoplayer = "hidden/videoplayer/view";
 		$this->_data->youtube = "hidden/youtube/view";
 		$this->_data->jcrop = "hidden/jcrop/view";

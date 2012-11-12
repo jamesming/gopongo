@@ -40,15 +40,3 @@
 	</div>
 	
 </div>
-
-
-
-
-<script type="text/javascript" language="Javascript">
-	setTimeout(function(){
-		$('.carousel').carousel({
-		  interval: 2000
-		})
-	}, 2000);
-
-</script>
