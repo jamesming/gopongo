@@ -118,6 +118,35 @@ class Models_Db_Assets_Model extends Database {
 		};
 					
 		return $this->object_to_array( $categories );
+	}
+	
+	public function getCarousel(){
+		
+		$join_array = array(
+						'assets' => 'assets.category_id = categories.id'
+						);	
+											
+		
+		$categories =  $this->select_from_table_left_join( 
+					 $table = 'categories' 
+					,$select_what = '
+						  categories.id as category_id
+						, categories.name as category_name
+						, assets.id as asset_id
+						, assets.name as asset_name '
+					,$where_array = array(
+						'carousel' => 1
+					)
+					,$use_order = TRUE
+					,$order_field = 'categories.id'
+					,$order_direction = 'asc'
+					,$limit = -1
+					,$use_join = TRUE
+					,$join_array
+					);
+					
+		echo '<pre>';print_r( $categories );echo '</pre>';  exit;
+				
 	}	
 		
 	public function getAllCategoriesAndAssets($where_array = array()){   // DEPRECIATED

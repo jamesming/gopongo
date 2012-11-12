@@ -17,7 +17,11 @@ class Ajax extends CI_Controller {
 	}
 	
 	
+	public function getCarousel(){
 	
+		echo "<script>core.carousel =".json_encode($this->assets_model->getCarousel()).";</script>";
+		
+	}
 	
 
 	public function getAllCategoriesAndAssets(){  // DEPRECIATED
