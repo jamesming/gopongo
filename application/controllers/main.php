@@ -25,8 +25,7 @@ class Main extends Base_Controller {
 	}
 	
 	public function carousel(){
-		
-		$this->_data->hidden = "hidden/view";
+		$this->_data->carousels = $this->assets_model->getCarousel();
 		$this->_data->body = "body/carousel/view"; 
 		$this->load->view('index', $this->_data);			
 	}
