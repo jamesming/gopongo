@@ -136,7 +136,7 @@ class Models_Db_Assets_Model extends Database {
 						'carousel' => 1
 					)
 					,$use_order = TRUE
-					,$order_field = 'categories.id'
+					,$order_field = 'assets.order'
 					,$order_direction = 'asc'
 					,$limit = -1
 					,$use_join = TRUE
