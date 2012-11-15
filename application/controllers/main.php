@@ -11,7 +11,7 @@ class Main extends Base_Controller {
 	public function index()
 	{
 		
-		$this->assets_model->clear_table_of_empty_records_flagged_with_update_field_equals_0000();
+//		$this->assets_model->clear_table_of_empty_records_flagged_with_update_field_equals_0000();
 		if( $this->_data->loggedIn == true ){
 			
 			$this->main();			
