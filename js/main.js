@@ -1032,10 +1032,10 @@ _.extend(core, {
 			 	
 			 	$('#zoom_content .thumb_img').live('click', function(event) {
 			 		
-			 		if( core.disableUpload ){
-			 			alert('please wait till the other upload has completed.');
-			 			return;
-			 		};
+//			 		if( core.disableUpload ){
+//			 			alert('please wait till the other upload has completed.');
+//			 			return;
+//			 		};
 			 		
 			 		$(this).attr('src', 'img/loading.gif');
 			 		
@@ -1051,10 +1051,10 @@ _.extend(core, {
 				
 				$('#zoom_content .video_uplr').live('click', function(event) {
 					
-			 		if( core.disableUpload ){
-			 			alert('please wait till the other upload has completed.');
-			 			return;
-			 		};					
+//			 		if( core.disableUpload ){
+//			 			alert('please wait till the other upload has completed.');
+//			 			return;
+//			 		};					
 					
 					$('#zoom_content input[name=target_name]').val('video.mp4');
 					$('#zoom_content input[name=target_folder]').val('video');
