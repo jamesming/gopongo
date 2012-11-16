@@ -21,8 +21,10 @@ class Models_Up_Assets_Model extends Models_Up {
 	}
 	
 	public function save( $post_array ) {
-
-		$this->recursiveDelete( $this->upload_path( $post_array ));
+		
+		if( $post_array['asset_id'] != ''){
+//			$this->recursiveDelete( $this->upload_path( $post_array ));
+		};
 		
 		$this->_create_directories($post_array);
 		
