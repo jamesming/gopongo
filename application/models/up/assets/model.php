@@ -27,7 +27,7 @@ class Models_Up_Assets_Model extends Models_Up {
 		};
 		
 		if( is_file("uploads/".$post_array['asset_id']."/thumb/images.jpg") ){
-			@unlink("uploads/".$post_array['asset_id']."/thumb/images.jpg")
+			@unlink("uploads/".$post_array['asset_id']."/thumb/images.jpg");
 		};
 		
 		$this->_create_directories($post_array);
