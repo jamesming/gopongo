@@ -26,6 +26,10 @@ class Models_Up_Assets_Model extends Models_Up {
 //			$this->recursiveDelete( $this->upload_path( $post_array ));
 		};
 		
+		if( is_file("uploads/".$post_array['asset_id']."/thumb/images.jpg") ){
+			@unlink("uploads/".$post_array['asset_id']."/thumb/images.jpg")
+		};
+		
 		$this->_create_directories($post_array);
 		
 		get_instance()->load->library('upload', array(
