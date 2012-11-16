@@ -21,9 +21,7 @@ class Models_Up_Assets_Model extends Models_Up {
 	}
 	
 	public function save( $post_array ) {
-		
-		sleep(2);
-		
+
 		$this->recursiveDelete( $this->upload_path( $post_array ));
 		
 		$this->_create_directories($post_array);

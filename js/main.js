@@ -1056,7 +1056,12 @@ _.extend(core, {
 				
 				$('#zoom_content .filename').live('change', function(event) {
 					$('#zoom_content input[name=asset_id]').val(core.updateThis.asset_id);
-					$('#zoom_content form.uploadVideo').submit();
+					if( $('#zoom_content input[name=asset_id]').val() > 0){
+						$('#zoom_content form.uploadVideo').submit();
+					}else{
+						alert('Call James when this happens.');						
+					};
+					
 					
 				});	
 				
