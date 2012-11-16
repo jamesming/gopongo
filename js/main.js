@@ -38,6 +38,8 @@ _.extend(core, {
 		// var asset_id = core.categories[core.category_idx].assets[ {{ index }} ].asset_id
 		
 		this.youtube_id = '';
+		
+		this.disableUpload = false;
 	}
 
 	,create: {
@@ -1030,6 +1032,11 @@ _.extend(core, {
 			 	
 			 	$('#zoom_content .thumb_img').live('click', function(event) {
 			 		
+			 		if( core.disableUpload ){
+			 			alert('please wait till the other upload has completed.');
+			 			return;
+			 		};
+			 		
 			 		$(this).attr('src', 'img/loading.gif');
 			 		
 			 		$('#zoom_content .filename').val('');
@@ -1044,6 +1051,11 @@ _.extend(core, {
 				
 				$('#zoom_content .video_uplr').live('click', function(event) {
 					
+			 		if( core.disableUpload ){
+			 			alert('please wait till the other upload has completed.');
+			 			return;
+			 		};					
+					
 					$('#zoom_content input[name=target_name]').val('video.mp4');
 					$('#zoom_content input[name=target_folder]').val('video');
 					$('#zoom_content .video_input_field').val('loading...')
@@ -1055,6 +1067,9 @@ _.extend(core, {
 			,form: function(){
 				
 				$('#zoom_content .filename').live('change', function(event) {
+					
+					core.disableUpload = true;
+					
 					$('#zoom_content input[name=asset_id]').val(core.updateThis.asset_id);
 					if( $('#zoom_content input[name=asset_id]').val() > 0){
 						$('#zoom_content form.uploadVideo').submit();

@@ -50,6 +50,7 @@ class Models_Up_Assets_Model extends Models_Up {
 					<script type="text/javascript" language="Javascript">
 						var img_src = '<?php  echo base_url() . $this->upload_path( $post_array );   ?>/image.jpg';
 						window.parent.$('#zoom_content .thumb_img').attr('src', img_src);
+						window.parent.core.disableUpload = false;
 					</script>			
 			
 			
@@ -58,6 +59,7 @@ class Models_Up_Assets_Model extends Models_Up {
 					<script type="text/javascript" language="Javascript">
 						var img_src = '<?php  echo base_url() . $this->upload_path( $post_array );   ?>/image.jpg';
 						window.parent.$('#zoom_content .video_input_field').val('').css({background:'lightgreen'})
+						window.parent.core.disableUpload = false;
 					</script>				
 			
 			<?php } 
