@@ -46,8 +46,7 @@ class Main extends Base_Controller {
 		$this->_data->youtube = "hidden/youtube/view";
 		$this->_data->jcrop = "hidden/jcrop/view";
 		
-
-		
+	
 		$this->load->view('index', $this->_data);			
 		
 		

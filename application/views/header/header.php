@@ -10,7 +10,7 @@
 	<?php if( $body == "body/main/view"){?>
 		<style>
 			body{
-				visibility:hidden;			
+				//visibility:hidden;			
 			}	
 		</style>
 	<?php } ?>	

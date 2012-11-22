@@ -91,6 +91,13 @@ class Ajax extends CI_Controller {
  		$this->assets_model->deleteAsset( $this->input->post() );
  	}
  	
+ 	public function checkExist(){
+ 		
+ 	
+ 		$this->upload = new Models_Up_Assets_Model;
+ 		$this->upload->save( $this->input->get()); 		
+ 	}
+ 	
  	public function upload(){
  		
  		$post_array = $this->input->post();
