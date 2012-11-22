@@ -120,6 +120,23 @@ class Models_Db_Assets_Model extends Database {
 		return $this->object_to_array( $categories );
 	}
 	
+	
+	public function getAssets($post_array){
+
+		return $this->object_to_array($this->select_from_table( 
+			$table = 'assets', 
+			$select_what = "id as asset_id, name as asset_name, description as asset_description", 
+			$where_array = array(
+				'category_id' => $post_array['category_id']
+			), 
+			$use_order = TRUE, 
+			$order_field = 'order', 
+			$order_direction = 'asc', 
+			$limit = -1
+		));
+
+	}
+	
 	public function getCarousel(){
 		
 		$join_array = array(

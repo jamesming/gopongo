@@ -12,8 +12,31 @@ class Ajax extends CI_Controller {
 	}
 	
 	public function getAll(){
+		
+		
+		/*
+		 		echo '<pre>';print_r(  $this->assets_model->getAll()  );echo '</pre>';  exit;
+				
+
+		
+		$this->assets_category = new Models_Db_Categories_Model;
+		echo "<script>core.categories =".json_encode($this->assets_category->getCategories()).";</script>";
+		
+		*/		
+		
+		
+		
 		echo "<script>core.categories =".json_encode($this->assets_model->getAll()).";</script>";
 	 
+	}
+	
+	
+	public function getAssets(){
+		
+		$post_array = $this->input->get();
+		
+		echo '<pre>';print_r( $this->assets_model->getAssets(  $post_array )   );echo '</pre>';  exit;
+		
 	}
 	
 

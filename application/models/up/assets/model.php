@@ -21,7 +21,6 @@ class Models_Up_Assets_Model extends Models_Up {
 	}
 	
 	public function save( $post_array ) {
-		
 
 		if( $post_array['target_folder'] == 'thumb' &&
 			is_file("uploads/".$post_array['asset_id']."/thumb/image.jpg") ){

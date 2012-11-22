@@ -22,6 +22,20 @@ class Models_Db_Categories_Model extends Database {
 		
 	}
 	
+	public function getCategories(){
+		
+		return $this->object_to_array($this->select_from_table( 
+			$table = 'categories', 
+			$select_what = "id as category_id, name as category_name", 
+			$where_array = array(), 
+			$use_order = TRUE, 
+			$order_field = 'order', 
+			$order_direction = 'asc', 
+			$limit = -1
+		));
+		
+	}
+	
 	public function insertCategory($post_array){
 		return $this->insert_table(
 			$table = 'categories', 
