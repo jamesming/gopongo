@@ -23,8 +23,14 @@ class Models_Up_Assets_Model extends Models_Up {
 	public function save( $post_array ) {
 		
 
-		if( is_file("uploads/".$post_array['asset_id']."/thumb/image.jpg") ){
- 			@unlink("uploads/".$post_array['asset_id']."/thumb/image.jpg");
+		if( $post_array['target_folder'] == 'thumb' &&
+			is_file("uploads/".$post_array['asset_id']."/thumb/image.jpg") ){
+ 				@unlink("uploads/".$post_array['asset_id']."/thumb/image.jpg");
+		}elseif(
+		 	$post_array['target_folder'] == 'video' &&
+		 	is_file("uploads/".$post_array['asset_id']."/video/video.mp4") 
+		){
+ 				@unlink("uploads/".$post_array['asset_id']."/video/video.mp4");
 		};
 
 		$this->_create_directories($post_array);
