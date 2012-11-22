@@ -1,5 +1,3 @@
-
-
 _.extend(core, {
 	
 	 start: function(){
@@ -552,7 +550,7 @@ _.extend(core, {
 								.on('error', function() {
 								    //this.src = 'http://www.placehold.it/280x150';
 								})
-								.attr('src', 'uploads/'+asset_id+'/thumb/image.jpg');
+								.attr('src', 'uploads/'+asset_id+'/thumb/image.jpg?' +  Math.random());
 								
 								
 								
