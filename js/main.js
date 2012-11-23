@@ -13,10 +13,7 @@ _.extend(core, {
 
 			that.create.init();
 			that.bindElements.init();
-			that.misc.youtubeAPI();
-			
-			$('body').css({visibility:'visible'})
-			
+
 			// that.create.jcrop.init()
 		});	
 		
@@ -43,8 +40,8 @@ _.extend(core, {
 	,create: {
 		
 		 init: function(){
-			this.category.init();
-			this.asset.init(0);
+//			this.category.init();
+//			this.asset.init(0);
 			this.setFixedRightBody()
 		}
 		
@@ -544,13 +541,12 @@ _.extend(core, {
 														});	
 								
 								$('#zoom_content .asset_name').val(core.categories[core.category_idx].assets[idx_assets_array[0]].asset_name);
-								$('#zoom_content .asset_youtube_url').val(core.categories[core.category_idx].assets[idx_assets_array[0]].youtube_url);
 								
 								$('#zoom_content img')
 								.on('error', function() {
 								    //this.src = 'http://www.placehold.it/280x150';
 								})
-								.attr('src', 'uploads/'+asset_id+'/thumb/image.jpg?' +  Math.random());
+								.attr('src', window.base_url + 'uploads/'+asset_id+'/thumb/image.jpg?v=' +  Math.random());
 								
 								
 								
@@ -991,6 +987,8 @@ _.extend(core, {
 				
 				core.category_idx  = $(this).attr('idx');
 				
+				
+				
 				core.create.asset.init(core.category_idx);
 				
 				
@@ -1099,92 +1097,7 @@ _.extend(core, {
 				
 		}
 		
-		,playVideo: function($this){  // DEPRECIATED
-		
-				var	 asset_id = $this.attr('asset_id')
-					,category_id = $this.attr('category_id')
-					,idx_categories_array = core.findIndexInArrayOfObjects( 
-										 core.categories
-										,function( item ){
-											if( item.category_id === category_id) return true;
-										});	
-										
-				$('.category-ul > li').css({background:'white'});	
-				$('li[asset_id=' + asset_id + '] ').css({background:'red'});										
-				
-				
-				$('#thumb-collection').hide();
-				$('#video_container').show();
-				
-				var video_src = window.base_url + 'uploads/'+ $this.attr('asset_id') +'/video/video.mp4?v=' + Math.random();
-				
-				core.myPlayer.src(video_src);				
-				
-				
-										
-			
-		}
-		,playYouTube: function($this){
-			
-				var	 asset_id = $this.attr('asset_id')
-					,category_id = $this.attr('category_id')
-					,idx_categories_array = core.findIndexInArrayOfObjects( 
-										 core.categories
-										,function( item ){
-											if( item.category_id === category_id) return true;
-										});
-										
-				core.category_idx = idx_categories_array[0];
-				
-				this.highlight_video_that_is_playing(asset_id);
-				
-				if(	$this.attr('youtube_id') !== core.youtube_id){
-					
-					if(		typeof(core.playlist)   !== "undefined"
-					 	&&  typeof(core.playlist[core.playlistIdx])   !== "undefined"
-						&&  $this.attr('youtube_id') == core.playlist[core.playlistIdx].youtube_id
-					){
-						
-						return;
-						
-					 }; 
-						
-					core.playlist = [];		
-					
-					var  youtube_id = core.youtube_id = $this.attr('youtube_id');
-					
-					var doWhenReady = function(){
-						
-							if( typeof(core.player.loadVideoById) == "undefined"){
-								setTimeout(function(){
-									doWhenReady();
-								}, 10);
-							}else{
-								
-								core.player.loadVideoById({videoId:youtube_id});
-								core.player.playVideo();		
-								
-							};
-						}
-						
-					doWhenReady();
-					
-				};
-			
-		}
-		
-		,playCategory: function(){
-			
-			this.highlight_video_that_is_playing(core.playlist[core.playlistIdx].asset_id);
-			
-			core.player.loadVideoById({videoId:core.playlist[core.playlistIdx].youtube_id});
-			
-			core.player.playVideo();	
-			
-			
-			
-		}
-		
+
 		,highlight_video_that_is_playing: function(asset_id){
 			
 			var assetIdx = core.findIndexInArrayOfObjects( 
@@ -1233,42 +1146,7 @@ _.extend(core, {
 			$('#youtube_container .title').html(core.categories[core.category_idx].assets[ assetIdx ].asset_name);	
 			
 		}
-		
-		,getYouTubeTitle: function( youtube_id, updateYoutubeTitle ){
-			
-			$.getJSON('http://gdata.youtube.com/feeds/api/videos/' + unescape(youtube_id) + '?v=2&alt=jsonc', function( youtubeObj ) {
-			  updateYoutubeTitle(youtubeObj);
-			});
-		}
-		
-		,youtubeAPI: function(){
 
-				core.player = new YT.Player('player', {
-				  width: '640',
-				  height: '480',
-				  events: {
-				     onReady: function(event) {
-				     	// event.target.playVideo();
-					}
-					,onStateChange: function(event) {
-						// console.log(event.data);
-						
-						if( typeof(core.playlist) !== "undefined"  ){
-							var lengthOfPlaylist  = core.playlist.length;
-							
-							if( event.data == 0  && lengthOfPlaylist > 0 ){
-								core.playlistIdx++;
-								if( core.playlistIdx == (lengthOfPlaylist)) core.playlistIdx = 0;
-								core.misc.playCategory();
-							};							
-							
-						};
-
-					}
-				  }
-				});
-
-		}
 		
 	}
 	

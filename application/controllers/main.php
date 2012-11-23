@@ -33,6 +33,7 @@ class Main extends Base_Controller {
 	
 	public function main(){
 		
+		$this->_data->categories = $this->assets_model->getAll();
 		
 		if( $this->_data->loggedIn == false){
 			

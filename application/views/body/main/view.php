@@ -8,6 +8,47 @@
 	</div>      	
 	<div class="span2">
 		<div   id='categories' class="accordion" >
+			
+			
+			
+			<?php
+				$count = 0;
+				
+				foreach( $categories  as $category){ ?>
+					
+
+				<div class="accordion-group" category_idx=<?php echo $count ?> category_id=<?php echo $category['category_id']    ?>>
+					<img  class='sort-handle-categories ' src='<?php echo base_url()    ?>img/sort-handle.png'/>
+					<div class="accordion-heading">
+					  
+					  <a idx=<?php echo $count ?> class="accordion-toggle category" data-toggle="collapse" data-parent="#categories" href="#collapse<?php echo $count ?>">
+					    <?php echo $category['category_name']    ?>
+					  </a>
+					</div>
+					<div id="collapse<?php echo $count ?>" class="accordion-body collapse in">
+					  <div class="accordion-inner">
+					    <ul  class="category-ul" >
+					    	<?php foreach( $category['assets']  as $asset){ ?>
+					    	
+									<li asset_id=<?php echo $asset['asset_id']     ?>  category_id=<?php echo $category['category_id']    ?> >
+									<?php echo $asset['asset_name']     ?>
+									</li>
+									
+					    	<?php } ?>
+					    </ul>
+					  </div>
+					</div>
+				</div>
+									
+							
+			
+			
+			<?php
+			
+			$count++;
+			
+			} ?>
+			
 		</div>
 		<div  id='addNewCategory'  href='#edit_category_modal_box'  category_id='-1'><a class="btn btn-small" href="#"><i class="icon-plus-sign"></i>&nbsp;Add new Category </a>
 		</div>
