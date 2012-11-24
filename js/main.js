@@ -971,16 +971,9 @@ _.extend(core, {
 				
 				$('#thumb-collection').show();
 				
-				if( core.user_id == 1 ){
+
+				$('#video_container').hide();
 					
-					$('#video_container').hide();
-					core.myPlayer.pause();
-												
-				}else{
-					
-					$('#youtube_container').hide();
-								
-				};
 
 				
 				$('#thumb-collection-ul').empty();			

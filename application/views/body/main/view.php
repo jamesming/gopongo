@@ -60,17 +60,33 @@
 				<a class="btn btn-small" href="#">
 					Edit Category&nbsp;&nbsp;<i class="icon-edit"></i>
 				</a>
-			</span>
-			<span  class='playAllInCategory ' <?php echo ( $this->session->userdata['user_id'] == 1  ? "   style='display:none'  " : "" );   ?>>
-				<!-- <a class="btn btn-small" href="#"> -->
-					Play Category&nbsp;&nbsp;<i class=" icon-play"></i>
-				<!-- </a> -->
-			</span>			
+			</span>	
 		</div>
 		<div   style='clear:both;height:0px'  ></div>
 		<ul  class=' assets_ul'   id='thumb-collection-ul' >
-		</ul>
-		<ul>
+
+			<?php foreach( $categories[0]['assets']  as $asset){ ?>
+			
+				<li asset_id=<?php  echo $asset['asset_id']   ?>   category_id={{category_id}}  class=' draggable ' >
+					<div  class='dragHandle ' >
+					</div>
+					<div  asset_id=<?php  echo $asset['asset_id']   ?>  category_id={{category_id}} class='play '   style='background:url(<?php echo base_url().'/uploads/'. $asset['asset_id'].'/thumb/image.jpg?v='.rand(3,123);   ?>) no-repeat;background-position: 0px -45px;background-size: 282px;'  >&nbsp;
+					</div>
+					<div  class='overlay' >
+						<div  class='fl ' >
+							<span asset_id=<?php  echo $asset['asset_id']   ?> category_id={{category_id}} class='title' ><?php  echo $asset['asset_name']   ?></span>
+						</div>
+						<div  class='fr ' >
+							<span asset_id=<?php  echo $asset['asset_id']   ?> class='edit '  href='#edit_asset_modal_box' ><i class="icon-edit  icon-white"></i></span>
+							<span>&nbsp;&nbsp;&nbsp;</span>
+							<span asset_id=<?php  echo $asset['asset_id']   ?> class='delete ' ><i class='icon-trash  icon-white'></i></span>
+							
+						</div>
+					</div>
+				</li>
+					
+			<?php } ?>
+			
 			<li href='#edit_asset_modal_box' id='addAsset' >Click to Add Asset</li>
 		</ul>
 	</div><?php $this->load->view($videoplayer); ?><?php $this->load->view($youtube); ?><?php $this->load->view($jcrop); ?>	
