@@ -8,23 +8,27 @@ class Ajax extends CI_Controller {
 		
 		$this->assets_model = new Models_Db_Assets_Model;
 		
-		$this->categories_model = new Models_Db_Categories_Model;
+		
 	}
 	
 	public function getAll(){
 		
 		
+		$this->categories_model = new Models_Db_Categories_Model;
+		
 		/*
 		 		echo '<pre>';print_r(  $this->assets_model->getAll()  );echo '</pre>';  exit;
 				
-		echo "<script>core.categories =".json_encode($this->categories_model->getCategories()).";</script>";
+		echo "<script>core.categories =".json_encode($this->assets_model->getAll()).";</script>";		
+				
+		
 		
 		$this->assets_category = new Models_Db_Categories_Model;
 		
 		
 		*/		
 		
-		echo "<script>core.categories =".json_encode($this->assets_model->getAll()).";</script>";
+		echo "<script>core.categories =".json_encode($this->categories_model->getCategories()).";</script>";
 
 	 
 	}
@@ -32,9 +36,10 @@ class Ajax extends CI_Controller {
 	
 	public function getAssets(){
 		
-		$post_array = $this->input->get();
 		
-		echo '<pre>';print_r( $this->assets_model->getAssets(  $post_array )   );echo '</pre>';  exit;
+		echo "<script>core.categories[" . $this->input->get('category_idx') . "].assets =".json_encode($this->assets_model->getAssets( $this->input->get()  )).";</script>";
+		
+		// echo '<pre>';print_r( $this->assets_model->getAssets(  $this->input->get()  )   );echo '</pre>';  exit;
 		
 	}
 	
