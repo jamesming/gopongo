@@ -168,7 +168,7 @@ _.extend(core, {
 				})
 				//.attr('src', 'uploads/'+asset_id+'/thumb/image.jpg');
 				
-				core.misc.showHideButtonBasedOnNumofAssets();
+				
 							
 			}
 			
@@ -569,7 +569,7 @@ _.extend(core, {
 									
 									core.categories[core.category_idx].assets.splice(idx_assets_array[0], 1);
 									
-									core.misc.showHideButtonBasedOnNumofAssets();
+									
 									
 								}
 						);	
@@ -765,7 +765,7 @@ _.extend(core, {
 							
 							core.categories[core.category_idx].assets.push(assetObj);
 							
-							core.misc.showHideButtonBasedOnNumofAssets();
+							
 							
 							var $el = $('.edit[asset_id=' + assetObj.asset_id + ']');
 							
@@ -821,7 +821,6 @@ _.extend(core, {
 					$('#thumb-collection h2').html(core.categories[core.category_idx].category_name);						
 					$('#thumb-collection .editCategoryTitle').attr({'category_id':core.categories[core.category_idx].category_id,'category_idx':core.category_idx});
 					core.create.asset.init(core.category_idx);
-					core.misc.showHideButtonBasedOnNumofAssets();
 					core.bindElements.model.assets.editAsset.init();
 				};
 				
@@ -899,21 +898,8 @@ _.extend(core, {
 	}
 	
 	,misc: {
-		
-		showHideButtonBasedOnNumofAssets: function(){	
-			
-				var lengthOfAssets = core.categories[core.category_idx].assets.length;
-				
-				if( lengthOfAssets >= 9){
-					$('#addAsset').hide();
-				}else{
-					$('#addAsset').show();
-				};		
-				
-		}
-		
 
-		,highlight_video_that_is_playing: function(asset_id){
+		highlight_video_that_is_playing: function(asset_id){
 			
 			var assetIdx = core.findIndexInArrayOfObjects( 
 														 core.categories[core.category_idx].assets
