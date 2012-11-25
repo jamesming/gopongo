@@ -20,6 +20,10 @@ float:right;
 .centered { margin: 0 auto; }
 .oh,.ot,.tt{float:left;padding:0 2% 2% 0;width:48%}.ot{width:31%}.tt{width:65%}.cl{clear:both}
 
+#leftMenuBar h4{
+cursor:pointer;	
+}
+
 #main ul.category-ul{
 margin:0px 0px 0px 25px;	
 }
@@ -143,12 +147,7 @@ cursor:pointer;
 	cursor:pointer;	
 }
 
-#youtube_container .title{
-ont-weight: bold;
-font-size: 28px;
-margin-bottom: 11px;
-color: gray;
-}
+
 
 .form_asset_container{
 	height:350px;	

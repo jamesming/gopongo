@@ -277,6 +277,8 @@ _.extend(core, {
 		
 		 init: function(){
 		 	
+		 	this.nav.init()
+		 	
 		 	this.windowResize();
 			this.model.categories.init();
 			this.model.assets.init();
@@ -288,6 +290,27 @@ _.extend(core, {
 			this.upload.form();
 			
 
+		}
+		
+		,nav:{
+			 init:function(){
+				this.home();
+				this.work();
+			}
+			,home:function(){
+				
+				$('#homeNav').click(function(event) {
+					$('#workArea').hide();
+				});	
+				
+			}
+			,work:function(){
+				
+				$('#workNav').click(function(event) {
+					$('#workArea').show();
+				});					
+			}
+			
 		}
 		
 		,windowResize: function(){
@@ -980,6 +1003,3 @@ _.extend(core, {
 });
 
 window.onload = function(){ core.start();	};
-
-
-
