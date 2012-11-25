@@ -56,8 +56,7 @@ cursor:pointer;
 }
 
 
- #thumb-collection .editCategoryTitle
-,#thumb-collection .playAllInCategory{
+ #thumb-collection .editCategoryTitle, #addAsset{
 	cursor: pointer;
 	font-size: 13px;
 	font-weight: normal;

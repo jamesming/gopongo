@@ -1,4 +1,4 @@
-<script src="<?php echo base_url()    ?>js/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url()    ?>js/libs/bootstrap/js/bootstrap.js"></script>
 
 <script src="<?php echo base_url()    ?>js/plugins.js?v=<?php echo rand()    ?>"></script>
 <script src="<?php echo base_url()    ?>js/core.js?v=<?php echo rand()    ?>"></script>

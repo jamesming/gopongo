@@ -24,7 +24,7 @@
 					    <?php echo $category['category_name']    ?>
 					  </a>
 					</div>
-					<div id="collapse<?php echo $count ?>" class="accordion-body collapse in">
+					<div id="collapse<?php echo $count ?>" class="accordion-body collapse " style="height: 0px;">
 					  <div class="accordion-inner">
 					    <ul  class="category-ul" >
 					    	<?php foreach( $category['assets']  as $asset){ ?>
@@ -33,6 +33,13 @@
 									<?php echo $asset['asset_name']     ?>
 									</li>
 									
+					    	<?php } ?>
+					    	
+					    	
+					    	<?php if( !$category['assets'] ){?>
+					    	
+					    		<li   style='visibility:hidden;'  >test</li>
+					    	
 					    	<?php } ?>
 					    </ul>
 					  </div>
@@ -49,8 +56,9 @@
 			} ?>
 			
 		</div>
-		<div  id='addNewCategory'  href='#edit_category_modal_box'  category_id='-1'><a class="btn btn-small" href="#"><i class="icon-plus-sign"></i>&nbsp;Add new Category </a>
+		<div  id='addNewCategory'  href='#edit_category_modal_box'  category_id='-1'><a class="btn btn-small" href="#"><i class="icon-plus-sign"></i>&nbsp;Add New Category </a>
 		</div>
+	
 	</div>
 	<div   id='thumb-collection' class="span9 fixedRightBody">
 		<div>
@@ -60,6 +68,13 @@
 					Edit Category&nbsp;&nbsp;<i class="icon-edit"></i>
 				</a>
 			</span>	
+			
+			<span  href='#edit_asset_modal_box'   id='addAsset'>
+				<a class="btn btn-small" href="#">
+					Add An Asset&nbsp;&nbsp;<i class="icon-edit"></i>
+				</a>
+			</span>				
+			
 		</div>
 		<div   style='clear:both;height:0px'  ></div>
 		<ul  class=' assets_ul'   id='thumb-collection-ul' >
@@ -85,9 +100,10 @@
 				</li>
 					
 			<?php } ?>
+			<!-- <li href='#edit_asset_modal_box' id='addAsset' >Click to Add Asset</li> -->
 			
-			<li href='#edit_asset_modal_box' id='addAsset' >Click to Add Asset</li>
 		</ul>
+
 	</div><?php $this->load->view($videoplayer); ?><?php $this->load->view($youtube); ?><?php $this->load->view($jcrop); ?>	
   </div>
 </div>

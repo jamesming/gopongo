@@ -7,9 +7,11 @@ _.extend(core, {
 		
 		$('#json').load(url, function(){
 			
-			console.log(JSON.stringify(core.categories));
+//			console.log(JSON.stringify(core.categories));
 			
 			that.setPropertiesMain();
+			
+			$('#thumb-collection h2').html(core.categories[0].category_name);
 
 			that.create.init();
 			that.bindElements.init();
@@ -701,7 +703,6 @@ _.extend(core, {
 						$('#zoom .submit_asset_form').live('click', function(event) {
 							
 							var  asset_name = $('#zoom .asset_name').val()
-								,asset_youtube_url = $('#zoom .asset_youtube_url').val()
 								,asset_description =  $('#zoom .asset_description').val()
 								,asset_client = $('#zoom .client').val();
 								
@@ -709,7 +710,6 @@ _.extend(core, {
 							
 								var assetObj = {
 									  asset_name:asset_name
-									 ,asset_youtube_url:asset_youtube_url
 									 ,asset_client:asset_client
 									 ,asset_description:asset_description
 									 ,asset_id:core.updateThis.asset_id
@@ -724,38 +724,20 @@ _.extend(core, {
 						
 			 			var url = window.base_url  + 'index.php/ajax/editAsset';
 			 			
-			 			if( core.user_id === 1){
+						$.post(	url,
+								assetObj,
+								function() {
 
-							if( core.submissionModeAssets === 'insert'){
-								core.bindElements.model.assets.formSubmission.afterUpdate.createNewElements(assetObj);
-							}else if( core.submissionModeAssets === 'edit'){
-								core.bindElements.model.assets.formSubmission.afterUpdate.updateExistingElements(assetObj);
-							};
-			 				
-			 			}else{
-			 				
-							$.post(	url,
-									assetObj,
-									function( youtube_id ) {
-										
-										var youtubeObj = {
-											'youtube_id': youtube_id
-										};
-										_.extend(assetObj, youtubeObj );
-										
-										if( core.submissionModeAssets === 'insert'){
-											core.bindElements.model.assets.formSubmission.afterUpdate.createNewElements(assetObj);
-										}else if( core.submissionModeAssets === 'edit'){
-											core.bindElements.model.assets.formSubmission.afterUpdate.updateExistingElements(assetObj);
-										};
-			
-									}
-							);				 				
-			 				
-			 			};
-			 			
+									if( core.submissionModeAssets === 'insert'){
+										core.bindElements.model.assets.formSubmission.afterUpdate.createNewElements(assetObj);
+									}else if( core.submissionModeAssets === 'edit'){
+										core.bindElements.model.assets.formSubmission.afterUpdate.updateExistingElements(assetObj);
+									};
 
-						
+								}
+						);			 			
+
+		 				
 					}			
 					
 					,afterUpdate: {
@@ -789,9 +771,6 @@ _.extend(core, {
 							
 							core.bindElements.model.assets.editAsset.fancyZoomThis( $el );																		
 						
-					
-							
-						
 							
 						}						
 					
@@ -803,68 +782,19 @@ _.extend(core, {
 																					if( item.asset_id === asset_id) return true;
 																			});	
 																			
-							if( core.user_id == 1){
-								
-									$('.title[asset_id=' + assetObj['asset_id'] + ']')
-									.html(assetObj.asset_name);
-									
-									$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
-									
-									core.categories[core.category_idx].assets[ idx_assets_array ].asset_name = assetObj.asset_name;
-																
-									$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play')
-									.css({
-											 'background':'url(' + window.base_url + 'uploads/'+ assetObj['asset_id'] +'/thumb/image.jpg?v=' + Math.random() + ') no-repeat'
-											,'background-position':'0px -45px'
-											,'background-size':'282px'
-									});
-									
-							}else{
+							$('.title[asset_id=' + assetObj['asset_id'] + ']')
+							.html(assetObj.asset_name);
 							
-								core.categories[core.category_idx].assets[ idx_assets_array ].youtube_thumb = "http://img.youtube.com/vi/" +  assetObj.youtube_id + "/0.jpg";
-			
-								$('.title[asset_id=' + assetObj['asset_id'] + ']')
-								.attr('youtube_id', assetObj.youtube_id);
-								
-								if( assetObj.asset_name == ''){
-									
-									core.misc.getYouTubeTitle(assetObj.youtube_id, function(youtubeObj){
-										
-										youtubeObj.data.title = youtubeObj.data.title.substring(0, 15);
-										
-										if( assetObj.asset_name == ''){
-											assetObj.asset_name = youtubeObj.data.title;
-										};
-										
-										$('.title[asset_id=' + assetObj['asset_id'] + ']')
-										.html(assetObj.asset_name);
-										
-										$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
-										
-										core.categories[core.category_idx].assets[ idx_assets_array ].asset_name = assetObj.asset_name;
-										
-									});									
-									
-								}else{
-										$('.title[asset_id=' + assetObj['asset_id'] + ']')
-										.html(assetObj.asset_name);
-										
-										$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
-										
-										core.categories[core.category_idx].assets[ idx_assets_array ].asset_name = assetObj.asset_name;
-																			
-								};
-								
-								
-								$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play')
-								.attr('youtube_id', assetObj.youtube_id)
-								.css({
-										 'background':'url(http://img.youtube.com/vi/' +  assetObj.youtube_id + '/0.jpg) no-repeat'
-										,'background-position':'0px -45px'
-										,'background-size':'282px'
-								});
-								
-							}
+							$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
+							
+							core.categories[core.category_idx].assets[ idx_assets_array ].asset_name = assetObj.asset_name;
+														
+							$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play')
+							.css({
+									 'background':'url(' + window.base_url + 'uploads/'+ assetObj['asset_id'] +'/thumb/image.jpg?v=' + Math.random() + ') no-repeat'
+									,'background-position':'0px -45px'
+									,'background-size':'282px'
+							});
 							
 							core.submissionModeAssets = 'insert';	
 							
@@ -887,7 +817,7 @@ _.extend(core, {
 				var rightPanelStuff = function(){
 					$('#thumb-collection').show();
 					$('#video_container').hide();
-					$('#thumb-collection-ul').empty();
+					$('#thumb-collection-ul li.draggable').remove();
 					$('#thumb-collection h2').html(core.categories[core.category_idx].category_name);						
 					$('#thumb-collection .editCategoryTitle').attr({'category_id':core.categories[core.category_idx].category_id,'category_idx':core.category_idx});
 					core.create.asset.init(core.category_idx);
