@@ -27,7 +27,13 @@
 					<div id="collapse<?php echo $count ?>" class="accordion-body collapse in">
 					  <div class="accordion-inner">
 					    <ul  class="category-ul" >
-
+					    	<?php foreach( $category['assets']  as $asset){ ?>
+					    	
+									<li asset_id=<?php echo $asset['asset_id']     ?>  category_id=<?php echo $category['category_id']    ?> >
+									<?php echo $asset['asset_name']     ?>
+									</li>
+									
+					    	<?php } ?>
 					    </ul>
 					  </div>
 					</div>

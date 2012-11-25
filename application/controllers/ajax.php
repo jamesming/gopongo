@@ -17,18 +17,15 @@ class Ajax extends CI_Controller {
 		$this->categories_model = new Models_Db_Categories_Model;
 		
 		/*
-		 		echo '<pre>';print_r(  $this->assets_model->getAll()  );echo '</pre>';  exit;
+		echo '<pre>';print_r(  $this->assets_model->getAll()  );echo '</pre>';  exit;
 				
-		echo "<script>core.categories =".json_encode($this->assets_model->getAll()).";</script>";		
-				
-		
+		echo "<script>core.categories =".json_encode($this->categories_model->getCategories()).";</script>";
 		
 		$this->assets_category = new Models_Db_Categories_Model;
 		
-		
 		*/		
 		
-		echo "<script>core.categories =".json_encode($this->categories_model->getCategories()).";</script>";
+		echo "<script>core.categories =".json_encode($this->assets_model->getAll()).";</script>";
 
 	 
 	}
