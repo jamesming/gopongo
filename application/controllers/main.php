@@ -33,7 +33,11 @@ class Main extends Base_Controller {
 	
 	public function main(){
 		
+		
+		
 		$this->_data->categories = $this->assets_model->getAll();
+		
+		$this->_data->carousels = $this->assets_model->getCarousel();
 		
 		if( $this->_data->loggedIn == false){
 			
@@ -44,8 +48,6 @@ class Main extends Base_Controller {
 		$this->_data->hidden = "hidden/view";	
 		$this->_data->edit=1;			
 		$this->_data->videoplayer = "hidden/videoplayer/view";
-		$this->_data->youtube = "hidden/youtube/view";
-		$this->_data->jcrop = "hidden/jcrop/view";
 		
 	
 		$this->load->view('index', $this->_data);			

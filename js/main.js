@@ -301,6 +301,7 @@ _.extend(core, {
 				
 				$('#homeNav').click(function(event) {
 					$('#workArea').hide();
+					$('#homeArea').show();
 				});	
 				
 			}
@@ -308,6 +309,7 @@ _.extend(core, {
 				
 				$('#workNav').click(function(event) {
 					$('#workArea').show();
+					$('#homeArea').hide();
 				});					
 			}
 			
