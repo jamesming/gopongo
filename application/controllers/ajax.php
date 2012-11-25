@@ -8,18 +8,20 @@ class Ajax extends CI_Controller {
 		
 		$this->assets_model = new Models_Db_Assets_Model;
 		
-		
+		$this->assets_category = new Models_Db_Categories_Model;
 	}
 	
 	public function getAll(){
 		
 		
-		$this->categories_model = new Models_Db_Categories_Model;
+		
 		
 		/*
+		
+		$this->categories_model = new Models_Db_Categories_Model;
 		echo '<pre>';print_r(  $this->assets_model->getAll()  );echo '</pre>';  exit;
 				
-		echo "<script>core.categories =".json_encode($this->categories_model->getCategories()).";</script>";
+		echo "<script>core.categories =".json_encode($this->assets_category->getCategories()).";</script>";
 		
 		$this->assets_category = new Models_Db_Categories_Model;
 		
@@ -88,14 +90,14 @@ class Ajax extends CI_Controller {
  		$category_id = $post_array['category_id'];
  		unset( $post_array['category_id'] );
  		
- 		echo $this->categories_model->editCategory($category_id,  $post_array);
+ 		echo $this->assets_category->editCategory($category_id,  $post_array);
  	}
  	
  	public function insertCategory(){
  		
  		$post_array = $this->input->post(); 
  		
- 		echo $this->categories_model->insertCategory($post_array);		
+ 		echo $this->assets_category->insertCategory($post_array);		
  		
  	}
  	
@@ -148,12 +150,12 @@ class Ajax extends CI_Controller {
  		$category_id = $post_array['category_id'];
  		unset( $post_array['category_id'] ); 		
 
- 		echo $this->categories_model->reorderOneCategory($category_id, $post_array);
+ 		echo $this->assets_category->reorderOneCategory($category_id, $post_array);
  	}
  	
  	public function reorderCategories(){
  		
- 		echo '<pre>';print_r(  $this->categories_model->reorderCategories() );echo '</pre>';  exit;
+ 		echo '<pre>';print_r(  $this->assets_category->reorderCategories() );echo '</pre>';  exit;
  		
  	} 	
  	

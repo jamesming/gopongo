@@ -248,7 +248,11 @@ _.extend(core, {
 
 						$.post(	url,
 								categoryObj,
-								function( data ) {}
+								function( data ) {
+									
+								console.log(data);
+									
+								}
 						);
 					
 				}
