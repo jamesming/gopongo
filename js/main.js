@@ -22,6 +22,7 @@ _.extend(core, {
 	,setPropertiesMain: function(){
 		
 		this.user_id = core.categories[0].user_id;
+		this.myPlayer = _V_("my_video_1");
 		this.submissionModeAssets = 'insert';  // || edit
 		this.category_idx = 0; // var category_id = core.categories[core.category_idx].category_id
 		this.updateThis = {asset_id:0};  // core.updateThis.asset_id
@@ -576,11 +577,10 @@ _.extend(core, {
 				}						
 				
 				,playAsset: function(){
-	
-					$('.play').live('click', function(event) {
-					 	core.misc.playYouTube( $(this) );
-					});							
 
+					$('.play').live('click', function(event) {
+					 	core.misc.playVideo( $(this) );
+					});	
 				}			
 				
 				,dragAsset: function(){
@@ -1030,7 +1030,31 @@ _.extend(core, {
 			
 		}
 
-		
+		,playVideo: function($this){  // DEPRECIATED
+
+				var	 asset_id = $this.attr('asset_id')
+					,category_id = $this.attr('category_id')
+					,idx_categories_array = core.findIndexInArrayOfObjects( 
+										 core.categories
+										,function( item ){
+											if( item.category_id === category_id) return true;
+										});	
+
+				$('.category-ul > li').css({background:'white'});	
+				$('li[asset_id=' + asset_id + '] ').css({background:'red'});										
+
+
+				$('#thumb-collection').hide();
+				$('#video_container').show();
+
+				var video_src = window.base_url + 'uploads/'+ $this.attr('asset_id') +'/video/video.mp4?v=' + Math.random();
+
+				core.myPlayer.src(video_src);				
+
+
+
+
+		}	
 	}
 	
 });
