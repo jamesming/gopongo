@@ -150,7 +150,9 @@ class Models_Db_Assets_Model extends Database {
 					 $table = 'categories' 
 					,$select_what = '
 						  assets.id as asset_id
-						, assets.name as asset_name '
+						, assets.name as asset_name
+						, assets.description as asset_description
+						, assets.asset_link as asset_link'
 					,$where_array = array(
 						'carousel' => 1
 					)
