@@ -17,7 +17,7 @@
 						<?php foreach( $carousels  as  $key => $carousel){?>
 	
 							<div class="item<?php if($key == 0){ echo ' active ';};    ?>" >
-								<img src="<?php echo base_url().'uploads/' . $carousel->asset_id . '/thumb/image.jpg?v=' . rand(5,12312) . ';'    ?>" alt="" ></img>
+								<img play_asset_id=586 src="<?php echo base_url().'uploads/' . $carousel->asset_id . '/thumb/image.jpg?v=' . rand(5,12312) . ';'    ?>" alt="" ></img>
 							    <div class="carousel-caption">
 							      <h4>{{img_title}}</h4>
 							      <p>{{img_desc}}</p>

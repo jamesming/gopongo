@@ -2,6 +2,8 @@ _.extend(core, {
 	
 	 start: function(){
 	 	
+
+	 	
 		var  that = this
 			,url = window.base_url  + 'index.php/ajax/getAll';
 		
@@ -16,7 +18,10 @@ _.extend(core, {
 			that.create.init();
 			that.bindElements.init();
 			
+			
 		});	
+		
+
 
 		
 	}
@@ -288,7 +293,7 @@ _.extend(core, {
 			this.upload.thumb();
 			this.upload.video();
 			this.upload.form();
-			
+			this.carousel_images()
 
 		}
 		
@@ -547,6 +552,7 @@ _.extend(core, {
 														
 								
 								$('#zoom_content .asset_name').val(core.categories[core.category_idx].assets[idx_assets_array[0]].asset_name);
+								$('#zoom_content input.asset_link').val(core.categories[core.category_idx].assets[idx_assets_array[0]].asset_link);
 								
 								$('#zoom_content img')
 								.on('error', function() {
@@ -554,9 +560,18 @@ _.extend(core, {
 								})
 								.attr('src', window.base_url + 'uploads/'+asset_id+'/thumb/image.jpg?v=' +  Math.random());
 								
-								
-								
 								core.submissionModeAssets = 'edit';
+								
+								if( core.category_idx == 0){
+									
+									$('#zoom_content .oh .input-append').hide();
+									$('#zoom_content .control-group.asset_link').show();
+									
+									
+								}else{
+									$('#zoom_content .oh .input-append').show();
+									$('#zoom_content .control-group.asset_link').hide();
+								};
 								
 								core.updateThis = {
 									asset_id:asset_id 	
@@ -733,13 +748,13 @@ _.extend(core, {
 							
 							var  asset_name = $('#zoom .asset_name').val()
 								,asset_description =  $('#zoom .asset_description').val()
-								,asset_client = $('#zoom .client').val();
+								,asset_link = $('#zoom input.asset_link').val();
 								
 							$('body').click();
 							
 								var assetObj = {
 									  asset_name:asset_name
-									 ,asset_client:asset_client
+									 ,asset_link:asset_link
 									 ,asset_description:asset_description
 									 ,asset_id:core.updateThis.asset_id
 								};						
@@ -752,7 +767,7 @@ _.extend(core, {
 					,postEditAsset: function(assetObj){
 						
 			 			var url = window.base_url  + 'index.php/ajax/editAsset';
-			 			
+			 			console.log(assetObj);
 						$.post(	url,
 								assetObj,
 								function() {
@@ -816,7 +831,7 @@ _.extend(core, {
 							
 							$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
 							
-							core.categories[core.category_idx].assets[ idx_assets_array ].asset_name = assetObj.asset_name;
+							core.categories[core.category_idx].assets[ idx_assets_array ].asset_link = assetObj.asset_link;
 														
 							$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play')
 							.css({
@@ -890,11 +905,6 @@ _.extend(core, {
 				
 				$('#zoom_content .video_uplr').live('click', function(event) {
 					
-//			 		if( core.disableUpload ){
-//			 			alert('please wait till the other upload has completed.');
-//			 			return;
-//			 		};					
-					
 					$('#zoom_content input[name=target_name]').val('video.mp4');
 					$('#zoom_content input[name=target_folder]').val('video');
 					$('#zoom_content .video_input_field').val('loading...')
@@ -920,6 +930,16 @@ _.extend(core, {
 				});	
 				
 			}
+			
+		}
+		
+		,carousel_images: function(){
+		
+			$('.carousel-inner img').click(function(event) {
+				$('#workArea').show();
+				$('#homeArea').hide();				
+				core.misc.playVideoByAssetId( $(this).attr('play_asset_id') );
+			});	
 			
 		}
 
@@ -999,7 +1019,27 @@ _.extend(core, {
 
 
 
-		}	
+		}
+		
+		,playVideoByAssetId: function( asset_id ){	
+			for(var catIdx in core.categories){
+				
+				for(var assetIdx in core.categories[catIdx].assets){
+					
+					if( core.categories[catIdx].assets[assetIdx].asset_id == asset_id){
+						
+						$('#categories a[idx='+catIdx+']').click();
+						
+						setTimeout(function(){
+							$('#thumb-collection li').eq(assetIdx - 1).children('div.play').click();
+						}, 1000);
+						
+					};
+					
+					
+				};
+			};
+		}
 	}
 	
 });

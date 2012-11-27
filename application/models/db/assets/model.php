@@ -19,11 +19,9 @@ class Models_Db_Assets_Model extends Database {
 						, categories.id as category_id
 						, categories.name as category_name
 						, assets.id as asset_id
-						, assets.youtube_url as youtube_url
 						, assets.description as asset_description
-						, assets.youtube_thumb as youtube_thumb
-						, assets.duration as duration
-						, assets.name as asset_name '   
+						, assets.name as asset_name    
+						, assets.asset_link as asset_link '   
 					,$where_array = array(
 						'user_id =' => (  $this->session->userdata['user_id'] == 1 ? 1 : 2 ) 
 					)
@@ -50,7 +48,7 @@ class Models_Db_Assets_Model extends Database {
 					foreach( $category  as  $field => $value){
 		 
 		 
-						 	if (!in_array($field, array('asset_id', 'asset_name', 'asset_description', 'youtube_url', 'youtube_thumb', 'duration'))){
+						 	if (!in_array($field, array('asset_id', 'asset_name', 'asset_description', 'asset_link'))){
 						 			$category_array[$field] = $value;
 							}else{
 									
@@ -62,6 +60,8 @@ class Models_Db_Assets_Model extends Database {
 										$grouped_asset['asset_description'] = $value;	
 									}elseif( $field =='user_id'){
 										$grouped_asset['user_id'] =  $value;
+									}elseif( $field =='asset_link'){
+										$grouped_asset['asset_link'] =  $value;
 									};
 									
 									
@@ -81,7 +81,7 @@ class Models_Db_Assets_Model extends Database {
 
 					foreach( $category  as  $field => $value){
 		 
-						 	if (!in_array($field, array('asset_id', 'asset_name', 'asset_description', 'youtube_url', 'youtube_thumb', 'duration'))){
+						 	if (!in_array($field, array('asset_id', 'asset_name', 'asset_description', 'asset_link'))){
 						 			$category_array[$field] = $value;
 							}else{
 								
@@ -93,6 +93,8 @@ class Models_Db_Assets_Model extends Database {
 										$grouped_asset['asset_description'] = $value;	
 									}elseif( $field =='user_id'){
 										$grouped_asset['user_id'] =  $value;
+									}elseif( $field =='asset_link'){
+										$grouped_asset['asset_link'] =  $value;
 									};
 
 									
@@ -247,41 +249,18 @@ class Models_Db_Assets_Model extends Database {
 	}
 	
 	public function editAsset($asset_id, $post_array){
-		
-		
-		if( $this->session->userdata['user_id'] == 1){
+
 			
-					return $this->update_table(
-						$table = 'assets',
-						$primary_key = $asset_id, 
-						$set_what_array = array(
-							  'name' => $post_array['asset_name']  
-							 ,'description' => $post_array['asset_description']
-						)
-					);				
-		}else{
-			
-					$this->upload = new Models_Up_Assets_Model;
-					$youtube_id = $this->upload->extract_video_id_from_youtube_url($post_array['asset_youtube_url']);
-					$youtube_thumb = $this->upload->get_thumbnail_from_youtube_video_id($youtube_id);
-					$youtube_array = $this->upload->getVideoDataFromYouTube( $youtube_id );
-					
-					$this->update_table(
-						$table = 'assets',
-						$primary_key = $asset_id, 
-						$set_what_array = array(
-							  'youtube_url' => $post_array['asset_youtube_url']
-							 ,'youtube_id' => $youtube_id
-							 ,'youtube_thumb' => $youtube_thumb
-							 ,'name' => ( $post_array['asset_name'] !='' ? $post_array['asset_name'] :$youtube_array['data']['title'] )
-							 ,'duration' => $youtube_array['data']['duration']
-						)
-					);
-					
-					return $youtube_id;			
-			
-			
-		};
+		return $this->update_table(
+			$table = 'assets',
+			$primary_key = $asset_id, 
+			$set_what_array = array(
+				  'name' => $post_array['asset_name']  
+				 ,'description' => $post_array['asset_description']
+				 ,'asset_link' => $post_array['asset_link']
+			)
+		);				
+
 		
 		
 	}

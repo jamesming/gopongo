@@ -5,7 +5,7 @@
 	</div>
 	<div  class='overlay' >
 		<div  class='fl ' >
-			<span asset_id={{asset_id}} category_id={{category_id}} class='title' >{{asset_name}}</span>
+			<span asset_id={{asset_id}} category_id={{category_id}} class='title' >{{asset_name}} {{asset_id}}</span>
 		</div>
 		<div  class='fr ' >
 			<span asset_id={{asset_id}} class='edit '  href='#edit_asset_modal_box' ><i class="icon-edit  icon-white"></i></span>

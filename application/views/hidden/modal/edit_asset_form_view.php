@@ -2,7 +2,7 @@
 	<div  class='form_asset_container span7' >
 		<form  class="form-horizontal">
 			
-			<h2>Video Upload
+			<h2>Assets
 			</h2>
 			<div>
 				<div  class=' oh' >
@@ -14,23 +14,7 @@
 					      <input type="text" class="asset_name input-medium" placeholder="Name" >
 					    </div>
 					  </div>		
-					  
-					  
-					  
-					  <div class="control-group"  <?php echo ( $this->session->userdata['user_id'] == 1  ? "   style='display:none'  " : "" );   ?>>
-					    <label class="control-label" for="asset_client">Youtube URL</label>
-					    <div class="controls">
-					      <input type="text" class="asset_youtube_url input-medium" placeholder="Youtube URL" >
-					    </div>
-					  </div>						  		
-					  
-					  <div class="control-group"  <?php echo ( $this->session->userdata['user_id'] == 1  ? " style='display:none'" : "   style='display:none'  " );   ?>>
-					    <label class="control-label" for="asset_client">Client</label>
-					    <div class="controls">
-					      <input type="text" class="asset_client input-medium" placeholder="Client" >
-					    </div>
-					  </div>						  
-					  
+
 					  <div class="control-group"  >
 					    <label class="control-label" for="asset_description">Description</label>
 					    <div class="controls">
@@ -38,7 +22,12 @@
 					    </div>
 					  </div>		  
 					  
-					
+					  <div class="control-group asset_link"  >
+					    <label class="control-label" for="asset_description">Link</label>
+					    <div class="controls">
+					    	<input type="text" class="asset_link input-medium" placeholder="Record ID" >
+					    </div>
+					  </div>	
 				</div>
 				
 				
