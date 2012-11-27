@@ -1031,7 +1031,7 @@ _.extend(core, {
 						$('#categories a[idx='+catIdx+']').click();
 						
 						setTimeout(function(){
-							$('#thumb-collection li').eq(assetIdx - 1).children('div.play').click();
+							$('#thumb-collection li div.play[asset_id='+asset_id+']').click();
 						}, 1000);
 						
 					};
