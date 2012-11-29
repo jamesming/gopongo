@@ -46,4 +46,18 @@
 <script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.droppable.min.js"></script>	
 <script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.position.min.js"></script>	
 <script src="<?php echo base_url()    ?>js/libs/fancyzoom/fancyzoom_extended.js"></script>
+
+<style>
+#footBng{
+background:url(<?php  echo base_url()   ?>img/footerTiled.png) repeat-x;
+}
+
+#thumb-collection ul li div.dragHandle{
+background:url(<?php  echo base_url()   ?>img/drag-handle.png) no-repeat;	
+}	
+
+</style>
+
+
+
 </head>

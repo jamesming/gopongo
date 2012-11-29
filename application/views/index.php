@@ -9,7 +9,9 @@
 	<?php
 	if( $loggedIn){
 		$this->load->view($nav); 
-	};?>	
+	};?>
+	<div  id='logo-section' >	
+	</div>
 	<div  class='mid-section ' >
 		<div   style='padding-top:10px'  >
 			<?php $this->load->view($body); ?>
