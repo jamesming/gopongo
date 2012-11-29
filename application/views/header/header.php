@@ -48,13 +48,31 @@
 <script src="<?php echo base_url()    ?>js/libs/fancyzoom/fancyzoom_extended.js"></script>
 
 <style>
+	
+#logo-section{
+}
+#logo-section .span11{
+	height:177px;
+}
+#logo-section .A{
+	width: 184px;
+	margin-left: 257px;
+	background:url(<?php  echo base_url()   ?>img/logoA.png) no-repeat;
+}
+#logo-section .B{
+	width:525px;
+	margin-right: 174px;
+	margin-top: 35px;	
+	background:url(<?php  echo base_url()   ?>img/logoB.png) no-repeat;
+}
+#thumb-collection ul li div.dragHandle{
+background:url(<?php  echo base_url()   ?>img/drag-handle.png) no-repeat;	
+}
+
+	
 #footBng{
 background:url(<?php  echo base_url()   ?>img/footerTiled.png) repeat-x;
 }
-
-#thumb-collection ul li div.dragHandle{
-background:url(<?php  echo base_url()   ?>img/drag-handle.png) no-repeat;	
-}	
 
 </style>
 

@@ -37,7 +37,7 @@
 	</div>
 	<div  id='workArea' class="span11"    > 
 		
-		<div  id="leftControls" class="span2">
+		<div  id="leftControls" class="span1 fl">
 			<div   id='categories' class="accordion" >
 				
 				<?php
@@ -91,7 +91,7 @@
 			</div>
 		
 		</div>
-		<div   id="thumb-collection" class="span9 fixedRightBody">
+		<div   id="thumb-collection" class="span9 fl">
 			<div>
 				<h2></h2>
 				<span  href='#edit_category_modal_box'  class='editCategoryTitle ' category_idx='' category_id=''>
