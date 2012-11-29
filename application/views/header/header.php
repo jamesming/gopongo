@@ -50,9 +50,10 @@
 <style>
 	
 #logo-section{
+	height: 177px;
 }
 #logo-section .span11{
-	height:177px;
+	height:180px;
 }
 #logo-section .A{
 	width: 184px;
