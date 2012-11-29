@@ -17,9 +17,7 @@
 		</div>
 	</div>
 	<div  class='mid-section ' >
-		<div   style='padding-top:10px'  >
 			<?php $this->load->view($body); ?>
-		</div>
 	</div>
 <?php
 	if( isset($hidden) ){
