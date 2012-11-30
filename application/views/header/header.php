@@ -51,6 +51,7 @@
 	
 #logo-section{
 	height: 177px;
+	width: 1170px;
 }
 #logo-section .span11{
 	height:180px;

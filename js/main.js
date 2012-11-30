@@ -2,7 +2,13 @@ _.extend(core, {
 	
 	 start: function(){
 	 	
-
+		var height = "innerHeight" in window 
+               ? window.innerHeight
+               : document.documentElement.offsetHeight; 
+               
+             console.log(height);
+             
+        console.log($('body').height());
 	 	
 		var  that = this
 			,url = window.base_url  + 'index.php/ajax/getAll';

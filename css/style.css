@@ -1,7 +1,6 @@
 body {
   padding-top: 60px;
-  padding-bottom: 40px;
-  
+  height:100%
 }
 .mid-section{
   min-height:470px;	
@@ -17,6 +16,8 @@ float:left;
 .fr{
 float:right;	
 }
+
+.nowrap { white-space: nowrap; }
 
 .centered { margin: 0 auto; }
 .oh,.ot,.tt{float:left;padding:0 2% 2% 0;width:48%}.ot{width:31%}.tt{width:65%}.cl{clear:both}
@@ -36,7 +37,7 @@ margin:0px 0px 0px 25px;
 .span1 h4{
 text-align:right;	
 }
-
+#categories{width: 131px;}
 #categories .category-ul li{
 	list-style:bullet;
 	cursor:pointer;	
@@ -45,6 +46,8 @@ text-align:right;
 	border: 0px;
 	-webkit-border-radius: 0px;	
 }
+
+
 #categories .accordion-group > img.sort-handle-categories{
 	position:absolute;
 	margin-top:12px;
@@ -89,6 +92,7 @@ cursor:pointer;
 #thumb-collection  ul{
 	height:auto;
 	margin:0px 0px 0px 0px;
+	width: 843px;
 }
 
 #thumb-collection ul li{
@@ -231,7 +235,7 @@ top:48%;
 
 
 #footBng{
-	position:absolute;
+/*	position:absolute;*/
 	bottom:0px;
 	height:184px;
 	width:100%;
