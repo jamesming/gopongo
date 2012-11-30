@@ -21,7 +21,7 @@ _.extend(core, {
 	}
 
 	,setPropertiesMain: function(){
-		this.setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight();
+		this.misc.setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight();
 		this.user_id = core.categories[0].user_id;
 		this.myPlayer = _V_("my_video_1");
 		this.submissionModeAssets = 'insert';  // || edit
@@ -936,7 +936,7 @@ _.extend(core, {
 		,resizeWindow: function(){
 			 
 				$(window).resize(function(){
-					core.setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight();
+					core.misc.setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight();
 				});
 				
 		}
