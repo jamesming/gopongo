@@ -21,7 +21,7 @@ _.extend(core, {
 	}
 
 	,setPropertiesMain: function(){
-		
+		this.setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight();
 		this.user_id = core.categories[0].user_id;
 		this.myPlayer = _V_("my_video_1");
 		this.submissionModeAssets = 'insert';  // || edit
@@ -936,21 +936,7 @@ _.extend(core, {
 		,resizeWindow: function(){
 			 
 				$(window).resize(function(){
-					var setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight = function(){
-						
-						var windowHeight = "innerHeight" in window 
-				               ? window.innerHeight
-				               : document.documentElement.offsetHeight; 	
-				               
-				         if(  windowHeight > $('body').height()){		
-				        	$('#footBng').css({position:'absolute'});
-				         }else{
-				         	$('#footBng').css({position:'relative'});
-				         };
-						
-					};
-					
-					setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight();  
+					core.setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight();
 				});
 				
 		}
@@ -1050,6 +1036,21 @@ _.extend(core, {
 					
 				};
 			};
+		}
+		
+		
+		,setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight : function(){
+						
+						var windowHeight = "innerHeight" in window 
+				               ? window.innerHeight
+				               : document.documentElement.offsetHeight; 	
+				               
+				         if(  windowHeight > $('body').height()){		
+				        	$('#footBng').css({position:'absolute'});
+				         }else{
+				         	$('#footBng').css({position:'relative'});
+				         };
+						
 		}
 	}
 	
