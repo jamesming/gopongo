@@ -128,12 +128,12 @@ cursor:pointer;
 	bottom:0px;
 	left:0px;
 	right:0px;
-	height:33px;
 	background-color: rgba(0, 0, 0, 0.50);
 	padding: 10px;
 	box-sizing:border-box;
 	color:white;
 	font-weight:bold;
+	width:204px;
 }
 
 #thumb-collection ul li div.overlay .title{
