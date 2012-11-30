@@ -2,14 +2,6 @@ _.extend(core, {
 	
 	 start: function(){
 	 	
-		var height = "innerHeight" in window 
-               ? window.innerHeight
-               : document.documentElement.offsetHeight; 
-               
-             console.log(height);
-             
-        console.log($('body').height());
-	 	
 		var  that = this
 			,url = window.base_url  + 'index.php/ajax/getAll';
 		
@@ -24,11 +16,7 @@ _.extend(core, {
 			that.create.init();
 			that.bindElements.init();
 			
-			
 		});	
-		
-
-
 		
 	}
 
@@ -289,8 +277,7 @@ _.extend(core, {
 		 init: function(){
 		 	
 		 	this.nav.init()
-		 	
-		 	this.windowResize();
+
 			this.model.categories.init();
 			this.model.assets.init();
 			
@@ -300,6 +287,8 @@ _.extend(core, {
 			this.upload.video();
 			this.upload.form();
 			this.carousel_images()
+			
+			this.resizeWindow();
 
 		}
 		
@@ -326,13 +315,7 @@ _.extend(core, {
 			
 		}
 		
-		,windowResize: function(){
-			
-			$(window).resize(function() {
-			  core.create.setFixedRightBody();
-			});
-			
-		}
+
 		
 		,model:{
 			
@@ -949,6 +932,28 @@ _.extend(core, {
 			
 		}
 
+
+		,resizeWindow: function(){
+			
+				$(window).resize(function(){
+					var setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight = function(){
+						
+						var windowHeight = "innerHeight" in window 
+				               ? window.innerHeight
+				               : document.documentElement.offsetHeight; 	
+				               
+				         if(  windowHeight > $('body').height()){		
+				        	$('#footBng').css({position:'absolute'});
+				         }else{
+				         	$('#footBng').css({position:'relative'});
+				         };
+						
+					};
+					
+					setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight();  
+				});
+				
+		}
 
 	}
 	
