@@ -5,6 +5,8 @@ _.extend(core, {
 		var  that = this
 			,url = window.base_url  + 'index.php/ajax/getAll';
 		
+		this.misc.setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight();
+		
 		$('#json').load(url, function(){
 			
 //			console.log(JSON.stringify(core.categories));
@@ -21,7 +23,7 @@ _.extend(core, {
 	}
 
 	,setPropertiesMain: function(){
-		this.misc.setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight();
+		
 		this.user_id = core.categories[0].user_id;
 		this.myPlayer = _V_("my_video_1");
 		this.submissionModeAssets = 'insert';  // || edit
