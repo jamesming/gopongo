@@ -934,7 +934,7 @@ _.extend(core, {
 
 
 		,resizeWindow: function(){
-			
+			 
 				$(window).resize(function(){
 					var setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight = function(){
 						
