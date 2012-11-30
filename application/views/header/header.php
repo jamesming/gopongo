@@ -57,14 +57,16 @@
 }
 #logo-section .A{
 	width: 184px;
-	margin-left: 257px;
+	margin-left: 158px;
 	background:url(<?php  echo base_url()   ?>img/logoA.png) no-repeat;
 }
 #logo-section .B{
 	width:525px;
-	margin-right: 174px;
+	margin-right: 273px;
 	margin-top: 35px;	
 	background:url(<?php  echo base_url()   ?>img/logoB.png) no-repeat;
+	background-size: 526px;
+	height: 111px;
 }
 #thumb-collection ul li div.dragHandle{
 background:url(<?php  echo base_url()   ?>img/drag-handle.png) no-repeat;	

@@ -5,6 +5,7 @@ body {
 }
 .mid-section{
   min-height:470px;	
+  clear: both;
 }
 
 .clearfix{
@@ -92,7 +93,7 @@ cursor:pointer;
 
 #thumb-collection ul li{
 	list-style:none;
-	width: 280px;
+	width: 204px;
 	height:159px;
 	background:white;
 	float:left;
@@ -136,7 +137,7 @@ cursor:pointer;
 }
 
 #thumb-collection ul li div.overlay .title{
-	width: 201px;
+	width: 128px;
 	text-overflow: ellipsis;
 }
 

@@ -10,7 +10,7 @@
 	if( $loggedIn){
 		$this->load->view($nav); 
 	};?>
-	<div  id='logo-section'  class='container ' >
+	<div  id='logo-section'  class='container '   >
 		<div  class="span11 A fl"  >
 		</div >
 		<div class="span11 B fr" >
