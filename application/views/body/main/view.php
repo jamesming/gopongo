@@ -3,7 +3,7 @@
 	<div  id='leftMenuBar' class="span1"   >
 		<h4  id='homeNav' >Home</h4>
 		<h4  id='workNav' >Work</h4>
-		<h4>Clients</h4>
+		<h4  id='clientsNav' >Clients</h4>
 		<h4>Login</h4>
 	</div>
 	
@@ -138,6 +138,16 @@
 		</div><?php $this->load->view($videoplayer); ?>			     	
 		
 	</div>
-
+<style>
+	#clientsArea{
+		display:none;	
+	}
+	#clientsArea img{
+		margin-left: 171px;
+	}
+</style>
+	<div id='clientsArea' >
+		<img src='<?php echo base_url()    ?>img/clients.png' />
+	</div>
 
 </div>

@@ -298,10 +298,12 @@ _.extend(core, {
 			 init:function(){
 				this.home();
 				this.work();
+				this.clients();
 			}
 			,home:function(){
 				
 				$('#homeNav').click(function(event) {
+					$('#clientsArea').hide();
 					$('#workArea').hide();
 					$('#homeArea').show();
 				});	
@@ -312,7 +314,18 @@ _.extend(core, {
 				$('#workNav').click(function(event) {
 					$('#workArea').show();
 					$('#homeArea').hide();
+					$('#clientsArea').hide();
 				});					
+			}
+			
+			,clients:function(){
+				
+				$('#clientsNav').click(function(event) {
+					$('#clientsArea').show();
+					$('#homeArea').hide();
+					$('#workArea').hide();
+				});					
+				
 			}
 			
 		}
