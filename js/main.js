@@ -299,6 +299,7 @@ _.extend(core, {
 				this.home();
 				this.work();
 				this.clients();
+				this.login();
 			}
 			,home:function(){
 				
@@ -306,6 +307,7 @@ _.extend(core, {
 					$('#clientsArea').hide();
 					$('#workArea').hide();
 					$('#homeArea').show();
+					$('#loginArea').hide();
 				});	
 				
 			}
@@ -315,6 +317,7 @@ _.extend(core, {
 					$('#workArea').show();
 					$('#homeArea').hide();
 					$('#clientsArea').hide();
+					$('#loginArea').hide();
 				});					
 			}
 			
@@ -324,9 +327,23 @@ _.extend(core, {
 					$('#clientsArea').show();
 					$('#homeArea').hide();
 					$('#workArea').hide();
+					$('#loginArea').hide();
 				});					
 				
 			}
+			
+			,login: function(){
+				
+				$('#loginNav').click(function(event) {
+					$('#clientsArea').hide();
+					$('#homeArea').hide();
+					$('#workArea').hide();
+					$('#loginArea').show();
+				});						
+				
+				
+			}
+			
 			
 		}
 		

@@ -4,7 +4,7 @@
 		<h4  id='homeNav' >Home</h4>
 		<h4  id='workNav' >Work</h4>
 		<h4  id='clientsNav' >Clients</h4>
-		<h4>Login</h4>
+		<h4  id='loginNav' >Login</h4>
 	</div>
 	
 
@@ -138,16 +138,21 @@
 		</div><?php $this->load->view($videoplayer); ?>			     	
 		
 	</div>
-<style>
-	#clientsArea{
-		display:none;	
-	}
-	#clientsArea img{
-		margin-left: 171px;
-	}
-</style>
+
 	<div id='clientsArea' >
 		<img src='<?php echo base_url()    ?>img/clients.png' />
 	</div>
-
+	<div id='loginArea'  class="container">
+			<div class="span4 well">
+				<legend>Please Sign In</legend>
+	          	<div class="alert alert-error">
+	                <a class="close" data-dismiss="alert" href="#">×</a>Incorrect Username or Password!
+	            </div>
+				<form method="POST" action="<?php  echo base_url()   ?>main/validate" accept-charset="UTF-8">
+				<input type="text" id="username" class="span4" name="username" placeholder="Username">
+				<input type="password" id="password" class="span4" name="password" placeholder="Password">
+	
+				<button type="submit" class="btn btn-info btn-block">Sign in</button>
+				</form>    
+			</div>
 </div>
