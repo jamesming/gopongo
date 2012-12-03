@@ -91,7 +91,7 @@
 		
 		</div>
 		<div   id="thumb-collection" class="span7 fl">
-			<div>
+			<div  class='edit_container ' >
 				<h2></h2>
 				<span  href='#edit_category_modal_box'  class='editCategoryTitle ' category_idx='' category_id=''>
 					<a class="btn btn-small" href="#">

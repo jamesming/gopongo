@@ -49,13 +49,7 @@
 
 <style>
 	
-#logo-section{
-	height: 177px;
-	width: 1170px;
-}
-#logo-section .span11{
-	height:180px;
-}
+
 #logo-section .A{
 	width: 184px;
 	margin-left: 158px;
@@ -83,14 +77,16 @@ background:url(<?php  echo base_url()   ?>img/footerTiled.png) repeat-x;
 #addAsset,
 .dragHandle,
 #thumb-collection-ul .overlay,
-.sort-handle-categories
+.sort-handle-categories,
+.edit_container
+
 {
 	display:none;	
 }
 	
 	
 <?php  }else{ ?>
-#loginNav	
+#loginNav
 {
 	display:none;	
 }	
