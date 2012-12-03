@@ -3,7 +3,6 @@
 class Models_Db_Assets_Model extends Database {
 	
 	public function getAll(){
-		
 
 		$this->upload = new Models_Up_Assets_Model;
 		
@@ -23,7 +22,7 @@ class Models_Db_Assets_Model extends Database {
 						, assets.name as asset_name    
 						, assets.asset_link as asset_link '   
 					,$where_array = array(
-						'user_id =' => (  $this->session->userdata['user_id'] == 1 ? 1 : 2 ) 
+					//	'user_id =' => (  $this->session->userdata['user_id'] == 1 ? 1 : 2 ) 
 					)
 					,$use_order = TRUE
 					,$order_field = 'categories.order asc, assets.order asc'
@@ -35,7 +34,6 @@ class Models_Db_Assets_Model extends Database {
 					
 					
 		$categories_raw = $this->object_to_array($categories_raw);
-		
 
 		$count = 0;
 
@@ -46,7 +44,6 @@ class Models_Db_Assets_Model extends Database {
 			if( $category['category_id'] == $previous_id || $previous_id == 0){
 
 					foreach( $category  as  $field => $value){
-		 
 		 
 						 	if (!in_array($field, array('asset_id', 'asset_name', 'asset_description', 'asset_link'))){
 						 			$category_array[$field] = $value;
@@ -63,8 +60,6 @@ class Models_Db_Assets_Model extends Database {
 									}elseif( $field =='asset_link'){
 										$grouped_asset['asset_link'] =  $value;
 									};
-									
-									
 									
 							};
 					}

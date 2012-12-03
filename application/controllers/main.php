@@ -10,17 +10,11 @@ class Main extends Base_Controller {
 
 	public function index()
 	{
-	//	
+	
 //		$this->assets_model->clear_table_of_empty_records_flagged_with_update_field_equals_0000();
-		if( $this->_data->loggedIn == true ){
+
+		$this->main();			
 			
-			$this->main();			
-			
-		}else{
-			
-			$this->_data->body = "body/login/view";
-			$this->load->view('index', $this->_data);				
-		};
 
 	}
 	
@@ -33,16 +27,9 @@ class Main extends Base_Controller {
 	
 	public function main(){
 		
-		
-		
 		$this->_data->categories = $this->assets_model->getAll();
 		
 		$this->_data->carousels = $this->assets_model->getCarousel();
-		
-		if( $this->_data->loggedIn == false){
-			
-			redirect('/main/index');
-		};
 		
 		$this->_data->body = "body/main/view";
 		$this->_data->hidden = "hidden/view";	

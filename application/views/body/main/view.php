@@ -15,7 +15,6 @@
 				 
 				  	<div class="carousel-inner">
 						<?php foreach( $carousels  as  $key => $carousel){?>
-	
 							<div class="item<?php if($key == 0){ echo ' active ';};    ?>" >
 								<img play_asset_id=<?php echo $carousel->asset_link    ?> src="<?php echo base_url().'uploads/' . $carousel->asset_id . '/thumb/image.jpg?v=' . rand(5,12312) . ';'    ?>" alt="" ></img>
 							    <div class="carousel-caption">
@@ -44,9 +43,10 @@
 				
 					$count = 0;
 					
-					foreach( $categories  as $category){ ?>
+					foreach( $categories  as $key => $category){ ?>
 						
-	
+					<?php if( $key == 0 ){  continue; }  ?>
+								
 					<div class="accordion-group" category_idx=<?php echo $count ?> category_id=<?php echo $category['category_id']    ?>>
 						<img  class='sort-handle-categories ' src='<?php echo base_url()    ?>img/sort-handle.png'/>
 						<div class="accordion-heading">

@@ -77,7 +77,19 @@ background:url(<?php  echo base_url()   ?>img/drag-handle.png) no-repeat;
 #footBng{
 background:url(<?php  echo base_url()   ?>img/footerTiled.png) repeat-x;
 }
-
+<?php  if( !$loggedIn){  ?>
+#addNewCategory,
+.editCategoryTitle,
+#addAsset,
+.dragHandle,
+#thumb-collection-ul .overlay,
+.sort-handle-categories
+{
+	display:none;	
+}
+	
+	
+<?php  } ?>
 </style>
 
 
