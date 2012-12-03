@@ -45,6 +45,13 @@ float:right;
 cursor:pointer;	
 }
 
+.carousel-control.left{
+left:-62px;
+}
+.carousel-control.right{
+right: -60px;
+}
+
 #leftMenuBar h4{
 cursor:pointer;	
 }
