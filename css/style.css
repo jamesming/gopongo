@@ -60,6 +60,7 @@ text-align:right;
 #categories .category-ul li{
 	list-style:bullet;
 	cursor:pointer;	
+	list-style: none;
 }
 #categories .accordion-group{
 	border: 0px;
