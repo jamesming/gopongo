@@ -30,6 +30,7 @@ _.extend(core, {
 		this.category_idx = 0; // var category_id = core.categories[core.category_idx].category_id
 		this.updateThis = {asset_id:0};  // core.updateThis.asset_id
 		this.disableUpload = false;
+		this.pongoRed = 'red';
 	}
 
 	,create: {
@@ -304,9 +305,10 @@ _.extend(core, {
 			,home:function(){
 				
 				$('#homeNav').click(function(event) {
+					$('#leftMenuBar h4').css({color:'#333333'});
 					$('#clientsArea').hide();
 					$('#workArea').hide();
-					$('#homeArea').show();
+					$('#homeArea').show().css({color:core.pongoRed});
 					$('#loginArea').hide();
 				});	
 				
@@ -314,7 +316,8 @@ _.extend(core, {
 			,work:function(){
 				
 				$('#workNav').click(function(event) {
-					$('#workArea').show();
+					$('#leftMenuBar h4').css({color:'#333333'});
+					$('#workArea').show().css({color:core.pongoRed});
 					$('#homeArea').hide();
 					$('#clientsArea').hide();
 					$('#loginArea').hide();
@@ -324,7 +327,8 @@ _.extend(core, {
 			,clients:function(){
 				
 				$('#clientsNav').click(function(event) {
-					$('#clientsArea').show();
+					$('#leftMenuBar h4').css({color:'#333333'});
+					$('#clientsArea').show().css({color:core.pongoRed});
 					$('#homeArea').hide();
 					$('#workArea').hide();
 					$('#loginArea').hide();
@@ -335,10 +339,11 @@ _.extend(core, {
 			,login: function(){
 				
 				$('#loginNav').click(function(event) {
+					$('#leftMenuBar h4').css({color:'#333333'});
 					$('#clientsArea').hide();
 					$('#homeArea').hide();
 					$('#workArea').hide();
-					$('#loginArea').show();
+					$('#loginArea').show().css({color:core.pongoRed});
 				});						
 				
 				
