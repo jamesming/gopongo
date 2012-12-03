@@ -9,7 +9,15 @@ class Models_Db_Assets_Model extends Database {
 		$join_array = array(
 			'assets' => 'assets.category_id = categories.id'
 		);	
-											
+		
+		if( $this->session->userdata['user_id'] == 1){
+			$where_array =array();
+		}else{
+			$where_array =array(
+				'categories.name !=' => 'Carousel' 
+			);
+		};
+		
 		
 		$categories_raw =  $this->select_from_table_left_join( 
 					 $table = 'categories'
@@ -21,9 +29,7 @@ class Models_Db_Assets_Model extends Database {
 						, assets.description as asset_description
 						, assets.name as asset_name    
 						, assets.asset_link as asset_link '   
-					,$where_array = array(
-					//	'user_id =' => (  $this->session->userdata['user_id'] == 1 ? 1 : 2 ) 
-					)
+					,$where_array
 					,$use_order = TRUE
 					,$order_field = 'categories.order asc, assets.order asc'
 					,$order_direction = ''
