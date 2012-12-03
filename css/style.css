@@ -23,7 +23,10 @@ float:right;
 .oh,.ot,.tt{float:left;padding:0 2% 2% 0;width:48%}.ot{width:31%}.tt{width:65%}.cl{clear:both}
 
 
-
+.shadowOnDiv{
+-moz-box-shadow:    9px 7px 14px 1px #CCC;
+-webkit-box-shadow: 9px 7px 14px 1px #CCC;
+box-shadow:         9px 7px 14px 1px #CCC;
 
 /* 
 *
@@ -256,9 +259,6 @@ display:none;
 width:650px;
 margin-left: 242px;
 border: 5px solid red;
-  -moz-box-shadow:    9px 7px 14px 1px #CCC;
-  -webkit-box-shadow: 9px 7px 14px 1px #CCC;
-  box-shadow:         9px 7px 14px 1px #CCC;
 }
 
 .carousel-control{
