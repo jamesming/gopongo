@@ -45,7 +45,6 @@
 					
 					foreach( $categories  as $key => $category){ ?>
 						
-					<?php if( !$loggedIn && $key == 0 ){  continue; }  ?>
 								
 					<div class="accordion-group" category_idx=<?php echo $count ?> category_id=<?php echo $category['category_id']    ?>>
 						<img  class='sort-handle-categories ' src='<?php echo base_url()    ?>img/sort-handle.png'/>
