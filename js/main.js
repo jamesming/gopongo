@@ -303,15 +303,15 @@ _.extend(core, {
 				this.login();
 			}
 			
-			,activateLeftItem: function(){
+			,activateLeftItem: function($this){
 				$('#leftMenuBar h4').css({color:'#333333'});
-				$(this).css({color:core.pongoRed});	
+				$this.css({color:core.pongoRed});	
 			}
 			
 			,home:function(){
 				
 				$('#homeNav').click(function(event) {
-					core.bindElements.nav.activateLeftItem();
+					core.bindElements.nav.activateLeftItem($(this));
 					$('#clientsArea').hide();
 					$('#workArea').hide();
 					$('#homeArea').show().css({color:core.pongoRed});
