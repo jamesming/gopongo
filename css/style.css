@@ -256,9 +256,9 @@ display:none;
 width:650px;
 margin-left: 242px;
 border: 5px solid red;
-  -moz-box-shadow:    3px 3px 5px 6px #ccc;
-  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-  box-shadow:         3px 3px 5px 6px #ccc;	
+  -moz-box-shadow:    9px 7px 14px 1px #CCC;
+  -webkit-box-shadow: 9px 7px 14px 1px #CCC;
+  box-shadow:         9px 7px 14px 1px #CCC;
 }
 
 .carousel-control{
