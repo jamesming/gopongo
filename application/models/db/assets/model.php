@@ -10,7 +10,7 @@ class Models_Db_Assets_Model extends Database {
 			'assets' => 'assets.category_id = categories.id'
 		);	
 		
-		if( $this->session->userdata['user_id'] == 1){
+		if( isset($this->session->userdata['user_id']) ){
 			$where_array =array();
 		}else{
 			$where_array =array(
