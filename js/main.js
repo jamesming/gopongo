@@ -302,10 +302,16 @@ _.extend(core, {
 				this.clients();
 				this.login();
 			}
+			
+			,activateLeftItem: function(){
+				$('#leftMenuBar h4').css({color:'#333333'});
+				$(this).css({color:core.pongoRed});	
+			}
+			
 			,home:function(){
 				
 				$('#homeNav').click(function(event) {
-					$('#leftMenuBar h4').css({color:'#333333'});
+					core.bindElements.nav.activateLeftItem();
 					$('#clientsArea').hide();
 					$('#workArea').hide();
 					$('#homeArea').show().css({color:core.pongoRed});
@@ -316,8 +322,8 @@ _.extend(core, {
 			,work:function(){
 				
 				$('#workNav').click(function(event) {
-					$('#leftMenuBar h4').css({color:'#333333'});
-					$('#workArea').show().css({color:core.pongoRed});
+					core.bindElements.nav.activateLeftItem();
+					$('#workArea').show();
 					$('#homeArea').hide();
 					$('#clientsArea').hide();
 					$('#loginArea').hide();
@@ -327,8 +333,8 @@ _.extend(core, {
 			,clients:function(){
 				
 				$('#clientsNav').click(function(event) {
-					$('#leftMenuBar h4').css({color:'#333333'});
-					$('#clientsArea').show().css({color:core.pongoRed});
+					core.bindElements.nav.activateLeftItem();
+					$('#clientsArea').show();
 					$('#homeArea').hide();
 					$('#workArea').hide();
 					$('#loginArea').hide();
@@ -339,11 +345,10 @@ _.extend(core, {
 			,login: function(){
 				
 				$('#loginNav').click(function(event) {
-					$('#leftMenuBar h4').css({color:'#333333'});
 					$('#clientsArea').hide();
 					$('#homeArea').hide();
 					$('#workArea').hide();
-					$('#loginArea').show().css({color:core.pongoRed});
+					$('#loginArea').show();
 				});						
 				
 				
