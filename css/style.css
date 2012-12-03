@@ -246,14 +246,11 @@ top:48%;
 	padding-top:20px;
 }
 
-	#clientsArea{
-		display:none;	
-	}
+
 	#clientsArea img{
 		margin-left: 171px;
 	}
 	#loginArea{
-		display:none;
 		padding-left: 346px;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;

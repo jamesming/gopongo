@@ -8,7 +8,7 @@
 	</div>
 	
 
-	<div  id='homeArea'  class="span10"  style='display:none'  >
+	<div  id='homeArea'  class="span10" >
 		
 
 			<div id="myCarousel" class="carousel slide">
@@ -34,7 +34,7 @@
 
 		
 	</div>
-	<div  id='workArea' class="span10"    > 
+	<div  id='workArea' class="span10"     style='display:none'  > 
 		
 		<div  id="leftControls" class="span2 fl">
 			<div   id='categories' class="accordion" >
@@ -110,7 +110,7 @@
 			<div   style='clear:both;height:0px'  ></div>
 			<ul  class=' assets_ul'   id='thumb-collection-ul' >
 	
-				<?php foreach( $categories[0]['assets']  as $asset){ ?>
+				<?php foreach( $categories[1]['assets']  as $asset){ ?>
 				
 					<li asset_id=<?php  echo $asset['asset_id']   ?>   category_id=<?php  echo $categories[0]['category_id']   ?>  class=' draggable ' >
 						<div  class='dragHandle ' >
@@ -139,10 +139,10 @@
 		
 	</div>
 
-	<div id='clientsArea' >
+	<div id='clientsArea'   style='display:none'  >
 		<img src='<?php echo base_url()    ?>img/clients.png' />
 	</div>
-	<div id='loginArea'  class="container">
+	<div id='loginArea'  class="container"    style='display:none' >
 			<div class="span4 well">
 				<legend>Please Sign In</legend>
 	          	<div class="alert alert-error">
