@@ -55,9 +55,12 @@ left:-59px;
 .carousel-control.right{
 right: -60px;
 }
-
+#leftMenuBar{
+	padding-left: 41px;
+	box-sizing: border-box;	
+}
 #leftMenuBar h4{
-cursor:pointer;	
+	cursor:pointer;	
 }
 
 #main ul.category-ul{
