@@ -30,7 +30,7 @@ _.extend(core, {
 		this.category_idx = 0; // var category_id = core.categories[core.category_idx].category_id
 		this.updateThis = {asset_id:0};  // core.updateThis.asset_id
 		this.disableUpload = false;
-		this.pongoRed = 'red';
+		this.pongoRed = '#D50412';
 	}
 
 	,create: {
