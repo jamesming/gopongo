@@ -83,10 +83,13 @@ background:url(<?php  echo base_url()   ?>img/footerTiled.png) repeat-x;
 {
 	display:none;	
 }
-body(padding-top: 0px;)
+body(
+padding-top: 0px !important;
+)
 	
 <?php  }else{ ?>
-body(padding-top: 60px;)	
+body(
+padding-top: 60px;)	
 #loginNav
 {
 	display:none;	
