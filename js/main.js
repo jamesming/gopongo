@@ -303,9 +303,9 @@ _.extend(core, {
 				this.login();
 			}
 			
-			,activateLeftItem: function($this){
+			,activateLeftItem: function(el){
 				$('#leftMenuBar h4').css({color:'#333333'});
-				$this.css({color:core.pongoRed});	
+				el.css({color:core.pongoRed});	
 			}
 			
 			,home:function(){
@@ -322,7 +322,7 @@ _.extend(core, {
 			,work:function(){
 				
 				$('#workNav').click(function(event) {
-					core.bindElements.nav.activateLeftItem();
+					core.bindElements.nav.activateLeftItem($(this));
 					$('#workArea').show();
 					$('#homeArea').hide();
 					$('#clientsArea').hide();
@@ -333,7 +333,7 @@ _.extend(core, {
 			,clients:function(){
 				
 				$('#clientsNav').click(function(event) {
-					core.bindElements.nav.activateLeftItem();
+					core.bindElements.nav.activateLeftItem($(this));
 					$('#clientsArea').show();
 					$('#homeArea').hide();
 					$('#workArea').hide();
@@ -345,6 +345,7 @@ _.extend(core, {
 			,login: function(){
 				
 				$('#loginNav').click(function(event) {
+					core.bindElements.nav.activateLeftItem($(this));
 					$('#clientsArea').hide();
 					$('#homeArea').hide();
 					$('#workArea').hide();
