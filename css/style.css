@@ -190,7 +190,7 @@ cursor:pointer;
 #thumb-collection ul li div.play{
 height: 108px;
 background-size: 204px 154px !important;
-border: 4px solid red;	
+border: 4px solid #D50412;	
 }
 
  #thumb-collection ul li div.overlay .delete
@@ -269,7 +269,7 @@ display:none;
 #myCarousel{
 width:650px;
 margin-left: 160px;
-border: 5px solid red;
+border: 5px solid #D50412;
 }
 
 .carousel-control{
