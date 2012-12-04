@@ -1,4 +1,4 @@
-<div  id='main' class="container" >
+<div  id="main" class="container" >
 
 	<div  id='leftMenuBar' class="span1"   >
 		<h4  id='homeNav' >Home</h4>
@@ -8,7 +8,7 @@
 	</div>
 	
 
-	<div  id='homeArea'  class="span10" >
+	<div  id='homeArea'  class="span10 rightArea" >
 		
 
 			<div id="myCarousel" class="carousel slide shadowOnDiv">
@@ -34,9 +34,9 @@
 
 		
 	</div>
-	<div  id='workArea' class="span10"     style='display:none'  > 
+	<div  id='workArea' class="span10 rightArea"     style='display:none'  > 
 		
-		<div  id="leftControls" class="span2 fl">
+		<div  id="leftControls" class=" fl">
 			<div   id='categories' class="accordion" >
 				
 				<?php
@@ -90,7 +90,7 @@
 			</div>
 		
 		</div>
-		<div   id="thumb-collection" class="span7 fl">
+		<div   id="thumb-collection" class="fl">
 			<div  class='edit_container ' >
 				<h2></h2>
 				<span  href='#edit_category_modal_box'  class='editCategoryTitle ' category_idx='' category_id=''>
@@ -138,10 +138,10 @@
 		
 	</div>
 
-	<div id='clientsArea'   style='display:none'  >
+	<div id='clientsArea'  class=' rightArea' style='display:none'  >
 		<img src='<?php echo base_url()    ?>img/clients.png' />
 	</div>
-	<div id='loginArea'  class="container"    style='display:none' >
+	<div id='loginArea'  class=" rightArea"    style='display:none' >
 			<div class="span4 well">
 				<legend>Please Sign In</legend>
 	          	<div class="alert alert-error">

@@ -7,6 +7,7 @@ _.extend(core, {
 		
 		this.misc.setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight();
 		
+		
 		$('#json').load(url, function(){
 			
 //			console.log(JSON.stringify(core.categories));
@@ -17,6 +18,7 @@ _.extend(core, {
 
 			that.create.init();
 			that.bindElements.init();
+			
 			
 		});	
 		
@@ -31,6 +33,7 @@ _.extend(core, {
 		this.updateThis = {asset_id:0};  // core.updateThis.asset_id
 		this.disableUpload = false;
 		this.pongoRed = '#D50412';
+		this.pongoGray = 'grey';
 	}
 
 	,create: {
@@ -38,7 +41,8 @@ _.extend(core, {
 		 init: function(){
 //			this.category.init();
 //			this.asset.init(0);
-			this.setFixedRightBody()
+//			this.setFixedRightBody();
+			core.misc.highlightFirstMenuItemRed();
 		}
 		
 		,category: {
@@ -304,7 +308,8 @@ _.extend(core, {
 			}
 			
 			,activateLeftItem: function(el){
-				$('#leftMenuBar h4').css({color:'#333333'});
+				$('#leftMenuBar h4').css({color:core.pongoGray});
+				$('.rightArea').hide();
 				el.css({color:core.pongoRed});	
 			}
 			
@@ -312,10 +317,7 @@ _.extend(core, {
 				
 				$('#homeNav').click(function(event) {
 					core.bindElements.nav.activateLeftItem($(this));
-					$('#clientsArea').hide();
-					$('#workArea').hide();
-					$('#homeArea').show().css({color:core.pongoRed});
-					$('#loginArea').hide();
+					$('#homeArea').show();
 				});	
 				
 			}
@@ -324,9 +326,6 @@ _.extend(core, {
 				$('#workNav').click(function(event) {
 					core.bindElements.nav.activateLeftItem($(this));
 					$('#workArea').show();
-					$('#homeArea').hide();
-					$('#clientsArea').hide();
-					$('#loginArea').hide();
 				});					
 			}
 			
@@ -335,9 +334,6 @@ _.extend(core, {
 				$('#clientsNav').click(function(event) {
 					core.bindElements.nav.activateLeftItem($(this));
 					$('#clientsArea').show();
-					$('#homeArea').hide();
-					$('#workArea').hide();
-					$('#loginArea').hide();
 				});					
 				
 			}
@@ -346,9 +342,6 @@ _.extend(core, {
 				
 				$('#loginNav').click(function(event) {
 					core.bindElements.nav.activateLeftItem($(this));
-					$('#clientsArea').hide();
-					$('#homeArea').hide();
-					$('#workArea').hide();
 					$('#loginArea').show();
 				});						
 				
@@ -1094,6 +1087,10 @@ _.extend(core, {
 				         	$('#footBng').css({position:'relative'});
 				         };
 						
+		}
+		
+		,highlightFirstMenuItemRed: function(){
+			$('#homeNav').css({color:core.pongoRed});
 		}
 	}
 	
