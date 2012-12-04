@@ -61,6 +61,8 @@ right: -60px;
 }
 #leftMenuBar h4{
 	cursor:pointer;	
+	text-align: right;
+	width: 60px;	
 }
 
 #main ul.category-ul{
@@ -70,11 +72,16 @@ margin:0px 0px 0px 25px;
 .span1 h4{
 text-align:right;	
 }
-#categories{width: 131px;}
+#categories{width: 150px;}
 #categories .category-ul li{
-	list-style:bullet;
 	cursor:pointer;	
 	list-style: none;
+    -moz-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(-8deg, 0deg);
+    -webkit-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(-8deg, 0deg);
+    -o-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(-8deg, 0deg);
+    -ms-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(-8deg, 0deg);
+    transform: scale(1) rotate(0deg) translate(0px, 0px) skew(-8deg, 0deg);	
+    font-size: 13px;
 }
 #categories .accordion-group{
 	border: 0px;

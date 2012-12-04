@@ -1035,7 +1035,7 @@ _.extend(core, {
 			
 		}
 
-		,playVideo: function($this){  // DEPRECIATED
+		,playVideo: function($this){ 
 
 				var	 asset_id = $this.attr('asset_id')
 					,category_id = $this.attr('category_id')
@@ -1045,8 +1045,8 @@ _.extend(core, {
 											if( item.category_id === category_id) return true;
 										});	
 
-				$('.category-ul > li').css({background:'white'});	
-				$('li[asset_id=' + asset_id + '] ').css({background:'red'});										
+				$('.category-ul > li').css({'font-weight':'none'});	
+				$('li[asset_id=' + asset_id + '] ').css({'font-weight':'bold'});										
 
 
 				$('#thumb-collection').hide();
