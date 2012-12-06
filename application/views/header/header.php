@@ -72,29 +72,32 @@ background:url(<?php  echo base_url()   ?>img/drag-handle.png) no-repeat;
 background:url(<?php  echo base_url()   ?>img/footerTiled.png) repeat-x;
 }
 <?php  if( !$loggedIn){  ?>
-#addNewCategory,
-.editCategoryTitle,
-#addAsset,
-.dragHandle,
-#thumb-collection-ul .overlay,
-.sort-handle-categories,
-.edit_container
-
-{
-	display:none;	
-}
-body(
-padding-top: 0px !important;
-)
-	
+		body{
+		padding-top: 20px;		
+		margin: 0;		
+		background: #FFFFFF url(<?php echo base_url()    ?>img/p_background_compressed.jpg) center center fixed no-repeat;
+		-moz-background-size: cover;
+		background-size: cover;
+		color: #fff;
+		}		
+		#addNewCategory,
+		.editCategoryTitle,
+		#addAsset,
+		.dragHandle,
+		#thumb-collection-ul .overlay,
+		.sort-handle-categories,
+		.edit_container{
+			display:none;	
+		}
+		
 <?php  }else{ ?>
-body(
-padding-top: 60px;)	
-#loginNav
-{
-	display:none;	
-}	
 	
+		body{
+		padding-top: 60px;}	
+		#loginNav{
+			display:none;	
+		}	
+			
 	
 <?php  } ?>
 </style>
