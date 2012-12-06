@@ -84,6 +84,8 @@ background:url(<?php  echo base_url()   ?>img/footerTiled.png) repeat-x;
 
 body{
 background: #FFFFFF url(<?php echo base_url()    ?>img/p_background_compressed.jpg) center center fixed no-repeat;
+-moz-background-size: cover;
+background-size: cover; 
 }		
 
 <?php  if( !$loggedIn){  ?>
