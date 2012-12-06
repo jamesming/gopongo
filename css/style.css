@@ -49,6 +49,14 @@ box-shadow:         9px 7px 14px 1px #CCC;
 cursor:pointer;	
 }
 
+.carousel-control{
+background: #FFFFFF;
+border: 0px;
+-webkit-border-radius: 0px;
+border-radius: 0px;
+width: 39px;
+height: 45px;
+}
 .carousel-control.left{
 left:-59px;
 }

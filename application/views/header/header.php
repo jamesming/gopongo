@@ -63,6 +63,16 @@
 	background-size: 526px;
 	height: 111px;
 }
+
+.carousel-control.left{
+background: #FFFFFF url(<?php echo base_url()    ?>img/leftArrow.png) no-repeat;
+}
+.carousel-control.right{
+background: #FFFFFF url(<?php echo base_url()    ?>img/rightArrow.png) no-repeat;
+}
+
+
+
 #thumb-collection ul li div.dragHandle{
 background:url(<?php  echo base_url()   ?>img/drag-handle.png) no-repeat;	
 }
