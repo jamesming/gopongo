@@ -69,11 +69,12 @@ right: -60px;
 #leftMenuBar h4{
 cursor:pointer;	
 text-align: right;
-width: 82px;
-font-family: 'Boogaloo', cursive;
+width: 100px;
+font-family: 'Scada', cursive;
 font-size: 27px;
 height: 35px;
 color:grey;
+text-transform: uppercase; 
 }
 
 
@@ -113,8 +114,9 @@ border-top: 0px solid #e5e5e5;
 #categories .accordion-toggle{
 	padding-left: 20px;	
 	font-weight: bold;
-	font-family: 'Boogaloo', cursive;
+	font-family: 'Scada', cursive;
 	font-size: 18px;
+	text-transform: uppercase; 
 }
 
 #addNewCategory{
