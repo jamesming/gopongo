@@ -81,14 +81,14 @@ background:url(<?php  echo base_url()   ?>img/drag-handle.png) no-repeat;
 #footBng{
 background:url(<?php  echo base_url()   ?>img/footerTiled.png) repeat-x;
 }
+
+body{
+background: #FFFFFF url(<?php echo base_url()    ?>img/p_background_compressed.jpg) center center fixed no-repeat;
+}		
+
 <?php  if( !$loggedIn){  ?>
 		body{
 		padding-top: 20px;		
-		margin: 0;		
-		background: #FFFFFF url(<?php echo base_url()    ?>img/p_background_compressed.jpg) center center fixed no-repeat;
-		-moz-background-size: cover;
-		background-size: cover;
-		color: #fff;
 		}		
 		#addNewCategory,
 		.editCategoryTitle,
