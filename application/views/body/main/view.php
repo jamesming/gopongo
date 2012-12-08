@@ -59,7 +59,7 @@
 						    <ul  class="category-ul" >
 						    	<?php foreach( $category['assets']  as $asset){ ?>
 						    	
-										<li class='GothamItalic ' asset_id=<?php echo $asset['asset_id']     ?>  category_id=<?php echo $category['category_id']    ?> ><?php echo $asset['asset_name']     ?></li>
+										<li class='Gotham' asset_id=<?php echo $asset['asset_id']     ?>  category_id=<?php echo $category['category_id']    ?> ><?php echo $asset['asset_name']     ?></li>
 										
 						    	<?php } ?>
 						    	
