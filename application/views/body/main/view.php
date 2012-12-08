@@ -46,12 +46,12 @@
 					foreach( $categories  as $key => $category){ ?>
 						
 								
-					<div class="accordion-group category" idx=<?php echo $count ?> category_idx=<?php echo $count ?> category_id=<?php echo $category['category_id']    ?>>
+					<div class="accordion-group "category_idx=<?php echo $count ?> category_id=<?php echo $category['category_id']    ?>>
 						<img  class='sort-handle-categories ' src='<?php echo base_url()    ?>img/sort-handle.png'/>
 						<div class="accordion-heading">
 						  
-						  <a  class='Gotham ' idx=<?php echo $count ?> class="accordion-toggle" data-toggle="collapse" data-parent="#categories" href="#collapse<?php echo $count ?>">
-						    <?php echo $category['category_name']    ?>
+						  <a idx=<?php echo $count ?> class="accordion-toggle category" data-toggle="collapse" data-parent="#categories" href="#collapse<?php echo $count ?>">
+						   <span  class='Gotham ' ><?php echo $category['category_name']    ?></span>
 						  </a>
 						</div>
 						<div id="collapse<?php echo $count ?>" class="accordion-body collapse " style="height: 0px;">
