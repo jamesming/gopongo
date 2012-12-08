@@ -50,6 +50,7 @@ class Main extends Base_Controller {
 				Cufon.replace('.GothamBold', { fontFamily: 'GothamBold' });
 				Cufon.replace('.GothamBoldItalic', { fontFamily: 'GothamBoldItalic' });
 				Cufon.replace('.GothamItalic', { fontFamily: 'GothamItalic' });
+				Cufon.now();
 			</script>
 
 		  </body>

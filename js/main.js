@@ -40,6 +40,8 @@ _.extend(core, {
 		Cufon.replace('.GothamBoldItalic', { fontFamily: 'GothamBoldItalic' });
 		Cufon.replace('.GothamItalic', { fontFamily: 'GothamItalic' });		
 		
+		Cufon.now();
+		
 	}
 
 	,create: {
