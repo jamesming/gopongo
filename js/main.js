@@ -888,7 +888,6 @@ _.extend(core, {
  		,leftControls: function(){
 
 			$('.category').live('click', function(event) {
-				
 				core.category_idx  = $(this).attr('idx');
 				
 				var rightPanelStuff = function(){
