@@ -32,9 +32,6 @@ class Main extends Base_Controller {
 			float:left;
 			width:200px;
 			}
-			.cufon-alt{
-			line-height:120% !important;		
-			}
 			.cufon{
 				font-size:40px;
 				color:gray;
