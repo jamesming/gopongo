@@ -35,16 +35,16 @@ class Main extends Base_Controller {
 			</style>
 		  <body>
 		    <div class="cufon gotham"   style=''  >
-		      Lorem ipsum dolor sit amet. PONGO  HOME CLIENTS  WORK LOGIN
+		      PONGO  HOME CLIENTS  WORK LOGIN
 		    </div>
 		    <div class="cufon gothamBold"   style=''  >
-		      Lorem ipsum dolor sit amet.  PONGO  HOME CLIENTS  WORK LOGIN
+		       PONGO  HOME CLIENTS  WORK LOGIN
 		    </div>
 		    <div class="cufon gothamItalic"   style=''  >
-		      Lorem ipsum dolor sit amet. PONGO  HOME CLIENTS  WORK LOGIN
+		      PONGO  HOME CLIENTS  WORK LOGIN
 		    </div>
 		    <div class="cufon gothamBoldItalic"   style=''  >
-		      Lorem ipsum dolor sit amet. PONGO  HOME CLIENTS  WORK LOGIN
+		      PONGO  HOME CLIENTS  WORK LOGIN
 		    </div>		    		    
 			<script type="text/javascript">
 				Cufon.replace('.Gotham', { fontFamily: 'Gotham' });
