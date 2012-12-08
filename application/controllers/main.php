@@ -28,24 +28,26 @@ class Main extends Base_Controller {
 		  </head>
 		
 			<style>
+			div div{
+			float:left;
+			width:200px;
+			}
+			.cufon-alt{
+			line-height:120% !important;		
+			}
 			.cufon{
 				font-size:40px;
 				color:gray;
 			}
 			</style>
 		  <body>
-		    <div class="cufon gotham"   style=''  >
-		      PONGO  HOME CLIENTS  WORK LOGIN
-		    </div>
-		    <div class="cufon gothamBold"   style=''  >
-		       PONGO  HOME CLIENTS  WORK LOGIN
-		    </div>
-		    <div class="cufon gothamItalic"   style=''  >
-		      PONGO  HOME CLIENTS  WORK LOGIN
-		    </div>
-		    <div class="cufon gothamBoldItalic"   style=''  >
-		      PONGO  HOME CLIENTS  WORK LOGIN
-		    </div>		    		    
+		  	<div>
+			    <div class="cufon gotham"   style=''  >PONGO  HOME CLIENTS  WORK LOGIN</div>
+			    <div class="cufon gothamBold"   style=''  >PONGO  HOME CLIENTS  WORK LOGIN</div>
+			    <div class="cufon gothamItalic"   style=''  >PONGO  HOME CLIENTS  WORK LOGIN</div>
+			    <div class="cufon gothamBoldItalic"   style=''  >PONGO  HOME CLIENTS  WORK LOGIN</div>
+		  	</div>
+    		    
 			<script type="text/javascript">
 				Cufon.replace('.Gotham', { fontFamily: 'Gotham' });
 				Cufon.replace('.GothamBold', { fontFamily: 'GothamBold' });
