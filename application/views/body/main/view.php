@@ -1,10 +1,10 @@
 <div  id="main" class="container" >
 
 	<div  id='leftMenuBar' class="span1"   >
-		<h4  id='homeNav' >Home</h4>
-		<h4  id='workNav' >Work</h4>
-		<h4  id='clientsNav' >Clients</h4>
-		<h4  id='loginNav' >Login</h4>
+		<h4  id='homeNav'  class='GothamBold ' >Home</h4>
+		<h4  id='workNav' class='GothamBold ' >Work</h4>
+		<h4  id='clientsNav' class='GothamBold ' >Clients</h4>
+		<h4  id='loginNav' class='GothamBold ' >Login</h4>
 	</div>
 	
 
@@ -50,7 +50,7 @@
 						<img  class='sort-handle-categories ' src='<?php echo base_url()    ?>img/sort-handle.png'/>
 						<div class="accordion-heading">
 						  
-						  <a idx=<?php echo $count ?> class="accordion-toggle category" data-toggle="collapse" data-parent="#categories" href="#collapse<?php echo $count ?>">
+						  <a  class='Gotham ' idx=<?php echo $count ?> class="accordion-toggle category" data-toggle="collapse" data-parent="#categories" href="#collapse<?php echo $count ?>">
 						    <?php echo $category['category_name']    ?>
 						  </a>
 						</div>
@@ -59,9 +59,7 @@
 						    <ul  class="category-ul" >
 						    	<?php foreach( $category['assets']  as $asset){ ?>
 						    	
-										<li asset_id=<?php echo $asset['asset_id']     ?>  category_id=<?php echo $category['category_id']    ?> >
-										<?php echo $asset['asset_name']     ?>
-										</li>
+										<li class='GothamItalic ' asset_id=<?php echo $asset['asset_id']     ?>  category_id=<?php echo $category['category_id']    ?> ><?php echo $asset['asset_name']     ?></li>
 										
 						    	<?php } ?>
 						    	

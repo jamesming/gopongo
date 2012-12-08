@@ -34,6 +34,9 @@ box-shadow:         9px 7px 14px 1px #CCC;
 *  
 *
 */
+.cufon{
+	color:gray;
+}
 
 #logo-section{
 	height: 177px;
@@ -64,13 +67,12 @@ left:-59px;
 right: -60px;
 }
 #leftMenuBar{
-	padding-left: 41px;
+	padding-left: 21px;
 }
 #leftMenuBar h4{
 cursor:pointer;	
 text-align: right;
-width: 100px;
-font-family: 'Scada', cursive;
+width: 120px;
 font-size: 27px;
 height: 35px;
 color:grey;
@@ -79,24 +81,31 @@ text-transform: uppercase;
 
 
 #categories ul.category-ul{
-margin:0px 0px 0px 25px;	
+margin:0px 0px 0px 10px;	
 }
 
 
-#categories{width: 150px;}
+#categories{
+	width: 169px;
+}
+
+#categories .accordion-heading a{
+	font-size: 18px;
+	color:gray;
+}
+
+
 #categories .category-ul li{
 	cursor:pointer;	
 	list-style: none;
-    -moz-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(-8deg, 0deg);
-    -webkit-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(-8deg, 0deg);
-    -o-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(-8deg, 0deg);
-    -ms-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(-8deg, 0deg);
-    transform: scale(1) rotate(0deg) translate(0px, 0px) skew(-8deg, 0deg);	
-    font-size: 13px;
+    font-size: 11px;
+    color:gray;
 }
 #categories .accordion-group{
 	border: 0px;
 	-webkit-border-radius: 0px;	
+margin-top: 5px;
+margin-bottom: 10px;
 }
 
 
@@ -112,11 +121,14 @@ border-top: 0px solid #e5e5e5;
 }
 
 #categories .accordion-toggle{
-	padding-left: 20px;	
+	padding-left: 30px;	
 	font-weight: bold;
-	font-family: 'Scada', cursive;
-	font-size: 18px;
+	font-size: 20px;
 	text-transform: uppercase; 
+}
+
+#workArea{
+margin-left:64px;	
 }
 
 #addNewCategory{

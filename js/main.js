@@ -34,6 +34,12 @@ _.extend(core, {
 		this.disableUpload = false;
 		this.pongoRed = '#D50412';
 		this.pongoGray = 'grey';
+		
+		Cufon.replace('.Gotham', { fontFamily: 'Gotham' });
+		Cufon.replace('.GothamBold', { fontFamily: 'GothamBold' });
+		Cufon.replace('.GothamBoldItalic', { fontFamily: 'GothamBoldItalic' });
+		Cufon.replace('.GothamItalic', { fontFamily: 'GothamItalic' });		
+		
 	}
 
 	,create: {

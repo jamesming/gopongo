@@ -33,23 +33,23 @@
 		
 	</script>
 
-<script src="<?php  echo base_url()   ?>js/libs/modernizr/modernizr-2.5.3-respond-1.1.0.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
-<script>window.$ || document.write('<script src="' + window.base_url + 'js/libs/jquery/jquery.1.8.1.min.js"><\/script>')</script>
-<script>window._ || document.write('<script src="' + window.base_url + 'js/libs/underscore/underscore-min.1.3.3.js"><\/script>')</script>
-<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.core.min.js"></script>	
-<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.widget.min.js"></script>
-<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.mouse.min.js"></script>		
-<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.sortable.min.js"></script>	
-<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.draggable.min.js"></script>	
-<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.droppable.min.js"></script>	
-<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.position.min.js"></script>	
-<script src="<?php echo base_url()    ?>js/libs/fancyzoom/fancyzoom_extended.js"></script>
+	<script src="<?php  echo base_url()   ?>js/libs/modernizr/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
+	<script>window.$ || document.write('<script src="' + window.base_url + 'js/libs/jquery/jquery.1.8.1.min.js"><\/script>')</script>
+	<script>window._ || document.write('<script src="' + window.base_url + 'js/libs/underscore/underscore-min.1.3.3.js"><\/script>')</script>
+	<script src="<?php  echo base_url()   ?>js/libs/cufon/cufon-yui.js"></script>
+	<script src="<?php  echo base_url()   ?>js/libs/cufon/gotham.js"></script>
+	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.core.min.js"></script>	
+	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.widget.min.js"></script>
+	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.mouse.min.js"></script>		
+	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.sortable.min.js"></script>	
+	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.draggable.min.js"></script>	
+	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.droppable.min.js"></script>	
+	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.position.min.js"></script>	
+	<script src="<?php echo base_url()    ?>js/libs/fancyzoom/fancyzoom_extended.js"></script>
 
 <style>
-	
-
 #logo-section .A{
 	width: 184px;
 	margin-left: 158px;
@@ -70,14 +70,9 @@ background: #FFFFFF url(<?php echo base_url()    ?>img/leftArrow.png) no-repeat;
 .carousel-control.right{
 background: #FFFFFF url(<?php echo base_url()    ?>img/rightArrow.png) no-repeat;
 }
-
-
-
 #thumb-collection ul li div.dragHandle{
 background:url(<?php  echo base_url()   ?>img/drag-handle.png) no-repeat;	
 }
-
-	
 #footBng{
 background:url(<?php  echo base_url()   ?>img/footerTiled.png) repeat-x;
 }
