@@ -18,6 +18,48 @@ class Main extends Base_Controller {
 
 	}
 	
+	public function font(){
+	?>	
+	
+		<html>
+		  <head>
+		    <script src="<?php  echo base_url()   ?>js/libs/cufon/cufon-yui.js"></script>
+		    <script src="<?php  echo base_url()   ?>js/libs/cufon/gotham.js"></script>
+		  </head>
+		
+			<style>
+			.cufon{
+				font-size:100px;
+				color:gray;
+			}
+			</style>
+		  <body>
+		    <div class="cufon gotham"   style=''  >
+		      Lorem ipsum dolor sit amet.
+		    </div>
+		    <div class="cufon gothamBold"   style=''  >
+		      Lorem ipsum dolor sit amet.
+		    </div>
+		    <div class="cufon gothamItalic"   style=''  >
+		      Lorem ipsum dolor sit amet.
+		    </div>
+		    <div class="cufon gothamBoldItalic"   style=''  >
+		      Lorem ipsum dolor sit amet.
+		    </div>		    		    
+			<script type="text/javascript">
+				Cufon.replace('.Gotham', { fontFamily: 'Gotham' });
+				Cufon.replace('.GothamBold', { fontFamily: 'GothamBold' });
+				Cufon.replace('.GothamBoldItalic', { fontFamily: 'GothamBoldItalic' });
+				Cufon.replace('.GothamItalic', { fontFamily: 'GothamItalic' });
+			</script>
+
+		  </body>
+		</html>
+	
+	<?php     	
+		
+	}
+	
 	public function carousel(){
 		$this->_data->carousels = $this->assets_model->getCarousel();
 		$this->_data->body = "body/carousel/view"; 
