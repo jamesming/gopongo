@@ -29,7 +29,7 @@ class Main extends Base_Controller {
 		
 			<style>
 			.cufon{
-				font-size:100px;
+				font-size:60px;
 				color:gray;
 			}
 			</style>
