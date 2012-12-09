@@ -888,6 +888,12 @@ _.extend(core, {
  		,leftControls: function(){
 
 			$('.category').live('click', function(event) {
+				
+				$('#categories .accordion-heading a').css({color:'gray'});
+				Cufon.replace($('#categories .accordion-heading a'), { fontFamily: 'Gotham' });
+				$(this).css({color:core.pongoRed});
+				Cufon.replace($(this), { fontFamily: 'GothamBold' });
+				
 				core.category_idx  = $(this).attr('idx');
 				
 				var rightPanelStuff = function(){
@@ -905,6 +911,11 @@ _.extend(core, {
 			});		
 			
 			$('#categories li').click(function(event) {	
+				
+					$('#categories .category-ul li').css({color:'gray'});
+					Cufon.replace($('#categories .category-ul li'), { fontFamily: 'Gotham' });
+					$(this).css({color:core.pongoRed});
+					Cufon.replace($(this), { fontFamily: 'GothamBold' });				
 					
 					core.misc.playVideo( $(this) );
 
