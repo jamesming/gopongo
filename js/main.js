@@ -889,10 +889,7 @@ _.extend(core, {
 
 			$('.category').live('click', function(event) {
 				
-				$('#categories .accordion-heading a').css({color:'gray'});
-				Cufon.replace($('#categories .accordion-heading a'), { fontFamily: 'Gotham' });
-				$(this).css({color:core.pongoRed});
-				Cufon.replace($(this), { fontFamily: 'GothamBold' });
+				core.misc.highlightThisChoice($('#categories .accordion-heading a'), $(this));
 				
 				core.category_idx  = $(this).attr('idx');
 				
@@ -912,10 +909,7 @@ _.extend(core, {
 			
 			$('#categories li').click(function(event) {	
 				
-					$('#categories .category-ul li').css({color:'gray'});
-					Cufon.replace($('#categories .category-ul li'), { fontFamily: 'Gotham' });
-					$(this).css({color:core.pongoRed});
-					Cufon.replace($(this), { fontFamily: 'GothamBold' });				
+					core.misc.highlightThisChoice($('#categories .category-ul li'), $(this));
 					
 					core.misc.playVideo( $(this) );
 
@@ -998,8 +992,20 @@ _.extend(core, {
 	}
 	
 	,misc: {
+		
+		highlightThisChoice: function(otherInList, el){
+			
+				/* Clear red from last branch */
+				$('#categories .category-ul li').css({color:'gray'});
+				Cufon.replace($('#categories .category-ul li'), { fontFamily: 'Gotham' });
+				
+				otherInList.css({color:'gray'});
+				Cufon.replace(otherInList, { fontFamily: 'Gotham' });
+				el.css({color:core.pongoRed});
+				Cufon.replace(el, { fontFamily: 'GothamBold' });	
+		}
 
-		highlight_video_that_is_playing: function(asset_id){
+		,highlight_video_that_is_playing: function(asset_id){
 			
 			var assetIdx = core.findIndexInArrayOfObjects( 
 														 core.categories[core.category_idx].assets
