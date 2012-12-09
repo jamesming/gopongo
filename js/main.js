@@ -316,9 +316,10 @@ _.extend(core, {
 			}
 			
 			,activateLeftItem: function(el){
-				$('#leftMenuBar h4').css({color:core.pongoGray});
+				
+				core.misc.highlightThisChoice($('#leftMenuBar h4'), el);
 				$('.rightArea').hide();
-				el.css({color:core.pongoRed});	
+				
 			}
 			
 			,home:function(){
