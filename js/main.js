@@ -34,6 +34,7 @@ _.extend(core, {
 		this.disableUpload = false;
 		this.pongoRed = '#D50412';
 		this.pongoGray = 'grey';
+		this.initialClickOnWorkNavItem = false;
 		
 		Cufon.replace('.Gotham', { fontFamily: 'Gotham' });
 		Cufon.replace('.GothamBold', { fontFamily: 'GothamBold' });
@@ -41,6 +42,9 @@ _.extend(core, {
 		Cufon.replace('.GothamItalic', { fontFamily: 'GothamItalic' });		
 		
 		Cufon.now();
+		
+		
+		core.misc.highlightThisChoice($('#categories .accordion-heading a'), $('#homeNav'));
 		
 	}
 
@@ -50,7 +54,6 @@ _.extend(core, {
 //			this.category.init();
 //			this.asset.init(0);
 //			this.setFixedRightBody();
-			core.misc.highlightFirstMenuItemRed();
 		}
 		
 		,category: {
@@ -333,6 +336,16 @@ _.extend(core, {
 			,work:function(){
 				
 				$('#workNav').click(function(event) {
+					
+					if( !core.initialClickOnWorkNavItem){
+						core.initialClickOnWorkNavItem = true;
+						
+						setTimeout(function(){
+							$('#categories a').eq(0).click();	
+						}, 10);
+						
+					};
+					
 					core.bindElements.nav.activateLeftItem($(this));
 					$('#workArea').show();
 				});					
@@ -359,8 +372,6 @@ _.extend(core, {
 			
 			
 		}
-		
-
 		
 		,model:{
 			
@@ -659,7 +670,11 @@ _.extend(core, {
 				,playAsset: function(){
 
 					$('.play').live('click', function(event) {
+						
 					 	core.misc.playVideo( $(this) );
+					 	
+					 	core.misc.highlightThisChoice($('#categories .category-ul li'), $('#categories .category-ul li[asset_id=' + $(this).attr('asset_id') + ']'));
+					 	
 					});	
 				}			
 				
@@ -1114,9 +1129,7 @@ _.extend(core, {
 						
 		}
 		
-		,highlightFirstMenuItemRed: function(){
-			$('#homeNav').css({color:core.pongoRed});
-		}
+
 	}
 	
 });
