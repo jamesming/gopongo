@@ -52,12 +52,12 @@
 <style>
 #logo-section .A{
 	width: 184px;
-	margin-left: 158px;
+	margin-left: 185px;
 	background:url(<?php  echo base_url()   ?>img/logoA.png) no-repeat;
 }
 #logo-section .B{
 	width:525px;
-	margin-right: 273px;
+	margin-right: 246px;
 	margin-top: 35px;	
 	background:url(<?php  echo base_url()   ?>img/logoB.png) no-repeat;
 	background-size: 526px;
