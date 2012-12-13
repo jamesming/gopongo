@@ -35,6 +35,7 @@ _.extend(core, {
 		this.pongoRed = '#D50412';
 		this.pongoGray = 'grey';
 		this.initialClickOnWorkNavItem = false;
+		this.doRightPanelStuff = true;
 		
 		Cufon.replace('.Gotham', { fontFamily: 'Gotham' });
 		Cufon.replace('.GothamBold', { fontFamily: 'GothamBold' });
@@ -673,7 +674,11 @@ _.extend(core, {
 						
 					 	core.misc.playVideo( $(this) );
 					 	
+					 	//core.doRightPanelStuff = false;
+					 	
 					 	core.misc.highlightThisChoice($('#categories .category-ul li'), $('#categories .category-ul li[asset_id=' + $(this).attr('asset_id') + ']'));
+					 	
+					 	//$('#categories a').eq(core.category_idx).click();
 					 	
 					});	
 				}			
@@ -909,17 +914,11 @@ _.extend(core, {
 				
 				core.category_idx  = $(this).attr('idx');
 				
-				var rightPanelStuff = function(){
-					$('#thumb-collection').show();
-					$('#video_container').hide();
-					$('#thumb-collection-ul li.draggable').remove();
-					$('#thumb-collection h2').html(core.categories[core.category_idx].category_name);						
-					$('#thumb-collection .editCategoryTitle').attr({'category_id':core.categories[core.category_idx].category_id,'category_idx':core.category_idx});
-					core.create.asset.init(core.category_idx);
-					core.bindElements.model.assets.editAsset.init();
+				if( core.doRightPanelStuff){
+					
+					core.misc.rightPanelStuff();
 				};
 				
-				rightPanelStuff();
 
 			});		
 			
@@ -1127,6 +1126,21 @@ _.extend(core, {
 				         	$('#footBng').css({position:'relative'});
 				         };
 						
+		}
+		
+		,rightPanelStuff: function(){
+					
+					core.doRightPanelStuff = true;
+					
+					console.log('doing ' + core.doRightPanelStuff);
+
+					$('#thumb-collection').show();
+					$('#video_container').hide();
+					$('#thumb-collection-ul li.draggable').remove();
+					$('#thumb-collection h2').html(core.categories[core.category_idx].category_name);						
+					$('#thumb-collection .editCategoryTitle').attr({'category_id':core.categories[core.category_idx].category_id,'category_idx':core.category_idx});
+					core.create.asset.init(core.category_idx);
+					core.bindElements.model.assets.editAsset.init();
 		}
 		
 

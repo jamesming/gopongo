@@ -240,51 +240,7 @@
 	  return length;
 	}			
 	
-	,setPropertiesMain: function(){
-		
-		this.categories = 
-			[{	
-			 	 name:'Animation'
-			 	,assets:[ {
-			 		 	 name:'Animation1'
-			 		 	,image:'http://lorempixel.com/280/159/city/'
-			 		 	}
-			 		,{
-			 		 	 name:'Animation2'
-			 		 	,image:'http://lorempixel.com/280/159/city/' 
-			 			}
-			 	]
-			 }
-			,{	name:'Cable'
-			 	,assets:[ {
-			 		 	 name:'Cable1'
-			 		 	,image:'http://lorempixel.com/280/159/sports/'
-			 		 	}
-			 		,{
-			 		 	 name:'Cable2'
-			 		 	,image:'http://lorempixel.com/280/159/sports/' 
-			 			}
-			 		,{
-			 		 	 name:'Cable2'
-			 		 	,image:'http://lorempixel.com/280/159/sports/' 
-			 			}
-			 		,{
-			 		 	 name:'Cable2'
-			 		 	,image:'http://lorempixel.com/280/159/sports/' 
-			 			}
-			 	]
-			 }
-			,{name:'Children\'s'}
-			,{name:'Digital Content'}
-			,{name:'Integrated'}
-			,{name:'Network'}
-			,{name:'Shoot'}
-			,{name:'Presentations'}
-		];
 
-
-	}
-	
 	,findIndexInArrayOfObjects :function(array, callback ){
 		
 		/* 
