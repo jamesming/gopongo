@@ -58,11 +58,11 @@ box-shadow:         9px 7px 14px 1px #CCC;
 	#leftMenuBar{
 		width:60px;	
 	}
-	.rightArea{
+	#main .rightArea{
 		width:865px;
 		overflow-x:hidden;	
 	}
-	.rightArea .wrapper{
+	#main .rightArea .wrapper{
 		width:830px;
 	}
 
