@@ -1,23 +1,3 @@
-<style>
-	/**/
-	#main{
-		 width:970px;
-	}	
-	#main .wrapper{
-		width:2830px;
-	}
-	#leftMenuBar{
-		width:60px;	
-	}
-	.rightArea{
-		width:817px;
-		overflow-x:hidden;	
-	}
-	.rightArea .wrapper{
-		width:830px;
-	}
-</style>	
-
 <div  id="main" class="container" >
 	
 	<div  class='wrapper ' >

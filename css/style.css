@@ -48,6 +48,38 @@ box-shadow:         9px 7px 14px 1px #CCC;
 
 
 
+
+	#main{
+		 width:970px;
+	}	
+	#main .wrapper{
+		width:2830px;
+	}
+	#leftMenuBar{
+		width:60px;	
+	}
+	.rightArea{
+		width:865px;
+		overflow-x:hidden;	
+	}
+	.rightArea .wrapper{
+		width:830px;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .carousel-inner img{
 cursor:pointer;	
 }
