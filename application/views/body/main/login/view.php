@@ -1,4 +1,4 @@
-﻿	<div id='loginArea'  class=" rightArea"    style='display:none' >
+﻿	<div id='loginArea'  class=" rightArea fl"    style='display:none' >
 			<div class="span4 well">
 				<legend>Please Sign In</legend>
 	          	<div class="alert alert-error">

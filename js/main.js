@@ -45,7 +45,7 @@ _.extend(core, {
 		Cufon.now();
 		
 		
-		core.misc.highlightThisChoice($('#categories .accordion-heading a'), $('#homeNav'));
+		core.misc.highlightThisChoice($('#categories .accordion-heading a'), $('#homeNav'), core.pongoRed);
 		
 	}
 
@@ -321,7 +321,7 @@ _.extend(core, {
 			
 			,activateLeftItem: function(el){
 				
-				core.misc.highlightThisChoice($('#leftMenuBar h4'), el);
+				core.misc.highlightThisChoice($('#leftMenuBar h4'), el, core.pongoRed);
 				$('.rightArea').hide();
 				
 			}
@@ -676,7 +676,7 @@ _.extend(core, {
 					 	
 					 	//core.doRightPanelStuff = false;
 					 	
-					 	core.misc.highlightThisChoice($('#categories .category-ul li'), $('#categories .category-ul li[asset_id=' + $(this).attr('asset_id') + ']'));
+					 	core.misc.highlightThisChoice($('#categories .category-ul li'), $('#categories .category-ul li[asset_id=' + $(this).attr('asset_id') + ']'), 'orange');
 					 	
 					 	//$('#categories a').eq(core.category_idx).click();
 					 	
@@ -910,7 +910,7 @@ _.extend(core, {
 
 			$('.category').live('click', function(event) {
 				
-				core.misc.highlightThisChoice($('#categories .accordion-heading a'), $(this));
+				core.misc.highlightThisChoice($('#categories .accordion-heading a'), $(this), 'blue');
 				
 				core.category_idx  = $(this).attr('idx');
 				
@@ -924,7 +924,7 @@ _.extend(core, {
 			
 			$('#categories li').click(function(event) {	
 				
-					core.misc.highlightThisChoice($('#categories .category-ul li'), $(this));
+					core.misc.highlightThisChoice($('#categories .category-ul li'), $(this), 'orange');
 					
 					core.misc.playVideo( $(this) );
 
@@ -1008,7 +1008,7 @@ _.extend(core, {
 	
 	,misc: {
 		
-		highlightThisChoice: function(otherInList, el){
+		highlightThisChoice: function(otherInList, el, color){
 			
 				/* Clear red from last branch */
 				$('#categories .category-ul li').css({color:'gray'});
@@ -1016,7 +1016,7 @@ _.extend(core, {
 				
 				otherInList.css({color:'gray'});
 				Cufon.replace(otherInList, { fontFamily: 'Gotham' });
-				el.css({color:core.pongoRed});
+				el.css({color:color});
 				Cufon.replace(el, { fontFamily: 'GothamBold' });	
 		}
 
@@ -1132,8 +1132,6 @@ _.extend(core, {
 					
 					core.doRightPanelStuff = true;
 					
-					console.log('doing ' + core.doRightPanelStuff);
-
 					$('#thumb-collection').show();
 					$('#video_container').hide();
 					$('#thumb-collection-ul li.draggable').remove();
