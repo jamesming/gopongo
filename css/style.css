@@ -362,4 +362,16 @@ top:48%;
 		box-sizing: border-box;
 	}
 
+#footBng .container{
+padding-left: 237px;	
+position: relative;
+top: -9px;
+}
+#footBng .container p{
+text-transform:uppercase;	
+}
+#footBng  .container p .telephone{
+color:	#d40412;
+font-size:20px;
 
+}
