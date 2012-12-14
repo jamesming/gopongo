@@ -70,7 +70,15 @@ box-shadow:         9px 7px 14px 1px #CCC;
 
 
 
-
+.carouselPlayButton	{
+position:absolute;
+left: 290px;
+right: 0px;
+top: 141px;
+width:100px;
+height:100px;
+cursor:pointer;
+}
 
 .carousel-inner img{
 cursor:pointer;	

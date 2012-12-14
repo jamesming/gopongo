@@ -1,12 +1,7 @@
-﻿
-<style>
+﻿<style>
 .carouselPlayButton	{
-position:absolute;
-left: 0px;
-right: 0px;
-	
+background: url(<?php echo base_url()    ?>img/Pongo_Site_PLAY.png) no-repeat;
 }
-
 </style>
 	<div  id='homeArea'  class="fl rightArea" >
 		
@@ -16,11 +11,11 @@ right: 0px;
 				  	<div class="carousel-inner">
 						<?php foreach( $carousels  as  $key => $carousel){?>
 							<div class="item<?php if($key == 0){ echo ' active ';};    ?>" >
-								<img play_asset_id=<?php echo $carousel->asset_link    ?> src="<?php echo base_url().'uploads/' . $carousel->asset_id . '/thumb/image.jpg?v=' . rand(5,12312) . ';'    ?>" alt="" ></img>
-								<div  class='carouselPlayButton ' >test
+								<img  play_asset_id=<?php echo $carousel->asset_link    ?>  src="<?php echo base_url().'uploads/' . $carousel->asset_id . '/thumb/image.jpg?v=' . rand(5,12312) . ';'    ?>" alt="" ></img>
+								<div  play_asset_id=<?php echo $carousel->asset_link    ?>  class='carouselPlayButton ' >
 								</div>
 							    <div class="carousel-caption">
-							      <h4><?php echo $carousel->asset_name    ?></h4>
+							      <h4  class='Gotham' ><?php echo $carousel->asset_name    ?></h4>
 							      <p><?php echo $carousel->asset_description    ?></p>
 							    </div>
 							</div>

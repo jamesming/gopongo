@@ -989,7 +989,7 @@ _.extend(core, {
 		
 		,carousel_images: function(){
 		
-			$('.carousel-inner img').click(function(event) {
+			$('.carousel-inner img, .carousel-inner .carouselPlayButton').click(function(event) {
 				$('#workArea').show();
 				$('#homeArea').hide();				
 				core.misc.playVideoByAssetId( $(this).attr('play_asset_id') );
