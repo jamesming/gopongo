@@ -73,7 +73,7 @@
 	
 				<?php foreach( $categories[1]['assets']  as $asset){ ?>
 				
-					<li asset_id=<?php  echo $asset['asset_id']   ?>   category_id=<?php  echo $categories[0]['category_id']   ?>  class=' draggable ' >
+					<li  asset_id=<?php  echo $asset['asset_id']   ?>   category_id=<?php  echo $categories[0]['category_id']   ?>  class=' draggable shadowOnDiv' >
 						<div  class='dragHandle ' >
 						</div>
 						<div  asset_id=<?php  echo $asset['asset_id']   ?>  category_id=<?php  echo $categories[0]['category_id']   ?> class='play shadowOnDiv'   style='background:url(<?php echo base_url().'/uploads/'. $asset['asset_id'].'/thumb/image.jpg?v='.rand(3,123);   ?>) no-repeat;background-position: 0px -45px;background-size: 282px;'  >&nbsp;
