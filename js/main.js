@@ -32,8 +32,10 @@ _.extend(core, {
 		this.category_idx = 0; // var category_id = core.categories[core.category_idx].category_id
 		this.updateThis = {asset_id:0};  // core.updateThis.asset_id
 		this.disableUpload = false;
-		this.pongoRed = '#D50412';
+		this.pongoRed = '#d40412';
 		this.pongoGray = 'grey';
+		this.pongoOrange = '#f38509';
+		this.pongoBlue = '#1d75b3';
 		this.initialClickOnWorkNavItem = false;
 		this.doRightPanelStuff = true;
 		
@@ -676,7 +678,7 @@ _.extend(core, {
 					 	
 					 	//core.doRightPanelStuff = false;
 					 	
-					 	core.misc.highlightThisChoice($('#categories .category-ul li'), $('#categories .category-ul li[asset_id=' + $(this).attr('asset_id') + ']'), 'orange');
+					 	core.misc.highlightThisChoice($('#categories .category-ul li'), $('#categories .category-ul li[asset_id=' + $(this).attr('asset_id') + ']'), core.pongoOrange);
 					 	
 					 	//$('#categories a').eq(core.category_idx).click();
 					 	
@@ -910,7 +912,7 @@ _.extend(core, {
 
 			$('.category').live('click', function(event) {
 				
-				core.misc.highlightThisChoice($('#categories .accordion-heading a'), $(this), 'blue');
+				core.misc.highlightThisChoice($('#categories .accordion-heading a'), $(this), core.pongoBlue);
 				
 				core.category_idx  = $(this).attr('idx');
 				
@@ -924,7 +926,7 @@ _.extend(core, {
 			
 			$('#categories li').click(function(event) {	
 				
-					core.misc.highlightThisChoice($('#categories .category-ul li'), $(this), 'orange');
+					core.misc.highlightThisChoice($('#categories .category-ul li'), $(this), core.pongoOrange);
 					
 					core.misc.playVideo( $(this) );
 
