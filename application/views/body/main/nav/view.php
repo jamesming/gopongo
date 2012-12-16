@@ -1,6 +1,13 @@
-﻿		<div  id='leftMenuBar' class="fl"   >
-			<h4  id='homeNav'  class='GothamBold ' >Home</h4>
-			<h4  id='workNav' class='GothamBold ' >Work</h4>
-			<h4  id='clientsNav' class='GothamBold ' >Clients</h4>
-			<h4  id='loginNav' class='GothamBold ' >Login</h4>
+﻿<style>
+#leftMenuBar h4{
+background:url(<?php echo base_url()    ?>img/pongomenu.png) no-repeat;	
+}
+</style>
+
+
+		<div  id='leftMenuBar' class="fl"   >
+			<h4  id='homeNav' ></h4>
+			<h4  id='workNav'></h4>
+			<h4  id='clientsNav'></h4>
+			<h4  id='loginNav'></h4>
 		</div>
