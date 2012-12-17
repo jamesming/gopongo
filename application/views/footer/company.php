@@ -1,5 +1,12 @@
+<style>
+#footBng .container{
+background: transparent url(<?php echo base_url()    ?>img/footer.png) no-repeat;
+height: 26px;
+width: 884px;
+}
+</style>
+
 <div  id='footBng'    >
       <footer  class='container ' >
-        <p  class='Gotham ' >3301 Barham blvd * Los Angeles * CA 90068 LA <span  class='telephone GothamBold' >323*850*3333</span>  NY <span class='telephone GothamBold'>212*262*3333</span>  PONGO@gopongo.com</p>
       </footer>
 </div>
