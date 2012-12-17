@@ -31,7 +31,7 @@
 				</div>
 				
 				
-				<div  class=' oh' <?php echo ( $this->session->userdata['user_id'] == 1  ? "" : "   style='display:none'  " );   ?>>
+				<div  class=' oh' >
 					
 					<div  class='img_wrapper ' >
 						<img  src="" class="img-polaroid thumb_img">
