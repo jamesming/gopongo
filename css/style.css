@@ -154,8 +154,9 @@ margin-bottom: 10px;
 
 #categories .accordion-group > img.sort-handle-categories{
 position:absolute;
-margin-top:12px;
-cursor:move;
+margin-top: 6px;
+cursor: move;
+margin-left: -11px;
 }
 
 #categories .accordion-inner{
