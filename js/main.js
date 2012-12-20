@@ -995,7 +995,9 @@ _.extend(core, {
 		
 			$('.carousel-inner img, .carousel-inner .carouselPlayButton').click(function(event) {
 				$('#workArea').show();
-				$('#homeArea').hide();				
+				$('#homeArea').hide();		
+				$('#leftMenuBar h4').removeClass('highlightedNav');
+				$('#workNav').addClass('highlightedNav ');						
 				core.misc.playVideoByAssetId( $(this).attr('play_asset_id') );
 			});	
 			
