@@ -323,7 +323,11 @@ _.extend(core, {
 			
 			,activateLeftItem: function(el){
 				
-				core.misc.highlightThisChoice($('#leftMenuBar h4'), el, core.pongoRed);
+//				core.misc.highlightThisChoice($('#leftMenuBar h4'), el, core.pongoRed);
+
+				$('#leftMenuBar h4').removeClass('highlightedNav');
+				el.addClass('highlightedNav ');
+
 				$('.rightArea').hide();
 				
 			}
