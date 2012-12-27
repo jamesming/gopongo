@@ -121,7 +121,7 @@ right: -60px;
 
 
 #categories ul.category-ul{
-margin:0px 0px 0px 10px;	
+margin:0px 0px 0px 25px;	
 padding-top: 4px;
 }
 
@@ -319,6 +319,12 @@ cursor:pointer;
 height:159px;
 width:280px;
 }
+
+.form_asset_container select[name=client]{
+	width: 164px;
+}	
+
+
 #jcropContainer{
 display:none;
 position: absolute;

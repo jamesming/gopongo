@@ -21,13 +21,24 @@
 					    	<textarea class="asset_description input-medium" placeholder="Description" ></textarea>
 					    </div>
 					  </div>		  
+
+					  <div class="control-group "  >
+					    <label class="control-label" for="asset_client">Client</label>
+					    <div class="controls">
+					    	<select name='client'>
+					    		<option value=1>test
+					    		</option>
+					    	</select>
+					    </div>
+					  </div>	
+					  
 					  
 					  <div class="control-group asset_link"  >
 					    <label class="control-label" for="asset_description">Link</label>
 					    <div class="controls">
 					    	<input type="text" class="asset_link input-medium" placeholder="Record ID" >
 					    </div>
-					  </div>	
+					  </div>						  
 				</div>
 				
 				

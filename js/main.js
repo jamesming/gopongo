@@ -617,11 +617,13 @@ _.extend(core, {
 								if( core.category_idx == 0){
 									
 									$('#zoom_content .oh .input-append').hide();
+									$('#zoom_content .oh select').parent().parent().hide();
 									$('#zoom_content .control-group.asset_link').show();
 									
 									
 								}else{
 									$('#zoom_content .oh .input-append').show();
+									$('#zoom_content .oh select').parent().parent().show();
 									$('#zoom_content .control-group.asset_link').hide();
 								};
 								
