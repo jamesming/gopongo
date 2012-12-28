@@ -1000,6 +1000,7 @@ _.extend(core, {
 		,carousel_images: function(){
 		
 			$('.carousel-inner img, .carousel-inner .carouselPlayButton').click(function(event) {
+				$('#pongo_desc').hide();
 				$('#workArea').show();
 				$('#homeArea').hide();		
 				$('#leftMenuBar h4').removeClass('highlightedNav');

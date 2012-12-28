@@ -50,7 +50,7 @@ height:185px;
 cursor: pointer;
 width: 83px;
 font-size: 27px;
-height: 35px;
+height: 20px;
 margin-left: 28px;
 background:url(<?php echo base_url()    ?>img/pongomenu.png) no-repeat;	
 }
@@ -139,6 +139,10 @@ padding-top: 4px;
 #categories{
 width: 169px;
 }
+#categories .accordion-heading {
+line-height: 14px;	
+}
+
 
 #categories .accordion-heading a{
 font-size: 14px;
@@ -157,7 +161,7 @@ color:gray;
 #categories .accordion-group{
 border: 0px;
 -webkit-border-radius: 0px;	
-margin-top: 7px;
+margin-top: 10px;
 margin-bottom: 10px;
 }
 
