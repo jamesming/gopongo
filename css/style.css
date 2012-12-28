@@ -408,3 +408,7 @@ color:	#d40412;
 font-size:20px;
 
 }
+#loginArea button{
+background-color: #D4040C;
+background-position: 0 -29px;	
+}
