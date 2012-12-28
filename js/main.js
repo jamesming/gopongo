@@ -337,6 +337,7 @@ _.extend(core, {
 				$('#homeNav').click(function(event) {
 					core.bindElements.nav.activateLeftItem($(this));
 					$('#homeArea').show();
+					$('#pongo_desc').show();					
 				});	
 				
 			}
@@ -355,6 +356,7 @@ _.extend(core, {
 					
 					core.bindElements.nav.activateLeftItem($(this));
 					$('#workArea').show();
+					$('#pongo_desc').hide();					
 				});					
 			}
 			
@@ -363,6 +365,7 @@ _.extend(core, {
 				$('#clientsNav').click(function(event) {
 					core.bindElements.nav.activateLeftItem($(this));
 					$('#clientsArea').show();
+					$('#pongo_desc').hide();			
 				});					
 				
 			}
@@ -372,6 +375,7 @@ _.extend(core, {
 				$('#loginNav').click(function(event) {
 					core.bindElements.nav.activateLeftItem($(this));
 					$('#loginArea').show();
+					$('#pongo_desc').hide();					
 				});						
 				
 				

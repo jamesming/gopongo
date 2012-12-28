@@ -73,7 +73,17 @@ background-position: 1px -100px !important;
 }	
 #main .wrapper{
 width:1031px;
+position: relative;
 }
+
+#main .wrapper	#pongo_desc{
+	position: absolute;
+	left: 30px;
+	top: 230px;
+	width: 242px;
+	color: gray;
+}
+
 #leftMenuBar{
 width: 126px;
 }
