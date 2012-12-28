@@ -922,6 +922,8 @@ _.extend(core, {
 
 			$('.category').live('click', function(event) {
 				
+				core.myPlayer.src('');
+				
 				core.misc.highlightThisChoice($('#categories .accordion-heading a'), $(this), core.pongoBlue);
 				
 				core.category_idx  = $(this).attr('idx');
