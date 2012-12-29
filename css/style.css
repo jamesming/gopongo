@@ -17,6 +17,14 @@ float:left;
 float:right;	
 }
 
+a:hover{
+text-decoration:none;	
+}
+
+a:focus{
+outline-style:none;	
+}
+
 .nowrap { white-space: nowrap; }
 
 .centered { margin: 0 auto; }

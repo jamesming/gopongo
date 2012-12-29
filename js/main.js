@@ -39,12 +39,12 @@ _.extend(core, {
 		this.initialClickOnWorkNavItem = false;
 		this.doRightPanelStuff = true;
 		
-		Cufon.replace('.Gotham', { fontFamily: 'Gotham' });
-		Cufon.replace('.GothamBold', { fontFamily: 'GothamBold' });
-		Cufon.replace('.GothamBoldItalic', { fontFamily: 'GothamBoldItalic' });
-		Cufon.replace('.GothamItalic', { fontFamily: 'GothamItalic' });		
+		if (!$.browser.msie) Cufon.replace('.Gotham', { fontFamily: 'Gotham' });
+		if (!$.browser.msie) Cufon.replace('.GothamBold', { fontFamily: 'GothamBold' });
+		if (!$.browser.msie) Cufon.replace('.GothamBoldItalic', { fontFamily: 'GothamBoldItalic' });
+		if (!$.browser.msie) Cufon.replace('.GothamItalic', { fontFamily: 'GothamItalic' });		
 		
-		Cufon.now();
+		if (!$.browser.msie) Cufon.now();
 		
 		
 		core.misc.highlightThisChoice($('#categories .accordion-heading a'), $('#homeNav'), core.pongoRed);
@@ -1029,12 +1029,12 @@ _.extend(core, {
 			
 				/* Clear red from last branch */
 				$('#categories .category-ul li').css({color:'gray'});
-				Cufon.replace($('#categories .category-ul li'), { fontFamily: 'Gotham' });
+				if (!$.browser.msie) Cufon.replace($('#categories .category-ul li'), { fontFamily: 'Gotham' });
 				
 				otherInList.css({color:'gray'});
-				Cufon.replace(otherInList, { fontFamily: 'Gotham' });
+				if (!$.browser.msie) Cufon.replace(otherInList, { fontFamily: 'Gotham' });
 				el.css({color:color});
-				Cufon.replace(el, { fontFamily: 'GothamBold' });	
+				if (!$.browser.msie) Cufon.replace(el, { fontFamily: 'GothamBold' });	
 		}
 
 		,highlight_video_that_is_playing: function(asset_id){
@@ -1102,6 +1102,9 @@ _.extend(core, {
 				$('#video_container').show();
 
 				var video_src = window.base_url + 'uploads/'+ $this.attr('asset_id') +'/video/video.mp4?v=' + Math.random();
+
+
+				console.log(video_src);
 
 				core.myPlayer.src(video_src);				
 

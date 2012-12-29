@@ -1561,7 +1561,7 @@
 
 }(window.jQuery);
 /* ==========================================================
- * bootstrap-carousel.js v2.1.1
+ * bootstrap-carousel.js v2.0.2
  * http://twitter.github.com/bootstrap/javascript.html#carousel
  * ==========================================================
  * Copyright 2012 Twitter, Inc.
@@ -1580,10 +1580,9 @@
  * ========================================================== */
 
 
-!function ($) {
+!function ( $ ) {
 
-  "use strict"; // jshint ;_;
-
+  "use strict"
 
  /* CAROUSEL CLASS DEFINITION
   * ========================= */
@@ -1599,16 +1598,14 @@
 
   Carousel.prototype = {
 
-    cycle: function (e) {
-      if (!e) this.paused = false
+    cycle: function () {
       this.options.interval
-        && !this.paused
         && (this.interval = setInterval($.proxy(this.next, this), this.options.interval))
       return this
     }
 
   , to: function (pos) {
-      var $active = this.$element.find('.item.active')
+      var $active = this.$element.find('.active')
         , children = $active.parent().children()
         , activePos = children.index($active)
         , that = this
@@ -1628,12 +1625,7 @@
       return this.slide(pos > activePos ? 'next' : 'prev', $(children[pos]))
     }
 
-  , pause: function (e) {
-      if (!e) this.paused = true
-      if (this.$element.find('.next, .prev').length && $.support.transition.end) {
-        this.$element.trigger($.support.transition.end)
-        this.cycle()
-      }
+  , pause: function () {
       clearInterval(this.interval)
       this.interval = null
       return this
@@ -1650,15 +1642,16 @@
     }
 
   , slide: function (type, next) {
-      var $active = this.$element.find('.item.active')
+      if(!$.support.transition && this.$element.hasClass('slide')) {
+        this.$element.find('.item').stop(true, true); //Finish animation and jump to end.
+      }
+      var $active = this.$element.find('.active')
         , $next = next || $active[type]()
         , isCycling = this.interval
         , direction = type == 'next' ? 'left' : 'right'
         , fallback  = type == 'next' ? 'first' : 'last'
         , that = this
-        , e = $.Event('slide', {
-            relatedTarget: $next[0]
-          })
+        , e = $.Event('slide')
 
       this.sliding = true
 
@@ -1681,6 +1674,17 @@
           that.sliding = false
           setTimeout(function () { that.$element.trigger('slid') }, 0)
         })
+      }else if(!$.support.transition && this.$element.hasClass('slide')) {
+        this.$element.trigger(e)
+        if (e.isDefaultPrevented()) return
+        $active.animate({left: (direction == 'right' ? '100%' : '-100%')}, 600, function(){
+            $active.removeClass('active')
+            that.sliding = false
+            setTimeout(function () { that.$element.trigger('slid') }, 0)
+        })
+        $next.addClass(type).css({left: (direction == 'right' ? '-100%' : '100%')}).animate({left: '0'}, 600,  function(){
+            $next.removeClass(type).addClass('active')
+        })
       } else {
         this.$element.trigger(e)
         if (e.isDefaultPrevented()) return
@@ -1701,15 +1705,14 @@
  /* CAROUSEL PLUGIN DEFINITION
   * ========================== */
 
-  $.fn.carousel = function (option) {
+  $.fn.carousel = function ( option ) {
     return this.each(function () {
       var $this = $(this)
         , data = $this.data('carousel')
         , options = $.extend({}, $.fn.carousel.defaults, typeof option == 'object' && option)
-        , action = typeof option == 'string' ? option : options.slide
       if (!data) $this.data('carousel', (data = new Carousel(this, options)))
       if (typeof option == 'number') data.to(option)
-      else if (action) data[action]()
+      else if (typeof option == 'string' || (option = options.slide)) data[option]()
       else if (options.interval) data.cycle()
     })
   }
@@ -1735,7 +1738,7 @@
     })
   })
 
-}(window.jQuery);
+}( window.jQuery );
 /* =============================================================
  * bootstrap-typeahead.js v2.1.1
  * http://twitter.github.com/bootstrap/javascript.html#typeahead
