@@ -15,7 +15,7 @@
 </video>
 
 <script>var homePlayer=_V_("home_video1");</script>
-
+<hr />
 
 <video id=home_video2 class="video-js vjs-default-skin" controls preload=none width=640 height=264
     poster="http://video-js.zencoder.com/oceans-clip.jpg">
