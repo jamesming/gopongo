@@ -9,7 +9,6 @@
 			  preload="auto" width="640" height="400" poster="<?php  echo base_url()   ?>images/Pongo_Logo.png"
 			  data-setup='{"autoplay": false}'>
 			  <source src="http://jamesming.whsites.net/gopongo/uploads/test/oceans-clip.mp4?" type='video/mp4'>
-			  <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm'/>
 			</video>		
 	</div>
 </div>
