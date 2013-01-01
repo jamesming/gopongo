@@ -15,7 +15,7 @@
 	  <track kind=captions src="/video-js/captions.vtt" srclang=en label=English />
 	</video>
 	
-	<script>_V_("home_video1");</script>
+	<script>var homePlayer=_V_("home_video1");</script>
 	<hr />
 	
 	<video id=home_video2 class="video-js vjs-default-skin" controls preload=none width=640 height=264
@@ -25,7 +25,7 @@
 	  <track kind=captions src="/video-js/captions.vtt" srclang=en label=English />
 	</video>
 	
-	<script>_V_("home_video2");</script>
+	<script>var homePlayer=_V_("home_video2");</script>
 	
 	
 	<br /><br />
