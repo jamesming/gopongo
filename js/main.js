@@ -1104,7 +1104,7 @@ _.extend(core, {
 				var video_src = window.base_url + 'uploads/'+ $this.attr('asset_id') +'/video/video.mp4?v=' + Math.random();
 
 
-//				console.log(video_src);
+				console.log(video_src);
 
 				core.myPlayer.src(video_src);				
 //				core.myPlayer.src({type: "video/mp4", src:video_src});				
