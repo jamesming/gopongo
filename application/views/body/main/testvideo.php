@@ -31,5 +31,12 @@
 	<br /><br />
 	
 </div>	
+
+
+http://stackoverflow.com/questions/3726357/why-does-ie9-switch-to-compatibility-mode-on-my-website
+
+/etc/httpd/conf/httpd.conf
+
+apachectl restart
         
         
