@@ -27,3 +27,9 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 
 ErrorDocument 404 /index.php
 </IfModule>
+
+#Video MIME Types:
+AddType video/m4v .m4v
+AddType video/ogg .ogv
+AddType video/mp4 .mp4
+AddType video/webm .webm
