@@ -28,8 +28,12 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 ErrorDocument 404 /index.php
 </IfModule>
 
-#Video MIME Types:
-AddType video/m4v .m4v
-AddType video/ogg .ogv
-AddType video/mp4 .mp4
-AddType video/webm .webm
+<IfModule mod_mime.c>
+    AddType video/mp4 .mp4 .m4v
+    AddType video/mpeg .mpeg .mpg .mpe
+    AddType video/asf .asf .asx .wax .wmv .wmx
+    AddType video/avi .avi
+    AddType video/quicktime .mov .qt
+    AddType audio/ogg .ogg
+</IfModule>
+
