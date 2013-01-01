@@ -1,6 +1,6 @@
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=8,chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	<title><?php echo $title    ?></title>
 	<meta name="description" content="">
