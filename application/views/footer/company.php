@@ -2,7 +2,8 @@
 #footBng .container{
 background: transparent url(<?php echo base_url()    ?>img/footerA.png) no-repeat;
 height: 26px;
-width: 884px;
+width: 903px;
+background-position-y: -5px;
 }
 #footBng .container #email_hotspot{
 position: absolute;
