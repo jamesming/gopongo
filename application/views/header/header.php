@@ -50,20 +50,6 @@
 	<script src="<?php  echo base_url()   ?>js/libs/cufon/gotham.js"></script>	
 
 <style>
-#logo-section .A{
-	width: 184px;
-	margin-left: 185px;
-	background:url(<?php  echo base_url()   ?>img/logoA.png) no-repeat;
-}
-#logo-section .B{
-	width:525px;
-	margin-right: 246px;
-	margin-top: 35px;	
-	background:url(<?php  echo base_url()   ?>img/logoB.png) no-repeat;
-	background-size: 526px;
-	height: 111px;
-}
-
 .carousel-control.left{
 background: #FFFFFF url(<?php echo base_url()    ?>img/leftArrow.png) no-repeat;
 }
