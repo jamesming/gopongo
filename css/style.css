@@ -5,6 +5,7 @@ margin: 0;
 .mid-section{
 min-height:470px;	
 clear: both;
+width: 1170px;
 }
 
 .clearfix{
@@ -77,6 +78,7 @@ background-position: 1px -100px !important;
 
 
 #main{
+margin-left:100px;
  width:970px;
 }	
 #main .wrapper{

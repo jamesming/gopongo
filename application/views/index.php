@@ -16,7 +16,7 @@
 		<div class="span11 B fr" >
 		</div>
 	</div>
-	<div  class='mid-section ' >
+	<div  class='mid-section container' >
 			<?php $this->load->view($body); ?>
 	</div>
 <?php

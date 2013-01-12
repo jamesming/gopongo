@@ -8,7 +8,7 @@
 	<script src="http://vjs.zencdn.net/3.2/video.js"></script>
 	
 	
-	<video id=home_video1 class="video-js vjs-default-skin" controls preload=none width=640 height=264
+	<video id="home_video1" class="video-js vjs-default-skin" controls preload=none width=640 height=264
 	    poster="http://video-js.zencoder.com/oceans-clip.jpg">
 	  <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4'/>
 	  <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm'/>
@@ -18,7 +18,7 @@
 	<script>var homePlayer=_V_("home_video1");</script>
 	<hr />
 	
-	<video id=home_video2 class="video-js vjs-default-skin" controls preload=none width=640 height=264
+	<video id="home_video2" class="video-js vjs-default-skin" controls preload=none width=640 height=264
 	    poster="http://video-js.zencoder.com/oceans-clip.jpg">
 	  <source src="http://jamesming.whsites.net/gopongo/uploads/test/oceans-clip.mp4" type='video/mp4'/>
 	  <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm'/>
@@ -31,12 +31,20 @@
 	<br /><br />
 	
 </div>	
+<script type="text/javascript" language="Javascript">
+	setTimeout(function(){
+		console.log(document.getElementById('home_video2').error.code);
+	}, 1000);
 
+</script>
 
 http://stackoverflow.com/questions/3726357/why-does-ie9-switch-to-compatibility-mode-on-my-website
 
 /etc/httpd/conf/httpd.conf
 
 apachectl restart
+
+
+http://blogs.msdn.com/b/thebeebs/archive/2011/07/20/html5-video-not-working-in-ie9-some-tips-to-debug.aspx
         
         
