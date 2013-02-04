@@ -333,6 +333,7 @@ _.extend(core, {
 			,home:function(){
 				
 				$('#homeNav').click(function(event) {
+					core.myPlayer.src('');
 					core.bindElements.nav.activateLeftItem($(this));
 					$('#homeArea').show();
 					$('#pongo_desc').show();					
@@ -342,7 +343,7 @@ _.extend(core, {
 			,work:function(){
 				
 				$('#workNav').click(function(event) {
-					
+					core.myPlayer.src('');
 					if( !core.initialClickOnWorkNavItem){
 						core.initialClickOnWorkNavItem = true;
 						
@@ -361,6 +362,7 @@ _.extend(core, {
 			,clients:function(){
 				
 				$('#clientsNav').click(function(event) {
+					core.myPlayer.src('');
 					core.bindElements.nav.activateLeftItem($(this));
 					$('#clientsArea').show();
 					$('#pongo_desc').hide();			
