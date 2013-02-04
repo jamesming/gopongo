@@ -73,6 +73,8 @@ class Main extends Base_Controller {
 		
 		$this->_data->carousels = $this->assets_model->getCarousel();
 		
+		$this->_data->customers = $this->customers_model->getCustomers();
+		
 		$this->_data->body = "body/main/view";
 		$this->_data->hidden = "hidden/view";	
 		$this->_data->edit=1;			

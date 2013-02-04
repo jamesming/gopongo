@@ -10,7 +10,7 @@ class Base_Controller extends CI_Controller
 		
 		$this->assets_model = new Models_Db_Assets_Model;
 		
-
+		$this->customers_model = new Models_Db_Customers_Model;
 
 		$this->_data = new stdClass;
 		
