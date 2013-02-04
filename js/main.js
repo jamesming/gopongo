@@ -10,8 +10,6 @@ _.extend(core, {
 		
 		$('#json').load(url, function(){
 			
-//			console.log(JSON.stringify(core.categories));
-			
 			that.setPropertiesMain();
 			
 			$('#thumb-collection h2').html(core.categories[0].category_name);
@@ -609,6 +607,7 @@ _.extend(core, {
 								
 								$('#zoom_content .asset_name').val(core.categories[core.category_idx].assets[idx_assets_array[0]].asset_name);
 								$('#zoom_content input.asset_link').val(core.categories[core.category_idx].assets[idx_assets_array[0]].asset_link);
+								$('#zoom_content .customer_id').val(core.categories[core.category_idx].assets[idx_assets_array[0]].customer_id);
 								
 								$('#zoom_content img')
 								.on('error', function() {
@@ -814,7 +813,8 @@ _.extend(core, {
 							
 							var  asset_name = $('#zoom .asset_name').val()
 								,asset_description =  $('#zoom .asset_description').val()
-								,asset_link = $('#zoom input.asset_link').val();
+								,asset_link = $('#zoom input.asset_link').val()
+								,asset_customer_id = $('#zoom .customer_id').val();
 								
 							$('body').click();
 							
@@ -822,6 +822,7 @@ _.extend(core, {
 									  asset_name:asset_name
 									 ,asset_link:asset_link
 									 ,asset_description:asset_description
+									 ,asset_customer_id:asset_customer_id
 									 ,asset_id:core.updateThis.asset_id
 								};						
 								
@@ -833,7 +834,7 @@ _.extend(core, {
 					,postEditAsset: function(assetObj){
 						
 			 			var url = window.base_url  + 'index.php/ajax/editAsset';
-			 			console.log(assetObj);
+
 						$.post(	url,
 								assetObj,
 								function() {
@@ -898,6 +899,7 @@ _.extend(core, {
 							$('.category-ul li[asset_id=' + assetObj['asset_id'] + ']').html(assetObj.asset_name);
 							
 							core.categories[core.category_idx].assets[ idx_assets_array ].asset_link = assetObj.asset_link;
+							core.categories[core.category_idx].assets[ idx_assets_array ].customer_id = assetObj.asset_customer_id;
 														
 							$('#thumb-collection li[asset_id=' + assetObj['asset_id'] + '] div.play')
 							.css({

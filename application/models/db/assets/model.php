@@ -28,6 +28,7 @@ class Models_Db_Assets_Model extends Database {
 						, assets.id as asset_id
 						, assets.description as asset_description
 						, assets.name as asset_name    
+						, assets.customer_id as customer_id    
 						, assets.asset_link as asset_link '   
 					,$where_array
 					,$use_order = TRUE
@@ -51,7 +52,7 @@ class Models_Db_Assets_Model extends Database {
 
 					foreach( $category  as  $field => $value){
 		 
-						 	if (!in_array($field, array('asset_id', 'asset_name', 'asset_description', 'asset_link'))){
+						 	if (!in_array($field, array('asset_id', 'asset_name', 'asset_description', 'asset_link', 'customer_id'))){
 						 			$category_array[$field] = $value;
 							}else{
 									
@@ -65,6 +66,8 @@ class Models_Db_Assets_Model extends Database {
 										$grouped_asset['user_id'] =  $value;
 									}elseif( $field =='asset_link'){
 										$grouped_asset['asset_link'] =  $value;
+									}elseif( $field =='customer_id'){
+										$grouped_asset['customer_id'] =  $value;
 									};
 									
 							};
@@ -82,7 +85,7 @@ class Models_Db_Assets_Model extends Database {
 
 					foreach( $category  as  $field => $value){
 		 
-						 	if (!in_array($field, array('asset_id', 'asset_name', 'asset_description', 'asset_link'))){
+						 	if (!in_array($field, array('asset_id', 'asset_name', 'asset_description', 'asset_link', 'customer_id'))){
 						 			$category_array[$field] = $value;
 							}else{
 								
@@ -96,6 +99,8 @@ class Models_Db_Assets_Model extends Database {
 										$grouped_asset['user_id'] =  $value;
 									}elseif( $field =='asset_link'){
 										$grouped_asset['asset_link'] =  $value;
+									}elseif( $field =='customer_id'){
+										$grouped_asset['customer_id'] =  $value;
 									};
 
 									
@@ -261,6 +266,7 @@ class Models_Db_Assets_Model extends Database {
 				  'name' => $post_array['asset_name']  
 				 ,'description' => $post_array['asset_description']
 				 ,'asset_link' => $post_array['asset_link']
+				 ,'customer_id' => $post_array['asset_customer_id']
 			)
 		);				
 

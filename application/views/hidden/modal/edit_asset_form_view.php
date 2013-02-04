@@ -25,10 +25,10 @@
 					  <div class="control-group "  >
 					    <label class="control-label" for="asset_client">Client</label>
 					    <div class="controls">
-					    	<select name='customer_id'>
+					    	<select name='customer_id'  class='customer_id ' >
+					    		<option value='-1'>Choose Client</option>
 								<?php foreach( $customers  as  $key => $customer){ ?>
 									<option value='<?php  echo  $customer['id']  ?>'><?php  echo  $customer['name']  ?></option>
-								
 								<?php } ?>
 					    	</select>
 					    </div>
