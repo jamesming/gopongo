@@ -384,7 +384,7 @@ top:48%;
 
 
 #footBng{
-position:absolute !important;
+/*	position:absolute;*/
 bottom:0px;
 height:184px;
 width:100%;
