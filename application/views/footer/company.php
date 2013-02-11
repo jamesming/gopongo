@@ -1,7 +1,6 @@
 <style>
 #footBng{
 background:url(<?php  echo base_url()   ?>img/footerTiled.png) repeat-x;
-min-width: 1000px;
 }
 
 #footBng .container{
