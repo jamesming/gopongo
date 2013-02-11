@@ -384,10 +384,10 @@ top:48%;
 
 
 #footBng{
-/*	position:absolute;*/
+position:absolute !important;
 bottom:0px;
 height:184px;
-width:800px;
+width:100%;
 -webkit-box-sizing: border-box;	
 -moz-box-sizing: border-box;
 -o-box-sizing: border-box;
