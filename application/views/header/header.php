@@ -11,6 +11,13 @@
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>js/libs/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>js/libs/jquery-ui/themes/base/jquery.ui.all.css">
 	
+
+	<link rel="stylesheet" href="<?php  echo base_url();   ?>js/libs/Jcrop/css/jquery.Jcrop.css" type="text/css"  type="text/css" >
+	<style>
+		img{
+			max-width: none; /* Hack for bootstrap warping previewing selected image in jscrop */
+		}	
+	</style>
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/style.css?v=<?php echo rand()    ?>">
 	
 	
@@ -45,7 +52,8 @@
 	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.sortable.min.js"></script>	
 	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.draggable.min.js"></script>	
 	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.droppable.min.js"></script>	
-	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.position.min.js"></script>	
+	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.position.min.js"></script>
+	<script src="<?php  echo base_url()   ?>js/libs/Jcrop/js/jquery.Jcrop.min.js" type="text/javascript" ></script>	
 	<script src="<?php echo base_url()    ?>js/libs/fancyzoom/fancyzoom_extended.js"></script>
 	<script src="<?php  echo base_url()   ?>js/libs/cufon/cufon-yui.js"></script>
 	<script src="<?php  echo base_url()   ?>js/libs/cufon/gotham.js"></script>	

@@ -131,7 +131,14 @@ class Ajax extends CI_Controller {
  		$this->upload = new Models_Up_Assets_Model;
  		$this->upload->save( $post_array );
  		
- 	} 
+ 	}
+ 	
+ 	public function getImageSize(){
+ 	
+ 		$this->upload = new Models_Up_Assets_Model;
+ 		$this->upload->getImageSize();
+ 		
+ 	}
  	
  	public function moveAsset(){
  		

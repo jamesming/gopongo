@@ -34,9 +34,13 @@ class Models_Up_Assets_Model extends Models_Up {
 
 		$this->_create_directories($post_array);
 		
+		$uploadpath = $this->upload_path( $post_array );
+		$filename = $post_array['target_name'];
+		$fullpath = $this->upload_path( $post_array ).$filename;
+		
 		get_instance()->load->library('upload', array(
-			'file_name' => $post_array['target_name'],
-			'upload_path' => $this->upload_path( $post_array ),
+			'file_name' => $filename,
+			'upload_path' => $uploadpath,
 //			'allowed_types' => ( $post_array['target_folder'] == 'thumb' ? 'jpg|jpeg':'m4v|mp4|avi|mpeg|3gp'),
 			'allowed_types' => '*',
 			'max_size' => '1000000000000000'/*,
@@ -53,12 +57,18 @@ class Models_Up_Assets_Model extends Models_Up {
 		}else{
 			
 			
-			if( $post_array['target_folder'] == 'thumb' ){?>
+			if( $post_array['target_folder'] == 'thumb' ){
+				
+				sleep(1);
+				$image_dim = $this->getImageSize($fullpath);
+				
+				?>
 			
 					<script type="text/javascript" language="Javascript">
-						var img_src = '<?php  echo base_url() . $this->upload_path( $post_array );   ?>/image.jpg';
+						var img_src = '<?php  echo base_url() . $fullpath; ?>'
 						window.parent.$('#zoom_content .thumb_img').attr('src', img_src);
-						//window.parent.core.disableUpload = false;
+						window.parent.$('#zoom_content .thumb_img').attr('src', img_src);
+						window.parent.core.bindElements.upload.jcrop.create(<?php echo  $post_array['asset_id'];    ?>, <?php  echo $image_dim['width']   ?>,<?php  echo $image_dim['height']    ?>);
 					</script>			
 			
 			
@@ -67,7 +77,7 @@ class Models_Up_Assets_Model extends Models_Up {
 					<script type="text/javascript" language="Javascript">
 						var img_src = '<?php  echo base_url() . $this->upload_path( $post_array );   ?>/image.jpg';
 						window.parent.$('#zoom_content .video_input_field').val('').css({background:'lightgreen'})
-						//window.parent.core.disableUpload = false;
+						
 					</script>				
 			
 			<?php } 
@@ -78,6 +88,8 @@ class Models_Up_Assets_Model extends Models_Up {
 
 		return TRUE;
 	}
+	
+
 	
 	public function upload_path( $post_array ) {
 		return "uploads/" . $post_array['asset_id'] ."/".$post_array['target_folder']."/";

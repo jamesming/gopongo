@@ -999,6 +999,51 @@ _.extend(core, {
 					
 				});	
 				
+			},
+			jcrop:{
+				
+				create: function(asset_id, width, height){	
+		            var overlay = document.createElement('div'),
+		            bodyTag = document.querySelectorAll('body')[0],
+		            zoomTag = document.getElementById('zoom'),
+		            closeTag = document.createElement('div'),
+		            imgTag = document.createElement('img');
+		            zoomTag.style.zIndex='-1';
+					overlay.id = 'overlay';
+		            overlay.style.cssText = "height:100%;width:100%;z-index:2000;background:gray;position:fixed;top:0px;left:0px;right:0px;bottom:0px";
+		            bodyTag.insertBefore(overlay, bodyTag.firstChild);
+		            closeTag.style.cssText = "cursor:pointer;height:30px;width:60px;z-index:2001;background:black;color:white;position:absolute;top:0px;right:0px;";
+		            closeTag.innerHTML = '[Close X]';
+		            core.attachEvent(closeTag, 'click', function(){
+		            	document.querySelectorAll('body')[0].removeChild(overlay);
+		            	zoomTag.style.zIndex='3000';
+		            });
+		            imgTag.style.cssText="position:absolute;top:100px;left:100px;width:"+width+"px;height:"+height+"px";
+		            imgTag.src = window.base_url+'uploads/'+asset_id+'/thumb/image.jpg';
+		            imgTag.id = 'crop';
+		            
+		            $('img').css({'max-width': 'none'});// HACK FOR BOOTSTRAP WARPING JSCROP
+		            
+		            overlay.insertBefore(imgTag, overlay.firstChild);
+		            overlay.insertBefore(closeTag, overlay.firstChild);
+		            
+//					$('#crop').Jcrop({		
+//						onChange: core.bindElements.upload.jcrop.showPreview,
+//						aspectRatio: 1,
+//						setSelect:   [ 0, 0, 100, 100]
+//					}); 
+					
+					$('#crop').Jcrop(); 					
+				},
+				showpreview:function(coords){
+					console.log(coords);
+//						$('#x').val(coords.x);
+//						$('#y').val(coords.y);
+//						$('#x2').val(coords.x2);
+//						$('#y2').val(coords.y2);
+//						$('#w').val(coords.w);
+//						$('#h').val(coords.h);	
+				}
 			}
 			
 		}

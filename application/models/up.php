@@ -24,6 +24,16 @@ class Models_Up{
 	}
 
 
+	function getImageSize($path){
+		
+		$image_dim = getimagesize($path);
+		
+		return array(
+			'width' => $image_dim[0],
+			'height' =>  $image_dim[1]
+		);
+	}
+
 	function cloneAndResizeImage(
 		 $url
 		,$pk
