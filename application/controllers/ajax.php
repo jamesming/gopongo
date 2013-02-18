@@ -32,7 +32,6 @@ class Ajax extends CI_Controller {
 	 
 	}
 	
-	
 	public function getAssets(){
 		
 		
@@ -41,8 +40,6 @@ class Ajax extends CI_Controller {
 		// echo '<pre>';print_r( $this->assets_model->getAssets(  $this->input->get()  )   );echo '</pre>';  exit;
 		
 	}
-	
-
 
 	public function getAllCategoriesAndAssets(){  // DEPRECIATED
 		
@@ -133,11 +130,10 @@ class Ajax extends CI_Controller {
  		
  	}
  	
- 	public function getImageSize(){
- 	
+ 	public function crop(){
  		$this->upload = new Models_Up_Assets_Model;
- 		$this->upload->getImageSize();
- 		
+ 		$this->upload->crop( $this->input->post() );
+ 		echo "test";
  	}
  	
  	public function moveAsset(){

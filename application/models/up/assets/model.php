@@ -36,7 +36,7 @@ class Models_Up_Assets_Model extends Models_Up {
 		
 		$uploadpath = $this->upload_path( $post_array );
 		$filename = $post_array['target_name'];
-		$fullpath = $this->upload_path( $post_array ).$filename;
+		$fullpath =$uploadpath.$filename;
 		
 		get_instance()->load->library('upload', array(
 			'file_name' => $filename,
@@ -68,7 +68,7 @@ class Models_Up_Assets_Model extends Models_Up {
 						var img_src = '<?php  echo base_url() . $fullpath; ?>'
 						window.parent.$('#zoom_content .thumb_img').attr('src', img_src);
 						window.parent.$('#zoom_content .thumb_img').attr('src', img_src);
-						window.parent.core.bindElements.upload.jcrop.create(<?php echo  $post_array['asset_id'];    ?>, <?php  echo $image_dim['width']   ?>,<?php  echo $image_dim['height']    ?>);
+						window.parent.core.bindElements.upload.jcrop.init(<?php echo  $post_array['asset_id'];    ?>, <?php  echo $image_dim['width']; ?>,<?php  echo $image_dim['height'];  ?>);
 					</script>			
 			
 			
@@ -93,6 +93,13 @@ class Models_Up_Assets_Model extends Models_Up {
 	
 	public function upload_path( $post_array ) {
 		return "uploads/" . $post_array['asset_id'] ."/".$post_array['target_folder']."/";
+	}
+	
+	public function crop( $post_array ){
+		$uploadpath = $this->upload_path( $post_array );
+		$filename = $post_array['target_name'];
+		$fullpath =$uploadpath.$filename;
+		return;
 	}
 	
 /*	public function filepath() {

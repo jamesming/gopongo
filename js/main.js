@@ -961,7 +961,7 @@ _.extend(core, {
 //			 			return;
 //			 		};
 			 		
-			 		$(this).attr('src', 'img/loading.gif');
+			 		$(this).attr('src', window.base_url + 'img/loading.gif');
 			 		
 			 		$('#zoom_content .filename').val('');
 			 		$('#zoom_content input[name=target_name]').val('image.jpg');
@@ -1001,48 +1001,101 @@ _.extend(core, {
 				
 			},
 			jcrop:{
-				
-				create: function(asset_id, width, height){	
-		            var overlay = document.createElement('div'),
-		            bodyTag = document.querySelectorAll('body')[0],
-		            zoomTag = document.getElementById('zoom'),
-		            closeTag = document.createElement('div'),
-		            imgTag = document.createElement('img');
-		            zoomTag.style.zIndex='-1';
+				init: function(asset_id, width, height){	
+		            var that=this, 
+			            overlay = document.createElement('div'),
+			            bodyTag = document.querySelectorAll('body')[0],
+			            closeTag = document.createElement('div'),
+			            submitTag = document.createElement('div'),
+			            imgTag = document.createElement('img');
+			            
+			       	this.zoomTag = document.getElementById('zoom');
+			        this.zoomTag.style.zIndex='-1';    
+		            
 					overlay.id = 'overlay';
-		            overlay.style.cssText = "height:100%;width:100%;z-index:2000;background:gray;position:fixed;top:0px;left:0px;right:0px;bottom:0px";
+		            overlay.style.cssText = "\
+		            	height:100%;\
+		            	width:100%;\
+		            	z-index:2000;\
+		            	background:gray;\
+		            	position:fixed;\
+		            	top:0px;\
+		            	left:0px;\
+		            	right:0px;\
+		            	bottom:0px\
+		            	";
 		            bodyTag.insertBefore(overlay, bodyTag.firstChild);
+		            
 		            closeTag.style.cssText = "cursor:pointer;height:30px;width:60px;z-index:2001;background:black;color:white;position:absolute;top:0px;right:0px;";
 		            closeTag.innerHTML = '[Close X]';
-		            core.attachEvent(closeTag, 'click', function(){
-		            	document.querySelectorAll('body')[0].removeChild(overlay);
-		            	zoomTag.style.zIndex='3000';
-		            });
-		            imgTag.style.cssText="position:absolute;top:100px;left:100px;width:"+width+"px;height:"+height+"px";
+		            this.bind.close(closeTag);
+		            
+		            submitTag.style.cssText = "\
+		            	cursor:pointer;\
+		            	height:30px;\
+		            	width:60px;\
+		            	z-index:2001;\
+		            	background:black;\
+		            	color:white;\
+		            	position:absolute;\
+		            	top:100px;\
+		            	right:0px;\
+		            	";
+		            submitTag.innerHTML = '[Submit]';
+					this.bind.submit(submitTag, asset_id);
+		            
+		            imgTag.style.cssText="\
+		            	margin:0 auto;\
+		            	width:"+width+"px;\
+		            	height:"+height+"px\
+		            	";
 		            imgTag.src = window.base_url+'uploads/'+asset_id+'/thumb/image.jpg';
 		            imgTag.id = 'crop';
 		            
-		            $('img').css({'max-width': 'none'});// HACK FOR BOOTSTRAP WARPING JSCROP
-		            
 		            overlay.insertBefore(imgTag, overlay.firstChild);
 		            overlay.insertBefore(closeTag, overlay.firstChild);
+		            overlay.insertBefore(submitTag, overlay.firstChild);
 		            
-//					$('#crop').Jcrop({		
-//						onChange: core.bindElements.upload.jcrop.showPreview,
-//						aspectRatio: 1,
-//						setSelect:   [ 0, 0, 100, 100]
-//					}); 
-					
-					$('#crop').Jcrop(); 					
-				},
-				showpreview:function(coords){
-					console.log(coords);
-//						$('#x').val(coords.x);
-//						$('#y').val(coords.y);
-//						$('#x2').val(coords.x2);
-//						$('#y2').val(coords.y2);
-//						$('#w').val(coords.w);
-//						$('#h').val(coords.h);	
+		            this.bind.Jcrop(width, height);
+				}
+				,bind:{
+					 Jcrop:function(width, height){
+						$('#crop').Jcrop({		
+							onChange: core.bindElements.upload.jcrop.showPreview,
+							aspectRatio: (width/height),
+							setSelect:   [ 0, 0, (width*.5), (height*.5)]
+						}); 
+					}
+					,close:function(closeTag){
+						core.attachEvent(closeTag, 'click', function(){
+							core.bindElements.upload.jcrop.removeOverLay();
+			            });							
+					}
+					,submit:function(submitTag, asset_id){
+						var asset_id = asset_id;
+						
+			            core.attachEvent(submitTag, 'click', function(){
+			            	var postObj = core.bindElements.upload.jcrop.coords;
+			            	var newObj={
+			            		 theAsset_id:asset_id
+			            		,target_folder:'thumb'
+			            	};
+							$.extend(postObj, newObj);
+							$.post(	window.base_url  + 'index.php/ajax/crop',
+									postObj,
+									function( data ) {
+										core.bindElements.upload.jcrop.removeOverLay();
+									}
+							);    	
+			            });
+					}
+				}
+				,removeOverLay:function(){
+	            	document.querySelectorAll('body')[0].removeChild(overlay);
+	            	this.zoomTag.style.zIndex='3000';
+				}
+				,showPreview:function(coords){
+					this.coords = coords;
 				}
 			}
 			
