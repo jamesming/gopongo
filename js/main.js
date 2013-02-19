@@ -1105,7 +1105,7 @@ _.extend(core, {
 										core.bindElements.upload.jcrop.removeOverLay();
 										$('div.play[asset_id='+asset_id+']').css({
 											 background:'url('+window.base_url+'uploads/'+asset_id+'/thumb/image.jpg?random='+Math.random()+') no-repeat' 
-											,'background-size': core.crop_dim['thumb'].width+'px'	
+											,'background-size': (core.crop_dim['thumb'].width+1)+'px'	
 										});
 									}
 							);    	
@@ -1286,7 +1286,7 @@ _.extend(core, {
 					core.create.asset.init(core.category_idx);
 					core.bindElements.model.assets.editAsset.init();
 					
-					$('div.play').css({'background-size': core.crop_dim['thumb'].width+'px'});	
+					$('div.play').css({'background-size': (core.crop_dim['thumb'].width+1)+'px'});	
 		}
 		
 
