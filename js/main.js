@@ -1085,8 +1085,10 @@ _.extend(core, {
 							$.post(	window.base_url  + 'index.php/ajax/crop',
 									postObj,
 									function( data ) {
-										console.log(data);
 										core.bindElements.upload.jcrop.removeOverLay();
+										console.log('div.play[asset_id='+asset_id+']');
+										console.log(window.base_url+'uploads/'+asset_id+'/thumb/image.jpg?random='+Math.random());
+										$('div.play[asset_id='+asset_id+']').css({background:'url('+window.base_url+'uploads/'+asset_id+'/thumb/image.jpg?random='+Math.random()+') no-repeat' });
 									}
 							);    	
 			            });
