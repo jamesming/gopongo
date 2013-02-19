@@ -964,7 +964,7 @@ _.extend(core, {
 			 		$(this).attr('src', window.base_url + 'img/loading.gif');
 			 		
 			 		$('#zoom_content .filename').val('');
-			 		$('#zoom_content input[name=target_name]').val('image.jpg');
+			 		$('#zoom_content input[name=target_name]').val('image.png');
 			 		$('#zoom_content input[name=target_folder]').val('thumb');
 			 		$('#zoom_content .filename').click();
 			 	});	
@@ -1001,7 +1001,8 @@ _.extend(core, {
 				
 			},
 			jcrop:{
-				init: function(asset_id, width, height){	
+				init: function(asset_id){
+					
 		            var that=this, 
 			            overlay = document.createElement('div'),
 			            bodyTag = document.querySelectorAll('body')[0],
@@ -1046,24 +1047,26 @@ _.extend(core, {
 		            
 		            imgTag.style.cssText="\
 		            	margin:0 auto;\
-		            	width:"+width+"px;\
-		            	height:"+height+"px\
 		            	";
-		            imgTag.src = window.base_url+'uploads/'+asset_id+'/thumb/image.jpg';
+		            imgTag.src = window.base_url+'uploads/'+asset_id+'/thumb/image.png';
 		            imgTag.id = 'crop';
 		            
 		            overlay.insertBefore(imgTag, overlay.firstChild);
 		            overlay.insertBefore(closeTag, overlay.firstChild);
 		            overlay.insertBefore(submitTag, overlay.firstChild);
 		            
-		            this.bind.Jcrop(width, height);
+		            this.bind.Jcrop();
 				}
 				,bind:{
-					 Jcrop:function(width, height){
+					 Jcrop:function(){
+					 	
+					 	var thumbWidth = 204,
+					 		thumbHeight = 154;
+					 	
 						$('#crop').Jcrop({		
 							onChange: core.bindElements.upload.jcrop.showPreview,
-							aspectRatio: (width/height),
-							setSelect:   [ 0, 0, (width*.5), (height*.5)]
+							aspectRatio: (thumbWidth/thumbHeight),
+							setSelect:   [ 0, 0, thumbWidth, thumbHeight]
 						}); 
 					}
 					,close:function(closeTag){
@@ -1072,18 +1075,17 @@ _.extend(core, {
 			            });							
 					}
 					,submit:function(submitTag, asset_id){
-						var asset_id = asset_id;
-						
 			            core.attachEvent(submitTag, 'click', function(){
 			            	var postObj = core.bindElements.upload.jcrop.coords;
 			            	var newObj={
-			            		 theAsset_id:asset_id
+			            		 asset_id:asset_id
 			            		,target_folder:'thumb'
 			            	};
 							$.extend(postObj, newObj);
 							$.post(	window.base_url  + 'index.php/ajax/crop',
 									postObj,
 									function( data ) {
+										console.log(data);
 										core.bindElements.upload.jcrop.removeOverLay();
 									}
 							);    	
@@ -1095,7 +1097,7 @@ _.extend(core, {
 	            	this.zoomTag.style.zIndex='3000';
 				}
 				,showPreview:function(coords){
-					this.coords = coords;
+					core.bindElements.upload.jcrop.coords = coords;
 				}
 			}
 			

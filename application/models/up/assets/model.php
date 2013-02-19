@@ -23,8 +23,8 @@ class Models_Up_Assets_Model extends Models_Up {
 	public function save( $post_array ) {
 
 		if( $post_array['target_folder'] == 'thumb' &&
-			is_file("uploads/".$post_array['asset_id']."/thumb/image.jpg") ){
- 				@unlink("uploads/".$post_array['asset_id']."/thumb/image.jpg");
+			is_file("uploads/".$post_array['asset_id']."/thumb/image.png") ){
+ 				@unlink("uploads/".$post_array['asset_id']."/thumb/image.png");
 		}elseif(
 		 	$post_array['target_folder'] == 'video' &&
 		 	is_file("uploads/".$post_array['asset_id']."/video/video.mp4") 
@@ -59,16 +59,14 @@ class Models_Up_Assets_Model extends Models_Up {
 			
 			if( $post_array['target_folder'] == 'thumb' ){
 				
-				sleep(1);
-				$image_dim = $this->getImageSize($fullpath);
-				
+
 				?>
 			
 					<script type="text/javascript" language="Javascript">
 						var img_src = '<?php  echo base_url() . $fullpath; ?>'
 						window.parent.$('#zoom_content .thumb_img').attr('src', img_src);
 						window.parent.$('#zoom_content .thumb_img').attr('src', img_src);
-						window.parent.core.bindElements.upload.jcrop.init(<?php echo  $post_array['asset_id'];    ?>, <?php  echo $image_dim['width']; ?>,<?php  echo $image_dim['height'];  ?>);
+						window.parent.core.bindElements.upload.jcrop.init(<?php echo  $post_array['asset_id'];    ?>);
 					</script>			
 			
 			
@@ -96,9 +94,39 @@ class Models_Up_Assets_Model extends Models_Up {
 	}
 	
 	public function crop( $post_array ){
+		
 		$uploadpath = $this->upload_path( $post_array );
-		$filename = $post_array['target_name'];
-		$fullpath =$uploadpath.$filename;
+		$filename = 'image.png';
+		$fullpath = $uploadpath.$filename;
+		
+		$image_dim = $this->getImageSize($fullpath);
+
+//		$new_width  = '204';
+//		$new_height = $this->get_new_size_of ($what = 'height', $based_on_new = $new_width, $orig_width = $image_dim['width'], $orig_height = $image_dim['height'] );
+//
+//		echo $new_height;
+
+echo '<pre>';print_r( $post_array   );echo '</pre>'; 
+echo $image_dim['width'];
+echo $image_dim['height'];
+
+		$this->crop_and_name_it(
+		 $new_name = 'image4.png',
+		  $fullpath, 
+		  $uploadpath,
+		   $post_array['x'], 
+		   $post_array['y'], 
+		   $post_array['x2'] - $post_array['x'], 
+		   $post_array['y2'] -  $post_array['y']
+		  );
+		  
+		  
+
+		  
+
+//		$this->resize_this(  $fullpath, $width = $new_width, $height = $new_height);
+
+		
 		return;
 	}
 	

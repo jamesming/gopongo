@@ -248,8 +248,8 @@ class Models_Up{
 					, $dir_path
 					, $x_axis = 0
 					, $y_axis = 0						
-					, $width = 300
-					, $height = 300
+					, $width
+					, $height
 	){
 
 		$config['image_library'] = 'gd2';

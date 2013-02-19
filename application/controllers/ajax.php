@@ -133,7 +133,6 @@ class Ajax extends CI_Controller {
  	public function crop(){
  		$this->upload = new Models_Up_Assets_Model;
  		$this->upload->crop( $this->input->post() );
- 		echo "test";
  	}
  	
  	public function moveAsset(){
