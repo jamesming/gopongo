@@ -964,7 +964,7 @@ _.extend(core, {
 			 		$(this).attr('src', window.base_url + 'img/loading.gif');
 			 		
 			 		$('#zoom_content .filename').val('');
-			 		$('#zoom_content input[name=target_name]').val('image.png');
+			 		$('#zoom_content input[name=target_name]').val('image.jpg');
 			 		$('#zoom_content input[name=target_folder]').val('thumb');
 			 		$('#zoom_content .filename').click();
 			 	});	
@@ -1048,7 +1048,7 @@ _.extend(core, {
 		            imgTag.style.cssText="\
 		            	margin:0 auto;\
 		            	";
-		            imgTag.src = window.base_url+'uploads/'+asset_id+'/thumb/image.png';
+		            imgTag.src = window.base_url+'uploads/'+asset_id+'/thumb/image.jpg';
 		            imgTag.id = 'crop';
 		            
 		            overlay.insertBefore(imgTag, overlay.firstChild);
@@ -1060,8 +1060,8 @@ _.extend(core, {
 				,bind:{
 					 Jcrop:function(){
 					 	
-					 	var thumbWidth = 204,
-					 		thumbHeight = 154;
+					 	var thumbWidth = 196,
+					 		thumbHeight = 104;
 					 	
 						$('#crop').Jcrop({		
 							onChange: core.bindElements.upload.jcrop.showPreview,

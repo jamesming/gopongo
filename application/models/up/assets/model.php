@@ -23,8 +23,8 @@ class Models_Up_Assets_Model extends Models_Up {
 	public function save( $post_array ) {
 
 		if( $post_array['target_folder'] == 'thumb' &&
-			is_file("uploads/".$post_array['asset_id']."/thumb/image.png") ){
- 				@unlink("uploads/".$post_array['asset_id']."/thumb/image.png");
+			is_file("uploads/".$post_array['asset_id']."/thumb/image.jpg") ){
+ 				@unlink("uploads/".$post_array['asset_id']."/thumb/image.jpg");
 		}elseif(
 		 	$post_array['target_folder'] == 'video' &&
 		 	is_file("uploads/".$post_array['asset_id']."/video/video.mp4") 
@@ -41,8 +41,7 @@ class Models_Up_Assets_Model extends Models_Up {
 		get_instance()->load->library('upload', array(
 			'file_name' => $filename,
 			'upload_path' => $uploadpath,
-//			'allowed_types' => ( $post_array['target_folder'] == 'thumb' ? 'jpg|jpeg':'m4v|mp4|avi|mpeg|3gp'),
-			'allowed_types' => '*',
+			'allowed_types' => '*',//			'allowed_types' => ( $post_array['target_folder'] == 'thumb' ? 'jpg|jpeg':'m4v|mp4|avi|mpeg|3gp'),
 			'max_size' => '1000000000000000'/*,
 			'max_width' => '2000',
 			'max_height' => '2000',*/
@@ -96,38 +95,28 @@ class Models_Up_Assets_Model extends Models_Up {
 	public function crop( $post_array ){
 		
 		$uploadpath = $this->upload_path( $post_array );
-		$filename = 'image.png';
+		$filename = 'image.jpg';
 		$fullpath = $uploadpath.$filename;
 		
 		$image_dim = $this->getImageSize($fullpath);
-
-//		$new_width  = '204';
-//		$new_height = $this->get_new_size_of ($what = 'height', $based_on_new = $new_width, $orig_width = $image_dim['width'], $orig_height = $image_dim['height'] );
-//
-//		echo $new_height;
-
-echo '<pre>';print_r( $post_array   );echo '</pre>'; 
-echo $image_dim['width'];
-echo $image_dim['height'];
+		$width = $post_array['x2'] - $post_array['x'];
+		$height = $post_array['y2'] -  $post_array['y'];
 
 		$this->crop_and_name_it(
-		 $new_name = 'image4.png',
-		  $fullpath, 
-		  $uploadpath,
-		   $post_array['x'], 
-		   $post_array['y'], 
-		   $post_array['x2'] - $post_array['x'], 
-		   $post_array['y2'] -  $post_array['y']
+			$new_name = 'image.jpg',
+			$fullpath, 
+			$uploadpath,
+			$post_array['x'], 
+			$post_array['y'], 
+			$width, 
+			$height
 		  );
 		  
-		  
+		$new_width  = '196';
+		$new_height = $this->get_new_size_of ($what = 'height', $based_on_new = $new_width, $orig_width = $width, $orig_height = $height );
 
-		  
+		$this->resize_this(  $fullpath, $width = $new_width, $height = $new_height);
 
-//		$this->resize_this(  $fullpath, $width = $new_width, $height = $new_height);
-
-		
-		return;
 	}
 	
 /*	public function filepath() {
