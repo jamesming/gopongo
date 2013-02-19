@@ -1103,7 +1103,10 @@ _.extend(core, {
 									postObj,
 									function( data ) {
 										core.bindElements.upload.jcrop.removeOverLay();
-										$('div.play[asset_id='+asset_id+']').css({background:'url('+window.base_url+'uploads/'+asset_id+'/thumb/image.jpg?random='+Math.random()+') no-repeat' });
+										$('div.play[asset_id='+asset_id+']').css({
+											 background:'url('+window.base_url+'uploads/'+asset_id+'/thumb/image.jpg?random='+Math.random()+') no-repeat' 
+											,'background-size': core.crop_dim['thumb'].width+'px'	
+										});
 									}
 							);    	
 			            });
