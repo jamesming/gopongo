@@ -53,7 +53,7 @@
 	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.draggable.min.js"></script>	
 	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.droppable.min.js"></script>	
 	<script src="<?php  echo base_url()   ?>js/libs/jquery-ui/ui/minified/jquery.ui.position.min.js"></script>
-	<script src="<?php  echo base_url()   ?>js/libs/Jcrop/js/jquery.Jcrop.min.js" type="text/javascript" ></script>	
+	<script src="<?php  echo base_url()   ?>js/libs/jcrop/js/jquery.Jcrop.min.js" type="text/javascript" ></script>	
 	<script src="<?php echo base_url()    ?>js/libs/fancyzoom/fancyzoom_extended.js"></script>
 	<script src="<?php  echo base_url()   ?>js/libs/cufon/cufon-yui.js"></script>
 	<script src="<?php  echo base_url()   ?>js/libs/cufon/gotham.js"></script>	
