@@ -64,7 +64,6 @@ class Models_Up_Assets_Model extends Models_Up {
 					<script type="text/javascript" language="Javascript">
 						var img_src = '<?php  echo base_url() . $fullpath; ?>'
 						window.parent.$('#zoom_content .thumb_img').attr('src', img_src);
-						window.parent.$('#zoom_content .thumb_img').attr('src', img_src);
 						window.parent.core.bindElements.upload.jcrop.init(<?php echo  $post_array['asset_id'];    ?>);
 					</script>			
 			
@@ -112,7 +111,7 @@ class Models_Up_Assets_Model extends Models_Up {
 			$height
 		  );
 		  
-		$new_width  = '196';
+		$new_width  = $post_array['cropped_width'];
 		$new_height = $this->get_new_size_of ($what = 'height', $based_on_new = $new_width, $orig_width = $width, $orig_height = $height );
 
 		$this->resize_this(  $fullpath, $width = $new_width, $height = $new_height);

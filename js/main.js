@@ -36,7 +36,18 @@ _.extend(core, {
 		this.pongoBlue = '#1d75b3';
 		this.initialClickOnWorkNavItem = false;
 		this.doRightPanelStuff = true;
-		
+		this.cropWhat='thumb';
+		this.crop_dim = {
+			thumb:{
+				 width:196
+				,height:104
+			}
+			,carousel:{
+				 width:643
+				,height:365
+			}	
+		};	
+
 		if (!$.browser.msie) Cufon.replace('.Gotham', { fontFamily: 'Gotham' });
 		if (!$.browser.msie) Cufon.replace('.GothamBold', { fontFamily: 'GothamBold' });
 		if (!$.browser.msie) Cufon.replace('.GothamBoldItalic', { fontFamily: 'GothamBoldItalic' });
@@ -932,6 +943,12 @@ _.extend(core, {
 				
 				core.category_idx  = $(this).attr('idx');
 				
+				if( core.category_idx == 0){
+					core.cropWhat = 'carousel';
+				}else{
+					core.cropWhat = 'thumb';
+				};
+				
 				if( core.doRightPanelStuff){
 					
 					core.misc.rightPanelStuff();
@@ -1060,8 +1077,8 @@ _.extend(core, {
 				,bind:{
 					 Jcrop:function(){
 					 	
-					 	var thumbWidth = 196,
-					 		thumbHeight = 104;
+					 	var thumbWidth = core.crop_dim[core.cropWhat].width,
+					 		thumbHeight = core.crop_dim[core.cropWhat].height;
 					 	
 						$('#crop').Jcrop({		
 							onChange: core.bindElements.upload.jcrop.showPreview,
@@ -1080,14 +1097,13 @@ _.extend(core, {
 			            	var newObj={
 			            		 asset_id:asset_id
 			            		,target_folder:'thumb'
+			            		,cropped_width:core.crop_dim[core.cropWhat].width
 			            	};
 							$.extend(postObj, newObj);
 							$.post(	window.base_url  + 'index.php/ajax/crop',
 									postObj,
 									function( data ) {
 										core.bindElements.upload.jcrop.removeOverLay();
-										console.log('div.play[asset_id='+asset_id+']');
-										console.log(window.base_url+'uploads/'+asset_id+'/thumb/image.jpg?random='+Math.random());
 										$('div.play[asset_id='+asset_id+']').css({background:'url('+window.base_url+'uploads/'+asset_id+'/thumb/image.jpg?random='+Math.random()+') no-repeat' });
 									}
 							);    	
