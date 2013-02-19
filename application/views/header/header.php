@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>js/libs/jquery-ui/themes/base/jquery.ui.all.css">
 	
 
-	<link rel="stylesheet" href="<?php  echo base_url();   ?>js/libs/Jcrop/css/jquery.Jcrop.css" type="text/css"  type="text/css" >
+	<link rel="stylesheet" href="<?php  echo base_url();   ?>js/libs/jcrop/css/jquery.Jcrop.css" type="text/css"  type="text/css" >
 	<style>
 		img{
 			max-width: none; /* Hack for bootstrap warping previewing selected image in jscrop */
