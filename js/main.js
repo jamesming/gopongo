@@ -43,11 +43,10 @@ _.extend(core, {
 				,height:104
 			}
 			,carousel:{
-				 width:643
+				 width:645
 				,height:365
 			}	
-		};	
-
+		};
 		if (!$.browser.msie) Cufon.replace('.Gotham', { fontFamily: 'Gotham' });
 		if (!$.browser.msie) Cufon.replace('.GothamBold', { fontFamily: 'GothamBold' });
 		if (!$.browser.msie) Cufon.replace('.GothamBoldItalic', { fontFamily: 'GothamBoldItalic' });
@@ -1283,6 +1282,8 @@ _.extend(core, {
 					$('#thumb-collection .editCategoryTitle').attr({'category_id':core.categories[core.category_idx].category_id,'category_idx':core.category_idx});
 					core.create.asset.init(core.category_idx);
 					core.bindElements.model.assets.editAsset.init();
+					
+					$('div.play').css({'background-size': core.crop_dim['thumb'].width+'px'});	
 		}
 		
 
