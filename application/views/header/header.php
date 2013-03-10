@@ -69,9 +69,6 @@ background: #FFFFFF url(<?php echo base_url()    ?>img/rightArrow.png) no-repeat
 #thumb-collection ul li div.dragHandle{
 background:url(<?php  echo base_url()   ?>img/drag-handle.png) no-repeat;	
 }
-#footBng{
-background:url(<?php  echo base_url()   ?>img/footerTiled.png) repeat-x;
-}
 
 body{
 background: #FFFFFF url(<?php echo base_url()    ?>img/p_background_compressed.jpg) center center fixed no-repeat;
