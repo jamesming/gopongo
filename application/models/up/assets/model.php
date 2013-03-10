@@ -97,7 +97,6 @@ class Models_Up_Assets_Model extends Models_Up {
 		$filename = 'image.jpg';
 		$fullpath = $uploadpath.$filename;
 		
-		$image_dim = $this->getImageSize($fullpath);
 		$width = $post_array['x2'] - $post_array['x'];
 		$height = $post_array['y2'] -  $post_array['y'];
 
@@ -112,9 +111,9 @@ class Models_Up_Assets_Model extends Models_Up {
 		  );
 		  
 		$new_width  = $post_array['cropped_width'];
-		$new_height = $this->get_new_size_of ($what = 'height', $based_on_new = $new_width, $orig_width = $width, $orig_height = $height );
+		$new_height = $this->get_new_size_of ($what = 'height', $based_on_new = $new_width, $width, $height );
 
-		$this->resize_this(  $fullpath, $width = $new_width, $height = $new_height);
+		$this->resize_this(  $fullpath, $new_width, $new_height);
 
 	}
 	
