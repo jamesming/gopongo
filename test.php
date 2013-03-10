@@ -34,7 +34,7 @@ background-repeat: repeat;
 
 #footBng .container{
 background: transparent url(img/footerA.png) no-repeat;
-height: 26px;
+height: 184px;
 width: 903px;
 background-position-y: -5px;
 }
