@@ -31,6 +31,7 @@ cursor:pointer;
 </div>
 
 <script type="text/javascript" language="Javascript">
+	alert('width' + $('body').width());
 	alert('width' + $('#footBng').width());
 	
 </script>
