@@ -7,7 +7,6 @@ min-width: 1260px;
 .mid-section{
 min-height:470px;	
 clear: both;
-width: 1170px;
 }
 
 .clearfix{
@@ -51,7 +50,6 @@ color:gray;
 
 #logo-section{
 height: 177px;
-width: 1170px;
 }
 #logo-section .span11{
 height:185px;
