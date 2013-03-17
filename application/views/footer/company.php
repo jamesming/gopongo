@@ -2,7 +2,6 @@
 #footBng{
 background-image:url('<?php  echo base_url()   ?>img/footerTiled.png');
 background-repeat: repeat;
-width:auto;
 }
 
 #footBng .container{
@@ -29,7 +28,3 @@ cursor:pointer;
     	</a>
       </footer>
 </div>
-
-<script type="text/javascript" language="Javascript">
-//	alert($('body').width());
-</script>
