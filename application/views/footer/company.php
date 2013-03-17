@@ -29,3 +29,8 @@ cursor:pointer;
     	</a>
       </footer>
 </div>
+
+<script type="text/javascript" language="Javascript">
+	alert('width' + $('#footBng').width());
+	
+</script>
