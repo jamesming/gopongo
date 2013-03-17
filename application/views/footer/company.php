@@ -32,7 +32,7 @@ cursor:pointer;
 
 <script type="text/javascript" language="Javascript">
 	
-(function(){
+(function(doc, win){
 	var gWd = function(){
 			var e = doc.documentElement,
 				g = doc.getElementsByTagName('body')[0],
@@ -42,5 +42,5 @@ cursor:pointer;
 		}
 	alert(JSON.stringify(gWd())); 
 	    
-})();
+})(document, window);
 </script>
