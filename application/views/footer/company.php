@@ -1,7 +1,6 @@
 <style>
 #footBng{
 background-image:url('<?php  echo base_url()   ?>img/footerTiled.png');
-background:red;
 background-repeat: repeat;
 width:1400px;
 }
@@ -32,5 +31,5 @@ cursor:pointer;
 </div>
 
 <script type="text/javascript" language="Javascript">
-	alert($('body').width());
+//	alert($('body').width());
 </script>
