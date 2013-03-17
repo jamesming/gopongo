@@ -31,7 +31,7 @@ cursor:pointer;
 
 <script type="text/javascript" language="Javascript">
 $(document).ready(function() {
-	if( navigator.platform.toLowerCase().indexOf("ipad") != -1 ){alert('');
+	if( navigator.platform.toLowerCase().indexOf("ipad") != -1 ){
 		$('#footBng').width(screen.width * window.devicePixelRatio);
 	};	
 });
