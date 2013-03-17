@@ -29,3 +29,18 @@ cursor:pointer;
     	</a>
       </footer>
 </div>
+
+<script type="text/javascript" language="Javascript">
+	
+(function(){
+	var gWd = function(){
+			var e = doc.documentElement,
+				g = doc.getElementsByTagName('body')[0],
+				x = win.innerWidth || e.clientWidth || g.clientWidth,
+				y = win.innerHeight || e.clientHeight || g.clientHeight;
+			return {width:x,height:y,devicePixelRatio:window.devicePixelRatio,screenWidth:screen.width};
+		}
+	alert(JSON.stringify(gWd())); 
+	    
+})();
+</script>
