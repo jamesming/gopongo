@@ -40,7 +40,7 @@ cursor:pointer;
 				y = window.innerHeight || e.clientHeight || g.clientHeight;
 			return {width:x,height:y,devicePixelRatio:window.devicePixelRatio,screenWidth:screen.width};
 		}
-	$('#footBng').width(screen.width); 
+	$('#footBng').width(screen.width * window.devicePixelRatio); 
 	    
 })();
 </script>
