@@ -31,6 +31,7 @@ cursor:pointer;
 
 <script type="text/javascript" language="Javascript">
 $(document).ready(function() { 
+	console.log(core.isThisIphone);
 	if( core.isThisIphone){alert('');
 		$('#footBng').width(screen.width * window.devicePixelRatio);
 	};	
