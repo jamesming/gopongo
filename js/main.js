@@ -4,7 +4,7 @@ _.extend(core, {
 	 	
 		var  that = this
 			,url = window.base_url  + 'index.php/ajax/getAll';
-		
+		this.detectCapabilities();
 		this.misc.setFooterAbsoluteIfWindowHeightGreaterThanBodyHeight();
 		
 		
