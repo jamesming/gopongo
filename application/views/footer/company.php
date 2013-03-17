@@ -31,7 +31,7 @@ cursor:pointer;
 
 <script type="text/javascript" language="Javascript">
 $(document).ready(function() { 
-	if( core.isThisIphone){
+	if( core.isThisIphone){alert('');
 		$('#footBng').width(screen.width * window.devicePixelRatio);
 	};	
 });
