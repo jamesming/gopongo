@@ -32,5 +32,5 @@ cursor:pointer;
 </div>
 
 <script type="text/javascript" language="Javascript">
-	
+	alert($('body').width());
 </script>
