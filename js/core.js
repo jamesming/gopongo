@@ -12,7 +12,7 @@
 		this.spinnerDelay = 2000;
 
 	}
-	,detectCapabilities: function() {
+	,detectCapabilities: function() {alert('');
 		this.isThisFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 		this.isThisAndroid = navigator.userAgent.toLowerCase().indexOf("android") != -1;	 			
 		this.isThisIphone = navigator.platform.toLowerCase().indexOf("iphone") != -1 
