@@ -3,7 +3,7 @@
 background-image:url('<?php  echo base_url()   ?>img/footerTiled.png');
 background:red;
 background-repeat: repeat;
-width:100%
+width:1400px;
 }
 
 #footBng .container{
