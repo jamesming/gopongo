@@ -33,7 +33,7 @@ cursor:pointer;
 <script type="text/javascript" language="Javascript">
 	
 (function(doc, win){
-	var gWd = function(){
+	var gWd = function(doc, win){
 			var e = doc.documentElement,
 				g = doc.getElementsByTagName('body')[0],
 				x = win.innerWidth || e.clientWidth || g.clientWidth,
