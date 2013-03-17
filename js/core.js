@@ -21,7 +21,7 @@
 			|| false;
 		this.isThisMobile = (this.isThisAndroid == true || this.isThisIphone == true);
 		this.ie = (function () {
-			var undef, v = 3, div = doc.createElement('div');
+			var undef, v = 3, div = document.createElement('div');
 			while (
 				div.innerHTML = '<!--[if gt IE '+(++v)+']><i></i><![endif]-->',
 				div.getElementsByTagName('i')[0]
