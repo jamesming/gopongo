@@ -2,7 +2,7 @@
 	init:function(){
 		
 		this.setProperties();
-		
+		this.detectCapabilities();
 		this.loadSpinner();
 		
 	}
