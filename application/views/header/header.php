@@ -5,7 +5,7 @@
 	<title><?php echo $title    ?></title>
 	<meta name="description" content="">
 	<meta name="author" content="">
-
+	<meta name="viewport" content="maximum-scale=1.0" />
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>js/libs/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>js/libs/jquery-ui/themes/base/jquery.ui.all.css">
 	
