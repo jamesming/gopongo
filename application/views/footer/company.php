@@ -32,15 +32,15 @@ cursor:pointer;
 
 <script type="text/javascript" language="Javascript">
 	
-(function(doc, win){
+(function(){
 	var gWd = function(doc, win){
-			var e = doc.documentElement,
-				g = doc.getElementsByTagName('body')[0],
-				x = win.innerWidth || e.clientWidth || g.clientWidth,
-				y = win.innerHeight || e.clientHeight || g.clientHeight;
+			var e = document.documentElement,
+				g = document.getElementsByTagName('body')[0],
+				x = window.innerWidth || e.clientWidth || g.clientWidth,
+				y = window.innerHeight || e.clientHeight || g.clientHeight;
 			return {width:x,height:y,devicePixelRatio:window.devicePixelRatio,screenWidth:screen.width};
 		}
 	alert(JSON.stringify(gWd())); 
 	    
-})(document, window);
+})();
 </script>
