@@ -12,6 +12,23 @@
 		this.spinnerDelay = 2000;
 
 	}
+	,detectCapabilities: function() {
+		this.isThisFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+		this.isThisAndroid = navigator.userAgent.toLowerCase().indexOf("android") != -1;	 			
+		this.isThisIphone = navigator.platform.toLowerCase().indexOf("iphone") != -1 
+			|| navigator.platform.toLowerCase().indexOf("ipod") != -1
+			|| navigator.platform.toLowerCase().indexOf("ipad") != -1
+			|| false;
+		this.isThisMobile = (this.isThisAndroid == true || this.isThisIphone == true);
+		this.ie = (function () {
+			var undef, v = 3, div = doc.createElement('div');
+			while (
+				div.innerHTML = '<!--[if gt IE '+(++v)+']><i></i><![endif]-->',
+				div.getElementsByTagName('i')[0]
+			);
+			return v > 4 ? v : undef;
+		}());
+	}
 	
 	,getRandoms: function(numPicks, low, high) {
 		

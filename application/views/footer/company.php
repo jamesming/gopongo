@@ -33,14 +33,9 @@ cursor:pointer;
 <script type="text/javascript" language="Javascript">
 	
 (function(){
-	var gWd = function(doc, win){
-			var e = document.documentElement,
-				g = document.getElementsByTagName('body')[0],
-				x = window.innerWidth || e.clientWidth || g.clientWidth,
-				y = window.innerHeight || e.clientHeight || g.clientHeight;
-			return {width:x,height:y,devicePixelRatio:window.devicePixelRatio,screenWidth:screen.width};
-		}
-	$('#footBng').width(screen.width * window.devicePixelRatio); 
+	if( core.isThisIphone){
+		$('#footBng').width(screen.width * window.devicePixelRatio);
+	};
 	    
 })();
 </script>
