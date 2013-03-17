@@ -2,7 +2,6 @@
 #footBng{
 background-image:url('<?php  echo base_url()   ?>img/footerTiled.png');
 background-repeat: repeat;
-width: 1170px;
 }
 
 #footBng .container{
