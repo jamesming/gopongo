@@ -30,11 +30,9 @@ cursor:pointer;
 </div>
 
 <script type="text/javascript" language="Javascript">
-	
-(function(){
+$(document).ready(function() { 
 	if( core.isThisIphone){
 		$('#footBng').width(screen.width * window.devicePixelRatio);
-	};
-	    
-})();
+	};	
+});
 </script>
